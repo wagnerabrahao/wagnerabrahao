@@ -1,16 +1,167 @@
-## Hi there 👋
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wagner Abrahão | O Portal do Invisível</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #c5a059; --obsidian: #050505; --text: #d1d1d1; --accent: #ffdfa0; }
+        body, html { margin: 0; padding: 0; background: var(--obsidian); color: var(--text); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; height: 100%; cursor: crosshair; }
+        
+        /* 3D Dynamic Éter */
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; filter: brightness(0.7) contrast(1.2); }
 
-<!--
-**wagnerabrahao/wagnerabrahao** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+        /* Portal de Entrada (Ritual) */
+        #gate { position: fixed; inset: 0; background: var(--obsidian); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: 2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .gate-title { font-family: 'Cinzel'; font-size: 3.5rem; color: var(--gold); letter-spacing: 25px; margin-bottom: 50px; text-shadow: 0 0 30px var(--gold); }
+        .gate-btn { border: 1px solid var(--gold); color: var(--gold); background: transparent; padding: 25px 80px; cursor: pointer; font-family: 'Cinzel'; letter-spacing: 12px; font-size: 1.1rem; transition: 1s; box-shadow: 0 0 20px rgba(197, 160, 89, 0.1); }
+        .gate-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 50px var(--gold); }
 
-Here are some ideas to get you started:
+        /* Navegação Orbital */
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 40px; padding: 40px 0; z-index: 1000; background: linear-gradient(to bottom, rgba(5,5,5,1), transparent); }
+        nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 5px; font-family: 'Cinzel', serif; font-size: 0.8rem; cursor: pointer; opacity: 0.4; transition: 0.8s; }
+        nav a:hover, nav a.active { opacity: 1; text-shadow: 0 0 15px var(--gold); transform: translateY(-3px); }
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+        /* Container Principal */
+        .container { position: relative; z-index: 100; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 10%; }
+        .page { display: none; width: 100%; max-width: 1100px; animation: reveal 2.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .page.active { display: block; }
+        @keyframes reveal { from { opacity: 0; filter: blur(10px); transform: translateY(30px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
+
+        h1.central-name { font-family: 'Cinzel'; font-size: 5rem; letter-spacing: 30px; color: var(--gold); margin: 0; text-shadow: 0 0 40px rgba(197, 160, 89, 0.3); line-height: 1.2; }
+        .wisdom-para { font-size: 1.8rem; line-height: 1.8; font-style: italic; margin-top: 40px; color: #fff; }
+
+        /* Bio Photo */
+        .bio-box { display: flex; gap: 60px; align-items: center; margin-top: 60px; text-align: left; }
+        .bio-img { width: 350px; height: 500px; object-fit: cover; border: 1px solid var(--gold); padding: 10px; background: rgba(197, 160, 89, 0.05); transition: 1s; }
+        .bio-img:hover { transform: scale(1.02); box-shadow: 0 0 50px var(--gold); }
+
+        /* Cards de Livros (Profundidade) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
+        .card { border: 1px solid rgba(197, 160, 89, 0.2); padding: 40px; background: rgba(10,10,10,0.5); backdrop-filter: blur(15px); transition: 0.6s; cursor: pointer; }
+        .card:hover { border-color: var(--gold); transform: scale(1.05); background: rgba(197,160,89,0.05); }
+        .card h3 { font-family: 'Cinzel'; color: var(--gold); letter-spacing: 3px; margin-bottom: 15px; }
+
+        /* Frequências */
+        .freq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-top: 40px; }
+        .freq-box { border: 1px solid var(--gold); background: #000; position: relative; padding-bottom: 56.25%; height: 0; }
+        .freq-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* Modal Alquímico */
+        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
+        .modal-body { max-width: 800px; text-align: center; border: 1px solid var(--gold); padding: 60px; background: rgba(5,5,5,0.9); }
+    </style>
+</head>
+<body>
+
+    <div id="gate">
+        <div class="gate-title">WAGNER ABRAHÃO</div>
+        <button class="gate-btn" onclick="unlock()">DESPERTAR O INVISÍVEL</button>
+    </div>
+
+    <div id="modal" onclick="this.style.display='none'">
+        <div class="modal-body" id="m-content"></div>
+    </div>
+
+    <nav>
+        <a onclick="show('home')" id="nav-home" class="active">O Arquiteto</a>
+        <a onclick="show('obras')">Obras de Poder</a>
+        <a onclick="show('freq')">Frequências 4D</a>
+        <a onclick="show('verbo')">O Verbo</a>
+    </nav>
+
+    <div class="container">
+        <div id="home" class="page active">
+            <h1 class="central-name">WAGNER ABRAHÃO</h1>
+            <div class="bio-box">
+                <img src="perfil.jpg" class="bio-img" alt="Wagner Abrahão" onerror="this.style.display='none'">
+                <div class="bio-text">
+                    <p class="wisdom-para">"Pai, marido e afinador de almas. A música me ensinou a ouvir o que não é dito; a literatura me ensinou a dizer o que não pode ser ouvido. Escrevo da trincheira, traduzindo com honestidade brutal o território da consciência expandida."</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="obras" class="page">
+            <h1 class="central-name" style="font-size: 3rem;">CÂNONE LITERÁRIO</h1>
+            <div class="grid">
+                <div class="card" onclick="openBook('anestesia')"><h3>A Anestesia Divina</h3><p>O despertar através da dor.</p></div>
+                <div class="card" onclick="openBook('centelha')"><h3>A Centelha Inquieta</h3><p>A lembrança da própria luz.</p></div>
+                <div class="card" onclick="openBook('alquimia')"><h3>Alquimia do Ser</h3><p>A alma oculta do mundo.</p></div>
+                <div class="card" onclick="openBook('arquitetura')"><h3>Arquitetura do Invisível</h3><p>A restauração da alma.</p></div>
+            </div>
+        </div>
+
+        <div id="freq" class="page">
+            <h1 class="central-name" style="font-size: 3rem;">SINFONIAS DE CURA</h1>
+            <div class="freq-grid">
+                <div class="freq-box"><iframe src="https://www.youtube.com/embed/VArWZSlBtro"></iframe></div>
+                <div class="freq-box"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec"></iframe></div>
+                <div class="freq-box"><iframe src="https://www.youtube.com/embed/fFtNlS940tg"></iframe></div>
+                <div class="freq-box"><iframe src="https://www.youtube.com/embed/2dUXWxrKui4"></iframe></div>
+            </div>
+        </div>
+
+        <div id="verbo" class="page">
+            <h1 class="central-name" style="font-size: 3rem;">POESIA VISCERAL</h1>
+            <div class="wisdom-para" style="font-size: 2.2rem; text-align: center; margin-top: 100px;">
+                "Não somos ruínas de um passado que acabou. <br>Somos templos em reforma, esperando a liturgia certa <br>para voltarmos a ser sagrados."
+            </div>
+        </div>
+    </div>
+
+    <div id="yt-player" style="display:none;"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('yt-player', {
+                height: '0', width: '0', videoId: 'CvglW3KNSsQ', // Hauser - Air on the G String
+                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'CvglW3KNSsQ' }
+            });
+        }
+
+        function unlock() {
+            document.getElementById('gate').style.opacity = '0';
+            setTimeout(() => document.getElementById('gate').style.display = 'none', 2000);
+            player.playVideo();
+        }
+
+        function show(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+        }
+
+        const books = {
+            anestesia: "Esta é a história de um homem que despertou porque a dor apagou todas as luzes e ele foi forçado a encontrar o que brilhava no escuro.",
+            centelha: "A luz que você busca lá fora já pulsa, intocada e gloriosa, dentro do seu próprio peito.",
+            alquimia: "O guia para a peregrinação interna. Aprenda a usar a sombra como fertilizante da sua luz e a dominar a intenção clara.",
+            arquitetura: "Um romance sobre a memória e o tempo. 'O que a memória ama, fica eterno'."
+        };
+
+        function openBook(id) {
+            document.getElementById('m-content').innerHTML = `<h1 style="font-family:'Cinzel'; color:var(--gold);">${id.toUpperCase()}</h1><p style="font-size:1.6rem; font-style:italic;">${books[id]}</p>`;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        // 3D Éter Cloud
+        let scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        let renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        let pts = []; for(let i=0; i<10000; i++) pts.push(THREE.MathUtils.randFloatSpread(40), THREE.MathUtils.randFloatSpread(40), THREE.MathUtils.randFloatSpread(40));
+        let geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
+        let cloud = new THREE.Points(geo, new THREE.PointsMaterial({color: 0xc5a059, size: 0.015, transparent: true, opacity: 0.5}));
+        scene.add(cloud); camera.position.z = 5;
+        function anim() { 
+            requestAnimationFrame(anim); 
+            cloud.rotation.y += 0.0005; 
+            renderer.render(scene, camera); 
+        } anim();
+    </script>
+</body>
+</html>
