@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wagner Abrahão | Arquiteto do Invisível</title>
+    <meta name="description" content="Wagner Abrahão é o Arquiteto do Invisível. Afinador de palavras, escreve sobre a consciência expandida. Autor de A Anestesia Divina, A Centelha Inquieta e Alquimia do Ser.">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #c5a059; --obsidian: #050505; --text: #d1d1d1; }
+        body, html { margin: 0; padding: 0; background: var(--obsidian); color: var(--text); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; scroll-behavior: smooth; }
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.5; }
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 30px; padding: 25px 0; z-index: 100; background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); }
+        nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-family: 'Cinzel', serif; font-size: 0.8rem; cursor: pointer; opacity: 0.6; transition: 0.5s; }
+        nav a:hover, nav a.active { opacity: 1; text-shadow: 0 0 15px var(--gold); }
+        .container { position: relative; z-index: 10; padding: 120px 8% 50px; max-width: 1200px; margin: 0 auto; }
+        .page { display: none; animation: fadeIn 2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .bio-flex { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; margin-top: 40px; }
+        .bio-photo { width: 320px; height: 450px; object-fit: cover; border: 1px solid var(--gold); padding: 5px; box-shadow: 0 0 30px rgba(197, 160, 89, 0.2); }
+        .bio-text { flex: 1; font-size: 1.45rem; line-height: 1.8; font-style: italic; min-width: 300px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 50px; }
+        .card { border: 1px solid rgba(197, 160, 89, 0.2); padding: 35px; background: rgba(5,5,5,0.8); backdrop-filter: blur(10px); transition: 0.5s; }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .card h3 { color: var(--gold); font-family: 'Cinzel'; letter-spacing: 2px; }
+        .video-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; margin-top: 40px; }
+        .video-box { border: 1px solid var(--gold); background: #000; position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        #gate { position: fixed; inset: 0; background: var(--obsidian); z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .gate-btn { border: 1px solid var(--gold); color: var(--gold); background: transparent; padding: 20px 60px; cursor: pointer; font-family: 'Cinzel'; letter-spacing: 10px; transition: 0.8s; font-size: 1rem; }
+        .gate-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 50px var(--gold); }
+    </style>
+</head>
+<body>
+    <div id="gate">
+        <h1 style="font-family: 'Cinzel'; letter-spacing: 15px; color: var(--gold);">WAGNER ABRAHÃO</h1>
+        <button class="gate-btn" onclick="document.getElementById('gate').style.display='none'">INICIAR EXPERIÊNCIA</button>
+    </div>
+    <nav>
+        <a onclick="show('home')">O Afinador</a>
+        <a onclick="show('obras')">Obras de Poder</a>
+        <a onclick="show('musica')">Sinfonias</a>
+        <a onclick="show('verbo')">Verbo</a>
+    </nav>
+    <div class="container">
+        <div id="home" class="page active">
+            <h1>O AFINADOR DE PALAVRAS</h1>
+            <div class="bio-flex">
+                <img src="https://wagnerabrahao.vercel.app/foto.jpg" class="bio-photo" alt="Wagner Abrahão">
+                <div class="bio-text">
+                    Wagner Luiz Abrahão Morais é pai, marido e buscador incansável. Afinador de pianos por ofício, aprendeu que a música ensina a ouvir o que não é dito e a escrita a dizer o que não pode ser ouvido. Escreve de trincheira, traduzindo com honestidade brutal o território sem mapas da consciência expandida.
+                </div>
+            </div>
+        </div>
+        <div id="obras" class="page">
+            <h1>CÂNONE LITERÁRIO</h1>
+            <div class="grid">
+                <div class="card">
+                    <h3>A Centelha Inquieta</h3>
+                    <p>Crónica de uma queda ao fundo do poço e da escalada para a redescoberta da luz interna que pulsa no peito.</p>
+                </div>
+                <div class="card">
+                    <h3>A Arquitetura do Invisível</h3>
+                    <p>Romance sobre memória e restauração da alma, onde as pedras gritam e a matéria encontra o espírito.</p>
+                </div>
+                <div class="card">
+                    <h3>Alquimia do Ser</h3>
+                    <p>Guia de peregrinação interna que ensina a usar a sombra como fertilizante da luz e a dominar a intenção clara.</p>
+                </div>
+                <div class="card">
+                    <h3>A Anestesia Divina</h3>
+                    <p>A jornada de Dante através de um colapso que se revela um portal de despertar entre o trauma e a transformação.</p>
+                </div>
+            </div>
+        </div>
+        <div id="musica" class="page">
+            <h1>SINFONIAS DO DESPERTAR</h1>
+            <div class="video-list">
+                <div class="video-box"><iframe src="https://www.youtube.com/embed/CvglW3KNSsQ"></iframe></div>
+                <div class="video-box"><iframe src="https://www.youtube.com/embed/VArWZSlBtro"></iframe></div>
+                <div class="video-box"><iframe src="https://www.youtube.com/embed/fFtNlS940tg"></iframe></div>
+            </div>
+        </div>
+        <div id="verbo" class="page">
+            <h1>O VERBO SAGRADO</h1>
+            <div style="text-align: center; font-size: 1.8rem; font-style: italic; line-height: 2; margin-top: 50px;">
+                <p>"Não somos ruínas de um passado que acabou. Somos templos em reforma esperando a liturgia certa."</p>
+                <p>"A morte é só um intervalo entre duas preces."</p>
+                <p>"O que a memória ama, fica eterno."</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        function show(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+        let scene = new THREE.Scene();
+        let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        let points = [];
+        for (let i = 0; i < 7000; i++) { points.push(THREE.MathUtils.randFloatSpread(25), THREE.MathUtils.randFloatSpread(25), THREE.MathUtils.randFloatSpread(25)); }
+        let geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(points, 3));
+        let mat = new THREE.PointsMaterial({ color: 0xc5a059, size: 0.015, transparent: true, opacity: 0.4 });
+        let cloud = new THREE.Points(geo, mat);
+        scene.add(cloud);
+        camera.position.z = 5;
+        function animate() { requestAnimationFrame(animate); cloud.rotation.y += 0.0007; renderer.render(scene, camera); }
+        animate();
+    </script>
+</body>
+</html>
