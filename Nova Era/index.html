@@ -3,102 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wagner Abrahão | O Arquiteto do Invisível</title>
+    <title>Wagner Abrahão | Arquiteto do Invisível</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=EB+Garamond:ital,wght@0,400;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
         :root { 
-            --gold: #c5a059; 
-            --gold-bright: #ffdfa0;
+            /* Ouro Real Imperial - Mais vivo e vibrante */
+            --gold: #d4af37; 
+            --gold-glow: #ffdf00;
             --obsidian: #050505; 
-            --text: #f0f0f0; 
-            --glow: rgba(197, 160, 89, 0.4); 
+            --text: #ffffff; 
         }
 
-        /* Base e Atmosfera */
         body, html { 
             margin: 0; padding: 0; background: var(--obsidian); color: var(--text); 
-            font-family: 'Cormorant Garamond', serif; overflow-x: hidden; height: 100%; cursor: none; 
+            font-family: 'EB Garamond', serif; overflow-x: hidden; height: 100%; cursor: none;
         }
         
-        /* Grão de Filme Vintage */
+        /* Grão de papel antigo */
         body::after {
             content: ""; position: fixed; inset: 0;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.05; pointer-events: none; z-index: 10000;
+            background: url('https://www.transparenttextures.com/patterns/old-paper.png');
+            opacity: 0.03; pointer-events: none; z-index: 10000;
         }
 
-        canvas { position: fixed; top: 0; left: 0; z-index: -1; filter: brightness(0.7) contrast(1.2); }
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; filter: brightness(0.8) contrast(1.2); }
 
-        /* Cursor: O Bisturi de Luz */
         #light-scalpel {
             width: 8px; height: 8px; background: #fff; border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 10001;
             box-shadow: 0 0 15px 5px #fff, 0 0 30px 10px var(--gold);
-            transition: transform 0.1s ease;
+            transition: transform 0.08s ease-out;
         }
 
-        /* Porta de Entrada (Gate) */
+        /* O Limiar */
         #gate { 
-            position: fixed; inset: 0; background: var(--obsidian); z-index: 9999; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            text-align: center; transition: 3s cubic-bezier(0.19, 1, 0.22, 1); 
+            position: fixed; inset: 0; background: radial-gradient(circle, #151515 0%, var(--obsidian) 100%); 
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            text-align: center; transition: 2.5s cubic-bezier(0.19, 1, 0.22, 1); 
         }
-        .gate-title { font-family: 'Cinzel Decorative'; font-size: 3.5rem; color: var(--gold); letter-spacing: 20px; margin-bottom: 50px; text-shadow: 0 0 40px var(--gold); }
+        .gate-title { font-family: 'Bodoni Moda'; font-size: 4rem; color: var(--gold); letter-spacing: 15px; font-weight: 700; text-transform: uppercase; text-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+        .handwritten { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--gold); margin-top: 10px; opacity: 0.9; }
         .gate-btn { 
             border: 1px solid var(--gold); color: var(--gold); background: transparent; 
-            padding: 25px 90px; cursor: pointer; font-family: 'Cinzel Decorative'; 
-            letter-spacing: 12px; font-size: 1rem; transition: 1.5s; box-shadow: 0 0 20px var(--glow); 
+            padding: 20px 80px; cursor: pointer; font-family: 'EB Garamond'; 
+            letter-spacing: 6px; font-size: 1rem; text-transform: uppercase; margin-top: 50px; transition: 1s; 
         }
-        .gate-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 100px var(--gold); transform: scale(1.05); }
+        .gate-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 100px var(--gold); }
 
-        /* Navegação Art Déco */
-        nav { 
-            position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 45px; 
-            padding: 35px 0; z-index: 1000; background: linear-gradient(to bottom, rgba(5,5,5,1) 30%, transparent); 
-        }
-        nav a { 
-            color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 4px; 
-            font-family: 'Cinzel Decorative', serif; font-size: 0.75rem; cursor: pointer; opacity: 0.4; transition: 0.8s; 
-        }
-        nav a:hover, nav a.active { opacity: 1; text-shadow: 0 0 20px var(--gold); }
+        /* Menu */
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 50px; padding: 45px 0; z-index: 1000; }
+        nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-family: 'Bodoni Moda'; font-size: 0.8rem; cursor: pointer; opacity: 0.5; transition: 0.6s; }
+        nav a:hover, nav a.active { opacity: 1; text-shadow: 0 0 15px var(--gold); border-bottom: 1px solid var(--gold); }
 
-        /* Container de Conteúdo */
-        .container { position: relative; z-index: 100; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 180px 10% 100px; text-align: center; }
-        .page { display: none; width: 100%; max-width: 1200px; }
-        .page.active { display: block; animation: reveal 2.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        /* Seções */
+        .container { position: relative; z-index: 100; min-height: 100vh; padding: 180px 10% 100px; text-align: center; }
+        .page { display: none; width: 100%; max-width: 900px; animation: reveal 2.5s ease; }
+        .page.active { display: block; }
         
-        @keyframes reveal { from { opacity: 0; filter: blur(30px); transform: translateY(40px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
+        @keyframes reveal { from { opacity: 0; filter: blur(20px); } to { opacity: 1; filter: blur(0); } }
 
-        .central-name { font-family: 'Cinzel Decorative'; font-size: 5rem; letter-spacing: 30px; color: var(--gold); margin: 60px 0 30px; text-shadow: 0 0 60px rgba(197, 160, 89, 0.5); }
+        h1 { font-family: 'Bodoni Moda'; font-size: 4rem; letter-spacing: 15px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+        
+        /* Bio Estilo Manuscrito */
+        .bio-paper { background: rgba(255, 255, 255, 0.02); padding: 60px; border-radius: 2px; border: 1px solid rgba(212, 175, 55, 0.1); position: relative; }
+        .bio-text { font-family: 'EB Garamond'; font-size: 1.7rem; line-height: 2; text-align: justify; color: #f0f0f0; }
+        .signature { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold); text-align: right; margin-top: 30px; }
 
-        /* Bio Realista */
-        .bio-wrap { display: flex; gap: 80px; align-items: center; margin-top: 50px; text-align: justify; flex-wrap: wrap; justify-content: center; }
-        .bio-text { flex: 1; min-width: 350px; font-size: 1.7rem; line-height: 2; font-style: italic; color: #fff; border-left: 1px solid var(--gold); padding-left: 40px; }
+        /* Grid de Manuscritos */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 60px; width: 100%; }
+        .card { border: 1px solid rgba(212, 175, 55, 0.3); padding: 50px 20px; background: rgba(10, 10, 10, 0.8); transition: 0.8s; cursor: pointer; }
+        .card:hover { border-color: var(--gold-glow); transform: translateY(-10px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2); }
+        .card h3 { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.2rem; text-transform: uppercase; }
 
-        /* Grid de Relíquias (4 Livros) */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 80px; width: 100%; }
-        .card { border: 1px solid rgba(197, 160, 89, 0.1); padding: 50px 30px; background: rgba(5,5,5,0.6); backdrop-filter: blur(20px); transition: 0.8s; cursor: pointer; }
-        .card:hover { border-color: var(--gold); transform: translateY(-15px); background: rgba(197, 160, 89, 0.1); }
-        .card h3 { font-family: 'Cinzel Decorative'; color: var(--gold); letter-spacing: 4px; font-size: 1.1rem; margin-bottom: 15px; }
+        /* O Verbo */
+        .verbo-box { margin-bottom: 100px; position: relative; }
+        .verbo-title { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold); margin-bottom: 20px; }
+        .quote { font-family: 'EB Garamond'; font-size: 2rem; font-style: italic; line-height: 1.8; opacity: 0.9; }
 
-        /* Grid de Frequências Harmonizado */
-        .freq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 50px; width: 100%; max-width: 1000px; }
-        .freq-box { border: 1px solid var(--gold); background: #000; position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; transition: 1s; }
-        .freq-box:hover { box-shadow: 0 0 40px var(--gold); transform: scale(1.02); }
-        .freq-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        /* Frequências */
+        .freq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px; }
+        .freq-box { border: 1px solid var(--gold); aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+        .freq-box iframe { width: 100%; height: 100%; border: none; }
 
-        /* Modal Alquímico */
-        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(50px); }
-        .modal-body { max-width: 800px; text-align: center; border: 1px solid var(--gold); padding: 80px; background: #050505; box-shadow: 0 0 100px var(--glow); }
-
-        /* Aforismo da Meia-Noite */
-        #midnight-aphorism { 
-            margin-top: 150px; opacity: 0; transition: 3s; padding: 100px 20px;
-            border-top: 1px solid rgba(197, 160, 89, 0.1); width: 100%; 
-        }
-        #midnight-aphorism.visible { opacity: 1; }
+        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
+        .modal-body { max-width: 600px; text-align: center; border: 1px solid var(--gold); padding: 60px; background: #050505; }
     </style>
 </head>
 <body>
@@ -106,8 +96,9 @@
     <div id="light-scalpel"></div>
 
     <div id="gate">
-        <div class="gate-title">WAGNER ABRAHÃO</div>
-        <button class="gate-btn" onclick="unlock()">DESPERTAR O PORTAL</button>
+        <div class="gate-title">Wagner Abrahão</div>
+        <div class="handwritten">Arquiteto do Invisível</div>
+        <button class="gate-btn" onclick="unlock()">Atravessar o Limiar</button>
     </div>
 
     <div id="modal" onclick="this.style.display='none'">
@@ -116,66 +107,55 @@
 
     <nav>
         <a onclick="show('home')" id="nav-home" class="active">O Arquiteto</a>
-        <a onclick="show('obras')">Livros de Poder</a>
+        <a onclick="show('obras')">Manuscritos</a>
         <a onclick="show('freq')">Frequências</a>
         <a onclick="show('verbo')">O Verbo</a>
     </nav>
 
     <div class="container">
         <div id="home" class="page active">
-            <h1 class="central-name">O ARQUITETO</h1>
-            <div class="bio-wrap">
+            <h1>O Arquiteto</h1>
+            <div class="bio-paper">
                 <div class="bio-text">
-                    "Sou um observador das frequências que regem a alma humana. Minha jornada me ensinou que a sabedoria não está no que dizemos, mas no que somos capazes de ouvir quando o mundo silencia. 
+                    Sou um observador das frequências que regem a alma humana. Minha jornada me ensinou que a sabedoria não está no que dizemos, mas no que somos capazes de ouvir quando o mundo silencia. 
                     <br><br>
-                    Através da literatura visceral, atuo na restauração da consciência, transformando o chumbo do cotidiano em clareza filosófica. Não construo muros; meu trabalho é garantir que as portas estejam sempre abertas para quem deseja despertar."
+                    Através da literatura visceral, atuo na restauração da consciência, transformando o chumbo do cotidiano em clareza filosófica. Aqui, as portas estarão sempre abertas.
                 </div>
+                <div class="signature">Wagner Abrahão</div>
             </div>
         </div>
 
         <div id="obras" class="page">
-            <h1 class="central-name" style="font-size: 3rem;">LIVROS DE PODER</h1>
+            <h1>Manuscritos</h1>
             <div class="grid">
-                <div class="card" onclick="openBook('anestesia')"><h3>A Anestesia Divina</h3><p>O bisturi do silêncio</p></div>
-                <div class="card" onclick="openBook('centelha')"><h3>A Centelha Inquieta</h3><p>O exílio da luz</p></div>
-                <div class="card" onclick="openBook('alquimia')"><h3>Alquimia do Ser</h3><p>A alma oculta do mundo</p></div>
-                <div class="card" onclick="openBook('arquitetura')"><h3>Arquitetura do Invisível</h3><p>Restauração da alma</p></div>
+                <div class="card" onclick="openBook('anestesia')"><h3>A Anestesia Divina</h3></div>
+                <div class="card" onclick="openBook('centelha')"><h3>A Centelha Inquieta</h3></div>
+                <div class="card" onclick="openBook('alquimia')"><h3>Alquimia do Ser</h3></div>
+                <div class="card" onclick="openBook('arquitetura')"><h3>Arquitetura do Invisível</h3></div>
             </div>
         </div>
 
         <div id="freq" class="page">
-            <h1 class="central-name" style="font-size: 3rem;">SINFONIAS DE CURA</h1>
-            
-            <div style="max-width: 800px; margin: 0 auto 60px; text-align: justify; border-left: 1px solid var(--gold); padding-left: 30px;">
-                <h3 style="font-family: 'Cinzel Decorative'; color: var(--gold); letter-spacing: 5px; margin-bottom: 20px;">CARTA AOS NAVEGANTES</h3>
-                <p style="font-size: 1.4rem; line-height: 1.8; font-style: italic; opacity: 0.9;">
-                    "Navegante, você acaba de entrar em águas profundas. O som não é apenas entretenimento; é a geometria invisível que sustenta a sua realidade. Se o mundo desafinou a sua paz, estas sinfonias são o bisturi que opera sem cortes. Deixe que a arquitetura de Bach e as frequências solfeggio afinem a sua alma. Não ouça apenas com os ouvidos; ouça com o centro do peito."
-                </p>
+            <h1>Frequências</h1>
+            <div class="handwritten" style="font-size: 2rem; margin-bottom: 40px;">Sinfonias para a alma...</div>
+            <div class="freq-grid">
+                <div class="freq-box"><iframe src="https://www.youtube.com/embed/vtf-YBteqW4"></iframe></div>
+                <div class="freq-box"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec"></iframe></div>
+                <div class="freq-box"><iframe src="https://www.youtube.com/embed/fFtNlS940tg"></iframe></div>
+                <div class="freq-box"><iframe src="https://www.youtube.com/embed/2dUXWxrKui4"></iframe></div>
             </div>
-
-            <center>
-                <div class="freq-grid">
-                    <div class="freq-box"><iframe src="https://www.youtube.com/embed/vtf-YBteqW4"></iframe></div>
-                    <div class="freq-box"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec"></iframe></div>
-                    <div class="freq-box"><iframe src="https://www.youtube.com/embed/fFtNlS940tg"></iframe></div>
-                    <div class="freq-box"><iframe src="https://www.youtube.com/embed/2dUXWxrKui4"></iframe></div>
-                </div>
-            </center>
         </div>
 
         <div id="verbo" class="page">
-            <h1 class="central-name" style="font-size: 3rem;">O VERBO SAGRADO</h1>
-            <div class="quote-box">
-                "Não somos ruínas de um passado que acabou. <br>Somos templos em reforma, esperando a liturgia certa <br>para voltarmos a ser sagrados."
-                <div style="width: 100px; height: 1px; background: var(--gold); margin: 60px auto;"></div>
-                <p style="font-size: 1.6rem; opacity: 0.8; font-style: italic;">"O que a memória ama, fica eterno."</p>
+            <h1>O Verbo</h1>
+            <div class="verbo-box">
+                <div class="verbo-title">Liturgia do Ser</div>
+                <div class="quote">"Não somos ruínas de um passado que acabou. Somos templos em reforma, esperando a liturgia certa para voltarmos a ser sagrados."</div>
             </div>
-        </div>
-
-        <div id="midnight-aphorism">
-            <p style="font-size: 1.8rem; font-style: italic; color: var(--gold);">
-                "A luz que você tanto procura lá fora, cansou de te esperar e resolveu brilhar aí dentro. Agora, basta você fechar os olhos para finalmente enxergar."
-            </p>
+            <div class="verbo-box">
+                <div class="verbo-title">Medir o Silêncio</div>
+                <div class="quote">"Escrever é medir o silêncio. É dar forma ao que a alma grita, mas a voz esquece."</div>
+            </div>
         </div>
     </div>
 
@@ -184,7 +164,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // --- 1. Motor de Som (Bach) ---
         let player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
@@ -196,14 +175,13 @@
         function unlock() {
             const gate = document.getElementById('gate');
             gate.style.opacity = '0';
-            gate.style.transform = 'scale(1.2) blur(30px)';
+            gate.style.transform = 'scale(1.1) translateY(-10%)';
             setTimeout(() => {
                 gate.style.display = 'none';
                 if(player) player.playVideo();
             }, 2500);
         }
 
-        // --- 2. Navegação ---
         function show(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
@@ -212,59 +190,41 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // --- 3. Modal Obras ---
-        const descriptions = {
-            anestesia: "A jornada através de um colapso que se revela o verdadeiro despertar. Descubra que o silêncio não é vazio, é tudo.",
-            centelha: "A luz que você busca lá fora já pulsa dentro do seu peito. Uma crônica visceral da queda e da redescoberta.",
-            alquimia: "O guia para a peregrinação interna. Aprenda a usar a sombra como fertilizante para o despertar da alma.",
-            arquitetura: "Um romance sobre a memória, o tempo e a restauração da consciência humana."
-        };
-
         function openBook(id) {
-            document.getElementById('m-content').innerHTML = `
-                <h1 style="font-family:'Cinzel Decorative'; color:var(--gold); font-size:2.2rem;">${id.toUpperCase()}</h1>
-                <p style="font-size:1.8rem; font-style:italic; line-height:1.8; margin-top:30px;">${descriptions[id]}</p>
-            `;
+            const d = {
+                anestesia: "A jornada através de um colapso que se revela o despertar verdadeiro.",
+                centelha: "A luz que você busca já pulsa dentro do seu peito.",
+                alquimia: "O guia para usar a sombra como fertilizante para a alma.",
+                arquitetura: "A restauração da memória e da consciência humana."
+            };
+            document.getElementById('m-content').innerHTML = `<h1 style="font-size:2rem">${id.toUpperCase()}</h1><p class="handwritten" style="font-size:2rem">${d[id]}</p>`;
             document.getElementById('modal').style.display = 'flex';
         }
 
-        // --- 4. 4D Magnetismo (Éter Interativo) ---
+        // Éter Magnético Ouro
         let scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         let renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        let pts = []; for(let i=0; i<25000; i++) pts.push(THREE.MathUtils.randFloatSpread(60), THREE.MathUtils.randFloatSpread(60), THREE.MathUtils.randFloatSpread(60));
+        let pts = []; for(let i=0; i<15000; i++) pts.push(THREE.MathUtils.randFloatSpread(60), THREE.MathUtils.randFloatSpread(60), THREE.MathUtils.randFloatSpread(60));
         let geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
-        let cloud = new THREE.Points(geo, new THREE.PointsMaterial({color: 0xc5a059, size: 0.015, transparent: true, opacity: 0.6}));
-        scene.add(cloud); camera.position.z = 12;
+        let cloud = new THREE.Points(geo, new THREE.PointsMaterial({color: 0xd4af37, size: 0.015, transparent: true, opacity: 0.5}));
+        scene.add(cloud); camera.position.z = 10;
 
-        let mouseX = 0, mouseY = 0;
+        let mX = 0, mY = 0;
         document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - window.innerWidth / 2) * 0.0004;
-            mouseY = (e.clientY - window.innerHeight / 2) * 0.0004;
-            const scalpel = document.getElementById('light-scalpel');
-            scalpel.style.left = e.clientX + 'px'; scalpel.style.top = e.clientY + 'px';
+            mX = (e.clientX - window.innerWidth / 2) * 0.0004;
+            mY = (e.clientY - window.innerHeight / 2) * 0.0004;
+            const s = document.getElementById('light-scalpel');
+            s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
         });
 
         function anim() { 
             requestAnimationFrame(anim); 
-            cloud.rotation.y += 0.0003 + mouseX; cloud.rotation.x += 0.0001 + mouseY;
+            cloud.rotation.y += 0.0003 + mX; cloud.rotation.x += 0.0001 + mY;
             renderer.render(scene, camera); 
         } anim();
-
-        // Reveal Aphorism no Scroll Final
-        window.addEventListener('scroll', () => {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-                document.getElementById('midnight-aphorism').classList.add('visible');
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
     </script>
 </body>
 </html>
