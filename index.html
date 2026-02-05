@@ -20,7 +20,7 @@
             cursor: none;
         }
 
-        /* CANVAS COM ID CORRETO E OPACIDADE INICIAL */
+        /* O CAMPO MULTIDIMENSIONAL */
         #canvas-3d { 
             position: fixed; 
             inset: 0; 
@@ -37,6 +37,7 @@
             transform: translate(-50%, -50%);
         }
 
+        /* O PORTAL */
         #gate { 
             position: fixed; inset: 0; z-index: 9999; 
             display: flex; align-items: center; justify-content: center; 
@@ -60,6 +61,7 @@
             margin-top: 50px; transition: 1.5s; backdrop-filter: blur(15px);
         }
 
+        /* NAVEGAÇÃO SUPREMA */
         nav { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
             gap: 25px; padding: 45px 10px; z-index: 2000; opacity: 0; transition: 2s;
@@ -71,6 +73,7 @@
         }
         nav a:hover, nav a.active { opacity: 1; color: var(--gold); border-bottom: 1px solid var(--gold); }
 
+        /* CONTAINER DE VIDRO (8D DEPTH) */
         .container { 
             position: relative; z-index: 100; height: 100vh; width: 100%; 
             display: flex; flex-direction: column; align-items: center; 
@@ -85,7 +88,7 @@
 
         .glass-box { 
             background: rgba(5, 5, 5, 0.3); padding: 60px; 
-            border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(25px); 
             box-shadow: 0 20px 50px rgba(0,0,0,0.5); width: 100%;
         }
 
@@ -109,7 +112,6 @@
         #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(30px); }
         .modal-content { max-width: 650px; width: 90%; text-align: center; border: 1px solid var(--gold); padding: 80px; background: rgba(0,0,0,0.98); }
         
-        /* CSS CORRETO PARA IFRAMES SEM ERROS */
         .video-container { border: 1px solid var(--silver); aspect-ratio: 16/9; margin-bottom: 20px; width: 100%; }
         .video-container iframe { width: 100%; height: 100%; border: none; }
     </style>
@@ -196,7 +198,6 @@
                 document.getElementById('gate').style.display = 'none';
                 document.getElementById('main-nav').style.opacity = '1';
                 document.getElementById('main-container').style.opacity = '1';
-                // REVELAR O CANVAS 3D
                 document.getElementById('canvas-3d').style.opacity = '1';
             }, 1800);
         }
@@ -224,16 +225,19 @@
             c.style.left=e.clientX+'px'; c.style.top=e.clientY+'px'; 
         });
 
+        // --- THREE.JS ENGINE ---
         const scene = new THREE.Scene(); 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.position.z = 45;
 
+        // LIGHTS
         scene.add(new THREE.PointLight(0xD4AF37, 2.5, 100)).position.set(0, 10, 20);
         scene.add(new THREE.PointLight(0x4444FF, 1.5, 80)).position.set(-20, -20, 10);
         scene.add(new THREE.AmbientLight(0xffffff, 0.2));
 
+        // STARFIELD (8D)
         const starGeo = new THREE.BufferGeometry();
         const starCoords = [];
         for(let i=0; i<5000; i++) {
@@ -243,13 +247,15 @@
         const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x888888, size: 0.7 }));
         scene.add(stars);
 
+        // INFINITO (CENTER)
         const knot = new THREE.Mesh(
-            new THREE.TorusKnotGeometry(13, 3.5, 200, 32), 
+            new THREE.TorusKnotGeometry(13, 3.8, 200, 32), 
             new THREE.MeshStandardMaterial({ color: 0xD4AF37, wireframe: true, metalness: 1, roughness: 0 })
         );
         knot.position.set(0, 0, -10);
         scene.add(knot);
 
+        // PIRÂMIDE (RIGHT)
         const pGroup = new THREE.Group(); 
         const sMat = new THREE.MeshStandardMaterial({ color: 0xE0E0E0, metalness: 1, roughness: 0.1, transparent: true, opacity: 0.8 });
         let lv=6, cB=lv, bS=1.1;
