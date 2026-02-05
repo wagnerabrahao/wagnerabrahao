@@ -5,104 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wagner Abrahão | Arquiteto do Invisível</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=EB+Garamond:ital,wght@0,400;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,900;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
         :root { 
-            /* Ouro Real Imperial - Mais vivo e vibrante */
-            --gold: #d4af37; 
-            --gold-glow: #ffdf00;
-            --obsidian: #050505; 
-            --text: #ffffff; 
+            --gold: #D4AF37; /* Ouro Imperial Vibrante */
+            --gold-light: #F9E4B7;
+            --black: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body, html { 
-            margin: 0; padding: 0; background: var(--obsidian); color: var(--text); 
-            font-family: 'EB Garamond', serif; overflow-x: hidden; height: 100%; cursor: none;
+            background: var(--black); 
+            color: #fff; 
+            font-family: 'EB Garamond', serif; 
+            overflow-x: hidden; 
+            cursor: none; 
+            height: 100%;
         }
-        
-        /* Grão de papel antigo */
-        body::after {
+
+        /* Efeito de Papel Antigo no Fundo */
+        body::before {
             content: ""; position: fixed; inset: 0;
             background: url('https://www.transparenttextures.com/patterns/old-paper.png');
-            opacity: 0.03; pointer-events: none; z-index: 10000;
+            opacity: 0.04; pointer-events: none; z-index: 5;
         }
 
-        canvas { position: fixed; top: 0; left: 0; z-index: -1; filter: brightness(0.8) contrast(1.2); }
+        canvas { position: fixed; top: 0; left: 0; z-index: 1; filter: brightness(0.8) contrast(1.2); }
 
-        #light-scalpel {
-            width: 8px; height: 8px; background: #fff; border-radius: 50%;
-            position: fixed; pointer-events: none; z-index: 10001;
-            box-shadow: 0 0 15px 5px #fff, 0 0 30px 10px var(--gold);
-            transition: transform 0.08s ease-out;
+        /* Cursor: O Bisturi de Luz */
+        #cursor {
+            width: 10px; height: 10px; background: #fff; border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 10000;
+            box-shadow: 0 0 20px 5px #fff, 0 0 40px 10px var(--gold);
+            transition: transform 0.1s ease;
         }
 
-        /* O Limiar */
+        /* PORTÃO DE ENTRADA */
         #gate { 
-            position: fixed; inset: 0; background: radial-gradient(circle, #151515 0%, var(--obsidian) 100%); 
-            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            position: fixed; inset: 0; background: var(--black); z-index: 9999; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
             text-align: center; transition: 2.5s cubic-bezier(0.19, 1, 0.22, 1); 
         }
-        .gate-title { font-family: 'Bodoni Moda'; font-size: 4rem; color: var(--gold); letter-spacing: 15px; font-weight: 700; text-transform: uppercase; text-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
-        .handwritten { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--gold); margin-top: 10px; opacity: 0.9; }
+        .gate-title { font-family: 'Bodoni Moda'; font-size: 4.5rem; color: var(--gold); letter-spacing: 15px; text-transform: uppercase; font-weight: 900; }
+        .gate-hand { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold-light); margin: 10px 0 40px; }
         .gate-btn { 
             border: 1px solid var(--gold); color: var(--gold); background: transparent; 
-            padding: 20px 80px; cursor: pointer; font-family: 'EB Garamond'; 
-            letter-spacing: 6px; font-size: 1rem; text-transform: uppercase; margin-top: 50px; transition: 1s; 
+            padding: 20px 80px; cursor: pointer; font-family: 'Bodoni Moda'; 
+            letter-spacing: 5px; text-transform: uppercase; font-size: 1rem; transition: 1s; 
         }
-        .gate-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 100px var(--gold); }
+        .gate-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 80px var(--gold); }
 
-        /* Menu */
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 50px; padding: 45px 0; z-index: 1000; }
-        nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-family: 'Bodoni Moda'; font-size: 0.8rem; cursor: pointer; opacity: 0.5; transition: 0.6s; }
-        nav a:hover, nav a.active { opacity: 1; text-shadow: 0 0 15px var(--gold); border-bottom: 1px solid var(--gold); }
+        /* MENU */
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 40px; padding: 40px 0; z-index: 1000; }
+        nav a { 
+            color: var(--gold); text-decoration: none; text-transform: uppercase; letter-spacing: 3px; 
+            font-family: 'Bodoni Moda'; font-size: 0.8rem; cursor: pointer; opacity: 0.5; transition: 0.6s; 
+        }
+        nav a:hover, nav a.active { opacity: 1; border-bottom: 1px solid var(--gold); text-shadow: 0 0 10px var(--gold); }
 
-        /* Seções */
+        /* CONTAINER */
         .container { position: relative; z-index: 100; min-height: 100vh; padding: 180px 10% 100px; text-align: center; }
-        .page { display: none; width: 100%; max-width: 900px; animation: reveal 2.5s ease; }
+        .page { display: none; width: 100%; max-width: 900px; animation: fadeIn 2s ease-in-out; }
         .page.active { display: block; }
         
-        @keyframes reveal { from { opacity: 0; filter: blur(20px); } to { opacity: 1; filter: blur(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 { font-family: 'Bodoni Moda'; font-size: 4rem; letter-spacing: 15px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
-        
-        /* Bio Estilo Manuscrito */
-        .bio-paper { background: rgba(255, 255, 255, 0.02); padding: 60px; border-radius: 2px; border: 1px solid rgba(212, 175, 55, 0.1); position: relative; }
-        .bio-text { font-family: 'EB Garamond'; font-size: 1.7rem; line-height: 2; text-align: justify; color: #f0f0f0; }
-        .signature { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold); text-align: right; margin-top: 30px; }
+        h1 { font-family: 'Bodoni Moda'; font-size: 4rem; color: var(--gold); letter-spacing: 10px; text-transform: uppercase; margin-bottom: 50px; }
 
-        /* Grid de Manuscritos */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 60px; width: 100%; }
-        .card { border: 1px solid rgba(212, 175, 55, 0.3); padding: 50px 20px; background: rgba(10, 10, 10, 0.8); transition: 0.8s; cursor: pointer; }
-        .card:hover { border-color: var(--gold-glow); transform: translateY(-10px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2); }
-        .card h3 { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.2rem; text-transform: uppercase; }
+        /* BIO ESTILO MANUSCRITO */
+        .parchment { 
+            background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(212, 175, 55, 0.2); 
+            padding: 60px; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.5); 
+        }
+        .bio-text { font-family: 'EB Garamond'; font-size: 1.8rem; line-height: 2; text-align: justify; color: #eee; }
+        .hand-sig { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold); text-align: right; margin-top: 40px; }
 
-        /* O Verbo */
-        .verbo-box { margin-bottom: 100px; position: relative; }
-        .verbo-title { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold); margin-bottom: 20px; }
-        .quote { font-family: 'EB Garamond'; font-size: 2rem; font-style: italic; line-height: 1.8; opacity: 0.9; }
+        /* GRID MANUSCRITOS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 60px; }
+        .card { 
+            border: 1px solid rgba(212, 175, 55, 0.2); padding: 50px 20px; 
+            background: rgba(10,10,10,0.7); transition: 0.7s; cursor: pointer; 
+        }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(212, 175, 55, 0.1); }
+        .card h3 { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Frequências */
-        .freq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px; }
-        .freq-box { border: 1px solid var(--gold); aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+        /* O VERBO */
+        .verbo-item { margin-bottom: 120px; }
+        .verbo-hand { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold); margin-bottom: 20px; }
+        .verbo-quote { font-family: 'EB Garamond'; font-size: 2.2rem; font-style: italic; line-height: 1.6; opacity: 0.9; }
+
+        /* FREQUÊNCIAS (QUADRADOS IGUAIS) */
+        .freq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+        .freq-box { border: 1px solid var(--gold); aspect-ratio: 16 / 9; background: #000; position: relative; }
         .freq-box iframe { width: 100%; height: 100%; border: none; }
 
-        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
-        .modal-body { max-width: 600px; text-align: center; border: 1px solid var(--gold); padding: 60px; background: #050505; }
+        /* MODAL */
+        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; }
+        .modal-content { max-width: 600px; text-align: center; border: 1px solid var(--gold); padding: 60px; background: #050505; }
     </style>
 </head>
 <body>
 
-    <div id="light-scalpel"></div>
+    <div id="cursor"></div>
 
     <div id="gate">
-        <div class="gate-title">Wagner Abrahão</div>
-        <div class="handwritten">Arquiteto do Invisível</div>
+        <h1 class="gate-title">Wagner Abrahão</h1>
+        <div class="gate-hand">Arquiteto do Invisível</div>
         <button class="gate-btn" onclick="unlock()">Atravessar o Limiar</button>
     </div>
 
     <div id="modal" onclick="this.style.display='none'">
-        <div class="modal-body" id="m-content"></div>
+        <div class="modal-content" id="m-content"></div>
     </div>
 
     <nav>
@@ -115,13 +131,13 @@
     <div class="container">
         <div id="home" class="page active">
             <h1>O Arquiteto</h1>
-            <div class="bio-paper">
+            <div class="parchment">
                 <div class="bio-text">
                     Sou um observador das frequências que regem a alma humana. Minha jornada me ensinou que a sabedoria não está no que dizemos, mas no que somos capazes de ouvir quando o mundo silencia. 
                     <br><br>
                     Através da literatura visceral, atuo na restauração da consciência, transformando o chumbo do cotidiano em clareza filosófica. Aqui, as portas estarão sempre abertas.
                 </div>
-                <div class="signature">Wagner Abrahão</div>
+                <div class="hand-sig">Wagner Abrahão</div>
             </div>
         </div>
 
@@ -137,7 +153,7 @@
 
         <div id="freq" class="page">
             <h1>Frequências</h1>
-            <div class="handwritten" style="font-size: 2rem; margin-bottom: 40px;">Sinfonias para a alma...</div>
+            <div class="gate-hand" style="font-size: 2.2rem; margin-bottom: 40px;">Sinfonias para a alma</div>
             <div class="freq-grid">
                 <div class="freq-box"><iframe src="https://www.youtube.com/embed/vtf-YBteqW4"></iframe></div>
                 <div class="freq-box"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec"></iframe></div>
@@ -148,13 +164,13 @@
 
         <div id="verbo" class="page">
             <h1>O Verbo</h1>
-            <div class="verbo-box">
-                <div class="verbo-title">Liturgia do Ser</div>
-                <div class="quote">"Não somos ruínas de um passado que acabou. Somos templos em reforma, esperando a liturgia certa para voltarmos a ser sagrados."</div>
+            <div class="verbo-item">
+                <div class="verbo-hand">Liturgia do Ser</div>
+                <div class="verbo-quote">"Não somos ruínas de um passado que acabou. Somos templos em reforma, esperando a liturgia certa para voltarmos a ser sagrados."</div>
             </div>
-            <div class="verbo-box">
-                <div class="verbo-title">Medir o Silêncio</div>
-                <div class="quote">"Escrever é medir o silêncio. É dar forma ao que a alma grita, mas a voz esquece."</div>
+            <div class="verbo-item">
+                <div class="verbo-hand">O Silêncio Escrito</div>
+                <div class="verbo-quote">"Escrever é medir o silêncio. É dar forma ao que a alma grita, mas a voz esquece."</div>
             </div>
         </div>
     </div>
@@ -175,11 +191,11 @@
         function unlock() {
             const gate = document.getElementById('gate');
             gate.style.opacity = '0';
-            gate.style.transform = 'scale(1.1) translateY(-10%)';
+            gate.style.transform = 'translateY(-100%)';
             setTimeout(() => {
                 gate.style.display = 'none';
                 if(player) player.playVideo();
-            }, 2500);
+            }, 2000);
         }
 
         function show(id) {
@@ -192,16 +208,16 @@
 
         function openBook(id) {
             const d = {
-                anestesia: "A jornada através de um colapso que se revela o despertar verdadeiro.",
-                centelha: "A luz que você busca já pulsa dentro do seu peito.",
-                alquimia: "O guia para usar a sombra como fertilizante para a alma.",
-                arquitetura: "A restauração da memória e da consciência humana."
+                anestesia: "O despertar através do colapso.",
+                centelha: "A luz que pulsa dentro do peito.",
+                alquimia: "Transmutando sombras em poder.",
+                arquitetura: "A restauração da consciência."
             };
-            document.getElementById('m-content').innerHTML = `<h1 style="font-size:2rem">${id.toUpperCase()}</h1><p class="handwritten" style="font-size:2rem">${d[id]}</p>`;
+            document.getElementById('m-content').innerHTML = `<h2 style="font-family:'Bodoni Moda'; color:var(--gold);">${id.toUpperCase()}</h2><p class="gate-hand">${d[id]}</p>`;
             document.getElementById('modal').style.display = 'flex';
         }
 
-        // Éter Magnético Ouro
+        // ÉTER MAGNÉTICO
         let scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         let renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -209,14 +225,14 @@
 
         let pts = []; for(let i=0; i<15000; i++) pts.push(THREE.MathUtils.randFloatSpread(60), THREE.MathUtils.randFloatSpread(60), THREE.MathUtils.randFloatSpread(60));
         let geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
-        let cloud = new THREE.Points(geo, new THREE.PointsMaterial({color: 0xd4af37, size: 0.015, transparent: true, opacity: 0.5}));
+        let cloud = new THREE.Points(geo, new THREE.PointsMaterial({color: 0xD4AF37, size: 0.015, transparent: true, opacity: 0.6}));
         scene.add(cloud); camera.position.z = 10;
 
         let mX = 0, mY = 0;
         document.addEventListener('mousemove', (e) => {
             mX = (e.clientX - window.innerWidth / 2) * 0.0004;
             mY = (e.clientY - window.innerHeight / 2) * 0.0004;
-            const s = document.getElementById('light-scalpel');
+            const s = document.getElementById('cursor');
             s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
         });
 
