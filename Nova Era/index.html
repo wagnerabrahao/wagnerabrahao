@@ -3,242 +3,1294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wagner Abrahão - Arquiteto do Invisível. Explorando alquimia, frequências e arquitetura do universo espiritual.">
+    <meta name="theme-color" content="#000000">
     <title>Wagner Abrahão | Arquiteto do Invisível</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
-        /* Adicionada a cor Alumínio na paleta */
-        :root { --copper: #C87533; --silver: #E0E0E0; --aluminum: #EEEEEE; --lapis: #003366; --gold: #D4AF37; --black: #010101; --white: #ffffff; }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        /* ═══════════════════════════════════════════════════════════
+           PALETA ALQUÍMICA & RESET
+        ═══════════════════════════════════════════════════════════ */
+        :root { 
+            --gold: #D4AF37; 
+            --silver: #E0E0E0; 
+            --lapis: #0066FF; 
+            --sand: #C2B280;
+            --glass-bg: rgba(0, 0, 0, 0.75);
+            --glass-border: rgba(212, 175, 55, 0.3);
+        }
         
-        body, html { background: var(--black); color: var(--white); font-family: 'Marcellus', serif; overflow-x: hidden; height: 100%; cursor: none; }
-
-        #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 2.5s ease-in-out; }
-
-        #cursor { 
-            width: 10px; height: 10px; background: #fff; border-radius: 50%; 
-            position: fixed; pointer-events: none; z-index: 10000; 
-            box-shadow: 0 0 15px 5px #fff, 0 0 45px 15px var(--gold); 
-            transform: translate(-50%, -50%);
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+        
+        body, html { 
+            background: #000;
+            color: #fff; 
+            font-family: 'Marcellus', serif; 
+            overflow: hidden;
+            height: 100%;
+            cursor: none;
         }
 
-        #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: var(--black); transition: 2s ease; }
-        /* Portal ligeiramente mais claro para convidar a entrada */
-        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.2) brightness(0.5); }
-        .gate-content { position: relative; z-index: 10; text-align: center; padding: 25px; }
-        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(1.8rem, 6vw, 3rem); font-weight: 900; letter-spacing: 10px; text-transform: uppercase; color: var(--silver); }
-        .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(0,0,0,0.5); padding: 18px 50px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 6px; text-transform: uppercase; font-size: 0.75rem; margin-top: 35px; transition: 1s; backdrop-filter: blur(10px); }
+        /* ═══════════════════════════════════════════════════════════
+           CANVAS 3D - UNIVERSO 5D COMPLETO
+        ═══════════════════════════════════════════════════════════ */
+        #canvas-3d { 
+            position: fixed; 
+            inset: 0; 
+            z-index: 1; 
+            opacity: 0; 
+            transition: opacity 3s ease-in-out; 
+        }
 
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; padding: 25px 10px; z-index: 2000; opacity: 0; transition: 2s; background: linear-gradient(to bottom, rgba(1,1,1,0.9) 30%, transparent); }
-        nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.55rem; cursor: pointer; opacity: 0.55; }
-        nav a:hover, nav a.active { opacity: 1; color: var(--white); border-bottom: 1px solid var(--silver); }
-
-        .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 120px 6% 100px; overflow-y: scroll; scrollbar-width: none; }
-        .container::-webkit-scrollbar { display: none; }
+        /* ═══════════════════════════════════════════════════════════
+           CURSOR MÁGICO
+        ═══════════════════════════════════════════════════════════ */
+        #cursor { 
+            width: 8px; 
+            height: 8px; 
+            background: #fff; 
+            border-radius: 50%; 
+            position: fixed; 
+            pointer-events: none; 
+            z-index: 10000; 
+            box-shadow: 0 0 20px 5px #fff, 0 0 60px 20px var(--gold);
+            transform: translate(-50%, -50%); 
+            mix-blend-mode: screen;
+            transition: width 0.2s, height 0.2s;
+        }
         
-        .page { display: none; width: 100%; max-width: 850px; animation: fadeIn 1.5s ease; }
-        .page.active { display: flex; flex-direction: column; align-items: center; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        #cursor.hover {
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: 2px solid var(--gold);
+        }
 
-        /* Caixas de vidro ligeiramente mais claras para reduzir a escuridão total */
-        .glass-box { background: rgba(15, 15, 15, 0.4); padding: 35px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(25px); width: 100%; }
-        .bio-container { display: flex; align-items: center; gap: 30px; }
-        .bio-photo { width: 180px; height: 260px; object-fit: cover; border: 1px solid var(--silver); flex-shrink: 0; }
-        .bio-text { font-size: 1.05rem; line-height: 1.8; font-style: italic; color: var(--white); }
+        /* ═══════════════════════════════════════════════════════════
+           PORTAL DE ENTRADA
+        ═══════════════════════════════════════════════════════════ */
+        #gate { 
+            position: fixed; 
+            inset: 0; 
+            z-index: 9999; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: #000; 
+            transition: opacity 2.5s ease, visibility 2.5s ease; 
+        }
+        
+        #gate.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        #gate-bg { 
+            position: absolute; 
+            inset: 0; 
+            background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; 
+            filter: grayscale(0.4) brightness(0.6);
+        }
+        
+        .gate-content { 
+            position: relative; 
+            z-index: 10; 
+            text-align: center; 
+            padding: 30px; 
+        }
+        
+        .gate-title { 
+            font-family: 'Bodoni Moda', serif; 
+            font-size: clamp(2rem, 8vw, 4rem); 
+            font-weight: 900; 
+            letter-spacing: 12px; 
+            text-transform: uppercase; 
+            color: var(--silver); 
+            text-shadow: 0 0 20px rgba(255,255,255,0.3); 
+        }
+        
+        .gate-subtitle {
+            font-family: 'Great Vibes', cursive; 
+            font-size: clamp(1.5rem, 5vw, 2.2rem); 
+            color: var(--silver); 
+            margin-top: 15px; 
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .gate-btn { 
+            border: 1px solid var(--silver); 
+            color: #fff; 
+            background: rgba(255,255,255,0.1);
+            padding: 20px 60px; 
+            cursor: pointer; 
+            font-family: 'Bodoni Moda', serif; 
+            letter-spacing: 8px; 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
+            margin-top: 40px; 
+            transition: all 1s; 
+            backdrop-filter: blur(15px); 
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .gate-btn:hover { 
+            background: rgba(212, 175, 55, 0.3); 
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
 
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; width: 100%; margin-top: 25px; }
-        /* Cards ligeiramente mais claros */
-        .card { border: 1px solid rgba(255,255,255,0.1); padding: 25px; background: rgba(25,25,25,0.5); text-align: center; cursor: pointer; transition: 0.4s; }
-        .card:hover { border-color: var(--silver); transform: translateY(-3px); }
-        .card h2 { color: var(--silver); letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase; font-weight: normal; }
+        /* ═══════════════════════════════════════════════════════════
+           HUD OVERLAY - Interface 5D
+        ═══════════════════════════════════════════════════════════ */
+        #hud-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 2s;
+        }
+        
+        #hud-overlay.visible {
+            opacity: 1;
+        }
 
-        .email-link { color: var(--white); font-size: clamp(1rem, 4vw, 1.6rem); text-decoration: none; border-bottom: 1px solid var(--silver); font-family: 'Bodoni Moda'; transition: 0.5s; }
-        .email-link:hover { color: var(--silver); }
+        /* ═══════════════════════════════════════════════════════════
+           CONTROLES DE ÁUDIO
+        ═══════════════════════════════════════════════════════════ */
+        #audio-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 2s;
+            pointer-events: auto;
+        }
+        
+        #audio-controls.visible {
+            opacity: 1;
+        }
+        
+        .audio-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            color: var(--silver);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .audio-btn:hover {
+            background: rgba(212, 175, 55, 0.4);
+            border-color: var(--gold);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+        }
 
-        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(25px); }
-        .modal-content { max-width: 80%; text-align: center; border: 1px solid var(--silver); padding: 35px; background: rgba(0,0,0,0.98); }
+        /* ═══════════════════════════════════════════════════════════
+           NAVEGAÇÃO 5D
+        ═══════════════════════════════════════════════════════════ */
+        nav { 
+            position: fixed; 
+            top: 30px; 
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex; 
+            gap: 30px; 
+            padding: 20px 40px; 
+            z-index: 3000; 
+            opacity: 0; 
+            transition: opacity 2s;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+            pointer-events: auto;
+        }
+        
+        nav.visible {
+            opacity: 1;
+        }
+        
+        nav a { 
+            color: var(--silver); 
+            text-decoration: none; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-size: 0.7rem; 
+            cursor: pointer; 
+            opacity: 0.7; 
+            transition: all 0.3s; 
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover::before,
+        nav a.active::before {
+            opacity: 0.2;
+        }
+        
+        nav a:hover, nav a.active { 
+            opacity: 1; 
+            color: var(--gold); 
+            text-shadow: 0 0 10px var(--gold);
+        }
+        
+        nav a span {
+            position: relative;
+            z-index: 1;
+        }
 
-        .video-container { border: 1px solid var(--silver); aspect-ratio: 16/9; margin-bottom: 15px; width: 100%; cursor: pointer; position: relative; }
-        .video-container iframe { width: 100%; height: 100%; border: none; pointer-events: auto; }
+        /* ═══════════════════════════════════════════════════════════
+           PAINÉIS DE CONTEÚDO 5D
+        ═══════════════════════════════════════════════════════════ */
+        .content-panel {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 450px;
+            max-height: 70vh;
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 40px;
+            z-index: 2500;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s;
+            overflow-y: auto;
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) transparent;
+        }
+        
+        .content-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .content-panel::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+        
+        .content-panel.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .panel-title {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .panel-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--silver);
+        }
 
+        /* ═══════════════════════════════════════════════════════════
+           BIOGRAFIA
+        ═══════════════════════════════════════════════════════════ */
+        .bio-text { 
+            font-size: 1.2rem; 
+            line-height: 2; 
+            font-style: italic; 
+            margin-bottom: 30px;
+        }
+        
+        .signature {
+            font-family: 'Great Vibes', cursive; 
+            font-size: 2.5rem; 
+            color: var(--gold); 
+            text-align: right;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           CARDS DE MANUSCRITOS
+        ═══════════════════════════════════════════════════════════ */
+        .card { 
+            border: 1px solid var(--glass-border);
+            padding: 25px; 
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            cursor: pointer; 
+            transition: all 0.3s; 
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            pointer-events: auto;
+        }
+        
+        .card:hover { 
+            border-color: var(--gold); 
+            background: rgba(212, 175, 55, 0.15); 
+            transform: translateX(-10px);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); 
+        }
+        
+        .card h3 { 
+            color: var(--silver); 
+            letter-spacing: 2px; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            font-weight: normal; 
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           VÍDEOS
+        ═══════════════════════════════════════════════════════════ */
+        .video-item {
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-item iframe { 
+            width: 100%; 
+            aspect-ratio: 16/9;
+            border: none; 
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           CONTATO
+        ═══════════════════════════════════════════════════════════ */
+        .email-link { 
+            color: var(--gold); 
+            font-size: 1.3rem; 
+            text-decoration: none; 
+            border-bottom: 2px solid var(--gold); 
+            font-family: 'Bodoni Moda', serif; 
+            transition: all 0.3s; 
+            display: inline-block;
+            padding: 10px 0;
+            pointer-events: auto;
+        }
+        
+        .email-link:hover { 
+            letter-spacing: 2px; 
+            text-shadow: 0 0 20px var(--gold);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           MODAL
+        ═══════════════════════════════════════════════════════════ */
+        #modal { 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0,0,0,0.95); 
+            z-index: 6000; 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            backdrop-filter: blur(20px);
+            padding: 20px;
+        }
+        
+        #modal.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content { 
+            max-width: 600px;
+            width: 100%;
+            text-align: center; 
+            border: 2px solid var(--gold); 
+            padding: 50px; 
+            background: var(--glass-bg); 
+            box-shadow: 0 0 80px rgba(212, 175, 55, 0.5);
+            border-radius: 8px;
+            position: relative;
+            backdrop-filter: blur(40px);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--silver);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            color: var(--gold); 
+            font-family: 'Bodoni Moda', serif; 
+            font-size: 1.8rem; 
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .modal-description {
+            line-height: 2; 
+            font-style: italic; 
+            font-size: 1.15rem;
+            color: var(--silver);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           RESPONSIVIDADE
+        ═══════════════════════════════════════════════════════════ */
         @media (max-width: 768px) {
-            body { cursor: auto; } #cursor { display: none; }
-            .bio-container { flex-direction: column; text-align: center; }
-            .bio-photo { width: 150px; height: 210px; }
-            .container { padding-top: 130px; }
-            nav a { font-size: 0.45rem; }
+            body { 
+                cursor: auto; 
+            }
+            
+            #cursor { 
+                display: none; 
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 25px;
+                top: 15px;
+            }
+            
+            nav a {
+                font-size: 0.65rem;
+            }
+            
+            .content-panel {
+                right: 20px;
+                left: 20px;
+                width: auto;
+                max-height: 60vh;
+                padding: 25px;
+            }
+            
+            .panel-title {
+                font-size: 1.5rem;
+            }
+            
+            #audio-controls {
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; } 
+            to { opacity: 1; } 
         }
     </style>
 </head>
 <body>
-
-    <div id="cursor"></div>
+    <!-- Cursor Mágico -->
+    <div id="cursor" aria-hidden="true"></div>
+    
+    <!-- Canvas 3D - Universo 5D Completo -->
     <canvas id="canvas-3d"></canvas>
 
-    <div id="gate">
-        <div id="gate-bg"></div>
+    <!-- Portal de Entrada -->
+    <div id="gate" role="dialog" aria-labelledby="gate-title" aria-modal="true">
+        <div id="gate-bg" aria-hidden="true"></div>
         <div class="gate-content">
-            <h1 class="gate-title">Wagner Abrahão</h1>
-            <div style="font-family:'Great Vibes'; font-size:2rem; color:var(--silver); margin-top:10px;">Arquiteto do Invisível</div>
-            <button class="gate-btn" onclick="unlock()">Atravessar</button>
+            <h1 id="gate-title" class="gate-title">Wagner Abrahão</h1>
+            <div class="gate-subtitle">Arquiteto do Invisível</div>
+            <button class="gate-btn" onclick="unlockPortal()">
+                Atravessar o Limiar
+            </button>
         </div>
     </div>
 
-    <div id="modal" onclick="this.style.display='none'"><div class="modal-content" id="m-content"></div></div>
+    <!-- HUD Overlay -->
+    <div id="hud-overlay">
+        <!-- Navegação -->
+        <nav id="main-nav">
+            <a href="#home" onclick="showPanel('home', event)" class="active">
+                <span>O Arquiteto</span>
+            </a>
+            <a href="#obras" onclick="showPanel('obras', event)">
+                <span>Manuscritos</span>
+            </a>
+            <a href="#freq" onclick="showPanel('freq', event)">
+                <span>Frequências</span>
+            </a>
+            <a href="#contato" onclick="showPanel('contato', event)">
+                <span>Contato</span>
+            </a>
+        </nav>
 
-    <nav id="main-nav">
-        <a onclick="show('home')" id="nav-home" class="active">O Arquiteto</a>
-        <a onclick="show('obras')">Manuscritos</a>
-        <a onclick="show('freq')">Frequências</a>
-        <a onclick="show('contato')">Contato</a>
-    </nav>
-
-    <div class="container" id="main-container">
-        <div id="home" class="page active">
-            <div class="glass-box">
-                <div class="bio-container">
-                    <img src="perfil.jpg" alt="" class="bio-photo" onerror="this.style.background='#111'">
-                    <div class="bio-text">"Observador e amante das frequências que ressoam, contemplo a arquitetura deste universo esplendoroso. Busco na alquimia as respostas que sempre procurei."</div>
+        <!-- Painéis de Conteúdo -->
+        <div id="home" class="content-panel active">
+            <h2 class="panel-title">O Arquiteto</h2>
+            <div class="panel-content">
+                <div class="bio-text">
+                    "Observador e amante das frequências que ressoam, contemplo a arquitetura deste universo esplendoroso. Busco na alquimia as respostas que sempre procurei, mas ainda não havia alcançado: um caminho de conhecimento, evolução e luz."
                 </div>
-                <div style="font-family:'Great Vibes'; font-size:2.2rem; color:var(--silver); text-align:right; margin-top:20px;">Wagner Abrahão</div>
+                <div class="signature">Wagner Abrahão</div>
             </div>
         </div>
 
-        <div id="obras" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:25px; font-size: 1.4rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Manuscritos</h1>
-            <div class="card-grid">
-                <div class="card" onclick="openBook('anestesia')"><h2>A Anestesia Divina</h2></div>
-                <div class="card" onclick="openBook('arquitetura')"><h2>Arquitetura do Invisível</h2></div>
-                <div class="card" onclick="openBook('centelha')"><h2>A Centelha Inquieta</h2></div>
-                <div class="card" onclick="openBook('alquimia')"><h2>Alquimia do Ser</h2></div>
+        <div id="obras" class="content-panel">
+            <h2 class="panel-title">Manuscritos</h2>
+            <div class="panel-content">
+                <button class="card" onclick="openBook('anestesia')">
+                    <h3>A Anestesia Divina</h3>
+                </button>
+                <button class="card" onclick="openBook('arquitetura')">
+                    <h3>Arquitetura do Invisível</h3>
+                </button>
+                <button class="card" onclick="openBook('centelha')">
+                    <h3>A Centelha Inquieta</h3>
+                </button>
+                <button class="card" onclick="openBook('alquimia')">
+                    <h3>Alquimia do Ser</h3>
+                </button>
             </div>
         </div>
 
-        <div id="freq" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:25px; font-size: 1.4rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Frequências</h1>
-            <div class="card-grid">
-                <div class="video-container" onclick="stopBach()"><iframe src="https://www.youtube.com/embed/vRX91S7SKIU" title="F1"></iframe></div>
-                <div class="video-container" onclick="stopBach()"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec" title="F2"></iframe></div>
+        <div id="freq" class="content-panel">
+            <h2 class="panel-title">Frequências</h2>
+            <div class="panel-content">
+                <div class="video-item">
+                    <iframe 
+                        src="https://www.youtube.com/embed/vRX91S7SKIU" 
+                        title="Frequência 1"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="video-item">
+                    <iframe 
+                        src="https://www.youtube.com/embed/5-cAWczw_Ec" 
+                        title="Frequência 2"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
             </div>
         </div>
 
-        <div id="contato" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:40px; font-size: 1.6rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Contato</h1>
-            <div style="text-align: center;">
-                <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">wagner.abrahao.31@gmail.com</a>
+        <div id="contato" class="content-panel">
+            <h2 class="panel-title">Contato</h2>
+            <div class="panel-content" style="text-align: center;">
+                <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">
+                    wagner.abrahao.31@gmail.com
+                </a>
             </div>
         </div>
     </div>
 
+    <!-- Controles de Áudio -->
+    <div id="audio-controls">
+        <button id="audio-toggle" class="audio-btn" onclick="toggleAudio()">
+            <span id="audio-icon">🔊</span>
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modal-inner"></div>
+        </div>
+    </div>
+
+    <!-- Player Invisível do YouTube -->
     <div id="yt-player" style="display:none;"></div>
+
+    <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-        let player; let isReady = false;
+        /* ═══════════════════════════════════════════════════════════
+           VARIÁVEIS GLOBAIS
+        ═══════════════════════════════════════════════════════════ */
+        let player, isPlayerReady = false, isMuted = true;
+        let scene, camera, renderer;
+        let pyramidGroup, desertGround, stars;
+        let mouseX = 0, mouseY = 0;
+
+        /* ═══════════════════════════════════════════════════════════
+           YOUTUBE PLAYER
+        ═══════════════════════════════════════════════════════════ */
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
                 height: '0', width: '0', videoId: 'vRX91S7SKIU',
-                playerVars: { 'autoplay': 1, 'controls': 0, 'mute': 1 },
-                events: { 'onReady': (e) => { isReady = true; player.playVideo(); } }
+                playerVars: { 'autoplay': 1, 'controls': 0, 'loop': 1, 'playlist': 'vRX91S7SKIU', 'mute': 1 },
+                events: { 'onReady': () => { isPlayerReady = true; } }
             });
         }
-        
-        function stopBach() { if(isReady && player) { player.pauseVideo(); } }
 
-        function unlock() {
-            if(isReady && player) { player.unMute(); player.setVolume(100); player.playVideo(); }
-            document.getElementById('gate').style.opacity = '0';
+        function toggleAudio() {
+            if (!isPlayerReady || !player) return;
+            const audioIcon = document.getElementById('audio-icon');
+            const audioBtn = document.getElementById('audio-toggle');
+            
+            if (isMuted) {
+                player.unMute();
+                player.setVolume(30);
+                audioIcon.textContent = '🔊';
+                audioBtn.classList.remove('muted');
+                isMuted = false;
+            } else {
+                player.mute();
+                audioIcon.textContent = '🔇';
+                audioBtn.classList.add('muted');
+                isMuted = true;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           NAVEGAÇÃO
+        ═══════════════════════════════════════════════════════════ */
+        function unlockPortal() {
+            if (isPlayerReady && player) {
+                player.unMute();
+                player.setVolume(30);
+                isMuted = false;
+                document.getElementById('audio-icon').textContent = '🔊';
+            }
+            
+            document.getElementById('gate').classList.add('hidden');
+            
             setTimeout(() => {
-                document.getElementById('gate').style.display = 'none';
-                document.getElementById('main-nav').style.opacity = '1';
-                document.getElementById('main-container').style.opacity = '1';
+                document.getElementById('main-nav').classList.add('visible');
+                document.getElementById('hud-overlay').classList.add('visible');
                 document.getElementById('canvas-3d').style.opacity = '1';
+                document.getElementById('audio-controls').classList.add('visible');
             }, 1500);
         }
 
-        function show(id) { 
-            if(id === 'freq') stopBach();
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); 
-            document.getElementById(id).classList.add('active'); if(event) event.target.classList.add('active'); 
-            window.scrollTo(0,0);
-        }
-
-        function openBook(id) { 
-            const d={anestesia:{t:"A Anestesia Divina",d:"O despertar místico."},arquitetura:{t:"Arquitetura do Invisível",d:"O templo sem tempo."},centelha:{t:"A Centelha Inquieta",d:"Luz entre razão e mistério."},alquimia:{t:"Alquimia do Ser",d:"Transmutação consciente."}}; 
-            document.getElementById('m-content').innerHTML=`<h2 style="color:var(--silver); font-family:'Bodoni Moda'; font-size:1.3rem;">${d[id].t}</h2><p style="margin-top:10px; line-height:1.5; font-style:italic;">${d[id].d}</p>`; 
-            document.getElementById('modal').style.display='flex'; 
-        }
-
-        const scene = new THREE.Scene(); 
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight); camera.position.z = 40;
-
-        // --- NOVA ILUMINAÇÃO (Mais Brilhante) ---
-        // Luz principal mais forte e reposicionada para iluminar a frente dos objetos
-        const mainLight = new THREE.PointLight(0xffffff, 3.0, 120); 
-        mainLight.position.set(10, 20, 40); 
-        scene.add(mainLight);
-        
-        // Luz de preenchimento azulada para dar contraste nas sombras
-        const fillLight = new THREE.PointLight(0xc0c0ff, 1.0, 100); 
-        fillLight.position.set(-20, -10, 20); 
-        scene.add(fillLight);
-
-        // Luz ambiente mais forte para reduzir a escuridão total
-        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-
-        const starGeo = new THREE.BufferGeometry(); const starCoords = [];
-        for(let i=0; i<4000; i++) { starCoords.push(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000)); }
-        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x888888, size: 0.7 })); scene.add(stars);
-
-        // SIGILO EGÍPCIO (Ouro & Lápis-Lazúli)
-        const sigilGroup = new THREE.Group();
-        const sigilGeo = new THREE.TorusKnotGeometry(3.2, 0.5, 200, 32, 5, 8);
-        // Material de Ouro Real mais brilhante
-        const sigilMesh1 = new THREE.Mesh(sigilGeo, new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1 }));
-        // Material de Lápis-Lazúli Azul mais visível
-        const sigilMesh2 = new THREE.Mesh(sigilGeo, new THREE.MeshBasicMaterial({ color: 0x003366, wireframe: true, transparent: true, opacity: 0.7 }));
-        sigilMesh2.scale.set(1.08, 1.08, 1.08);
-        sigilGroup.add(sigilMesh1, sigilMesh2); scene.add(sigilGroup);
-
-        // INFINITO CENTRAL (OURO - Visível novamente)
-        const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(10, 2.5, 160, 20), new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1.0, roughness: 0.15, wireframe: true }));
-        scene.add(knot);
-
-        // PIRÂMIDE (ALUMÍNIO - Mais clara e metálica)
-        const pGroup = new THREE.Group(); 
-        // Novo material de Alumínio (mais claro que prata)
-        const sMat = new THREE.MeshStandardMaterial({ color: 0xEEEEEE, metalness: 0.9, roughness: 0.2, transparent: true, opacity: 0.85 });
-        let lv=5, cB=lv, bS=1;
-        for(let y=0; y<lv; y++){ for(let x=0; x<cB; x++){ for(let z=0; z<cB; z++){ const b=new THREE.Mesh(new THREE.BoxGeometry(bS*0.9, bS*0.9, bS*0.9), sMat); b.position.set(x*bS-(cB-1)*bS/2, y*bS, z*bS-(cB-1)*bS/2); pGroup.add(b); } } cB--; }
-        scene.add(pGroup);
-
-        function animate() { 
-            requestAnimationFrame(animate); 
-            knot.rotation.y += 0.003; pGroup.rotation.y -= 0.006; stars.rotation.y += 0.0001;
-            sigilMesh1.rotation.x += 0.015; sigilMesh2.rotation.y -= 0.01;
+        function showPanel(panelId, event) {
+            if (event) event.preventDefault();
             
-            if(window.innerWidth < 768) {
-                knot.position.set(0, -3, -15); pGroup.position.set(0, -16, 10);
-                sigilGroup.position.set(12, -22, -5); sigilGroup.scale.set(0.4, 0.4, 0.4);
-            } else {
-                knot.position.set(0, -3, -10); pGroup.position.set(0, -18, 15);
-                sigilGroup.position.set(28, -20, 0);
-            }
-            renderer.render(scene, camera); 
-        } animate();
+            document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            if (event) event.target.closest('a').classList.add('active');
+        }
 
-        if(window.innerWidth > 768) {
-            document.addEventListener('mousemove', (e) => { 
-                const c=document.getElementById('cursor'); c.style.left=e.clientX+'px'; c.style.top=e.clientY+'px'; 
+        /* ═══════════════════════════════════════════════════════════
+           MODAL
+        ═══════════════════════════════════════════════════════════ */
+        const bookData = {
+            anestesia: {
+                title: "A Anestesia Divina",
+                description: "O despertar místico através do colapso da alma. Uma jornada pela dor que ilumina, pelo sofrimento que liberta, pela quebra que reconstrói em luz e consciência."
+            },
+            arquitetura: {
+                title: "Arquitetura do Invisível",
+                description: "A construção do templo interno onde o tempo não existe. Explorando as dimensões ocultas da realidade, os pilares da consciência e a geometria sagrada do universo."
+            },
+            centelha: {
+                title: "A Centelha Inquieta",
+                description: "Luz silenciosa entre razão e mistério. O fogo divino que habita entre o pensamento e a intuição, entre o conhecido e o inexplorado, dançando eternamente na fronteira do ser."
+            },
+            alquimia: {
+                title: "Alquimia do Ser",
+                description: "Transmutando sombras em ouro consciente. O processo ancestral de transformação interior, onde cada dor se torna sabedoria, cada medo vira coragem, cada escuridão se ilumina."
+            }
+        };
+
+        function openBook(bookId) {
+            const book = bookData[bookId];
+            if (!book) return;
+            
+            document.getElementById('modal-inner').innerHTML = `
+                <h2 class="modal-title">${book.title}</h2>
+                <p class="modal-description">${book.description}</p>
+            `;
+            
+            document.getElementById('modal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') closeModal();
+        });
+
+        /* ═══════════════════════════════════════════════════════════
+           CURSOR MÁGICO
+        ═══════════════════════════════════════════════════════════ */
+        if (window.innerWidth > 768) {
+            const cursor = document.getElementById('cursor');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            document.querySelectorAll('a, button, .card').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
             });
         }
-        window.addEventListener('resize', () => { camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+
+        /* ═══════════════════════════════════════════════════════════
+           THREE.JS - UNIVERSO 5D COMPLETO
+        ═══════════════════════════════════════════════════════════ */
+        function initScene() {
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x1a0f0a, 0.0015);
+            
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 3000);
+            camera.position.set(0, 120, 350);
+            camera.lookAt(0, 20, 0);
+            
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: document.getElementById('canvas-3d'), 
+                antialias: true,
+                alpha: false
+            });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 0.9;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ILUMINAÇÃO EGÍPCIA
+        ═══════════════════════════════════════════════════════════ */
+        function createLights() {
+            // Sol do deserto - muito intenso
+            const sunLight = new THREE.DirectionalLight(0xffd89f, 2.5);
+            sunLight.position.set(300, 400, 200);
+            sunLight.castShadow = true;
+            sunLight.shadow.camera.left = -600;
+            sunLight.shadow.camera.right = 600;
+            sunLight.shadow.camera.top = 600;
+            sunLight.shadow.camera.bottom = -600;
+            sunLight.shadow.camera.near = 0.5;
+            sunLight.shadow.camera.far = 1500;
+            sunLight.shadow.mapSize.width = 4096;
+            sunLight.shadow.mapSize.height = 4096;
+            sunLight.shadow.bias = -0.0001;
+            scene.add(sunLight);
+            
+            // Luz ambiente do deserto
+            const ambientLight = new THREE.AmbientLight(0x5a4a3a, 0.8);
+            scene.add(ambientLight);
+            
+            // Luz mística dourada emanando do topo
+            const apexGlow = new THREE.PointLight(0xFFD700, 4, 400);
+            apexGlow.position.set(0, 150, 0);
+            scene.add(apexGlow);
+            
+            // Luz de preenchimento azul mística
+            const mysticLight = new THREE.PointLight(0x0066ff, 1.5, 300);
+            mysticLight.position.set(-200, 100, 200);
+            scene.add(mysticLight);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           CÉUS ESTRELADOS
+        ═══════════════════════════════════════════════════════════ */
+        function createStars() {
+            const starGeo = new THREE.BufferGeometry();
+            const starCoords = [];
+            const starColors = [];
+            const starCount = window.innerWidth > 768 ? 8000 : 3000;
+            
+            for (let i = 0; i < starCount; i++) {
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos((Math.random() * 2) - 1);
+                const radius = 1200 + Math.random() * 1200;
+                
+                starCoords.push(
+                    radius * Math.sin(phi) * Math.cos(theta),
+                    radius * Math.sin(phi) * Math.sin(theta),
+                    radius * Math.cos(phi)
+                );
+                
+                // Cores variadas para as estrelas
+                const color = new THREE.Color();
+                color.setHSL(Math.random() * 0.1 + 0.05, 0.3, 0.7 + Math.random() * 0.3);
+                starColors.push(color.r, color.g, color.b);
+            }
+            
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
+            starGeo.setAttribute('color', new THREE.Float32BufferAttribute(starColors, 3));
+            
+            stars = new THREE.Points(
+                starGeo,
+                new THREE.PointsMaterial({
+                    size: 3,
+                    vertexColors: true,
+                    transparent: true,
+                    opacity: 0.9,
+                    sizeAttenuation: true
+                })
+            );
+            
+            scene.add(stars);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           DESERTO E DUNAS
+        ═══════════════════════════════════════════════════════════ */
+        function createDesert() {
+            const groundGeo = new THREE.PlaneGeometry(3000, 3000, 150, 150);
+            const vertices = groundGeo.attributes.position.array;
+            
+            // Dunas realistas com ondulações
+            for (let i = 0; i < vertices.length; i += 3) {
+                const x = vertices[i];
+                const y = vertices[i + 1];
+                
+                // Múltiplas camadas de ondulação
+                const wave1 = Math.sin(x * 0.005) * 15;
+                const wave2 = Math.cos(y * 0.008) * 12;
+                const wave3 = Math.sin((x + y) * 0.003) * 8;
+                const noise = (Math.random() - 0.5) * 2;
+                
+                vertices[i + 2] = wave1 + wave2 + wave3 + noise;
+            }
+            
+            groundGeo.computeVertexNormals();
+            
+            // Textura procedural de areia
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            
+            // Gradiente de areia
+            const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+            gradient.addColorStop(0, '#d4c5a0');
+            gradient.addColorStop(0.5, '#c2b28f');
+            gradient.addColorStop(1, '#b0a080');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 512, 512);
+            
+            // Grãos de areia
+            for (let i = 0; i < 5000; i++) {
+                ctx.fillStyle = `rgba(${180 + Math.random() * 40}, ${150 + Math.random() * 40}, ${100 + Math.random() * 30}, ${Math.random() * 0.3})`;
+                ctx.fillRect(Math.random() * 512, Math.random() * 512, 1, 1);
+            }
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(20, 20);
+            
+            const groundMat = new THREE.MeshStandardMaterial({
+                map: texture,
+                roughness: 0.95,
+                metalness: 0.05,
+                color: 0xe0d5b7
+            });
+            
+            desertGround = new THREE.Mesh(groundGeo, groundMat);
+            desertGround.rotation.x = -Math.PI / 2;
+            desertGround.position.y = -80;
+            desertGround.receiveShadow = true;
+            scene.add(desertGround);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PIRÂMIDE EGÍPCIA ULTRA-REALISTA COM TIJOLOS INDIVIDUAIS
+        ═══════════════════════════════════════════════════════════ */
+        function createPyramid() {
+            pyramidGroup = new THREE.Group();
+            
+            // Dimensões da Grande Pirâmide de Gizé (escala reduzida)
+            const baseWidth = 230;    // Base enorme
+            const height = 146;       // Altura proporcional
+            const layers = 80;        // Número de camadas de tijolos
+            
+            // Criar textura procedural de pedra calcária
+            const createStoneTexture = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 256;
+                canvas.height = 128;
+                const ctx = canvas.getContext('2d');
+                
+                // Base de pedra
+                const baseColor = `rgb(${200 + Math.random() * 30}, ${185 + Math.random() * 25}, ${150 + Math.random() * 30})`;
+                ctx.fillStyle = baseColor;
+                ctx.fillRect(0, 0, 256, 128);
+                
+                // Textura de pedra desgastada
+                for (let i = 0; i < 800; i++) {
+                    const x = Math.random() * 256;
+                    const y = Math.random() * 128;
+                    const size = Math.random() * 3;
+                    const shade = Math.random() * 60 - 30;
+                    ctx.fillStyle = `rgba(${180 + shade}, ${160 + shade}, ${130 + shade}, ${Math.random() * 0.5})`;
+                    ctx.fillRect(x, y, size, size);
+                }
+                
+                // Rachaduras
+                for (let i = 0; i < 15; i++) {
+                    ctx.strokeStyle = `rgba(100, 80, 60, ${Math.random() * 0.4 + 0.1})`;
+                    ctx.lineWidth = Math.random() * 2;
+                    ctx.beginPath();
+                    ctx.moveTo(Math.random() * 256, Math.random() * 128);
+                    ctx.lineTo(Math.random() * 256, Math.random() * 128);
+                    ctx.stroke();
+                }
+                
+                return new THREE.CanvasTexture(canvas);
+            };
+            
+            // Criar camadas de tijolos
+            const blocksPerLayer = [];
+            
+            for (let layer = 0; layer < layers; layer++) {
+                const layerProgress = layer / layers;
+                const layerHeight = (height / layers) * layer;
+                const layerWidth = baseWidth * (1 - layerProgress);
+                
+                // Altura do tijolo (variável para realismo)
+                const blockHeight = height / layers;
+                
+                // Número de blocos por lado nesta camada
+                const blocksPerSide = Math.max(3, Math.floor(layerWidth / 12));
+                
+                // Criar os 4 lados da pirâmide
+                for (let side = 0; side < 4; side++) {
+                    const sideAngle = (Math.PI / 2) * side;
+                    
+                    // Criar blocos ao longo deste lado
+                    for (let block = 0; block < blocksPerSide; block++) {
+                        const blockProgress = block / blocksPerSide;
+                        
+                        // Dimensões do bloco individual (com variação)
+                        const blockWidth = (layerWidth / blocksPerSide) * (0.9 + Math.random() * 0.2);
+                        const blockDepth = 8 + Math.random() * 4;
+                        
+                        // Geometria do bloco
+                        const blockGeo = new THREE.BoxGeometry(
+                            blockWidth,
+                            blockHeight,
+                            blockDepth
+                        );
+                        
+                        // Material com textura única para cada bloco
+                        const blockMat = new THREE.MeshStandardMaterial({
+                            map: createStoneTexture(),
+                            roughness: 0.95,
+                            metalness: 0.02,
+                            color: new THREE.Color().setHSL(0.1, 0.15 + Math.random() * 0.1, 0.65 + Math.random() * 0.1)
+                        });
+                        
+                        const blockMesh = new THREE.Mesh(blockGeo, blockMat);
+                        
+                        // Posicionar o bloco
+                        const distanceFromCenter = layerWidth / 2 - (blockProgress * layerWidth);
+                        const angle = sideAngle + (blockProgress - 0.5) * (Math.PI / 2);
+                        
+                        blockMesh.position.x = Math.cos(sideAngle) * (layerWidth / 2 - blockWidth / 2);
+                        blockMesh.position.y = layerHeight - 80 + blockHeight / 2;
+                        blockMesh.position.z = Math.sin(sideAngle) * (layerWidth / 2 - blockWidth / 2);
+                        
+                        // Rotação para alinhar com a face da pirâmide
+                        blockMesh.rotation.y = sideAngle;
+                        
+                        // Inclinação para seguir o ângulo da pirâmide (51.5 graus)
+                        const pyramidAngle = Math.atan(height / (baseWidth / 2));
+                        blockMesh.rotation.z = Math.cos(sideAngle) * pyramidAngle;
+                        blockMesh.rotation.x = Math.sin(sideAngle) * pyramidAngle;
+                        
+                        // Pequenas variações para realismo
+                        blockMesh.position.x += (Math.random() - 0.5) * 0.5;
+                        blockMesh.position.z += (Math.random() - 0.5) * 0.5;
+                        blockMesh.rotation.y += (Math.random() - 0.5) * 0.02;
+                        
+                        blockMesh.castShadow = true;
+                        blockMesh.receiveShadow = true;
+                        
+                        pyramidGroup.add(blockMesh);
+                    }
+                }
+            }
+            
+            // Pyramidion (topo dourado)
+            const capGeo = new THREE.ConeGeometry(8, 12, 4);
+            const capMat = new THREE.MeshStandardMaterial({
+                color: 0xFFD700,
+                roughness: 0.25,
+                metalness: 0.85,
+                emissive: 0xD4AF37,
+                emissiveIntensity: 0.5
+            });
+            
+            const cap = new THREE.Mesh(capGeo, capMat);
+            cap.position.y = height - 74;
+            cap.rotation.y = Math.PI / 4;
+            cap.castShadow = true;
+            pyramidGroup.add(cap);
+            
+            // Aura mística 5D
+            const auraGeo = new THREE.ConeGeometry(baseWidth * 0.55, height * 1.05, 4, 1);
+            const auraMat = new THREE.ShaderMaterial({
+                transparent: true,
+                side: THREE.DoubleSide,
+                uniforms: {
+                    time: { value: 0 }
+                },
+                vertexShader: `
+                    varying vec2 vUv;
+                    void main() {
+                        vUv = uv;
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform float time;
+                    varying vec2 vUv;
+                    void main() {
+                        float pulse = sin(time * 2.0 + vUv.y * 10.0) * 0.5 + 0.5;
+                        float alpha = (1.0 - vUv.y) * 0.15 * pulse;
+                        gl_FragColor = vec4(0.83, 0.69, 0.22, alpha);
+                    }
+                `
+            });
+            
+            const aura = new THREE.Mesh(auraGeo, auraMat);
+            aura.rotation.y = Math.PI / 4;
+            aura.position.y = height / 2 - 80;
+            pyramidGroup.add(aura);
+            
+            // Hieróglifos místicos nas faces
+            const glyphMat = new THREE.MeshBasicMaterial({
+                color: 0x0066ff,
+                emissive: 0x0066ff,
+                emissiveIntensity: 1.5,
+                transparent: true,
+                opacity: 0.7
+            });
+            
+            for (let i = 0; i < 40; i++) {
+                const glyphGeo = new THREE.RingGeometry(2, 2.8, 6);
+                const glyph = new THREE.Mesh(glyphGeo, glyphMat);
+                
+                const side = Math.floor(Math.random() * 4);
+                const sideAngle = (Math.PI / 2) * side;
+                const heightPos = Math.random() * height * 0.8 - 40;
+                const layerProgress = (heightPos + 80) / height;
+                const distance = (baseWidth / 2) * (1 - layerProgress) * 0.95;
+                
+                glyph.position.set(
+                    Math.cos(sideAngle) * distance,
+                    heightPos,
+                    Math.sin(sideAngle) * distance
+                );
+                
+                glyph.lookAt(0, heightPos, 0);
+                glyph.userData.pulseSpeed = 0.5 + Math.random() * 1.5;
+                glyph.userData.pulseOffset = Math.random() * Math.PI * 2;
+                
+                pyramidGroup.add(glyph);
+            }
+            
+            // Entrada do templo
+            const entranceGeo = new THREE.BoxGeometry(12, 20, 5);
+            const entranceMat = new THREE.MeshStandardMaterial({
+                color: 0x000000,
+                emissive: 0x0066ff,
+                emissiveIntensity: 0.3,
+                roughness: 0.8
+            });
+            
+            const entrance = new THREE.Mesh(entranceGeo, entranceMat);
+            entrance.position.set(0, -50, baseWidth * 0.45);
+            entrance.castShadow = true;
+            pyramidGroup.add(entrance);
+            
+            scene.add(pyramidGroup);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           METEOROS E COMETAS
+        ═══════════════════════════════════════════════════════════ */
+        const meteoros = [];
+        function createMeteors() {
+            const meteorCount = window.innerWidth > 768 ? 20 : 10;
+            
+            for (let i = 0; i < meteorCount; i++) {
+                const geo = new THREE.SphereGeometry(0.8, 8, 8);
+                const mat = new THREE.MeshBasicMaterial({
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0.95
+                });
+                
+                const meteor = new THREE.Mesh(geo, mat);
+                resetMeteor(meteor);
+                meteoros.push(meteor);
+                scene.add(meteor);
+            }
+        }
+        
+        function resetMeteor(m) {
+            m.position.set(
+                THREE.MathUtils.randFloatSpread(600),
+                THREE.MathUtils.randFloat(300, 600),
+                THREE.MathUtils.randFloat(-600, -200)
+            );
+            m.userData.speed = THREE.MathUtils.randFloat(2, 5);
+            m.scale.set(1, 1, THREE.MathUtils.randFloat(30, 80));
+            
+            const targetX = THREE.MathUtils.randFloatSpread(200);
+            const targetZ = THREE.MathUtils.randFloatSpread(200);
+            m.lookAt(targetX, -100, targetZ);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           ANIMAÇÃO PRINCIPAL
+        ═══════════════════════════════════════════════════════════ */
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.01;
+            
+            // Rotação majestosa da pirâmide
+            if (pyramidGroup) {
+                pyramidGroup.rotation.y += 0.0003;
+                
+                // Atualizar shader da aura
+                pyramidGroup.children.forEach(child => {
+                    if (child.material && child.material.uniforms && child.material.uniforms.time) {
+                        child.material.uniforms.time.value = time;
+                    }
+                    
+                    // Pulsação dos hieróglifos
+                    if (child.userData.pulseSpeed) {
+                        const pulse = Math.sin(time * child.userData.pulseSpeed + child.userData.pulseOffset) * 0.3 + 0.7;
+                        child.material.opacity = pulse * 0.7;
+                        child.scale.setScalar(0.8 + pulse * 0.4);
+                    }
+                });
+            }
+            
+            // Rotação das estrelas
+            if (stars) {
+                stars.rotation.y += 0.00005;
+                stars.rotation.x = Math.sin(time * 0.1) * 0.05;
+            }
+            
+            // Animação dos meteoros
+            meteoros.forEach(m => {
+                m.translateZ(m.userData.speed);
+                
+                const distanceFromOrigin = m.position.length();
+                m.material.opacity = THREE.MathUtils.mapLinear(
+                    m.position.y, 
+                    600, 
+                    -100, 
+                    1, 
+                    0
+                );
+                
+                if (m.position.y < -100 || distanceFromOrigin > 1500) {
+                    resetMeteor(m);
+                }
+            });
+            
+            // Movimento paralaxe suave da câmera
+            if (window.innerWidth > 768) {
+                const targetX = mouseX * 30;
+                const targetY = 120 - mouseY * 20;
+                
+                camera.position.x += (targetX - camera.position.x) * 0.02;
+                camera.position.y += (targetY - camera.position.y) * 0.02;
+                camera.lookAt(0, 20, 0);
+            }
+            
+            // Ondulação suave do deserto
+            if (desertGround) {
+                desertGround.position.y = -80 + Math.sin(time * 0.5) * 0.5;
+            }
+            
+            renderer.render(scene, camera);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           RESPONSIVIDADE
+        ═══════════════════════════════════════════════════════════ */
+        window.addEventListener('resize', () => {
+            if (camera && renderer) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        });
+
+        /* ═══════════════════════════════════════════════════════════
+           INICIALIZAÇÃO
+        ═══════════════════════════════════════════════════════════ */
+        window.addEventListener('load', () => {
+            console.log('🏛️ Iniciando construção da Grande Pirâmide...');
+            initScene();
+            createLights();
+            createStars();
+            createDesert();
+            createPyramid();
+            createMeteors();
+            animate();
+            console.log('✨ Pirâmide de tijolos ultra-realista renderizada!');
+        });
     </script>
 </body>
 </html>
