@@ -32,39 +32,38 @@
         nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.55rem; cursor: pointer; opacity: 0.55; }
         nav a:hover, nav a.active { opacity: 1; color: var(--white); border-bottom: 1px solid var(--silver); }
 
-        .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 130px 6% 100px; overflow-y: scroll; scrollbar-width: none; }
+        .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 120px 6% 100px; overflow-y: scroll; scrollbar-width: none; }
         .container::-webkit-scrollbar { display: none; }
         
         .page { display: none; width: 100%; max-width: 850px; animation: fadeIn 1.5s ease; }
         .page.active { display: flex; flex-direction: column; align-items: center; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
 
         .glass-box { background: rgba(5, 5, 5, 0.5); padding: 35px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(25px); width: 100%; }
         .bio-container { display: flex; align-items: center; gap: 30px; }
-        .bio-photo { width: 190px; height: 270px; object-fit: cover; border: 1px solid var(--silver); flex-shrink: 0; }
+        .bio-photo { width: 180px; height: 260px; object-fit: cover; border: 1px solid var(--silver); flex-shrink: 0; }
         .bio-text { font-size: 1.05rem; line-height: 1.8; font-style: italic; color: var(--white); }
 
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; width: 100%; margin-top: 25px; }
         .card { border: 1px solid rgba(255,255,255,0.1); padding: 25px; background: rgba(15,15,15,0.6); text-align: center; cursor: pointer; transition: 0.4s; }
-        .card:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .card:hover { border-color: var(--silver); transform: translateY(-3px); }
         .card h2 { color: var(--silver); letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase; font-weight: normal; }
 
         .email-link { color: var(--white); font-size: clamp(1rem, 4vw, 1.6rem); text-decoration: none; border-bottom: 1px solid var(--silver); font-family: 'Bodoni Moda'; transition: 0.5s; }
-        .email-link:hover { color: var(--gold); }
+        .email-link:hover { color: var(--silver); }
 
         #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(25px); }
         .modal-content { max-width: 80%; text-align: center; border: 1px solid var(--silver); padding: 35px; background: rgba(0,0,0,0.98); }
 
-        .video-container { border: 1px solid var(--silver); aspect-ratio: 16/9; margin-bottom: 15px; width: 100%; }
-        .video-container iframe { width: 100%; height: 100%; border: none; }
+        .video-container { border: 1px solid var(--silver); aspect-ratio: 16/9; margin-bottom: 15px; width: 100%; cursor: pointer; position: relative; }
+        .video-container iframe { width: 100%; height: 100%; border: none; pointer-events: auto; }
 
         @media (max-width: 768px) {
-            body { cursor: auto; }
-            #cursor { display: none; }
-            .bio-container { flex-direction: column; text-align: center; gap: 15px; }
-            .bio-photo { width: 150px; height: 220px; }
+            body { cursor: auto; } #cursor { display: none; }
+            .bio-container { flex-direction: column; text-align: center; }
+            .bio-photo { width: 150px; height: 210px; }
+            .container { padding-top: 130px; }
             nav a { font-size: 0.45rem; }
-            .glass-box { padding: 20px; }
         }
     </style>
 </head>
@@ -115,8 +114,8 @@
         <div id="freq" class="page">
             <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:25px; font-size: 1.4rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Frequências</h1>
             <div class="card-grid">
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/vRX91S7SKIU" title="F1"></iframe></div>
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec" title="F2"></iframe></div>
+                <div class="video-container" onclick="stopBach()"><iframe src="https://www.youtube.com/embed/vRX91S7SKIU" title="F1"></iframe></div>
+                <div class="video-container" onclick="stopBach()"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec" title="F2"></iframe></div>
             </div>
         </div>
 
@@ -141,6 +140,10 @@
                 events: { 'onReady': (e) => { isReady = true; player.playVideo(); } }
             });
         }
+        
+        // FUNÇÃO PARA SILENCIAR BACH
+        function stopBach() { if(isReady && player) { player.pauseVideo(); } }
+
         function unlock() {
             if(isReady && player) { player.unMute(); player.setVolume(100); player.playVideo(); }
             document.getElementById('gate').style.opacity = '0';
@@ -153,6 +156,8 @@
         }
 
         function show(id) { 
+            // Silencia Bach se entrar na página de Frequências
+            if(id === 'freq') stopBach();
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); 
             document.getElementById(id).classList.add('active'); if(event) event.target.classList.add('active'); 
@@ -160,7 +165,7 @@
         }
 
         function openBook(id) { 
-            const d={anestesia:{t:"A Anestesia Divina",d:"O despertar místico."},arquitetura:{t:"Arquitetura do Invisível",d:"O templo sem tempo."},centelha:{t:"A Centelha Inquieta",d:"Luz silenciosa entre razão e mistério."},alquimia:{t:"Alquimia do Ser",d:"Transmutação consciente."}}; 
+            const d={anestesia:{t:"A Anestesia Divina",d:"O despertar místico."},arquitetura:{t:"Arquitetura do Invisível",d:"O templo sem tempo."},centelha:{t:"A Centelha Inquieta",d:"Luz entre razão e mistério."},alquimia:{t:"Alquimia do Ser",d:"Transmutação consciente."}}; 
             document.getElementById('m-content').innerHTML=`<h2 style="color:var(--silver); font-family:'Bodoni Moda'; font-size:1.3rem;">${d[id].t}</h2><p style="margin-top:10px; line-height:1.5; font-style:italic;">${d[id].d}</p>`; 
             document.getElementById('modal').style.display='flex'; 
         }
@@ -178,28 +183,18 @@
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
         const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x888888, size: 0.7 })); scene.add(stars);
 
-        // --- O SIGILO EGÍPCIO (Poder, Sabedoria, Saúde) ---
+        // SIGILO EGÍPCIO (W.L.A.M.)
         const sigilGroup = new THREE.Group();
-        const sigilGeo = new THREE.TorusKnotGeometry(3.2, 0.5, 200, 32, 5, 8); // Geometria baseada em Sia (Sabedoria)
-        
-        // Manifestação do Poder (Ouro Faraônico)
-        const sigilMatGold = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1 });
-        const sigilMesh1 = new THREE.Mesh(sigilGeo, sigilMatGold);
-        
-        // Manifestação da Sabedoria (Lápis-Lazúli Wireframe)
-        const sigilMatLapis = new THREE.MeshBasicMaterial({ color: 0x003366, wireframe: true, transparent: true, opacity: 0.5 });
-        const sigilMesh2 = new THREE.Mesh(sigilGeo, sigilMatLapis);
+        const sigilGeo = new THREE.TorusKnotGeometry(3.2, 0.5, 200, 32, 5, 8);
+        const sigilMesh1 = new THREE.Mesh(sigilGeo, new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1 }));
+        const sigilMesh2 = new THREE.Mesh(sigilGeo, new THREE.MeshBasicMaterial({ color: 0x003366, wireframe: true, transparent: true, opacity: 0.5 }));
         sigilMesh2.scale.set(1.08, 1.08, 1.08);
+        sigilGroup.add(sigilMesh1, sigilMesh2); scene.add(sigilGroup);
 
-        sigilGroup.add(sigilMesh1);
-        sigilGroup.add(sigilMesh2);
-        scene.add(sigilGroup);
-
-        // INFINITO CENTRAL (COBRE)
-        const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(10, 2.5, 160, 20), new THREE.MeshStandardMaterial({ color: 0xC87533, metalness: 1, roughness: 0.1, wireframe: true }));
+        // INFINITO CENTRAL (OURO RESTAURADO)
+        const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(10, 2.5, 160, 20), new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1, wireframe: true }));
         scene.add(knot);
 
-        // PIRÂMIDE (PRATA 4D)
         const pGroup = new THREE.Group(); const sMat = new THREE.MeshStandardMaterial({ color: 0xE0E0E0, metalness: 1, transparent: true, opacity: 0.8 });
         let lv=5, cB=lv, bS=1;
         for(let y=0; y<lv; y++){ for(let x=0; x<cB; x++){ for(let z=0; z<cB; z++){ const b=new THREE.Mesh(new THREE.BoxGeometry(bS*0.9, bS*0.9, bS*0.9), sMat); b.position.set(x*bS-(cB-1)*bS/2, y*bS, z*bS-(cB-1)*bS/2); pGroup.add(b); } } cB--; }
@@ -208,21 +203,14 @@
         function animate() { 
             requestAnimationFrame(animate); 
             knot.rotation.y += 0.003; pGroup.rotation.y -= 0.006; stars.rotation.y += 0.0001;
-
-            // ANIMAÇÃO DO SIGILO EGÍPCIO (Fluxo Vital)
-            sigilMesh1.rotation.x += 0.015; sigilMesh1.rotation.z += 0.01;
-            sigilMesh2.rotation.y -= 0.01;
-            const pulse = 1 + Math.sin(Date.now() * 0.0015) * 0.08;
-            sigilGroup.scale.set(pulse, pulse, pulse);
-
+            sigilMesh1.rotation.x += 0.015; sigilMesh2.rotation.y -= 0.01;
+            
             if(window.innerWidth < 768) {
-                knot.position.set(0, -3, -15); knot.scale.set(0.65, 0.65, 0.65);
-                pGroup.position.set(0, -16, 10); pGroup.scale.set(0.75, 0.75, 0.75);
+                knot.position.set(0, -3, -15); pGroup.position.set(0, -16, 10);
                 sigilGroup.position.set(12, -22, -5); sigilGroup.scale.set(0.4, 0.4, 0.4);
             } else {
-                knot.position.set(0, -3, -10); knot.scale.set(1, 1, 1);
-                pGroup.position.set(0, -18, 15); pGroup.scale.set(1.1, 1.1, 1.1);
-                sigilGroup.position.set(28, -20, 0); // Canto Inferior Direito
+                knot.position.set(0, -3, -10); pGroup.position.set(0, -18, 15);
+                sigilGroup.position.set(28, -20, 0);
             }
             renderer.render(scene, camera); 
         } animate();
@@ -232,10 +220,7 @@
                 const c=document.getElementById('cursor'); c.style.left=e.clientX+'px'; c.style.top=e.clientY+'px'; 
             });
         }
-        window.addEventListener('resize', () => { 
-            camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); 
-            renderer.setSize(window.innerWidth, window.innerHeight); 
-        });
+        window.addEventListener('resize', () => { camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
     </script>
 </body>
 </html>
