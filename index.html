@@ -9,7 +9,7 @@
     
     <style>
         :root { 
-            --gold: #D4AF37; 
+            --gold: #D4AF37; /* Ouro Imperial */
             --gold-bright: #FFE9A0;
             --black: #030303;
         }
@@ -45,7 +45,7 @@
             box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
         }
 
-        /* GATE */
+        /* GATE (Portal de Entrada) */
         #gate { 
             position: fixed; inset: 0; background: var(--black); z-index: 9999; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -61,7 +61,7 @@
         }
         .gate-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 80px var(--gold); }
 
-        /* NAV */
+        /* NAV (Menu) */
         nav { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
             gap: clamp(20px, 5vw, 60px); padding: 40px 20px; z-index: 1000; 
@@ -72,7 +72,7 @@
         }
         nav a:hover, nav a.active { opacity: 1; text-shadow: 0 0 15px var(--gold); border-bottom: 1px solid var(--gold); }
 
-        /* SEÇÕES */
+        /* SEÇÕES GERAIS */
         .container { 
             position: relative; z-index: 100; min-height: 100vh; 
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -84,7 +84,7 @@
 
         h1 { font-family: 'Bodoni Moda'; font-size: clamp(2.5rem, 6vw, 4rem); color: var(--gold); letter-spacing: 15px; text-transform: uppercase; margin-bottom: 50px; width: 100%; }
 
-        /* BIO COM FOTO INTEGRADA */
+        /* BIO COM FOTO EM UHD COLORIDO */
         .bio-container {
             display: flex; align-items: center; justify-content: center; gap: 60px;
             background: rgba(10, 10, 10, 0.4); border: 1px solid rgba(212, 175, 55, 0.15); 
@@ -94,11 +94,12 @@
         .bio-photo {
             width: 300px; height: 400px; object-fit: cover;
             border: 3px solid var(--gold);
-            filter: grayscale(80%) sepia(30%) contrast(1.2) brightness(0.9);
+            /* UHD COLOR: Filtros removidos, leve ajuste de contraste para definição */
+            filter: contrast(1.05) saturate(1.05);
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
             transition: 1s;
         }
-        .bio-photo:hover { filter: grayscale(0%) sepia(0%) contrast(1) brightness(1); box-shadow: 0 0 50px var(--gold); transform: scale(1.02); }
+        .bio-photo:hover { box-shadow: 0 0 60px var(--gold); transform: scale(1.02); }
         
         .bio-content { flex: 1; }
         .bio-text { font-family: 'Marcellus'; font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 2; color: #eee; }
@@ -263,43 +264,28 @@
             document.getElementById('modal').style.display = 'flex';
         }
 
-        // --- 5D INFINITY SYMBOL ---
+        // --- 5D BACKGROUND (RESTAURADO O NÓ ORIGINAL) ---
         const canvas = document.getElementById('canvas-5d');
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 35;
+        camera.position.z = 30;
 
-        // Definindo a curva do Infinito (Lemniscata 3D)
-        class InfinityCurve extends THREE.Curve {
-            constructor(scale = 1) { super(); this.scale = scale; }
-            getPoint(t, optionalTarget = new THREE.Vector3()) {
-                const angle = t * Math.PI * 2;
-                // Equação paramétrica para um "oito" com ondulação 3D
-                const x = this.scale * Math.cos(angle);
-                const y = this.scale * Math.sin(2 * angle) / 2;
-                const z = Math.sin(3 * angle) * 4; // Ondulação no eixo Z
-                return optionalTarget.set(x, y, z);
-            }
-        }
-
-        const path = new InfinityCurve(18); // Escala do símbolo
-        // TubeGeometry para criar o corpo do infinito
-        const geometry = new THREE.TubeGeometry(path, 150, 0.8, 16, true);
+        // Geometria do Nó Complexo (Torus Knot)
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 200, 32);
         const material = new THREE.MeshBasicMaterial({ 
             color: 0xD4AF37, 
             wireframe: true, 
             transparent: true, 
-            opacity: 0.2,
-            side: THREE.DoubleSide
+            opacity: 0.15 // Opacidade sutil para não brigar com a foto colorida
         });
-        const infinitySymbol = new THREE.Mesh(geometry, material);
-        scene.add(infinitySymbol);
+        const knot = new THREE.Mesh(geometry, material);
+        scene.add(knot);
 
-        // Partículas acompanhando
+        // Partículas
         const particlesGeo = new THREE.BufferGeometry();
-        const pts = []; for (let i = 0; i < 4000; i++) pts.push(THREE.MathUtils.randFloatSpread(100), THREE.MathUtils.randFloatSpread(100), THREE.MathUtils.randFloatSpread(100));
+        const pts = []; for (let i = 0; i < 5000; i++) pts.push(THREE.MathUtils.randFloatSpread(100), THREE.MathUtils.randFloatSpread(100), THREE.MathUtils.randFloatSpread(100));
         particlesGeo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
         const particleSystem = new THREE.Points(particlesGeo, new THREE.PointsMaterial({ color: 0xD4AF37, size: 0.05, transparent: true, opacity: 0.5 }));
         scene.add(particleSystem);
@@ -312,13 +298,9 @@
 
         function anim() {
             requestAnimationFrame(anim);
-            // Rotação suave do infinito
-            infinitySymbol.rotation.y += 0.002;
-            infinitySymbol.rotation.z += 0.001;
-            // Magnetismo
-            infinitySymbol.position.x += (mX - infinitySymbol.position.x) * 0.03;
-            infinitySymbol.position.y += (-mY - infinitySymbol.position.y) * 0.03;
-            
+            // Animação do Nó Complexo
+            knot.rotation.y += 0.002; knot.rotation.x += 0.001;
+            knot.position.x += (mX - knot.position.x) * 0.05; knot.position.y += (-mY - knot.position.y) * 0.05;
             particleSystem.rotation.y += 0.001;
             renderer.render(scene, camera);
         } anim();
