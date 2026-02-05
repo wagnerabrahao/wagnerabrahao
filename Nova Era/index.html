@@ -90,7 +90,6 @@
             background: rgba(10,10,10,0.4); transition: 0.6s; cursor: pointer; text-align: center;
         }
         .card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(20,20,20,0.6); }
-        /* CORREÇÃO DO ERRO H3 -> H2 */
         .card h2 { color: var(--silver); letter-spacing: 4px; font-size: 1rem; text-transform: uppercase; font-family: 'Marcellus', serif; font-weight: normal; }
 
         .email-link { 
@@ -101,6 +100,10 @@
 
         #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(30px); }
         .modal-content { max-width: 650px; width: 90%; text-align: center; border: 1px solid var(--gold); padding: 80px; background: rgba(0,0,0,0.98); }
+        
+        /* CSS PARA CORREÇÃO DOS IFRAMES */
+        .video-container { border: 1px solid var(--silver); aspect-ratio: 16/9; }
+        .video-container iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
@@ -148,17 +151,16 @@
         <div id="freq" class="page">
             <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; font-size: 2.5rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Frequências</h1>
             <div class="card-grid">
-                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/vRX91S7SKIU" frameborder="0"></iframe></div>
-                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/5-cAWczw_Ec" frameborder="0"></iframe></div>
-                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/fFtNlS940tg" frameborder="0"></iframe></div>
-                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/2dUXWxrKui4" frameborder="0"></iframe></div>
+                <div class="video-container"><iframe src="https://www.youtube.com/embed/vRX91S7SKIU" title="Frequência 1"></iframe></div>
+                <div class="video-container"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec" title="Frequência 2"></iframe></div>
+                <div class="video-container"><iframe src="https://www.youtube.com/embed/fFtNlS940tg" title="Frequência 3"></iframe></div>
+                <div class="video-container"><iframe src="https://www.youtube.com/embed/2dUXWxrKui4" title="Frequência 4"></iframe></div>
             </div>
         </div>
 
         <div id="contato" class="page">
             <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:80px; font-size: 2.8rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Contato</h1>
             <div style="text-align: center;">
-                <div style="font-family:'Great Vibes'; font-size:3.5rem; margin-bottom:50px; color: var(--silver);">Frequência de Contato:</div>
                 <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">wagner.abrahao.31@gmail.com</a>
             </div>
         </div>
@@ -243,4 +245,30 @@
         let lv=6, cB=lv, bS=1.1;
         for(let y=0; y<lv; y++){ 
             for(let x=0; x<cB; x++){ 
-                for(
+                for(let z=0; z<cB; z++){ 
+                    const b=new THREE.Mesh(new THREE.BoxGeometry(bS*0.97, bS*0.97, bS*0.97), sMat); 
+                    b.position.set(x*bS-(cB-1)*bS/2, y*bS, z*bS-(cB-1)*bS/2); 
+                    pGroup.add(b); 
+                } 
+            } cB--; 
+        }
+        pGroup.position.set(22, -18, 5); 
+        scene.add(pGroup);
+
+        function animate() { 
+            requestAnimationFrame(animate); 
+            knot.rotation.y += 0.003; knot.rotation.z += 0.001;
+            pGroup.rotation.y -= 0.006;
+            stars.rotation.y += 0.0002;
+            pGroup.position.y = -18 + Math.sin(Date.now() * 0.001) * 2; 
+            renderer.render(scene, camera); 
+        } 
+        animate();
+
+        window.addEventListener('resize', () => { 
+            camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); 
+            renderer.setSize(window.innerWidth, window.innerHeight); 
+        });
+    </script>
+</body>
+</html>
