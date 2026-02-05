@@ -8,11 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
-        :root { 
-            --gold: #D4AF37; 
-            --silver: #E0E0E0; 
-            --black: #020202;
-        }
+        :root { --gold: #D4AF37; --silver: #E0E0E0; --black: #020202; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -27,13 +23,12 @@
 
         canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 3s ease; }
 
-        /* --- O PONTO DE LUZ (CURSOR) --- */
+        /* --- BISTURI DE LUZ (CURSOR) --- */
         #cursor {
-            width: 10px; height: 10px; background: #fff; border-radius: 50%;
+            width: 8px; height: 8px; background: #fff; border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 10000;
-            box-shadow: 0 0 15px 5px #fff, 0 0 30px 10px var(--gold);
+            box-shadow: 0 0 10px 2px #fff, 0 0 20px 5px var(--gold);
             transform: translate(-50%, -50%);
-            transition: transform 0.05s ease-out;
         }
 
         /* --- PORTAL DE ENTRADA --- */
@@ -52,30 +47,19 @@
         }
 
         .gate-content { position: relative; z-index: 10; text-align: center; }
-        .gate-title { 
-            font-family: 'Bodoni Moda'; font-size: clamp(2.5rem, 8vw, 4.5rem); 
-            font-weight: 900; letter-spacing: 15px; text-transform: uppercase;
-            color: var(--gold); text-shadow: 0 0 40px rgba(0,0,0,1);
-        }
+        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; letter-spacing: 15px; text-transform: uppercase; color: var(--gold); }
+        .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(0,0,0,0.6); padding: 20px 80px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 10px; text-transform: uppercase; font-size: 0.85rem; margin-top: 50px; transition: 1.5s; backdrop-filter: blur(10px); }
 
-        .gate-btn { 
-            border: 1px solid var(--silver); color: #fff; background: rgba(0,0,0,0.6); 
-            padding: 20px 80px; cursor: pointer; font-family: 'Bodoni Moda'; 
-            letter-spacing: 10px; text-transform: uppercase; font-size: 0.85rem;
-            margin-top: 50px; transition: 1.5s; backdrop-filter: blur(10px);
-        }
-        .gate-btn:hover { background: #fff; color: #000; box-shadow: 0 0 80px #fff; }
-
-        /* --- NAVEGAÇÃO (6 ABAS) --- */
+        /* --- NAVEGAÇÃO --- */
         nav { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
-            gap: 30px; padding: 40px 20px; z-index: 2000; opacity: 0; transition: 2s;
+            gap: 25px; padding: 40px 20px; z-index: 2000; opacity: 0; transition: 2s;
             background: linear-gradient(to bottom, rgba(2,2,2,1) 40%, transparent);
         }
         nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; cursor: pointer; opacity: 0.5; transition: 0.6s; }
         nav a:hover, nav a.active { opacity: 1; color: var(--gold); border-bottom: 1px solid var(--gold); }
 
-        /* --- CONTAINER PRINCIPAL (SEM ROLAGEM) --- */
+        /* --- CONTAINER --- */
         .container { 
             position: relative; z-index: 100; height: 100vh; width: 100%;
             display: flex; flex-direction: column; align-items: center; 
@@ -87,25 +71,17 @@
         .page.active { display: flex; flex-direction: column; align-items: center; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* BIO UHD */
-        .bio-container { 
-            display: flex; align-items: center; gap: 60px; 
-            background: rgba(10, 10, 10, 0.7); padding: 50px; 
-            border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(30px); 
-        }
+        /* CONTEÚDO */
+        .bio-container { display: flex; align-items: center; gap: 60px; background: rgba(10, 10, 10, 0.75); padding: 50px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(30px); }
         .bio-photo { width: 280px; height: 400px; object-fit: cover; border: 1px solid var(--gold); }
-        .bio-text { font-size: 1.3rem; line-height: 2.1; font-style: italic; text-align: left; color: #fff; flex: 1; }
+        .bio-text { font-size: 1.35rem; line-height: 2.2; font-style: italic; color: #fff; flex: 1; text-align: left; }
 
-        /* MODAL */
         #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.97); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(25px); }
         .modal-content { max-width: 650px; width: 90%; text-align: center; border: 1px solid var(--gold); padding: 70px; background: var(--black); }
 
-        /* POEMAS */
-        .poem-box { margin-bottom: 50px; text-align: center; max-width: 800px; }
+        .poem-box { margin-bottom: 50px; text-align: center; }
         .poem-title { font-family: 'Great Vibes'; font-size: 3.5rem; color: var(--gold); margin-bottom: 15px; }
         .poem-content { font-size: 1.6rem; line-height: 1.9; color: #e5e5e5; font-style: italic; }
-
-        .email-link { color: var(--gold); text-decoration: none; font-size: 2rem; border-bottom: 2px solid var(--gold); transition: 0.6s; }
     </style>
 </head>
 <body>
@@ -149,7 +125,7 @@
         </div>
 
         <div id="obras" class="page">
-            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; font-size: 2.5rem; font-family:'Bodoni Moda';">Manuscritos</h1>
+            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:40px; font-size: 2.5rem; font-family:'Bodoni Moda'; text-transform:uppercase;">Manuscritos</h1>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%;">
                 <div style="border:1px solid rgba(255,255,255,0.1); padding:40px; background:rgba(10,10,10,0.8); cursor:pointer;" onclick="openBook('anestesia')"><h3 style="letter-spacing:4px;">A Anestesia Divina</h3></div>
                 <div style="border:1px solid rgba(255,255,255,0.1); padding:40px; background:rgba(10,10,10,0.8); cursor:pointer;" onclick="openBook('centelha')"><h3 style="letter-spacing:4px;">A Centelha Inquieta</h3></div>
@@ -161,20 +137,14 @@
         <div id="poemas" class="page">
             <div class="poem-box">
                 <div class="poem-title">Unidade</div>
-                <div class="poem-content">
-                    Na fenda do tempo, o ouro se esconde,<br>
-                    Onde o meu grito ao seu responde.<br>
-                    Não há distância no que é real,<br>
-                    Somos a nota de um mesmo coral.<br>
-                    Buscando a luz no portal final.
-                </div>
+                <div class="poem-content">Na fenda do tempo, o ouro se esconde,<br>Onde o meu grito ao seu responde.</div>
             </div>
         </div>
 
         <div id="contato" class="page">
             <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; font-size: 2.5rem; font-family:'Bodoni Moda';">Contato</h1>
             <div style="font-family:'Great Vibes'; font-size:3.5rem; margin-bottom:40px; color: var(--silver);">Diálogos de Alma:</div>
-            <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">wagner.abrahao.31@gmail.com</a>
+            <a href="mailto:wagner.abrahao.31@gmail.com" style="color:var(--gold); font-size:2rem; text-decoration:none; border-bottom:2px solid var(--gold);">wagner.abrahao.31@gmail.com</a>
         </div>
     </div>
 
@@ -184,9 +154,9 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-        // --- ÁUDIO ---
         let player;
         let isPlayerReady = false;
+
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
                 height: '0', width: '0', videoId: 'kzTQ9fjforY', 
@@ -195,11 +165,10 @@
             });
         }
 
-        // --- TRANSMUTAÇÃO ---
         function unlock() {
+            if(isPlayerReady && player) player.playVideo();
             const gate = document.getElementById('gate');
             const bg = document.getElementById('gate-bg');
-            if(isPlayerReady && player) player.playVideo();
             bg.style.transform = 'scale(2.5)';
             bg.style.opacity = '0';
             gate.style.opacity = '0';
@@ -211,7 +180,6 @@
             }, 1800);
         }
 
-        // --- NAVEGAÇÃO ---
         function show(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
@@ -227,19 +195,16 @@
                 arquitetura: { t: "Arquitetura do Invisível", d: "A restauração da memória ancestral e a construção de um templo interno." }
             };
             document.getElementById('m-content').innerHTML = `
-                <h2 style="font-family:'Bodoni Moda'; color:var(--gold); letter-spacing:5px; margin-bottom:25px; text-transform:uppercase;">${data[id].t}</h2>
+                <h2 style="font-family:'Bodoni Moda'; color:var(--gold); letter-spacing:5px; margin-bottom:25px;">${data[id].t}</h2>
                 <p style="font-size:1.7rem; font-style:italic; color:var(--silver); line-height:1.7;">${data[id].d}</p>`;
             document.getElementById('modal').style.display = 'flex';
         }
 
-        // --- CURSOR (PONTO DE LUZ) ---
-        const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            const c = document.getElementById('cursor');
+            c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px';
         });
 
-        // --- 5D SCENE ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-5d'), alpha: true, antialias: true });
@@ -275,11 +240,7 @@
             renderer.render(scene, camera);
         }
         animate();
-        window.addEventListener('resize', () => { 
-            camera.aspect = window.innerWidth / window.innerHeight; 
-            camera.updateProjectionMatrix(); 
-            renderer.setSize(window.innerWidth, window.innerHeight); 
-        });
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
     </script>
 </body>
 </html>
