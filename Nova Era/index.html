@@ -20,13 +20,20 @@
             cursor: none;
         }
 
-        #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 3s ease; }
+        /* CANVAS - GARANTIA DE VISIBILIDADE */
+        #canvas-3d { 
+            position: fixed; 
+            inset: 0; 
+            z-index: 1; 
+            pointer-events: none; 
+            opacity: 0; 
+            transition: opacity 2.5s ease-in-out; 
+        }
 
-        /* LUZ DO PONTEIRO RESTAURADA */
         #cursor { 
             width: 10px; height: 10px; background: #fff; border-radius: 50%; 
             position: fixed; pointer-events: none; z-index: 10000; 
-            box-shadow: 0 0 15px 5px #fff, 0 0 40px 15px var(--copper), 0 0 70px 25px rgba(200, 117, 51, 0.4); 
+            box-shadow: 0 0 15px 5px #fff, 0 0 45px 15px var(--copper); 
             transform: translate(-50%, -50%);
         }
 
@@ -41,15 +48,13 @@
             filter: grayscale(0.2) brightness(0.4); 
         }
         .gate-content { position: relative; z-index: 10; text-align: center; padding: 25px; }
-        
-        /* FONTE DO TÍTULO REDUZIDA */
-        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(1.8rem, 6vw, 3.2rem); font-weight: 900; letter-spacing: 10px; text-transform: uppercase; color: var(--silver); }
-        .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(0,0,0,0.4); padding: 18px 50px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 6px; text-transform: uppercase; font-size: 0.75rem; margin-top: 35px; transition: 1s; backdrop-filter: blur(10px); }
+        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(1.8rem, 6vw, 3rem); font-weight: 900; letter-spacing: 10px; text-transform: uppercase; color: var(--silver); }
+        .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(0,0,0,0.5); padding: 18px 50px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 6px; text-transform: uppercase; font-size: 0.75rem; margin-top: 35px; transition: 1s; backdrop-filter: blur(10px); }
 
         nav { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
             flex-wrap: wrap; gap: 15px; padding: 25px 10px; z-index: 2000; opacity: 0; transition: 2s;
-            background: linear-gradient(to bottom, rgba(1,1,1,0.85) 30%, transparent);
+            background: linear-gradient(to bottom, rgba(1,1,1,0.9) 30%, transparent);
         }
         nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.55rem; cursor: pointer; opacity: 0.55; }
         nav a:hover, nav a.active { opacity: 1; color: var(--white); border-bottom: 1px solid var(--silver); }
@@ -57,28 +62,25 @@
         .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 130px 6% 100px; overflow-y: scroll; scrollbar-width: none; }
         .container::-webkit-scrollbar { display: none; }
         
-        .page { display: none; width: 100%; max-width: 900px; animation: fadeIn 1.8s ease; }
+        .page { display: none; width: 100%; max-width: 850px; animation: fadeIn 1.5s ease; }
         .page.active { display: flex; flex-direction: column; align-items: center; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .glass-box { background: rgba(5, 5, 5, 0.45); padding: 35px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(25px); width: 100%; }
-        .bio-container { display: flex; align-items: center; gap: 35px; }
-        .bio-photo { width: 200px; height: 280px; object-fit: cover; border: 1px solid var(--silver); flex-shrink: 0; }
-        
-        /* TEXTO DA BIO REDUZIDO */
-        .bio-text { font-size: 1.1rem; line-height: 1.85; font-style: italic; color: var(--white); }
+        .glass-box { background: rgba(5, 5, 5, 0.5); padding: 35px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(25px); width: 100%; }
+        .bio-container { display: flex; align-items: center; gap: 30px; }
+        .bio-photo { width: 190px; height: 270px; object-fit: cover; border: 1px solid var(--silver); flex-shrink: 0; }
+        .bio-text { font-size: 1.05rem; line-height: 1.8; font-style: italic; color: var(--white); }
 
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; margin-top: 30px; }
-        .card { border: 1px solid rgba(255,255,255,0.1); padding: 30px; background: rgba(15,15,15,0.5); text-align: center; cursor: pointer; transition: 0.5s; }
-        .card:hover { border-color: var(--copper); transform: translateY(-5px); }
-        .card h2 { color: var(--silver); letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase; font-weight: normal; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; width: 100%; margin-top: 25px; }
+        .card { border: 1px solid rgba(255,255,255,0.1); padding: 25px; background: rgba(15,15,15,0.6); text-align: center; cursor: pointer; transition: 0.4s; }
+        .card:hover { border-color: var(--copper); transform: translateY(-3px); }
+        .card h2 { color: var(--silver); letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase; font-weight: normal; }
 
-        /* EMAIL REDUZIDO */
-        .email-link { color: var(--white); font-size: clamp(1.1rem, 4vw, 1.8rem); text-decoration: none; border-bottom: 1px solid var(--silver); font-family: 'Bodoni Moda'; transition: 0.5s; }
-        .email-link:hover { color: var(--copper); letter-spacing: 1px; }
+        .email-link { color: var(--white); font-size: clamp(1rem, 4vw, 1.6rem); text-decoration: none; border-bottom: 1px solid var(--silver); font-family: 'Bodoni Moda'; transition: 0.5s; }
+        .email-link:hover { color: var(--copper); }
 
         #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(25px); }
-        .modal-content { max-width: 85%; text-align: center; border: 1px solid var(--silver); padding: 40px; background: rgba(0,0,0,0.98); }
+        .modal-content { max-width: 80%; text-align: center; border: 1px solid var(--silver); padding: 35px; background: rgba(0,0,0,0.98); }
 
         .video-container { border: 1px solid var(--silver); aspect-ratio: 16/9; margin-bottom: 15px; width: 100%; }
         .video-container iframe { width: 100%; height: 100%; border: none; }
@@ -86,14 +88,11 @@
         @media (max-width: 768px) {
             body { cursor: auto; }
             #cursor { display: none; }
-            .bio-container { flex-direction: column; text-align: center; gap: 20px; }
-            .bio-photo { width: 160px; height: 230px; }
-            .bio-text { font-size: 0.95rem; line-height: 1.7; }
-            .container { padding-top: 150px; padding-left: 5%; padding-right: 5%; }
-            nav { padding: 15px 5px; gap: 10px; }
-            nav a { font-size: 0.5rem; letter-spacing: 1px; }
-            .glass-box { padding: 25px 20px; }
-            .gate-title { letter-spacing: 6px; }
+            .bio-container { flex-direction: column; text-align: center; gap: 15px; }
+            .bio-photo { width: 150px; height: 220px; }
+            .container { padding-top: 140px; }
+            nav a { font-size: 0.45rem; }
+            .glass-box { padding: 20px; }
         }
     </style>
 </head>
@@ -106,7 +105,7 @@
         <div id="gate-bg"></div>
         <div class="gate-content">
             <h1 class="gate-title">Wagner Abrahão</h1>
-            <div style="font-family:'Great Vibes'; font-size:2.2rem; color:var(--silver); margin-top:10px;">Arquiteto do Invisível</div>
+            <div style="font-family:'Great Vibes'; font-size:2rem; color:var(--silver); margin-top:10px;">Arquiteto do Invisível</div>
             <button class="gate-btn" onclick="unlock()">Atravessar</button>
         </div>
     </div>
@@ -127,12 +126,12 @@
                     <img src="perfil.jpg" alt="" class="bio-photo" onerror="this.style.background='#111'">
                     <div class="bio-text">"Observador e amante das frequências que ressoam, contemplo a arquitetura deste universo esplendoroso. Busco na alquimia as respostas que sempre procurei."</div>
                 </div>
-                <div style="font-family:'Great Vibes'; font-size:2.5rem; color:var(--silver); text-align:right; margin-top:20px;">Wagner Abrahão</div>
+                <div style="font-family:'Great Vibes'; font-size:2.2rem; color:var(--silver); text-align:right; margin-top:20px;">Wagner Abrahão</div>
             </div>
         </div>
 
         <div id="obras" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:30px; font-size: 1.5rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Manuscritos</h1>
+            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:25px; font-size: 1.4rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Manuscritos</h1>
             <div class="card-grid">
                 <div class="card" onclick="openBook('anestesia')"><h2>A Anestesia Divina</h2></div>
                 <div class="card" onclick="openBook('arquitetura')"><h2>Arquitetura do Invisível</h2></div>
@@ -142,7 +141,7 @@
         </div>
 
         <div id="freq" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:30px; font-size: 1.5rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Frequências</h1>
+            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:25px; font-size: 1.4rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Frequências</h1>
             <div class="card-grid">
                 <div class="video-container"><iframe src="https://www.youtube.com/embed/vRX91S7SKIU" title="F1"></iframe></div>
                 <div class="video-container"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec" title="F2"></iframe></div>
@@ -150,7 +149,7 @@
         </div>
 
         <div id="contato" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:50px; font-size: 1.8rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Contato</h1>
+            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:40px; font-size: 1.6rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Contato</h1>
             <div style="text-align: center;">
                 <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">wagner.abrahao.31@gmail.com</a>
             </div>
@@ -171,7 +170,7 @@
             });
         }
         function unlock() {
-            if(isReady && player) { player.unMute(); player.setVolume(100); }
+            if(isReady && player) { player.unMute(); player.setVolume(100); player.playVideo(); }
             document.getElementById('gate').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('gate').style.display = 'none';
@@ -190,7 +189,7 @@
 
         function openBook(id) { 
             const d={anestesia:{t:"A Anestesia Divina",d:"O despertar místico."},arquitetura:{t:"Arquitetura do Invisível",d:"O templo sem tempo."},centelha:{t:"A Centelha Inquieta",d:"Luz silenciosa entre razão e mistério."},alquimia:{t:"Alquimia do Ser",d:"Transmutação consciente."}}; 
-            document.getElementById('m-content').innerHTML=`<h2 style="color:var(--silver); font-family:'Bodoni Moda'; font-size:1.4rem;">${d[id].t}</h2><p style="margin-top:15px; line-height:1.6; font-style:italic;">${d[id].d}</p>`; 
+            document.getElementById('m-content').innerHTML=`<h2 style="color:var(--silver); font-family:'Bodoni Moda'; font-size:1.3rem;">${d[id].t}</h2><p style="margin-top:10px; line-height:1.5; font-style:italic;">${d[id].d}</p>`; 
             document.getElementById('modal').style.display='flex'; 
         }
 
@@ -199,11 +198,12 @@
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight); camera.position.z = 40;
 
-        scene.add(new THREE.PointLight(0xffffff, 2.5, 100)).position.set(0, 10, 30);
-        scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+        // LUZES REFORÇADAS
+        const pLight = new THREE.PointLight(0xffffff, 2.5, 100); pLight.position.set(0, 15, 30); scene.add(pLight);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
         const starGeo = new THREE.BufferGeometry(); const starCoords = [];
-        for(let i=0; i<4000; i++) { starCoords.push(THREE.MathUtils.randFloatSpread(900), THREE.MathUtils.randFloatSpread(900), THREE.MathUtils.randFloatSpread(900)); }
+        for(let i=0; i<4000; i++) { starCoords.push(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000)); }
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
         const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x888888, size: 0.7 })); scene.add(stars);
 
@@ -219,12 +219,13 @@
             requestAnimationFrame(animate); 
             knot.rotation.y += 0.003; pGroup.rotation.y -= 0.006; stars.rotation.y += 0.0001;
             
+            // REPOSICIONAMENTO PARA VISIBILIDADE GARANTIDA
             if(window.innerWidth < 768) {
-                knot.position.set(0, -8, -15); knot.scale.set(0.6, 0.6, 0.6);
-                pGroup.position.set(0, -24, 10); pGroup.scale.set(0.75, 0.75, 0.75);
+                knot.position.set(0, -3, -15); knot.scale.set(0.65, 0.65, 0.65);
+                pGroup.position.set(0, -16, 10); pGroup.scale.set(0.75, 0.75, 0.75);
             } else {
-                knot.position.set(0, -8, -10); knot.scale.set(1, 1, 1);
-                pGroup.position.set(0, -28, 15); pGroup.scale.set(1.1, 1.1, 1.1);
+                knot.position.set(0, -3, -10); knot.scale.set(1, 1, 1);
+                pGroup.position.set(0, -18, 15); pGroup.scale.set(1.1, 1.1, 1.1);
             }
             renderer.render(scene, camera); 
         } animate();
