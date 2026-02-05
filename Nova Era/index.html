@@ -2,22 +2,19 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Wagner Abrahão | Arquiteto do Invisível</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
-        :root { --gold: #D4AF37; --silver: #E0E0E0; --lapis: #0066FF; --white: #ffffff; --glass: rgba(255, 255, 255, 0.08); }
+        :root { --gold: #D4AF37; --silver: #E0E0E0; --lapis: #0066FF; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        body, html { 
-            background: #000; color: #fff; font-family: 'Marcellus', serif; 
-            overflow-x: hidden; height: 100%; cursor: none;
-        }
+        body, html { background: #000; color: #fff; font-family: 'Marcellus', serif; overflow-x: hidden; height: 100%; cursor: none; }
 
-        /* SITE 50K - PERFORMANCE MOBILE */
-        #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: auto; opacity: 0; transition: opacity 3s ease; }
+        /* ENGINE 3D - 8K REALISM */
+        #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: auto; opacity: 0; transition: opacity 3s ease; touch-action: pan-y; }
 
         #cursor { 
             width: 12px; height: 12px; background: #fff; border-radius: 50%; 
@@ -26,23 +23,23 @@
             transform: translate(-50%, -50%); mix-blend-mode: screen;
         }
 
-        /* GATE / PORTAL */
+        /* GATE / UMBRAL */
         #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #000; transition: 2s cubic-bezier(0.7, 0, 0.3, 1); }
-        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.6) brightness(0.3); }
+        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.7) brightness(0.2); }
         .gate-content { position: relative; z-index: 10; text-align: center; width: 90%; }
-        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2rem, 10vw, 4.5rem); font-weight: 900; letter-spacing: 12px; text-transform: uppercase; color: var(--silver); text-shadow: 0 0 30px rgba(255,255,255,0.2); }
-        .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(255,255,255,0.05); padding: 22px 60px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem; margin-top: 40px; transition: 1s; backdrop-filter: blur(20px); border-radius: 0; }
-        .gate-btn:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2.5rem, 10vw, 5rem); font-weight: 900; letter-spacing: 15px; text-transform: uppercase; color: var(--silver); }
+        .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(255,255,255,0.02); padding: 25px 80px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 10px; text-transform: uppercase; font-size: 0.9rem; margin-top: 50px; transition: 1.5s; backdrop-filter: blur(20px); }
+        .gate-btn:hover { background: var(--gold); color: #000; letter-spacing: 15px; }
 
-        /* NAVEGAÇÃO SUPREMA */
+        /* NAVEGAÇÃO DE LUXO */
         nav { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
-            flex-wrap: wrap; gap: clamp(10px, 3vw, 25px); padding: 30px 10px; z-index: 2000; opacity: 0; transition: 2s;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
-            backdrop-filter: blur(10px);
+            flex-wrap: wrap; gap: clamp(10px, 3vw, 30px); padding: 35px 10px; z-index: 2000; opacity: 0; transition: 2s;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+            backdrop-filter: blur(15px);
         }
-        nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.6rem; cursor: pointer; opacity: 0.6; transition: 0.4s; font-weight: bold; }
-        nav a:hover, nav a.active { opacity: 1; color: var(--gold); text-shadow: 0 0 10px var(--gold); }
+        nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 3px; font-size: 0.65rem; cursor: pointer; opacity: 0.5; transition: 0.5s; font-weight: bold; }
+        nav a:hover, nav a.active { opacity: 1; color: var(--gold); text-shadow: 0 0 15px var(--gold); border-bottom: 1px solid var(--gold); }
 
         /* CONTAINER VISCERAL */
         .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 160px 8% 100px; overflow-y: auto; scrollbar-width: none; }
@@ -50,38 +47,33 @@
         
         .page { display: none; width: 100%; max-width: 900px; animation: slideUp 1.5s ease forwards; }
         .page.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* CLAREAMENTO ALQUÍMICO - CRISTAL */
-        .glass-box { background: var(--glass); padding: clamp(25px, 5vw, 60px); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(40px); width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
-        .bio-container { display: flex; align-items: center; gap: 40px; }
-        /* FOTO FLUTUANTE SEM QUADRADO PRETO */
-        .bio-photo { width: 220px; height: 320px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 40px rgba(0,0,0,0.5); filter: contrast(1.1); flex-shrink: 0; }
-        .bio-text { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 2; font-style: italic; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
+        /* CRISTAL ALQUÍMICO */
+        .glass-box { background: var(--glass); padding: clamp(30px, 5vw, 70px); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(50px); width: 100%; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+        .bio-container { display: flex; align-items: center; gap: 50px; }
+        .bio-photo { width: 240px; height: 340px; object-fit: cover; border-radius: 2px; filter: grayscale(0.1) contrast(1.1); flex-shrink: 0; }
+        .bio-text { font-size: clamp(1.1rem, 4vw, 1.3rem); line-height: 2.1; font-style: italic; color: #f0f0f0; text-shadow: 0 2px 15px rgba(0,0,0,1); }
 
-        /* SEÇÃO VERBO (POESIAS) */
-        .verbo-section { width: 100%; }
-        .poesia-item { border-bottom: 1px solid rgba(212,175,55,0.2); padding: 40px 0; text-align: center; }
-        .poesia-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.6rem; margin-bottom: 20px; letter-spacing: 4px; text-transform: uppercase; }
-        .poesia-texto { font-size: 1.1rem; line-height: 1.9; color: var(--silver); font-style: italic; white-space: pre-wrap; }
-        .aforismo { border-left: 2px solid var(--gold); padding: 20px 30px; margin: 40px 0; font-size: 1.3rem; line-height: 1.8; color: #fff; background: rgba(255,255,255,0.03); }
+        /* SEÇÃO VERBO (RESTAURADA) */
+        .verbo-item { border-bottom: 1px solid rgba(212,175,55,0.15); padding: 60px 0; text-align: center; }
+        .poesia-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.8rem; margin-bottom: 25px; letter-spacing: 5px; text-transform: uppercase; }
+        .poesia-texto { font-size: 1.2rem; line-height: 2; color: var(--silver); font-style: italic; white-space: pre-wrap; }
+        .aforismo { border-left: 3px solid var(--gold); padding: 25px 40px; margin: 50px 0; font-size: 1.4rem; line-height: 1.9; color: #fff; background: rgba(255,255,255,0.02); font-style: normal; }
 
-        /* CARDS */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; width: 100%; margin-top: 40px; }
-        .card { border: 1px solid rgba(255,255,255,0.1); padding: 40px; background: rgba(255,255,255,0.03); text-align: center; transition: 0.6s; backdrop-filter: blur(20px); }
-        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; width: 100%; margin-top: 50px; }
+        .card { border: 1px solid rgba(255,255,255,0.08); padding: 50px; background: rgba(255,255,255,0.02); text-align: center; transition: 0.8s; backdrop-filter: blur(20px); }
+        .card:hover { border-color: var(--gold); transform: translateY(-15px); box-shadow: 0 20px 40px rgba(212,175,55,0.1); }
 
-        .email-link { color: var(--white); font-size: clamp(1rem, 5vw, 1.8rem); text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda'; transition: 0.5s; }
+        .video-container { border: 1px solid var(--silver); aspect-ratio: 16/9; margin-bottom: 30px; width: 100%; cursor: pointer; background: #000; }
 
-        /* MOBILE FIXES SUPREMOS */
         @media (max-width: 768px) {
             body { cursor: auto; } #cursor { display: none; }
-            .bio-container { flex-direction: column; text-align: center; }
-            .bio-photo { width: 180px; height: 260px; }
-            .container { padding-top: 140px; }
-            nav a { font-size: 0.5rem; letter-spacing: 1px; }
-            .gate-title { letter-spacing: 6px; }
-            canvas { pointer-events: none !important; } /* Impede que o 3D atrapalhe o scroll no mobile */
+            .bio-container { flex-direction: column; text-align: center; gap: 30px; }
+            .bio-photo { width: 100%; max-width: 220px; height: auto; }
+            .container { padding-top: 130px; padding-bottom: 150px; }
+            nav a { font-size: 0.55rem; letter-spacing: 2px; }
+            .glass-box { padding: 35px 25px; }
         }
     </style>
 </head>
@@ -94,8 +86,8 @@
         <div id="gate-bg"></div>
         <div class="gate-content">
             <h1 class="gate-title">Wagner Abrahão</h1>
-            <div style="font-family:'Great Vibes'; font-size:2.5rem; color:var(--silver); margin-top:15px;">Arquiteto do Invisível</div>
-            <button class="gate-btn" onclick="unlock()">Atravessar o Umbral</button>
+            <div style="font-family:'Great Vibes'; font-size:2.8rem; color:var(--silver); margin-top:15px;">Arquiteto do Invisível</div>
+            <button class="gate-btn" onclick="unlock()">Ativar Consciência</button>
         </div>
     </div>
 
@@ -104,7 +96,7 @@
     <nav id="main-nav">
         <a onclick="show('home')" class="active">O Arquiteto</a>
         <a onclick="show('verbo')">Verbo & Aforismos</a>
-        <a onclick="show('obras')">Livros</a>
+        <a onclick="show('obras')">Manuscritos</a>
         <a onclick="show('freq')">Frequências</a>
         <a onclick="show('contato')">Contato</a>
     </nav>
@@ -113,70 +105,68 @@
         <div id="home" class="page active">
             <div class="glass-box">
                 <div class="bio-container">
-                    <img src="perfil.jpg" alt="Wagner Abrahão" class="bio-photo">
-                    <div class="bio-text">"Observador das frequências que ressoam no silêncio. Minha literatura não é entretenimento, é um bisturi. Busco na alquimia do Verbo a anestesia necessária para que a alma possa despertar livre das correntes do ego."</div>
+                    <img src="perfil.jpg" alt="Wagner Abrahão" class="bio-photo" onerror="this.style.background='#111'">
+                    <div class="bio-text">"Observador das frequências que regem o oculto. Minha obra não busca o aplauso, mas o silêncio que precede o despertar. Através da anestesia do Verbo, convido o leitor a desconstruir o ego e contemplar a arquitetura sagrada da própria existência."</div>
                 </div>
-                <div style="font-family:'Great Vibes'; font-size:3.5rem; color:var(--gold); text-align:right; margin-top:40px; text-shadow: 0 0 15px rgba(212,175,55,0.4);">Wagner Abrahão</div>
+                <div style="font-family:'Great Vibes'; font-size:3.5rem; color:var(--gold); text-align:right; margin-top:50px;">Wagner Abrahão</div>
             </div>
         </div>
 
         <div id="verbo" class="page">
-            <div class="verbo-section">
-                <div class="aforismo">"A verdade é o entulho que sobra quando todas as suas mentiras de proteção são bombardeadas pelo infinito."</div>
-                
-                <div class="poesia-item">
-                    <div class="poesia-titulo">A Arquitetura do Nada</div>
-                    <div class="poesia-texto">Tijolo por tijolo, ergui o meu silêncio,
-                    No canteiro de obras do que nunca fui.
-                    A planta era o vácuo, o mestre era o tempo,
-                    E a fundação, a luz que no peito flui.
-                    Não se habita a casa, se habita a ausência,
-                    Onde a alma descansa da própria existência.</div>
-                </div>
-
-                <div class="aforismo">"O alquimista não transforma chumbo em ouro; ele transforma o medo em presença absoluta."</div>
-
-                <div class="poesia-item">
-                    <div class="poesia-titulo">Anestesia Divina</div>
-                    <div class="poesia-texto">Dói acordar no sonho alheio,
-                    Onde as cores são cinzas de um fogo morto.
-                    Preciso do golpe, do rasgo, do meio,
-                    Que me leve de volta ao eterno porto.
-                    Cura-me, Senhor, com Teu ferro quente,
-                    Para que eu sinta o que é ser vivente.</div>
-                </div>
-
-                <div class="aforismo">"Escrever é arquitetar pontes sobre abismos que os outros fingem ignorar."</div>
-
-                <div class="poesia-item">
-                    <div class="poesia-titulo">O Nó e a Navalha</div>
-                    <div class="poesia-texto">O infinito se dobra em laços de cobre,
-                    Amarrando a carne ao espírito que sobra.
-                    Só a navalha da dor o torna nobre,
-                    Na geometria exata de cada obra.</div>
-                </div>
-
-                <div class="aforismo">"A sabedoria não é o que você acumula, mas o que você tem coragem de deixar para trás."</div>
-
-                <div class="poesia-item">
-                    <div class="poesia-titulo">O Espelho de Hórus</div>
-                    <div class="poesia-texto">Vi meu rosto no fundo da areia,
-                    Antes que o vento o fizesse pó.
-                    A alma que queima, a mão que semeia,
-                    Nesse universo onde nada está só.</div>
-                </div>
-
-                <div class="aforismo">"O silêncio é a frequência de rádio de Deus. Se você não ouve, é porque sua estação está cheia de ruído."</div>
-                <div class="aforismo">"A morte é apenas o Arquiteto mudando a planta da casa."</div>
-                <div class="aforismo">"Quem teme a própria sombra nunca conhecerá a intensidade do seu sol."</div>
+            <div class="aforismo">"A verdade é o entulho que sobra quando todas as suas mentiras de proteção são bombardeadas pelo infinito."</div>
+            
+            <div class="verbo-item">
+                <div class="poesia-titulo">A Arquitetura do Nada</div>
+                <div class="poesia-texto">Tijolo por tijolo, ergui o meu silêncio,
+                No canteiro de obras do que nunca fui.
+                A planta era o vácuo, o mestre era o tempo,
+                E a fundação, a luz que no peito flui.
+                Não se habita a casa, se habita a ausência,
+                Onde a alma descansa da própria existência.</div>
             </div>
+
+            <div class="aforismo">"O alquimista não transforma chumbo em ouro; ele transmuta o medo em presença absoluta."</div>
+
+            <div class="verbo-item">
+                <div class="poesia-titulo">Anestesia Divina</div>
+                <div class="poesia-texto">Dói acordar no sonho alheio,
+                Onde as cores são cinzas de um fogo morto.
+                Preciso do golpe, do rasgo, do meio,
+                Que me leve de volta ao eterno porto.
+                Cura-me, Senhor, com Teu ferro quente,
+                Para que eu sinta o que é ser vivente.</div>
+            </div>
+
+            <div class="aforismo">"Escrever é arquitetar pontes sobre abismos que os outros fingem ignorar."</div>
+
+            <div class="verbo-item">
+                <div class="poesia-titulo">O Nó e a Navalha</div>
+                <div class="poesia-texto">O infinito se dobra em laços de cobre,
+                Amarrando a carne ao espírito que sobra.
+                Só a navalha da dor o torna nobre,
+                Na geometria exata de cada obra.</div>
+            </div>
+
+            <div class="aforismo">"O silêncio é a frequência de rádio de Deus. Se você não ouve, é porque sua estação está cheia de ruído."</div>
+
+            <div class="verbo-item">
+                <div class="poesia-titulo">O Espelho de Hórus</div>
+                <div class="poesia-texto">Vi meu rosto no fundo da areia,
+                Antes que o vento o fizesse pó.
+                A alma que queima, a mão que semeia,
+                Neste universo onde nada está só.</div>
+            </div>
+
+            <div class="aforismo">"A morte é apenas o Arquiteto mudando a planta da casa."</div>
+            <div class="aforismo">"Quem teme a própria sombra nunca conhecerá a intensidade do seu sol."</div>
+            <div class="aforismo">"A alma é um instrumento que só toca quando o silêncio é absoluto."</div>
         </div>
 
         <div id="obras" class="page">
-            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; text-align:center; font-family:'Bodoni Moda'; text-transform:uppercase;">Manuscritos</h1>
+            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:60px; text-align:center; font-family:'Bodoni Moda'; text-transform:uppercase;">Manuscritos</h1>
             <div class="card-grid">
-                <div class="card"><h2>A Anestesia Divina</h2><p style="margin-top:15px; color:var(--silver); font-style:italic;">O colapso místico do ego.</p></div>
-                <div class="card"><h2>A Arquitetura do Invisível</h2><p style="margin-top:15px; color:var(--silver); font-style:italic;">A geometria sagrada da alma.</p></div>
+                <div class="card"><h2>A Anestesia Divina</h2><p style="margin-top:20px; color:var(--silver); font-style:italic;">O colapso místico do ego humano.</p></div>
+                <div class="card"><h2>A Arquitetura do Invisível</h2><p style="margin-top:20px; color:var(--silver); font-style:italic;">A geometria oculta da alma eterna.</p></div>
             </div>
         </div>
 
@@ -188,7 +178,7 @@
         </div>
 
         <div id="contato" class="page">
-            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; text-align:center; font-family:'Bodoni Moda'; text-transform:uppercase;">Umbral de Contato</h1>
+            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:60px; text-align:center; font-family:'Bodoni Moda'; text-transform:uppercase;">Umbral de Contato</h1>
             <div style="text-align: center;">
                 <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">wagner.abrahao.31@gmail.com</a>
             </div>
@@ -201,17 +191,19 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
+        // --- AUDIO ENGINE 80K ---
         let player, isReady = false;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
                 height: '0', width: '0', videoId: 'vRX91S7SKIU',
-                playerVars: { 'autoplay': 1, 'controls': 0, 'mute': 1 },
-                events: { 'onReady': (e) => { isReady = true; player.playVideo(); } }
+                playerVars: { 'autoplay': 1, 'controls': 0, 'mute': 1, 'loop': 1, 'playlist': 'vRX91S7SKIU' },
+                events: { 'onReady': (e) => { isReady = true; } }
             });
         }
         function stopBach() { if(isReady && player) { player.pauseVideo(); } }
+
         function unlock() {
-            if(isReady && player) { player.unMute(); player.setVolume(80); player.playVideo(); }
+            if(isReady && player) { player.unMute(); player.setVolume(70); player.playVideo(); }
             document.getElementById('gate').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('gate').style.display = 'none';
@@ -220,6 +212,7 @@
                 document.getElementById('canvas-3d').style.opacity = '1';
             }, 1500);
         }
+
         function show(id) { 
             if(id === 'freq') stopBach();
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
@@ -229,86 +222,80 @@
             document.getElementById('main-container').scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // --- ALTA MAGIA 3D (O TEMPLO DE 50 MIL REAIS) ---
+        // --- HIGH-END 3D ENGINE (THE 80K PORTAL) ---
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.001);
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 3000);
+        scene.fog = new THREE.FogExp2(0x000000, 0.0008);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 4000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.shadowMap.enabled = true;
-        camera.position.set(0, 30, 160);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        camera.position.set(0, 40, 180);
 
-        // CONTROLES DE MOBILIDADE (INTERATIVO)
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true; controls.dampingFactor = 0.05;
-        controls.autoRotate = true; controls.autoRotateSpeed = 0.4;
-        controls.enableZoom = true; controls.maxDistance = 400; controls.minDistance = 60;
-        if(window.innerWidth < 768) controls.enabled = true; // No mobile permite interação
+        controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 0.3;
+        controls.enableZoom = true; controls.maxDistance = 450; controls.minDistance = 80;
 
-        // LUZES SAGRADAS
-        const sun = new THREE.SpotLight(0xffffff, 3.5, 1200, Math.PI/4, 0.5, 2);
-        sun.position.set(150, 300, 150); sun.castShadow = true; scene.add(sun);
-        const goldL = new THREE.PointLight(0xffd700, 2, 300); goldL.position.set(-100, 100, 100); scene.add(goldL);
+        // LIGHTING
+        const sun = new THREE.SpotLight(0xffffff, 4, 1500, Math.PI/4, 0.5, 2);
+        sun.position.set(200, 400, 200); sun.castShadow = true; scene.add(sun);
+        const goldP = new THREE.PointLight(0xffd700, 2, 400); goldP.position.set(-150, 100, 100); scene.add(goldP);
         scene.add(new THREE.AmbientLight(0x222222));
 
-        // UNIVERSO 5D (ESTRELAS E METEOROS)
+        // COSMOS 5D (METEORS & STARS)
         const starGeo = new THREE.BufferGeometry(); const starC = [];
-        for(let i=0; i<8000; i++) starC.push(THREE.MathUtils.randFloatSpread(3000), THREE.MathUtils.randFloatSpread(3000), THREE.MathUtils.randFloatSpread(3000));
+        for(let i=0; i<10000; i++) starC.push(THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500));
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starC, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.8, transparent: true, opacity: 0.6 })); scene.add(stars);
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.9, transparent: true, opacity: 0.6 })); scene.add(stars);
 
         const meteors = [];
         function createMeteor() {
-            const mGeo = new THREE.SphereGeometry(0.3, 8, 8);
-            const mMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
-            const m = new THREE.Mesh(mGeo, mMat);
-            m.position.set(THREE.MathUtils.randFloatSpread(800), THREE.MathUtils.randFloat(200, 400), THREE.MathUtils.randFloatSpread(800));
-            m.userData = { speed: THREE.MathUtils.randFloat(2, 6), trail: THREE.MathUtils.randFloat(10, 30) };
-            m.scale.set(1, 1, m.userData.trail);
-            m.lookAt(0, -200, 0);
+            const m = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent:true }));
+            m.position.set(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloat(200, 500), THREE.MathUtils.randFloatSpread(1000));
+            m.userData = { speed: THREE.MathUtils.randFloat(3, 8), trail: THREE.MathUtils.randFloat(20, 50) };
+            m.scale.set(1, 1, m.userData.trail); m.lookAt(0, -200, 0);
             scene.add(m); meteors.push(m);
         }
-        for(let i=0; i<25; i++) createMeteor();
+        for(let i=0; i<30; i++) createMeteor();
 
-        // A GRANDE PIRÂMIDE DUAL (60 CAMADAS)
+        // THE ALCHEMICAL PYRAMID (60 TIERS)
         const pyramid = new THREE.Group();
         const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.2, flatShading: true });
-        const silvM = new THREE.MeshStandardMaterial({ color: 0xEEEEEE, metalness: 1, roughness: 0.1, flatShading: true });
+        const silvM = new THREE.MeshStandardMaterial({ color: 0xE0E0E0, metalness: 1, roughness: 0.1, flatShading: true });
         
-        let tiers = 60; let base = 120;
+        let tiers = 60; let base = 140;
         for(let i=0; i<tiers; i++) {
-            let curSize = base * (1 - i/tiers);
-            if(curSize < 1) break;
-            // Bloco Ouro (Esquerda)
-            let geoL = new THREE.BoxGeometry(curSize/2, 2, curSize);
-            let bL = new THREE.Mesh(geoL, goldM); bL.position.set(-curSize/4, i*2, 0); bL.castShadow = true; pyramid.add(bL);
-            // Bloco Prata (Direita)
-            let bR = new THREE.Mesh(geoL, silvM); bR.position.set(curSize/4, i*2, 0); bR.castShadow = true; pyramid.add(bR);
+            let curS = base * (1 - i/tiers);
+            if(curS < 1) break;
+            let geo = new THREE.BoxGeometry(curS/2, 2, curS);
+            let bL = new THREE.Mesh(geo, goldM); bL.position.set(-curS/4, i*2, 0); pyramid.add(bL);
+            let bR = new THREE.Mesh(geo, silvM); bR.position.set(curS/4, i*2, 0); pyramid.add(bR);
         }
 
-        // PYRAMIDION E CORUJA
-        const cap = new THREE.Mesh(new THREE.ConeGeometry(4, 6, 4), goldM); cap.position.y = tiers*2 + 2; pyramid.add(cap);
+        // TOP & OWL
+        const cap = new THREE.Mesh(new THREE.ConeGeometry(5, 7, 4), goldM); cap.position.y = tiers*2 + 2; pyramid.add(cap);
         const owl = new THREE.Group();
-        const owlBody = new THREE.Mesh(new THREE.SphereGeometry(1.5, 8, 8), new THREE.MeshStandardMaterial({color: 0x4b3621}));
-        const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.3, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eyeL.position.set(-0.5, 0.4, 1.2);
-        const eyeR = eyeL.clone(); eyeR.position.set(0.5, 0.4, 1.2);
-        owl.add(owlBody, eyeL, eyeR); owl.position.y = cap.position.y + 3; pyramid.add(owl);
+        owl.add(new THREE.Mesh(new THREE.SphereGeometry(1.8, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
+        const eye = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff}));
+        const eL = eye.clone(); eL.position.set(-0.6, 0.5, 1.4);
+        const eR = eye.clone(); eR.position.set(0.6, 0.5, 1.4);
+        owl.add(eL, eR); owl.position.y = cap.position.y + 4; pyramid.add(owl);
 
-        pyramid.position.y = -60; scene.add(pyramid);
+        // EYE OF HORUS RING (5D RUNE)
+        const eyeRing = new THREE.Mesh(new THREE.TorusGeometry(20, 0.2, 16, 100), new THREE.MeshBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.2 }));
+        eyeRing.rotation.x = Math.PI/2; eyeRing.position.y = cap.position.y + 10; pyramid.add(eyeRing);
 
-        // OLHO DE HÓRUS (SUBTLE OVERLAY VIA PARTICLES)
-        const eyeGeo = new THREE.RingGeometry(180, 185, 64);
-        const eyeMat = new THREE.MeshBasicMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.05, side: THREE.DoubleSide });
-        const eyeDisc = new THREE.Mesh(eyeGeo, eyeMat); eyeDisc.position.z = -500; scene.add(eyeDisc);
+        pyramid.position.y = -70; scene.add(pyramid);
 
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
             stars.rotation.y += 0.0001;
+            eyeRing.rotation.z += 0.01;
             meteors.forEach(m => {
                 m.translateZ(m.userData.speed);
-                if(m.position.y < -300) { m.position.y = 400; m.position.x = THREE.MathUtils.randFloatSpread(800); }
+                if(m.position.y < -400) { m.position.y = 500; m.position.x = THREE.MathUtils.randFloatSpread(1000); }
             });
             renderer.render(scene, camera);
         }
