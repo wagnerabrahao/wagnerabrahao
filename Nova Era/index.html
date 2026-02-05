@@ -2,72 +2,86 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Wagner Abrahão | Arquiteto do Invisível</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
-        /* Adicionada a cor Alumínio na paleta */
-        :root { --copper: #C87533; --silver: #E0E0E0; --aluminum: #EEEEEE; --lapis: #003366; --gold: #D4AF37; --black: #010101; --white: #ffffff; }
+        :root { --gold: #D4AF37; --silver: #E0E0E0; --lapis: #0066FF; --white: #ffffff; --glass: rgba(255, 255, 255, 0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        body, html { background: var(--black); color: var(--white); font-family: 'Marcellus', serif; overflow-x: hidden; height: 100%; cursor: none; }
-
-        #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 2.5s ease-in-out; }
-
-        #cursor { 
-            width: 10px; height: 10px; background: #fff; border-radius: 50%; 
-            position: fixed; pointer-events: none; z-index: 10000; 
-            box-shadow: 0 0 15px 5px #fff, 0 0 45px 15px var(--gold); 
-            transform: translate(-50%, -50%);
+        body, html { 
+            background: #000; color: #fff; font-family: 'Marcellus', serif; 
+            overflow-x: hidden; height: 100%; cursor: none;
         }
 
-        #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: var(--black); transition: 2s ease; }
-        /* Portal ligeiramente mais claro para convidar a entrada */
-        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.2) brightness(0.5); }
-        .gate-content { position: relative; z-index: 10; text-align: center; padding: 25px; }
-        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(1.8rem, 6vw, 3rem); font-weight: 900; letter-spacing: 10px; text-transform: uppercase; color: var(--silver); }
-        .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(0,0,0,0.5); padding: 18px 50px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 6px; text-transform: uppercase; font-size: 0.75rem; margin-top: 35px; transition: 1s; backdrop-filter: blur(10px); }
+        /* SITE 50K - PERFORMANCE MOBILE */
+        #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: auto; opacity: 0; transition: opacity 3s ease; }
 
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; padding: 25px 10px; z-index: 2000; opacity: 0; transition: 2s; background: linear-gradient(to bottom, rgba(1,1,1,0.9) 30%, transparent); }
-        nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.55rem; cursor: pointer; opacity: 0.55; }
-        nav a:hover, nav a.active { opacity: 1; color: var(--white); border-bottom: 1px solid var(--silver); }
+        #cursor { 
+            width: 12px; height: 12px; background: #fff; border-radius: 50%; 
+            position: fixed; pointer-events: none; z-index: 10000; 
+            box-shadow: 0 0 25px 10px #fff, 0 0 50px 20px var(--gold); 
+            transform: translate(-50%, -50%); mix-blend-mode: screen;
+        }
 
-        .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 120px 6% 100px; overflow-y: scroll; scrollbar-width: none; }
+        /* GATE / PORTAL */
+        #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #000; transition: 2s cubic-bezier(0.7, 0, 0.3, 1); }
+        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.6) brightness(0.3); }
+        .gate-content { position: relative; z-index: 10; text-align: center; width: 90%; }
+        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2rem, 10vw, 4.5rem); font-weight: 900; letter-spacing: 12px; text-transform: uppercase; color: var(--silver); text-shadow: 0 0 30px rgba(255,255,255,0.2); }
+        .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(255,255,255,0.05); padding: 22px 60px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem; margin-top: 40px; transition: 1s; backdrop-filter: blur(20px); border-radius: 0; }
+        .gate-btn:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+
+        /* NAVEGAÇÃO SUPREMA */
+        nav { 
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
+            flex-wrap: wrap; gap: clamp(10px, 3vw, 25px); padding: 30px 10px; z-index: 2000; opacity: 0; transition: 2s;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+            backdrop-filter: blur(10px);
+        }
+        nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.6rem; cursor: pointer; opacity: 0.6; transition: 0.4s; font-weight: bold; }
+        nav a:hover, nav a.active { opacity: 1; color: var(--gold); text-shadow: 0 0 10px var(--gold); }
+
+        /* CONTAINER VISCERAL */
+        .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 160px 8% 100px; overflow-y: auto; scrollbar-width: none; }
         .container::-webkit-scrollbar { display: none; }
         
-        .page { display: none; width: 100%; max-width: 850px; animation: fadeIn 1.5s ease; }
-        .page.active { display: flex; flex-direction: column; align-items: center; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+        .page { display: none; width: 100%; max-width: 900px; animation: slideUp 1.5s ease forwards; }
+        .page.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Caixas de vidro ligeiramente mais claras para reduzir a escuridão total */
-        .glass-box { background: rgba(15, 15, 15, 0.4); padding: 35px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(25px); width: 100%; }
-        .bio-container { display: flex; align-items: center; gap: 30px; }
-        .bio-photo { width: 180px; height: 260px; object-fit: cover; border: 1px solid var(--silver); flex-shrink: 0; }
-        .bio-text { font-size: 1.05rem; line-height: 1.8; font-style: italic; color: var(--white); }
+        /* CLAREAMENTO ALQUÍMICO - CRISTAL */
+        .glass-box { background: var(--glass); padding: clamp(25px, 5vw, 60px); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(40px); width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+        .bio-container { display: flex; align-items: center; gap: 40px; }
+        /* FOTO FLUTUANTE SEM QUADRADO PRETO */
+        .bio-photo { width: 220px; height: 320px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 40px rgba(0,0,0,0.5); filter: contrast(1.1); flex-shrink: 0; }
+        .bio-text { font-size: clamp(1rem, 4vw, 1.25rem); line-height: 2; font-style: italic; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
 
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; width: 100%; margin-top: 25px; }
-        /* Cards ligeiramente mais claros */
-        .card { border: 1px solid rgba(255,255,255,0.1); padding: 25px; background: rgba(25,25,25,0.5); text-align: center; cursor: pointer; transition: 0.4s; }
-        .card:hover { border-color: var(--silver); transform: translateY(-3px); }
-        .card h2 { color: var(--silver); letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase; font-weight: normal; }
+        /* SEÇÃO VERBO (POESIAS) */
+        .verbo-section { width: 100%; }
+        .poesia-item { border-bottom: 1px solid rgba(212,175,55,0.2); padding: 40px 0; text-align: center; }
+        .poesia-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.6rem; margin-bottom: 20px; letter-spacing: 4px; text-transform: uppercase; }
+        .poesia-texto { font-size: 1.1rem; line-height: 1.9; color: var(--silver); font-style: italic; white-space: pre-wrap; }
+        .aforismo { border-left: 2px solid var(--gold); padding: 20px 30px; margin: 40px 0; font-size: 1.3rem; line-height: 1.8; color: #fff; background: rgba(255,255,255,0.03); }
 
-        .email-link { color: var(--white); font-size: clamp(1rem, 4vw, 1.6rem); text-decoration: none; border-bottom: 1px solid var(--silver); font-family: 'Bodoni Moda'; transition: 0.5s; }
-        .email-link:hover { color: var(--silver); }
+        /* CARDS */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; width: 100%; margin-top: 40px; }
+        .card { border: 1px solid rgba(255,255,255,0.1); padding: 40px; background: rgba(255,255,255,0.03); text-align: center; transition: 0.6s; backdrop-filter: blur(20px); }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
 
-        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(25px); }
-        .modal-content { max-width: 80%; text-align: center; border: 1px solid var(--silver); padding: 35px; background: rgba(0,0,0,0.98); }
+        .email-link { color: var(--white); font-size: clamp(1rem, 5vw, 1.8rem); text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda'; transition: 0.5s; }
 
-        .video-container { border: 1px solid var(--silver); aspect-ratio: 16/9; margin-bottom: 15px; width: 100%; cursor: pointer; position: relative; }
-        .video-container iframe { width: 100%; height: 100%; border: none; pointer-events: auto; }
-
+        /* MOBILE FIXES SUPREMOS */
         @media (max-width: 768px) {
             body { cursor: auto; } #cursor { display: none; }
             .bio-container { flex-direction: column; text-align: center; }
-            .bio-photo { width: 150px; height: 210px; }
-            .container { padding-top: 130px; }
-            nav a { font-size: 0.45rem; }
+            .bio-photo { width: 180px; height: 260px; }
+            .container { padding-top: 140px; }
+            nav a { font-size: 0.5rem; letter-spacing: 1px; }
+            .gate-title { letter-spacing: 6px; }
+            canvas { pointer-events: none !important; } /* Impede que o 3D atrapalhe o scroll no mobile */
         }
     </style>
 </head>
@@ -80,16 +94,17 @@
         <div id="gate-bg"></div>
         <div class="gate-content">
             <h1 class="gate-title">Wagner Abrahão</h1>
-            <div style="font-family:'Great Vibes'; font-size:2rem; color:var(--silver); margin-top:10px;">Arquiteto do Invisível</div>
-            <button class="gate-btn" onclick="unlock()">Atravessar</button>
+            <div style="font-family:'Great Vibes'; font-size:2.5rem; color:var(--silver); margin-top:15px;">Arquiteto do Invisível</div>
+            <button class="gate-btn" onclick="unlock()">Atravessar o Umbral</button>
         </div>
     </div>
 
     <div id="modal" onclick="this.style.display='none'"><div class="modal-content" id="m-content"></div></div>
 
     <nav id="main-nav">
-        <a onclick="show('home')" id="nav-home" class="active">O Arquiteto</a>
-        <a onclick="show('obras')">Manuscritos</a>
+        <a onclick="show('home')" class="active">O Arquiteto</a>
+        <a onclick="show('verbo')">Verbo & Aforismos</a>
+        <a onclick="show('obras')">Livros</a>
         <a onclick="show('freq')">Frequências</a>
         <a onclick="show('contato')">Contato</a>
     </nav>
@@ -98,33 +113,82 @@
         <div id="home" class="page active">
             <div class="glass-box">
                 <div class="bio-container">
-                    <img src="perfil.jpg" alt="" class="bio-photo" onerror="this.style.background='#111'">
-                    <div class="bio-text">"Observador e amante das frequências que ressoam, contemplo a arquitetura deste universo esplendoroso. Busco na alquimia as respostas que sempre procurei."</div>
+                    <img src="perfil.jpg" alt="Wagner Abrahão" class="bio-photo">
+                    <div class="bio-text">"Observador das frequências que ressoam no silêncio. Minha literatura não é entretenimento, é um bisturi. Busco na alquimia do Verbo a anestesia necessária para que a alma possa despertar livre das correntes do ego."</div>
                 </div>
-                <div style="font-family:'Great Vibes'; font-size:2.2rem; color:var(--silver); text-align:right; margin-top:20px;">Wagner Abrahão</div>
+                <div style="font-family:'Great Vibes'; font-size:3.5rem; color:var(--gold); text-align:right; margin-top:40px; text-shadow: 0 0 15px rgba(212,175,55,0.4);">Wagner Abrahão</div>
+            </div>
+        </div>
+
+        <div id="verbo" class="page">
+            <div class="verbo-section">
+                <div class="aforismo">"A verdade é o entulho que sobra quando todas as suas mentiras de proteção são bombardeadas pelo infinito."</div>
+                
+                <div class="poesia-item">
+                    <div class="poesia-titulo">A Arquitetura do Nada</div>
+                    <div class="poesia-texto">Tijolo por tijolo, ergui o meu silêncio,
+                    No canteiro de obras do que nunca fui.
+                    A planta era o vácuo, o mestre era o tempo,
+                    E a fundação, a luz que no peito flui.
+                    Não se habita a casa, se habita a ausência,
+                    Onde a alma descansa da própria existência.</div>
+                </div>
+
+                <div class="aforismo">"O alquimista não transforma chumbo em ouro; ele transforma o medo em presença absoluta."</div>
+
+                <div class="poesia-item">
+                    <div class="poesia-titulo">Anestesia Divina</div>
+                    <div class="poesia-texto">Dói acordar no sonho alheio,
+                    Onde as cores são cinzas de um fogo morto.
+                    Preciso do golpe, do rasgo, do meio,
+                    Que me leve de volta ao eterno porto.
+                    Cura-me, Senhor, com Teu ferro quente,
+                    Para que eu sinta o que é ser vivente.</div>
+                </div>
+
+                <div class="aforismo">"Escrever é arquitetar pontes sobre abismos que os outros fingem ignorar."</div>
+
+                <div class="poesia-item">
+                    <div class="poesia-titulo">O Nó e a Navalha</div>
+                    <div class="poesia-texto">O infinito se dobra em laços de cobre,
+                    Amarrando a carne ao espírito que sobra.
+                    Só a navalha da dor o torna nobre,
+                    Na geometria exata de cada obra.</div>
+                </div>
+
+                <div class="aforismo">"A sabedoria não é o que você acumula, mas o que você tem coragem de deixar para trás."</div>
+
+                <div class="poesia-item">
+                    <div class="poesia-titulo">O Espelho de Hórus</div>
+                    <div class="poesia-texto">Vi meu rosto no fundo da areia,
+                    Antes que o vento o fizesse pó.
+                    A alma que queima, a mão que semeia,
+                    Nesse universo onde nada está só.</div>
+                </div>
+
+                <div class="aforismo">"O silêncio é a frequência de rádio de Deus. Se você não ouve, é porque sua estação está cheia de ruído."</div>
+                <div class="aforismo">"A morte é apenas o Arquiteto mudando a planta da casa."</div>
+                <div class="aforismo">"Quem teme a própria sombra nunca conhecerá a intensidade do seu sol."</div>
             </div>
         </div>
 
         <div id="obras" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:25px; font-size: 1.4rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Manuscritos</h1>
+            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; text-align:center; font-family:'Bodoni Moda'; text-transform:uppercase;">Manuscritos</h1>
             <div class="card-grid">
-                <div class="card" onclick="openBook('anestesia')"><h2>A Anestesia Divina</h2></div>
-                <div class="card" onclick="openBook('arquitetura')"><h2>Arquitetura do Invisível</h2></div>
-                <div class="card" onclick="openBook('centelha')"><h2>A Centelha Inquieta</h2></div>
-                <div class="card" onclick="openBook('alquimia')"><h2>Alquimia do Ser</h2></div>
+                <div class="card"><h2>A Anestesia Divina</h2><p style="margin-top:15px; color:var(--silver); font-style:italic;">O colapso místico do ego.</p></div>
+                <div class="card"><h2>A Arquitetura do Invisível</h2><p style="margin-top:15px; color:var(--silver); font-style:italic;">A geometria sagrada da alma.</p></div>
             </div>
         </div>
 
         <div id="freq" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:25px; font-size: 1.4rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Frequências</h1>
             <div class="card-grid">
-                <div class="video-container" onclick="stopBach()"><iframe src="https://www.youtube.com/embed/vRX91S7SKIU" title="F1"></iframe></div>
-                <div class="video-container" onclick="stopBach()"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec" title="F2"></iframe></div>
+                <div class="video-container" onclick="stopBach()"><iframe src="https://www.youtube.com/embed/vRX91S7SKIU"></iframe></div>
+                <div class="video-container" onclick="stopBach()"><iframe src="https://www.youtube.com/embed/5-cAWczw_Ec"></iframe></div>
             </div>
         </div>
 
         <div id="contato" class="page">
-            <h1 style="color:var(--silver); letter-spacing:10px; margin-bottom:40px; font-size: 1.6rem; font-family:'Bodoni Moda'; text-transform:uppercase; text-align:center;">Contato</h1>
+            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; text-align:center; font-family:'Bodoni Moda'; text-transform:uppercase;">Umbral de Contato</h1>
             <div style="text-align: center;">
                 <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">wagner.abrahao.31@gmail.com</a>
             </div>
@@ -133,10 +197,11 @@
 
     <div id="yt-player" style="display:none;"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-        let player; let isReady = false;
+        let player, isReady = false;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
                 height: '0', width: '0', videoId: 'vRX91S7SKIU',
@@ -144,11 +209,9 @@
                 events: { 'onReady': (e) => { isReady = true; player.playVideo(); } }
             });
         }
-        
         function stopBach() { if(isReady && player) { player.pauseVideo(); } }
-
         function unlock() {
-            if(isReady && player) { player.unMute(); player.setVolume(100); player.playVideo(); }
+            if(isReady && player) { player.unMute(); player.setVolume(80); player.playVideo(); }
             document.getElementById('gate').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('gate').style.display = 'none';
@@ -157,81 +220,99 @@
                 document.getElementById('canvas-3d').style.opacity = '1';
             }, 1500);
         }
-
         function show(id) { 
             if(id === 'freq') stopBach();
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); 
-            document.getElementById(id).classList.add('active'); if(event) event.target.classList.add('active'); 
-            window.scrollTo(0,0);
+            document.getElementById(id).classList.add('active');
+            if(event) event.target.classList.add('active'); 
+            document.getElementById('main-container').scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        function openBook(id) { 
-            const d={anestesia:{t:"A Anestesia Divina",d:"O despertar místico."},arquitetura:{t:"Arquitetura do Invisível",d:"O templo sem tempo."},centelha:{t:"A Centelha Inquieta",d:"Luz entre razão e mistério."},alquimia:{t:"Alquimia do Ser",d:"Transmutação consciente."}}; 
-            document.getElementById('m-content').innerHTML=`<h2 style="color:var(--silver); font-family:'Bodoni Moda'; font-size:1.3rem;">${d[id].t}</h2><p style="margin-top:10px; line-height:1.5; font-style:italic;">${d[id].d}</p>`; 
-            document.getElementById('modal').style.display='flex'; 
-        }
-
-        const scene = new THREE.Scene(); 
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        // --- ALTA MAGIA 3D (O TEMPLO DE 50 MIL REAIS) ---
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x000000, 0.001);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 3000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight); camera.position.z = 40;
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        camera.position.set(0, 30, 160);
 
-        // --- NOVA ILUMINAÇÃO (Mais Brilhante) ---
-        // Luz principal mais forte e reposicionada para iluminar a frente dos objetos
-        const mainLight = new THREE.PointLight(0xffffff, 3.0, 120); 
-        mainLight.position.set(10, 20, 40); 
-        scene.add(mainLight);
+        // CONTROLES DE MOBILIDADE (INTERATIVO)
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; controls.dampingFactor = 0.05;
+        controls.autoRotate = true; controls.autoRotateSpeed = 0.4;
+        controls.enableZoom = true; controls.maxDistance = 400; controls.minDistance = 60;
+        if(window.innerWidth < 768) controls.enabled = true; // No mobile permite interação
+
+        // LUZES SAGRADAS
+        const sun = new THREE.SpotLight(0xffffff, 3.5, 1200, Math.PI/4, 0.5, 2);
+        sun.position.set(150, 300, 150); sun.castShadow = true; scene.add(sun);
+        const goldL = new THREE.PointLight(0xffd700, 2, 300); goldL.position.set(-100, 100, 100); scene.add(goldL);
+        scene.add(new THREE.AmbientLight(0x222222));
+
+        // UNIVERSO 5D (ESTRELAS E METEOROS)
+        const starGeo = new THREE.BufferGeometry(); const starC = [];
+        for(let i=0; i<8000; i++) starC.push(THREE.MathUtils.randFloatSpread(3000), THREE.MathUtils.randFloatSpread(3000), THREE.MathUtils.randFloatSpread(3000));
+        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starC, 3));
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.8, transparent: true, opacity: 0.6 })); scene.add(stars);
+
+        const meteors = [];
+        function createMeteor() {
+            const mGeo = new THREE.SphereGeometry(0.3, 8, 8);
+            const mMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
+            const m = new THREE.Mesh(mGeo, mMat);
+            m.position.set(THREE.MathUtils.randFloatSpread(800), THREE.MathUtils.randFloat(200, 400), THREE.MathUtils.randFloatSpread(800));
+            m.userData = { speed: THREE.MathUtils.randFloat(2, 6), trail: THREE.MathUtils.randFloat(10, 30) };
+            m.scale.set(1, 1, m.userData.trail);
+            m.lookAt(0, -200, 0);
+            scene.add(m); meteors.push(m);
+        }
+        for(let i=0; i<25; i++) createMeteor();
+
+        // A GRANDE PIRÂMIDE DUAL (60 CAMADAS)
+        const pyramid = new THREE.Group();
+        const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.2, flatShading: true });
+        const silvM = new THREE.MeshStandardMaterial({ color: 0xEEEEEE, metalness: 1, roughness: 0.1, flatShading: true });
         
-        // Luz de preenchimento azulada para dar contraste nas sombras
-        const fillLight = new THREE.PointLight(0xc0c0ff, 1.0, 100); 
-        fillLight.position.set(-20, -10, 20); 
-        scene.add(fillLight);
+        let tiers = 60; let base = 120;
+        for(let i=0; i<tiers; i++) {
+            let curSize = base * (1 - i/tiers);
+            if(curSize < 1) break;
+            // Bloco Ouro (Esquerda)
+            let geoL = new THREE.BoxGeometry(curSize/2, 2, curSize);
+            let bL = new THREE.Mesh(geoL, goldM); bL.position.set(-curSize/4, i*2, 0); bL.castShadow = true; pyramid.add(bL);
+            // Bloco Prata (Direita)
+            let bR = new THREE.Mesh(geoL, silvM); bR.position.set(curSize/4, i*2, 0); bR.castShadow = true; pyramid.add(bR);
+        }
 
-        // Luz ambiente mais forte para reduzir a escuridão total
-        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        // PYRAMIDION E CORUJA
+        const cap = new THREE.Mesh(new THREE.ConeGeometry(4, 6, 4), goldM); cap.position.y = tiers*2 + 2; pyramid.add(cap);
+        const owl = new THREE.Group();
+        const owlBody = new THREE.Mesh(new THREE.SphereGeometry(1.5, 8, 8), new THREE.MeshStandardMaterial({color: 0x4b3621}));
+        const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.3, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eyeL.position.set(-0.5, 0.4, 1.2);
+        const eyeR = eyeL.clone(); eyeR.position.set(0.5, 0.4, 1.2);
+        owl.add(owlBody, eyeL, eyeR); owl.position.y = cap.position.y + 3; pyramid.add(owl);
 
-        const starGeo = new THREE.BufferGeometry(); const starCoords = [];
-        for(let i=0; i<4000; i++) { starCoords.push(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloatSpread(1000)); }
-        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x888888, size: 0.7 })); scene.add(stars);
+        pyramid.position.y = -60; scene.add(pyramid);
 
-        // SIGILO EGÍPCIO (Ouro & Lápis-Lazúli)
-        const sigilGroup = new THREE.Group();
-        const sigilGeo = new THREE.TorusKnotGeometry(3.2, 0.5, 200, 32, 5, 8);
-        // Material de Ouro Real mais brilhante
-        const sigilMesh1 = new THREE.Mesh(sigilGeo, new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1 }));
-        // Material de Lápis-Lazúli Azul mais visível
-        const sigilMesh2 = new THREE.Mesh(sigilGeo, new THREE.MeshBasicMaterial({ color: 0x003366, wireframe: true, transparent: true, opacity: 0.7 }));
-        sigilMesh2.scale.set(1.08, 1.08, 1.08);
-        sigilGroup.add(sigilMesh1, sigilMesh2); scene.add(sigilGroup);
+        // OLHO DE HÓRUS (SUBTLE OVERLAY VIA PARTICLES)
+        const eyeGeo = new THREE.RingGeometry(180, 185, 64);
+        const eyeMat = new THREE.MeshBasicMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.05, side: THREE.DoubleSide });
+        const eyeDisc = new THREE.Mesh(eyeGeo, eyeMat); eyeDisc.position.z = -500; scene.add(eyeDisc);
 
-        // INFINITO CENTRAL (OURO - Visível novamente)
-        const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(10, 2.5, 160, 20), new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1.0, roughness: 0.15, wireframe: true }));
-        scene.add(knot);
-
-        // PIRÂMIDE (ALUMÍNIO - Mais clara e metálica)
-        const pGroup = new THREE.Group(); 
-        // Novo material de Alumínio (mais claro que prata)
-        const sMat = new THREE.MeshStandardMaterial({ color: 0xEEEEEE, metalness: 0.9, roughness: 0.2, transparent: true, opacity: 0.85 });
-        let lv=5, cB=lv, bS=1;
-        for(let y=0; y<lv; y++){ for(let x=0; x<cB; x++){ for(let z=0; z<cB; z++){ const b=new THREE.Mesh(new THREE.BoxGeometry(bS*0.9, bS*0.9, bS*0.9), sMat); b.position.set(x*bS-(cB-1)*bS/2, y*bS, z*bS-(cB-1)*bS/2); pGroup.add(b); } } cB--; }
-        scene.add(pGroup);
-
-        function animate() { 
-            requestAnimationFrame(animate); 
-            knot.rotation.y += 0.003; pGroup.rotation.y -= 0.006; stars.rotation.y += 0.0001;
-            sigilMesh1.rotation.x += 0.015; sigilMesh2.rotation.y -= 0.01;
-            
-            if(window.innerWidth < 768) {
-                knot.position.set(0, -3, -15); pGroup.position.set(0, -16, 10);
-                sigilGroup.position.set(12, -22, -5); sigilGroup.scale.set(0.4, 0.4, 0.4);
-            } else {
-                knot.position.set(0, -3, -10); pGroup.position.set(0, -18, 15);
-                sigilGroup.position.set(28, -20, 0);
-            }
-            renderer.render(scene, camera); 
-        } animate();
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            stars.rotation.y += 0.0001;
+            meteors.forEach(m => {
+                m.translateZ(m.userData.speed);
+                if(m.position.y < -300) { m.position.y = 400; m.position.x = THREE.MathUtils.randFloatSpread(800); }
+            });
+            renderer.render(scene, camera);
+        }
+        animate();
 
         if(window.innerWidth > 768) {
             document.addEventListener('mousemove', (e) => { 
