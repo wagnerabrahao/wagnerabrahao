@@ -13,12 +13,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body, html { 
-            background: #000; /* Fundo preto puro para o universo brilhar */
+            background: #000; 
             color: #fff; 
             font-family: 'Marcellus', serif; 
             overflow-x: hidden;
             height: 100%;
-            cursor: none; /* Cursor do sistema oculto para usar o mágico */
+            cursor: none;
         }
 
         /* CANVAS 3D - O UNIVERSO 5D */
@@ -31,7 +31,7 @@
         #cursor { 
             width: 8px; height: 8px; background: #fff; border-radius: 50%; 
             position: fixed; pointer-events: none; z-index: 10000; 
-            box-shadow: 0 0 20px 5px #fff, 0 0 60px 20px var(--gold); /* Brilho intenso */
+            box-shadow: 0 0 20px 5px #fff, 0 0 60px 20px var(--gold);
             transform: translate(-50%, -50%); mix-blend-mode: screen;
         }
 
@@ -40,12 +40,12 @@
         #gate-bg { 
             position: absolute; inset: 0; 
             background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; 
-            filter: grayscale(0.4) brightness(0.6); /* Mais claro que antes */
+            filter: grayscale(0.4) brightness(0.6);
         }
         .gate-content { position: relative; z-index: 10; text-align: center; padding: 30px; }
         .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2rem, 8vw, 4rem); font-weight: 900; letter-spacing: 12px; text-transform: uppercase; color: var(--silver); text-shadow: 0 0 20px rgba(255,255,255,0.3); }
         .gate-btn { 
-            border: 1px solid var(--silver); color: #fff; background: rgba(255,255,255,0.1); /* Botão mais claro */
+            border: 1px solid var(--silver); color: #fff; background: rgba(255,255,255,0.1);
             padding: 20px 60px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 8px; 
             text-transform: uppercase; font-size: 0.8rem; margin-top: 40px; transition: 1s; 
             backdrop-filter: blur(15px); box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
@@ -56,7 +56,6 @@
         nav { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
             flex-wrap: wrap; gap: 20px; padding: 30px 10px; z-index: 2000; opacity: 0; transition: 2s;
-            /* Gradiente muito mais suave e claro */
             background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 100%);
             backdrop-filter: blur(10px);
         }
@@ -71,29 +70,19 @@
         .page.active { display: flex; flex-direction: column; align-items: center; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- CAIXAS DE CRISTAL CLARO (A MUDANÇA PRINCIPAL DO CSS) --- */
+        /* CAIXAS DE CRISTAL CLARO */
         .glass-box { 
-            /* Fundo quase transparente, branco espectral */
-            background: rgba(255, 255, 255, 0.07); 
-            padding: 50px; 
-            /* Borda sutil e clara */
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            /* Desfoque intenso para o efeito de cristal */
-            backdrop-filter: blur(40px); text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-            width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.07); padding: 50px; border: 1px solid rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(40px); text-shadow: 0 1px 3px rgba(0,0,0,0.5); width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-radius: 4px;
         }
-
         .bio-container { display: flex; align-items: center; gap: 40px; }
-        /* Borda preta removida. A foto flutua. */
         .bio-photo { width: 220px; height: 320px; object-fit: cover; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-shrink: 0; }
         .bio-text { font-size: 1.25rem; line-height: 2; font-style: italic; color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.5); }
 
         /* CARDS DE CRISTAL */
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; width: 100%; margin-top: 40px; }
         .card { 
-            border: 1px solid rgba(255,255,255,0.15); padding: 35px; 
-            background: rgba(255, 255, 255, 0.05); /* Fundo claro */
+            border: 1px solid rgba(255,255,255,0.15); padding: 35px; background: rgba(255, 255, 255, 0.05); 
             text-align: center; cursor: pointer; transition: 0.5s; backdrop-filter: blur(20px); 
         }
         .card:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.1); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
@@ -218,139 +207,124 @@
             document.getElementById('modal').style.display='flex'; 
         }
 
-        // --- ALTA MAGIA THREE.JS (O NOVO UNIVERSO) ---
+        // --- ALTA MAGIA THREE.JS (O GERADOR FARAÔNICO) ---
         const scene = new THREE.Scene(); 
-        // Névoa distante para profundidade
-        scene.fog = new THREE.FogExp2(0x000000, 0.0015);
+        scene.fog = new THREE.FogExp2(0x000000, 0.001);
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight); 
-        renderer.setPixelRatio(window.devicePixelRatio); // Alta resolução
-        renderer.toneMapping = THREE.ACESFilmicToneMapping; // Cores de cinema
-        renderer.toneMappingExposure = 1.2;
-        camera.position.z = 60;
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.1;
+        camera.position.set(0, 10, 70); // Câmera mais baixa para olhar para cima da pirâmide
 
-        // ILUMINAÇÃO DRAMÁTICA FARAÔNICA
-        const mainSpot = new THREE.SpotLight(0xffd700, 2, 150, Math.PI/4, 0.5, 1); // Luz dourada principal
-        mainSpot.position.set(30, 50, 30);
-        mainSpot.castShadow = true;
-        scene.add(mainSpot);
-        
-        const fillLight = new THREE.PointLight(0x0066ff, 1, 100); // Luz de preenchimento azul místico
-        fillLight.position.set(-30, 10, 20);
-        scene.add(fillLight);
+        // ILUMINAÇÃO DRAMÁTICA
+        const mainSpot = new THREE.SpotLight(0xffd700, 2.5, 200, Math.PI/4, 0.5, 1);
+        mainSpot.position.set(40, 80, 40); mainSpot.castShadow = true; scene.add(mainSpot);
+        const blueFill = new THREE.PointLight(0x0066ff, 1.5, 150); // Luz azul energética
+        blueFill.position.set(-40, 20, 30); scene.add(blueFill);
+        scene.add(new THREE.AmbientLight(0x333333));
 
-        const rimLight = new THREE.DirectionalLight(0xffffff, 0.5); // Luz de recorte traseira
-        rimLight.position.set(0, -20, -50);
-        scene.add(rimLight);
-        
-        scene.add(new THREE.AmbientLight(0x444444)); // Luz ambiente base
-
-        // UNIVERSO 5D DINÂMICO (ESTRELAS + METEOROS)
-        // Estrelas de fundo
+        // UNIVERSO 5D DINÂMICO
         const starGeo = new THREE.BufferGeometry(); const starCoords = [];
-        for(let i=0; i<3000; i++) { starCoords.push(THREE.MathUtils.randFloatSpread(1500), THREE.MathUtils.randFloatSpread(1500), THREE.MathUtils.randFloatSpread(1500)); }
+        for(let i=0; i<3500; i++) { starCoords.push(THREE.MathUtils.randFloatSpread(1800), THREE.MathUtils.randFloatSpread(1800), THREE.MathUtils.randFloatSpread(1800)); }
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.8, transparent:true, opacity:0.6 })); 
-        scene.add(stars);
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.9, transparent:true, opacity:0.7 })); scene.add(stars);
 
-        // Sistema de Meteoros
         const meteoros = [];
-        const meteorMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
-        for(let i=0; i<20; i++) { // 20 meteoros simultâneos
-            // Criar como "tubos" longos para efeito de rastro
-            const geo = new THREE.SphereGeometry(0.2, 8, 8);
-            const meteor = new THREE.Mesh(geo, meteorMat);
-            
-            // Posição inicial aleatória distante
-            resetMeteor(meteor);
-            meteoros.push(meteor);
-            scene.add(meteor);
+        const meteorMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending });
+        for(let i=0; i<25; i++) {
+            const meteor = new THREE.Mesh(new THREE.SphereGeometry(0.3, 8, 8), meteorMat);
+            resetMeteor(meteor); meteoros.push(meteor); scene.add(meteor);
         }
-
         function resetMeteor(m) {
-            m.position.set(THREE.MathUtils.randFloatSpread(200), THREE.MathUtils.randFloat(50, 100), THREE.MathUtils.randFloat(-200, -50));
-            m.userData.speed = THREE.MathUtils.randFloat(0.5, 1.5);
-            m.scale.set(1, 1, THREE.MathUtils.randFloat(10, 30)); // Esticar para fazer o rastro
-            m.lookAt(0, -50, 0); // Apontar para baixo/centro
+            m.position.set(THREE.MathUtils.randFloatSpread(300), THREE.MathUtils.randFloat(100, 200), THREE.MathUtils.randFloat(-300, -50));
+            m.userData.speed = THREE.MathUtils.randFloat(0.8, 2.5);
+            m.scale.set(1, 1, THREE.MathUtils.randFloat(15, 40));
+            m.lookAt(0, -100, 0);
         }
 
-        // A GRANDE PIRÂMIDE FARAÔNICA (Ultra Realista)
+        // --- A GRANDE PIRÂMIDE ESCALONADA (GERADOR DE BLOCOS) ---
         const pyramidGroup = new THREE.Group();
-
-        // Material de Arenito Dourado Antigo (Simulado)
-        const sandMaterial = new THREE.MeshStandardMaterial({ 
-            color: 0xC2B280, // Cor de areia
-            roughness: 0.9, // Muito áspero
-            metalness: 0.1, // Pouco metálico
-            flatShading: true, // Sombreamento facetado para parecer blocos
-            side: THREE.DoubleSide
+        
+        // Material de Arenito Bruto para os blocos
+        const blockMat = new THREE.MeshStandardMaterial({ 
+            color: 0xC2B280, roughness: 1.0, metalness: 0.0, flatShading: true
         });
         
-        // Geometria da Pirâmide (Cone de 4 lados)
-        const pyramidGeo = new THREE.ConeGeometry(25, 35, 4, 1); 
-        const pyramid = new THREE.Mesh(pyramidGeo, sandMaterial);
-        pyramid.rotation.y = Math.PI / 4; // Rotacionar para alinhar as faces
-        pyramid.castShadow = true;
-        pyramid.receiveShadow = true;
-        pyramidGroup.add(pyramid);
+        // Material de Energia (Wireframe brilhante)
+        const energyMat = new THREE.MeshBasicMaterial({
+            color: 0x0066FF, wireframe: true, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending
+        });
 
-        // Aura 5D (Wireframe Brilhante sobre a pirâmide)
-        const auraMat = new THREE.MeshBasicMaterial({ color: 0xD4AF37, wireframe: true, transparent: true, opacity: 0.15 });
-        const pyramidAura = new THREE.Mesh(pyramidGeo, auraMat);
-        pyramidAura.rotation.y = Math.PI / 4;
-        pyramidAura.scale.set(1.02, 1.02, 1.02);
-        pyramidGroup.add(pyramidAura);
+        // Construção dos Degraus (Blocos Reais)
+        let baseSize = 70; // Base muito maior (Enorme)
+        let heightStep = 4;
+        let steps = 11; // Número de camadas de blocos
 
-        // A CORUJA MÍSTICA (Geometria Sagrada no Topo)
+        for(let i=0; i < steps; i++) {
+            // Bloco de Pedra Sólida
+            let geo = new THREE.BoxGeometry(baseSize, heightStep, baseSize);
+            let layer = new THREE.Mesh(geo, blockMat);
+            layer.position.y = i * heightStep;
+            layer.castShadow = true; layer.receiveShadow = true;
+            pyramidGroup.add(layer);
+
+            // Camada de Energia sobre o bloco
+            let energyLayer = new THREE.Mesh(geo, energyMat);
+            energyLayer.position.y = i * heightStep;
+            energyLayer.scale.set(1.02, 1.05, 1.02); // Ligeiramente maior para brilhar por fora
+            pyramidGroup.add(energyLayer);
+
+            baseSize -= 6; // Diminui o tamanho para o próximo degrau
+        }
+
+        // Pyramidion (Topo de Ouro Maciço)
+        const capstoneGeo = new THREE.ConeGeometry(baseSize/1.5, baseSize/1.5, 4);
+        const capstoneMat = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1 });
+        const capstone = new THREE.Mesh(capstoneGeo, capstoneMat);
+        capstone.position.y = steps * heightStep + baseSize/4;
+        capstone.rotation.y = Math.PI/4;
+        pyramidGroup.add(capstone);
+
+        // A CORUJA MÍSTICA (No topo do Pyramidion)
         const owlGroup = new THREE.Group();
-        const owlBodyMat = new THREE.MeshStandardMaterial({ color: 0x8B4513, roughness: 0.8 }); // Marrom
-        const owlEyeMat = new THREE.MeshBasicMaterial({ color: 0x0066FF }); // Olhos de Lápis-Lazúli brilhantes
-
-        // Corpo
-        const body = new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 16), owlBodyMat);
-        body.scale.y = 1.5;
-        // Cabeça
-        const head = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), owlBodyMat);
-        head.position.y = 1.8;
-        // Olhos
-        const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), owlEyeMat);
-        eyeL.position.set(-0.4, 2, 0.7);
-        const eyeR = new THREE.Mesh(new THREE.SphereGeometry(0.3, 16, 16), owlEyeMat);
-        eyeR.position.set(0.4, 2, 0.7);
-        // Orelhas/Chifres (Cones pequenos)
-        const earGeo = new THREE.ConeGeometry(0.3, 0.8, 4);
-        const earL = new THREE.Mesh(earGeo, owlBodyMat); earL.position.set(-0.7, 2.5, 0); earL.rotation.z = 0.3;
-        const earR = new THREE.Mesh(earGeo, owlBodyMat); earR.position.set(0.7, 2.5, 0); earR.rotation.z = -0.3;
-
+        const owlBodyMat = new THREE.MeshStandardMaterial({ color: 0x6b4423, roughness: 0.9 });
+        const owlEyeMat = new THREE.MeshBasicMaterial({ color: 0x0066FF, blending: THREE.AdditiveBlending });
+        const body = new THREE.Mesh(new THREE.SphereGeometry(1.5, 16, 16), owlBodyMat); body.scale.y = 1.6;
+        const head = new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 16), owlBodyMat); head.position.y = 2.2;
+        const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16), owlEyeMat); eyeL.position.set(-0.5, 2.4, 0.9);
+        const eyeR = new THREE.Mesh(new THREE.SphereGeometry(0.4, 16, 16), owlEyeMat); eyeR.position.set(0.5, 2.4, 0.9);
+        const earGeo = new THREE.ConeGeometry(0.4, 1, 4);
+        const earL = new THREE.Mesh(earGeo, owlBodyMat); earL.position.set(-0.8, 3, 0); earL.rotation.z = 0.3;
+        const earR = new THREE.Mesh(earGeo, owlBodyMat); earR.position.set(0.8, 3, 0); earR.rotation.z = -0.3;
         owlGroup.add(body, head, eyeL, eyeR, earL, earR);
-        owlGroup.position.y = 17.5; // No topo da pirâmide
+        owlGroup.position.y = capstone.position.y + 2;
         pyramidGroup.add(owlGroup);
 
+        // Centralizar a estrutura verticalmente
+        pyramidGroup.position.y = -20;
         scene.add(pyramidGroup);
 
         function animate() { 
             requestAnimationFrame(animate); 
-            
-            // Rotação lenta e majestosa da Pirâmide
-            pyramidGroup.rotation.y += 0.002;
-            stars.rotation.y += 0.0001;
+            pyramidGroup.rotation.y += 0.0015; // Rotação lenta e pesada
+            stars.rotation.y += 0.0002;
 
-            // Animação dos Meteoros
             meteoros.forEach(m => {
-                m.translateZ(m.userData.speed); // Mover na direção que está apontando
-                m.material.opacity = THREE.MathUtils.mapLinear(m.position.y, 100, -100, 1, 0); // Desaparecer ao cair
-                // Reiniciar se passar do limite inferior
+                m.translateZ(m.userData.speed);
+                m.material.opacity = THREE.MathUtils.mapLinear(m.position.y, 100, -100, 1, 0);
                 if(m.position.y < -100) { resetMeteor(m); }
             });
             
-            // Posicionamento Responsivo
             if(window.innerWidth < 768) {
-                pyramidGroup.position.set(0, -25, -10);
-                pyramidGroup.scale.set(0.7, 0.7, 0.7);
+                pyramidGroup.position.set(0, -25, -20);
+                pyramidGroup.scale.set(0.6, 0.6, 0.6);
+                camera.position.z = 80; // Afastar câmera no mobile
             } else {
-                pyramidGroup.position.set(0, -30, -5);
+                pyramidGroup.position.set(0, -35, -10);
                 pyramidGroup.scale.set(1, 1, 1);
+                camera.position.z = 70;
             }
             renderer.render(scene, camera); 
         } animate();
