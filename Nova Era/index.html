@@ -13,7 +13,6 @@
         
         body, html { background: #000; color: #fff; font-family: 'Marcellus', serif; overflow-x: hidden; height: 100%; cursor: none; }
 
-        /* ENGINE 3D */
         #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: auto; opacity: 0; transition: opacity 3s ease; touch-action: pan-y; }
 
         #cursor { 
@@ -23,15 +22,12 @@
             transform: translate(-50%, -50%); mix-blend-mode: screen;
         }
 
-        /* GATE */
         #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #000; transition: 2s cubic-bezier(0.7, 0, 0.3, 1); }
         #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.7) brightness(0.2); }
         .gate-content { position: relative; z-index: 10; text-align: center; width: 90%; }
         .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2.5rem, 10vw, 5rem); font-weight: 900; letter-spacing: 15px; text-transform: uppercase; color: var(--silver); }
         .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(255,255,255,0.02); padding: 25px 80px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 10px; text-transform: uppercase; font-size: 0.8rem; margin-top: 50px; transition: 1.5s; backdrop-filter: blur(20px); }
-        .gate-btn:hover { background: var(--gold); color: #000; letter-spacing: 15px; }
 
-        /* NAV */
         nav { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
             flex-wrap: wrap; gap: clamp(10px, 3vw, 30px); padding: 35px 10px; z-index: 2000; opacity: 0; transition: 2s;
@@ -41,46 +37,34 @@
         nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 3px; font-size: 0.65rem; cursor: pointer; opacity: 0.5; transition: 0.5s; font-weight: bold; }
         nav a:hover, nav a.active { opacity: 1; color: var(--gold); border-bottom: 1px solid var(--gold); }
 
-        /* CONTAINER */
         .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 160px 8% 100px; overflow-y: auto; scrollbar-width: none; }
         .container::-webkit-scrollbar { display: none; }
         
-        .page { display: none; width: 100%; max-width: 1000px; animation: slideUp 1.5s ease forwards; }
+        .page { display: none; width: 100%; max-width: 1100px; animation: slideUp 1.5s ease forwards; }
         .page.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- PADRONIZAÇÃO DOS LIVROS (CAIXAS DOURADAS) --- */
+        /* SEÇÃO LIVROS CONSAGRADOS */
         .secao-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 2.2rem; text-align: center; margin-bottom: 60px; letter-spacing: 15px; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 20px; }
-
-        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; width: 100%; }
+        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
         
         .caixa-dourada { 
-            border: 1px solid var(--gold); 
-            background: var(--glass-gold); 
-            padding: 40px; 
-            backdrop-filter: blur(30px); 
-            transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold); background: var(--glass-gold); padding: 45px; 
+            backdrop-filter: blur(30px); transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            position: relative; overflow: hidden; display: flex; flex-direction: column; 
+            align-items: center; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.15); border-width: 2px; }
-        
-        .livro-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.8rem; margin-bottom: 25px; letter-spacing: 3px; text-transform: uppercase; }
-        .livro-resumo { font-size: 1.1rem; line-height: 1.8; color: var(--silver); font-style: italic; }
-        .livro-selo { margin-top: 30px; font-family: 'Great Vibes'; font-size: 2rem; color: var(--gold); opacity: 0.7; }
+        .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2); }
+        .livro-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.6rem; margin-bottom: 25px; letter-spacing: 3px; text-transform: uppercase; }
+        .livro-resumo { font-size: 1.05rem; line-height: 1.7; color: var(--silver); font-style: italic; }
+        .livro-selo { margin-top: 30px; font-family: 'Great Vibes'; font-size: 1.8rem; color: var(--gold); opacity: 0.8; }
 
-        /* BIO */
+        /* VERBO & BIO */
         .glass-box { background: rgba(255,255,255,0.04); padding: clamp(30px, 5vw, 70px); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(50px); width: 100%; }
         .bio-container { display: flex; align-items: center; gap: 50px; }
         .bio-photo { width: 240px; height: 340px; object-fit: cover; border: 1px solid rgba(255,255,255,0.2); flex-shrink: 0; }
         .bio-text { font-size: 1.2rem; line-height: 2.1; font-style: italic; color: #f0f0f0; }
 
-        /* VERBO & AFORISMOS */
         .verbo-item { border-bottom: 1px solid rgba(212,175,55,0.15); padding: 50px 0; text-align: center; }
         .poesia-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.8rem; margin-bottom: 20px; letter-spacing: 5px; text-transform: uppercase; }
         .poesia-texto { font-size: 1.2rem; line-height: 2; color: var(--silver); font-style: italic; white-space: pre-wrap; }
@@ -91,7 +75,6 @@
             .bio-container { flex-direction: column; text-align: center; }
             .container { padding-top: 130px; }
             .livros-grid { grid-template-columns: 1fr; }
-            .caixa-dourada { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -123,25 +106,37 @@
             <div class="glass-box">
                 <div class="bio-container">
                     <img src="perfil.jpg" alt="Wagner Abrahão" class="bio-photo">
-                    <div class="bio-text">"Observador das frequências que regem o oculto. Minha obra não busca o aplauso, mas o silêncio que precede o despertar. Através da anestesia do Verbo, convido o leitor a desconstruir o ego e contemplar a arquitetura sagrada da própria existência."</div>
+                    <div class="bio-text">"Observador das frequências que regem o oculto. Minha obra não busca o aplauso, mas o silêncio que precede o despertar. Através da anestesia do Verbo, convido o leitor a contemplar a arquitetura sagrada da própria existência."</div>
                 </div>
                 <div style="font-family:'Great Vibes'; font-size:3.5rem; color:var(--gold); text-align:right; margin-top:50px;">Wagner Abrahão</div>
             </div>
         </div>
 
         <div id="obras" class="page">
-            <h2 class="secao-titulo">Livros Consagrados</h2>
+            <h2 class="secao-titulo">Manuscritos de Luz</h2>
             <div class="livros-grid">
                 
                 <div class="caixa-dourada">
                     <h3 class="livro-titulo">A Anestesia Divina</h3>
-                    <p class="livro-resumo">Uma imersão visceral no colapso do ego humano. Nesta obra, a dor é apresentada como o bisturi da divindade, removendo as camadas de ilusão que nos cegam. Um guia para aqueles que buscam o despertar místico através da rendição absoluta ao invisível.</p>
+                    <p class="livro-resumo">Uma imersão visceral no colapso do ego humano. Onde a dor é o bisturi da divindade, removendo as camadas de ilusão. Um guia para o despertar místico através da rendição absoluta ao invisível.</p>
                     <div class="livro-selo">Wagner Luiz</div>
                 </div>
 
                 <div class="caixa-dourada">
                     <h3 class="livro-titulo">A Arquitetura do Invisível</h3>
-                    <p class="livro-resumo">Onde a geometria sagrada encontra o Verbo. Este livro edifica um templo interno, ensinando o leitor a reconhecer as estruturas ocultas que sustentam a realidade. Um tratado filosófico e espiritual sobre a construção de uma alma eterna além dos cinco sentidos.</p>
+                    <p class="livro-resumo">Onde a geometria sagrada encontra o Verbo. Este tratado edifica um templo interno, ensinando o leitor a reconhecer as estruturas ocultas que sustentam a realidade eterna além dos sentidos.</p>
+                    <div class="livro-selo">Wagner Abrahão</div>
+                </div>
+
+                <div class="caixa-dourada">
+                    <h3 class="livro-titulo">A Centelha Inquieta</h3>
+                    <p class="livro-resumo">O registro da chama que se recusa a apagar no vácuo da matéria. Uma jornada poética sobre a luz que habita o meio do caminho entre a razão fria e o mistério insondável do ser.</p>
+                    <div class="livro-selo">Wagner Luiz</div>
+                </div>
+
+                <div class="caixa-dourada">
+                    <h3 class="livro-titulo">A Ressonância das Almas</h3>
+                    <p class="livro-resumo">Uma saga alquímica que atravessa gerações. Através do encontro entre um alquimista e um violinista, a obra explora como as frequências do espírito se conectam no tempo e no espaço.</p>
                     <div class="livro-selo">Wagner Abrahão</div>
                 </div>
 
@@ -158,13 +153,11 @@
                 A planta era o vácuo, o mestre era o tempo,
                 E a fundação, a luz que no peito flui.</div>
             </div>
-            <div class="aforismo">"O alquimista não transforma chumbo em ouro; ele transforma o medo em presença absoluta."</div>
         </div>
 
         <div id="freq" class="page">
-            <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:60px; text-align:center; font-family:'Bodoni Moda'; text-transform:uppercase;">Ressonância</h1>
             <div class="glass-box" style="text-align: center;">
-                <p style="font-size: 1.4rem; line-height: 2; font-style: italic;">"O som é a geometria do ar. O silêncio é a geometria da alma. Em breve, as notas do invisível soarão por este portal."</p>
+                <p style="font-size: 1.4rem; line-height: 2; font-style: italic;">"O som é a geometria do ar. O silêncio é a geometria da alma."</p>
             </div>
         </div>
 
@@ -217,11 +210,10 @@
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        camera.position.set(0, 40, 180);
+        camera.position.set(0, 40, 200);
 
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 0.3;
-        controls.enableZoom = true; controls.maxDistance = 450; controls.minDistance = 80;
 
         const sun = new THREE.SpotLight(0xffffff, 4, 1500, Math.PI/4, 0.5, 2);
         sun.position.set(200, 400, 200); scene.add(sun);
@@ -232,17 +224,6 @@
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starC, 3));
         const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.9, transparent: true, opacity: 0.6 })); scene.add(stars);
 
-        const meteors = [];
-        function createMeteor() {
-            const m = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent:true }));
-            m.position.set(THREE.MathUtils.randFloatSpread(1000), THREE.MathUtils.randFloat(200, 500), THREE.MathUtils.randFloatSpread(1000));
-            m.userData = { speed: THREE.MathUtils.randFloat(3, 8), trail: THREE.MathUtils.randFloat(20, 50) };
-            m.scale.set(1, 1, m.userData.trail); m.lookAt(0, -200, 0);
-            scene.add(m); meteors.push(m);
-        }
-        for(let i=0; i<30; i++) createMeteor();
-
-        // A GRANDE PIRÂMIDE DUAL
         const pyramid = new THREE.Group();
         const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.2, flatShading: true });
         const silvM = new THREE.MeshStandardMaterial({ color: 0xE0E0E0, metalness: 1, roughness: 0.1, flatShading: true });
@@ -256,9 +237,8 @@
         const cap = new THREE.Mesh(new THREE.ConeGeometry(5, 7, 4), goldM); cap.position.y = tiers*2 + 2; pyramid.add(cap);
         const owl = new THREE.Group();
         owl.add(new THREE.Mesh(new THREE.SphereGeometry(1.8, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
-        const eye = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff}));
-        const eL = eye.clone(); eL.position.set(-0.6, 0.5, 1.4);
-        const eR = eye.clone(); eR.position.set(0.6, 0.5, 1.4);
+        const eL = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eL.position.set(-0.6, 0.5, 1.4);
+        const eR = eL.clone(); eR.position.set(0.6, 0.5, 1.4);
         owl.add(eL, eR); owl.position.y = cap.position.y + 4; pyramid.add(owl);
         const eyeRing = new THREE.Mesh(new THREE.TorusGeometry(20, 0.2, 16, 100), new THREE.MeshBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.2 }));
         eyeRing.rotation.x = Math.PI/2; eyeRing.position.y = cap.position.y + 10; pyramid.add(eyeRing);
@@ -269,10 +249,6 @@
             controls.update();
             stars.rotation.y += 0.0001;
             eyeRing.rotation.z += 0.01;
-            meteors.forEach(m => {
-                m.translateZ(m.userData.speed);
-                if(m.position.y < -400) { m.position.y = 500; m.position.x = THREE.MathUtils.randFloatSpread(1000); }
-            });
             renderer.render(scene, camera);
         }
         animate();
