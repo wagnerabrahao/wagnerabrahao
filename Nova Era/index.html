@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wagner Abrahão | Arquiteto do Invisível</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
         :root { 
@@ -26,48 +26,39 @@
             cursor: none;
         }
 
-        /* 5D Background - Canvas */
+        /* 5D Scene Canvas */
         #canvas-5d { position: fixed; top: 0; left: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 3s; }
 
-        /* Cursor Alquímico */
+        /* Cursor de Luz */
         #cursor {
             width: 15px; height: 15px; background: #fff; border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 10000;
             box-shadow: 0 0 20px 5px var(--gold-bright);
             mix-blend-mode: difference;
+            transition: transform 0.1s;
         }
 
-        /* --- PORTAL DE ENTRADA (GATE) --- */
+        /* --- PORTAL DE ENTRADA (O CARTÃO POSTAL) --- */
         #gate { 
             position: fixed; inset: 0; background: var(--black); z-index: 9999; 
             display: flex; align-items: center; justify-content: center;
-            transition: 2.5s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: 2s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        /* Lado Esquerdo: Passado (P&B) */
-        #gate-left {
+        /* Lado Esquerdo: Passado P&B */
+        #gate-past {
             position: absolute; left: 0; top: 0; width: 50%; height: 100%;
             background: url('https://images.unsplash.com/photo-1512108131317-578d8f075304?q=80&w=1000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            filter: grayscale(1) sepia(0.2) brightness(0.4) contrast(1.3);
-            mask-image: linear-gradient(to right, black 80%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
-            transition: 3s;
+            background-size: cover; background-position: center;
+            filter: grayscale(1) brightness(0.3) contrast(1.4);
+            -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+            mask-image: linear-gradient(to right, black 70%, transparent 100%);
+            transition: 3s ease;
         }
 
-        /* Lado Direito: Futuro (Vazio) */
-        #gate-right {
-            position: absolute; right: 0; top: 0; width: 50%; height: 100%;
-            background: var(--black);
-        }
+        .gate-content { position: relative; z-index: 10; text-align: center; }
 
-        .gate-content { 
-            position: relative; z-index: 10; 
-            text-align: center;
-        }
-
-        /* NOME EM OURO LÍQUIDO */
+        /* Nome em Ouro Líquido Animado */
         .gate-title { 
             font-family: 'Bodoni Moda'; 
             font-size: clamp(3rem, 10vw, 7rem); 
@@ -78,15 +69,13 @@
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 5s linear infinite;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+            animation: liquidGold 5s linear infinite;
         }
-        @keyframes shine { to { background-position: 200% center; } }
+        @keyframes liquidGold { to { background-position: 200% center; } }
 
         .gate-subtitle { 
-            font-family: 'Great Vibes', cursive; 
-            font-size: 2.5rem; color: var(--silver); 
-            margin: 20px 0 60px; opacity: 0.8;
+            font-family: 'Great Vibes', cursive; font-size: 2.5rem; 
+            color: var(--silver); margin: 15px 0 50px; opacity: 0.8;
         }
 
         .gate-btn { 
@@ -95,7 +84,7 @@
             letter-spacing: 10px; text-transform: uppercase; font-size: 0.9rem;
             transition: 1s;
         }
-        .gate-btn:hover { background: #fff; color: #000; box-shadow: 0 0 100px #fff; }
+        .gate-btn:hover { background: #fff; color: #000; box-shadow: 0 0 80px #fff; }
 
         /* --- INTERIOR DO SANTUÁRIO --- */
         nav { 
@@ -108,33 +97,34 @@
         .container { 
             position: relative; z-index: 100; min-height: 100vh; width: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; transition: 2s; overflow-y: auto; padding: 100px 5%;
+            opacity: 0; transition: 2s; padding: 100px 5%; text-align: center;
         }
 
-        .page { display: none; width: 100%; max-width: 1100px; animation: pageIn 2s ease forwards; }
+        .page { display: none; width: 100%; max-width: 1100px; animation: fadeIn 2s ease forwards; }
         .page.active { display: flex; flex-direction: column; align-items: center; }
-        @keyframes pageIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
 
         /* BIO UHD COLORIDA */
         .bio-container {
             display: flex; align-items: center; gap: 60px;
-            background: rgba(10, 10, 10, 0.8); padding: 60px; 
-            border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.85); padding: 60px; 
+            border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(25px);
         }
         .bio-photo {
             width: 320px; height: 450px; object-fit: cover;
-            border: 2px solid var(--silver);
-            filter: contrast(1.1) saturate(1.1); /* UHD COLOR */
+            border: 2px solid var(--gold);
+            filter: contrast(1.1) saturate(1.1); /* Realismo UHD */
             box-shadow: 0 30px 60px rgba(0,0,0,1);
         }
-        .bio-text { font-size: 1.4rem; line-height: 2.2; font-style: italic; text-align: left; }
+        .bio-text { font-size: 1.4rem; line-height: 2.2; font-style: italic; text-align: left; color: #f0f0f0; }
 
-        /* GRID MANUSCRITOS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; width: 100%; }
-        .card { border: 1px solid rgba(255,255,255,0.1); padding: 50px 20px; background: rgba(5,5,5,0.8); transition: 0.8s; cursor: pointer; }
-        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
-        .card h3 { font-family: 'Bodoni Moda'; color: var(--silver); letter-spacing: 3px; }
+        /* MANUSCRITOS EM PRATA */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; width: 100%; margin-top: 40px; }
+        .card { border: 1px solid rgba(224, 224, 224, 0.1); padding: 50px 20px; background: rgba(5,5,5,0.9); transition: 0.8s; cursor: pointer; }
+        .card:hover { border-color: var(--silver); transform: translateY(-10px); }
+        .card h3 { font-family: 'Bodoni Moda'; color: var(--silver); letter-spacing: 3px; font-size: 1.1rem; }
 
+        .footer-text { font-family: 'Great Vibes'; font-size: 3.5rem; color: var(--gold); margin-top: 40px; }
     </style>
 </head>
 <body>
@@ -143,11 +133,10 @@
     <canvas id="canvas-5d"></canvas>
 
     <div id="gate">
-        <div id="gate-left"></div>
-        <div id="gate-right"></div>
+        <div id="gate-past"></div>
         <div class="gate-content">
             <h1 class="gate-title">Wagner Abrahão</h1>
-            <div class="gate-subtitle">O Arquiteto do Invisível</div>
+            <div class="gate-subtitle">Arquiteto do Invisível</div>
             <button class="gate-btn" onclick="unlock()">Atravessar o Limiar</button>
         </div>
     </div>
@@ -167,19 +156,33 @@
                     <div class="bio-text">
                         "Observador e amante das frequências que ressoam, contemplo a arquitetura deste universo esplendoroso. Busco na alquimia as respostas que sempre procurei, mas ainda não havia alcançado: um caminho de conhecimento, evolução e luz."
                     </div>
-                    <div style="font-family: 'Great Vibes'; font-size: 3.5rem; color: var(--gold); text-align: right; margin-top: 30px;">Wagner Abrahão</div>
+                    <div class="footer-text" style="text-align: right;">Wagner Abrahão</div>
                 </div>
             </div>
         </div>
 
         <div id="obras" class="page">
-            <h1 style="font-family: 'Bodoni Moda'; font-size: 4rem; color: var(--gold); letter-spacing: 15px; margin-bottom: 50px;">MANUSCRITOS</h1>
+            <h1 style="font-family: 'Bodoni Moda'; font-size: 3rem; color: var(--gold); letter-spacing: 15px; margin-bottom: 50px;">MANUSCRITOS</h1>
             <div class="grid">
                 <div class="card"><h3>A Anestesia Divina</h3></div>
                 <div class="card"><h3>A Centelha Inquieta</h3></div>
                 <div class="card"><h3>Alquimia do Ser</h3></div>
                 <div class="card"><h3>Arquitetura do Invisível</h3></div>
             </div>
+        </div>
+        
+        <div id="freq" class="page">
+            <h1 style="font-family: 'Bodoni Moda'; font-size: 3rem; color: var(--gold); letter-spacing: 15px; margin-bottom: 50px;">FREQUÊNCIAS</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; max-width: 900px;">
+                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/vRX91S7SKIU" frameborder="0"></iframe></div>
+                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/5-cAWczw_Ec" frameborder="0"></iframe></div>
+            </div>
+        </div>
+
+        <div id="contato" class="page">
+            <h1 style="font-family: 'Bodoni Moda'; font-size: 3rem; color: var(--gold); letter-spacing: 15px; margin-bottom: 50px;">CONTATO</h1>
+            <div class="footer-text">Para diálogos de alma...</div>
+            <a href="mailto:wagner.abrahao.31@gmail.com" style="color: var(--silver); font-size: 1.8rem; text-decoration: none; border-bottom: 1px solid var(--gold);">wagner.abrahao.31@gmail.com</a>
         </div>
     </div>
 
@@ -189,7 +192,7 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-        // --- 1. SINFONIA DE BACH ---
+        // --- Som de Bach ---
         let player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
@@ -198,15 +201,15 @@
             });
         }
 
-        // --- 2. TRANSMUTAÇÃO DE ENTRADA ---
+        // --- Transmutação de Entrada ---
         function unlock() {
             const gate = document.getElementById('gate');
-            const left = document.getElementById('gate-left');
+            const past = document.getElementById('gate-past');
             const canvas = document.getElementById('canvas-5d');
             const nav = document.getElementById('main-nav');
             const container = document.getElementById('main-container');
 
-            left.style.transform = 'translateX(-100%) scale(1.2)';
+            past.style.transform = 'translateX(-100%) scale(1.1)';
             gate.style.opacity = '0';
             setTimeout(() => {
                 gate.style.display = 'none';
@@ -222,25 +225,25 @@
             document.getElementById(id).classList.add('active');
         }
 
-        // --- 3. CURSOR ---
+        // --- Cursor ---
         document.addEventListener('mousemove', (e) => {
             const c = document.getElementById('cursor');
             c.style.left = e.clientX + 'px';
             c.style.top = e.clientY + 'px';
         });
 
-        // --- 4. 5D SCENE: NÓ OURO E PIRÂMIDE PRATA ---
+        // --- 5D Scene: Alquimia de Ouro e Prata ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-5d'), alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.position.z = 35;
 
-        // Luzes para a Alquimia
-        const goldLight = new THREE.DirectionalLight(0xD4AF37, 1.5); goldLight.position.set(10, 20, 10); scene.add(goldLight);
-        const silverLight = new THREE.PointLight(0xFFFFFF, 2, 50); silverLight.position.set(10, -15, 10); scene.add(silverLight);
+        // Luzes Reais
+        const goldL = new THREE.DirectionalLight(0xD4AF37, 1.5); goldL.position.set(10, 20, 10); scene.add(goldL);
+        const silverL = new THREE.PointLight(0xFFFFFF, 1.8, 50); silverL.position.set(15, -15, 10); scene.add(silverL);
 
-        // Nó Dourado (Espírito - Gira Horário)
+        // Nó Dourado (Espírito - Gira para a Direita)
         const knot = new THREE.Mesh(
             new THREE.TorusKnotGeometry(10, 3, 200, 32),
             new THREE.MeshStandardMaterial({ color: 0xD4AF37, wireframe: true, metalness: 1 })
@@ -248,31 +251,31 @@
         knot.position.y = 8;
         scene.add(knot);
 
-        // Pirâmide de Prata Realista (Matéria - Gira Anti-Horário)
-        const pyramidGroup = new THREE.Group();
-        const matSilver = new THREE.MeshStandardMaterial({ color: 0xE0E0E0, metalness: 1, roughness: 0.2 });
-        const blockSize = 0.6;
-        let levels = 8, currentBase = levels;
+        // Pirâmide de Prata (Matéria - Gira para a Esquerda)
+        const pyramid = new THREE.Group();
+        const matSilver = new THREE.MeshStandardMaterial({ color: 0xE0E0E0, metalness: 1, roughness: 0.1 });
+        const bSize = 0.6;
+        let levels = 8, curBase = levels;
 
         for(let y=0; y<levels; y++){
-            for(let x=0; x<currentBase; x++){
-                for(let z=0; z<currentBase; z++){
-                    const block = new THREE.Mesh(new THREE.BoxGeometry(blockSize, blockSize, blockSize), matSilver);
-                    const offset = (currentBase - 1) * blockSize / 2;
-                    block.position.set(x*blockSize - offset, y*blockSize, z*blockSize - offset);
-                    pyramidGroup.add(block);
+            for(let x=0; x<curBase; x++){
+                for(let z=0; z<curBase; z++){
+                    const block = new THREE.Mesh(new THREE.BoxGeometry(bSize, bSize, bSize), matSilver);
+                    const offset = (curBase - 1) * bSize / 2;
+                    block.position.set(x*bSize - offset, y*bSize, z*bSize - offset);
+                    pyramid.add(block);
                 }
             }
-            currentBase--;
+            curBase--;
         }
-        pyramidGroup.position.set(15, -18, 0);
-        scene.add(pyramidGroup);
+        pyramid.position.set(15, -18, 0);
+        scene.add(pyramid);
 
         function animate() {
             requestAnimationFrame(animate);
-            knot.rotation.y += 0.003; // Horário
-            pyramidGroup.rotation.y -= 0.008; // Anti-horário (Alquimia)
-            pyramidGroup.position.y = -18 + Math.sin(Date.now() * 0.001) * 1;
+            knot.rotation.y += 0.002; // Giro Direita
+            pyramid.rotation.y -= 0.006; // Giro Esquerda (Oposição Alquímica)
+            pyramid.position.y = -18 + Math.sin(Date.now() * 0.001) * 1;
             renderer.render(scene, camera);
         }
         animate();
