@@ -13,47 +13,47 @@
         body, html { background: var(--black); color: #fff; font-family: 'Marcellus', serif; overflow: hidden; height: 100vh; cursor: none; }
         canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 3s ease; }
 
-        /* --- BISTURI DE LUZ --- */
+        /* BISTURI DE LUZ */
         #cursor { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; box-shadow: 0 0 15px 5px #fff, 0 0 30px 10px var(--gold); transform: translate(-50%, -50%); }
 
-        /* --- PORTAL --- */
+        /* PORTAL DE ENTRADA */
         #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: var(--black); transition: 2.5s ease; }
-        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.3) brightness(0.45); }
+        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.2) brightness(0.5); }
         .gate-content { position: relative; z-index: 10; text-align: center; }
         .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; letter-spacing: 12px; text-transform: uppercase; color: var(--gold); }
         .gate-btn { border: 1px solid var(--silver); color: #fff; background: rgba(0,0,0,0.3); padding: 20px 70px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 10px; text-transform: uppercase; font-size: 0.85rem; margin-top: 40px; transition: 1.5s; backdrop-filter: blur(10px); }
 
-        /* --- NAVEGAÇÃO --- */
-        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 20px; padding: 40px 10px; z-index: 2000; opacity: 0; transition: 2s; background: linear-gradient(to bottom, rgba(1,1,1,0.5) 20%, transparent); }
+        /* NAVEGAÇÃO */
+        nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 20px; padding: 40px 10px; z-index: 2000; opacity: 0; transition: 2s; background: linear-gradient(to bottom, rgba(1,1,1,0.4) 20%, transparent); }
         nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.65rem; cursor: pointer; opacity: 0.6; transition: 0.6s; }
         nav a:hover, nav a.active { opacity: 1; color: var(--gold); border-bottom: 1px solid var(--gold); }
 
-        /* --- CONTAINER TRANSPARENTE --- */
+        /* CONTAINER COM TRANSPARÊNCIA */
         .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 160px 8% 80px; overflow-y: scroll; scrollbar-width: none; }
         .container::-webkit-scrollbar { display: none; }
         .page { display: none; width: 100%; max-width: 950px; animation: fadeIn 2s ease forwards; }
         .page.active { display: flex; flex-direction: column; align-items: center; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .bio-container { display: flex; align-items: center; gap: 50px; background: rgba(5, 5, 5, 0.35); padding: 50px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); }
+        .bio-container { display: flex; align-items: center; gap: 50px; background: rgba(5, 5, 5, 0.35); padding: 50px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); }
         .bio-photo { width: 260px; height: 380px; object-fit: cover; border: 1px solid var(--gold); }
         .bio-text { font-size: 1.3rem; line-height: 2.1; font-style: italic; color: #fff; flex: 1; text-align: left; }
 
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; width: 100%; margin-top: 30px; }
-        .card { border: 1px solid rgba(255,255,255,0.1); padding: 40px; background: rgba(10,10,10,0.45); transition: 0.6s; cursor: pointer; text-align: center; backdrop-filter: blur(12px); }
+        .card { border: 1px solid rgba(255,255,255,0.1); padding: 40px; background: rgba(10,10,10,0.4); transition: 0.6s; cursor: pointer; text-align: center; backdrop-filter: blur(10px); }
         .card:hover { border-color: var(--gold); background: rgba(20,20,20,0.6); }
         .card h3 { color: var(--silver); letter-spacing: 3px; font-size: 0.9rem; text-transform: uppercase; }
 
-        .poem-box { margin-bottom: 150px; text-align: center; width: 100%; }
-        .poem-title { font-family: 'Bodoni Moda'; font-size: 1.8rem; font-weight: 900; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); margin-bottom: 30px; border-top: 1px solid rgba(212, 175, 55, 0.15); padding-top: 20px; }
-        .poem-content { font-family: 'Marcellus', serif; font-size: 1.5rem; line-height: 2.2; color: #f2f2f2; font-style: italic; }
+        .poem-box { margin-bottom: 120px; text-align: center; width: 100%; }
+        .poem-title { font-family: 'Bodoni Moda'; font-size: 1.8rem; font-weight: 900; letter-spacing: 8px; text-transform: uppercase; color: var(--gold); margin-bottom: 30px; border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 20px; }
+        .poem-content { font-family: 'Marcellus', serif; font-size: 1.5rem; line-height: 2.2; color: #fff; font-style: italic; }
 
-        /* E-MAIL EM BRANCO */
-        .email-link { color: #ffffff; font-size: 2rem; text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda'; transition: 0.6s; padding: 10px; }
-        .email-link:hover { background: rgba(255,255,255,0.05); }
+        /* E-MAIL BRANCO PURO */
+        .email-link { color: #ffffff; font-size: 2rem; text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda'; transition: 0.6s; }
+        .email-link:hover { color: var(--gold); }
 
-        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(25px); }
-        .modal-content { max-width: 600px; width: 90%; text-align: center; border: 1px solid var(--gold); padding: 60px; background: rgba(0,0,0,0.98); }
+        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(25px); }
+        .modal-content { max-width: 600px; width: 90%; text-align: center; border: 1px solid var(--gold); padding: 60px; background: rgba(0,0,0,0.95); }
     </style>
 </head>
 <body>
@@ -95,39 +95,31 @@
             <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; font-size: 2.2rem; font-family:'Bodoni Moda'; text-transform:uppercase;">Manuscritos</h1>
             <div class="card-grid">
                 <div class="card" onclick="openBook('anestesia')"><h3>A Anestesia Divina</h3></div>
+                <div class="card" onclick="openBook('arquitetura')"><h3>A Arquitetura do Invisível</h3></div>
                 <div class="card" onclick="openBook('centelha')"><h3>A Centelha Inquieta</h3></div>
                 <div class="card" onclick="openBook('alquimia')"><h3>Alquimia do Ser</h3></div>
-                <div class="card" onclick="openBook('arquitetura')"><h3>Arquitetura do Invisível</h3></div>
             </div>
         </div>
 
         <div id="freq" class="page">
             <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:50px; font-size: 2.2rem; font-family:'Bodoni Moda'; text-transform:uppercase;">Frequências</h1>
             <div class="card-grid">
-                <div style="border:1px solid var(--silver); aspect-ratio:16/9; backdrop-filter: blur(5px);"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/vRX91S7SKIU" frameborder="0"></iframe></div>
-                <div style="border:1px solid var(--silver); aspect-ratio:16/9; backdrop-filter: blur(5px);"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/5-cAWczw_Ec" frameborder="0"></iframe></div>
-                <div style="border:1px solid var(--silver); aspect-ratio:16/9; backdrop-filter: blur(5px);"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/fFtNlS940tg" frameborder="0"></iframe></div>
-                <div style="border:1px solid var(--silver); aspect-ratio:16/9; backdrop-filter: blur(5px);"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/2dUXWxrKui4" frameborder="0"></iframe></div>
+                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/vRX91S7SKIU" frameborder="0"></iframe></div>
+                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/5-cAWczw_Ec" frameborder="0"></iframe></div>
+                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/fFtNlS940tg" frameborder="0"></iframe></div>
+                <div style="border:1px solid var(--silver); aspect-ratio:16/9;"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/2dUXWxrKui4" frameborder="0"></iframe></div>
             </div>
-        </div>
-
-        <div id="verbo" class="page">
-            <div class="poem-box"><div class="poem-title">Nossa Essência</div><div class="poem-content">"Não somos ruínas de um passado que acabou. Somos templos em reforma, esperando a liturgia certa para voltarmos a ser sagrados."</div></div>
-            <div class="poem-box"><div class="poem-title">O Silêncio</div><div class="poem-content">"Escrever é medir o silêncio. É dar forma ao que a alma grita, mas a voz esquece."</div></div>
-        </div>
-
-        <div id="poemas" class="page">
-            <div class="poem-box"><div class="poem-title">Alquimia do Olhar</div><div class="poem-content">Na fenda do tempo, o ouro se esconde,<br>Onde o meu grito ao seu responde.<br>Não há distância no que é real,<br>Somos a nota de um mesmo coral.</div></div>
         </div>
 
         <div id="contato" class="page">
             <h1 style="color:var(--gold); letter-spacing:15px; margin-bottom:60px; font-size: 2.5rem; font-family:'Bodoni Moda'; text-transform:uppercase;">Contato</h1>
-            <div style="font-family:'Great Vibes'; font-size:3.5rem; margin-bottom:40px; color: var(--silver);">Diálogos de Alma:</div>
+            <div style="height: 50px;"></div>
             <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">wagner.abrahao.31@gmail.com</a>
         </div>
     </div>
 
     <div id="yt-player" style="display:none;"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
@@ -151,7 +143,7 @@
             }, 1800);
         }
         function show(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); document.getElementById(id).classList.add('active'); if(event) event.target.classList.add('active'); window.scrollTo(0,0); }
-        function openBook(id) { const d={anestesia:{t:"A Anestesia Divina",d:"O despertar através do colapso."},centelha:{t:"A Centelha Inquieta",d:"Luz silenciosa entre razão e mistério."},alquimia:{t:"Alquimia do Ser",d:"Transmutando sombras em ouro."},arquitetura:{t:"Arquitetura do Invisível",d:"O templo onde o tempo é eterno."}}; document.getElementById('m-content').innerHTML=`<h2 style="font-family:'Bodoni Moda'; color:var(--gold); font-size:1.6rem; letter-spacing:4px;">${d[id].t}</h2><p style="font-size:1.3rem; font-style:italic; color:var(--silver); margin-top:20px; line-height:1.8;">${d[id].d}</p>`; document.getElementById('modal').style.display='flex'; }
+        function openBook(id) { const d={anestesia:{t:"A Anestesia Divina",d:"O despertar através do colapso místico da alma."},arquitetura:{t:"A Arquitetura do Invisível",d:"A construção do templo interno onde o tempo não existe."},centelha:{t:"A Centelha Inquieta",d:"Luz silenciosa entre razão e mistério."},alquimia:{t:"Alquimia do Ser",d:"Transmutando sombras em ouro consciente."}}; document.getElementById('m-content').innerHTML=`<h2 style="font-family:'Bodoni Moda'; color:var(--gold); font-size:1.6rem; letter-spacing:4px;">${d[id].t}</h2><p style="font-size:1.3rem; font-style:italic; color:var(--silver); margin-top:20px; line-height:1.8;">${d[id].d}</p>`; document.getElementById('modal').style.display='flex'; }
         document.addEventListener('mousemove', (e) => { const c=document.getElementById('cursor'); c.style.left=e.clientX+'px'; c.style.top=e.clientY+'px'; });
 
         const scene = new THREE.Scene(); const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -160,23 +152,23 @@
         scene.add(new THREE.DirectionalLight(0xD4AF37, 2.2)).position.set(0, 20, 15);
         scene.add(new THREE.AmbientLight(0xffffff, 0.4));
         
-        // INFINITO CENTRALIZADO E MAJESTOSO (Espírito)
+        // INFINITO CENTRALIZADO ABSOLUTO (Espírito)
         const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(12, 3.8, 180, 24), new THREE.MeshStandardMaterial({ color: 0xD4AF37, wireframe: true, metalness: 1, roughness: 0 }));
-        knot.position.set(0, 5, -15);
+        knot.position.set(0, 0, -15); // Centro exato (0,0)
         scene.add(knot);
 
-        // PIRÂMIDE À DIREITA E VISÍVEL (Matéria - Rotação Inversa)
-        const pGroup = new THREE.Group(); const sMat = new THREE.MeshStandardMaterial({ color: 0xE0E0E0, metalness: 1, roughness: 0.05, transparent: true, opacity: 0.9 });
-        let lv=6, cB=lv, bS=0.9;
+        // PIRÂMIDE À DIREITA (Matéria - Rotação Inversa)
+        const pGroup = new THREE.Group(); const sMat = new THREE.MeshStandardMaterial({ color: 0xE0E0E0, metalness: 1, roughness: 0.05, transparent: true, opacity: 0.85 });
+        let lv=6, cB=lv, bS=0.8;
         for(let y=0; y<lv; y++){ for(let x=0; x<cB; x++){ for(let z=0; z<cB; z++){ const b=new THREE.Mesh(new THREE.BoxGeometry(bS*0.97, bS*0.97, bS*0.97), sMat); b.position.set(x*bS-(cB-1)*bS/2, y*bS, z*bS-(cB-1)*bS/2); pGroup.add(b); } } cB--; }
-        pGroup.position.set(16, -10, 0); 
+        pGroup.position.set(16, -12, 0); 
         scene.add(pGroup);
 
         function anim() { 
             requestAnimationFrame(anim); 
             knot.rotation.y += 0.003; 
-            pGroup.rotation.y -= 0.008; // ROTAÇÃO INVERSA FUNDAMENTAL
-            pGroup.position.y = -10 + Math.sin(Date.now() * 0.001) * 1.5; 
+            pGroup.rotation.y -= 0.008; // Rotação oposta
+            pGroup.position.y = -12 + Math.sin(Date.now() * 0.001) * 1.5; 
             renderer.render(scene, camera); 
         } anim();
         window.addEventListener('resize', () => { camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
