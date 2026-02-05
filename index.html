@@ -125,6 +125,11 @@
         /* MODAL */
         #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(30px); }
         .modal-content { max-width: 600px; width: 90%; text-align: center; border: 1px solid var(--silver); padding: 50px; background: #050505; }
+
+        @media (max-width: 900px) {
+            .bio-container { flex-direction: column; text-align: center; }
+            .bio-photo { width: 250px; height: 350px; }
+        }
     </style>
 </head>
 <body>
@@ -247,53 +252,72 @@
         const canvas = document.getElementById('canvas-5d');
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true; // Sombras reais
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 35;
 
-        // --- LUZES PARA A PIRÂMIDE ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+        // --- LUZES REALISTAS ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
         scene.add(ambientLight);
-        const pointLight = new THREE.PointLight(0xD4AF37, 1, 100);
-        pointLight.position.set(10, -10, 10);
+        const dirLight = new THREE.DirectionalLight(0xD4AF37, 1.5);
+        dirLight.position.set(10, 20, 20);
+        scene.add(dirLight);
+        const pointLight = new THREE.PointLight(0xD4AF37, 1, 50);
+        pointLight.position.set(0, -10, 10);
         scene.add(pointLight);
 
         // --- NÓ TORUS (FUNDO SUPERIOR) ---
         const torusGeo = new THREE.TorusKnotGeometry(10, 3, 200, 32);
         const torusMat = new THREE.MeshBasicMaterial({ color: 0xD4AF37, wireframe: true, transparent: true, opacity: 0.1 });
         const knot = new THREE.Mesh(torusGeo, torusMat); 
-        knot.position.y = 5; 
+        knot.position.y = 8; 
         scene.add(knot);
 
-        // --- PARTÍCULAS ---
+        // --- PARTICULAS ---
         const particlesGeo = new THREE.BufferGeometry();
-        const pts = []; for (let i = 0; i < 4000; i++) pts.push(THREE.MathUtils.randFloatSpread(120), THREE.MathUtils.randFloatSpread(120), THREE.MathUtils.randFloatSpread(120));
+        const pts = []; for (let i = 0; i < 3000; i++) pts.push(THREE.MathUtils.randFloatSpread(150), THREE.MathUtils.randFloatSpread(150), THREE.MathUtils.randFloatSpread(150));
         particlesGeo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
         const particleSystem = new THREE.Points(particlesGeo, new THREE.PointsMaterial({ color: 0xD4AF37, size: 0.04, transparent: true, opacity: 0.4 }));
         scene.add(particleSystem);
 
-        // --- PIRÂMIDE HERMÉTICA (RODAPÉ DIREITO) ---
-        // Geometria (Raio, Altura, Segmentos radiais - 4 para pirâmide)
-        const pyramidGeo = new THREE.ConeGeometry(2.5, 3.5, 4);
-        // Material Sólido Translúcido
-        const pyramidMat = new THREE.MeshPhongMaterial({
-            color: 0xD4AF37, transparent: true, opacity: 0.7, shininess: 100, flatShading: true
+        // --- PIRÂMIDE REALISTA DE BLOCOS (ZIGGURAT) ---
+        const pyramidGroup = new THREE.Group();
+        // Material de Ouro Envelhecido Realista
+        const blockMat = new THREE.MeshStandardMaterial({
+            color: 0xD4AF37,
+            roughness: 0.4, // Aspecto de pedra/metal antigo
+            metalness: 0.6,
+            flatShading: true // Facetas visíveis
         });
-        // Material Wireframe (Malha de Luz)
-        const wireMat = new THREE.MeshBasicMaterial({ color: 0xFFE9A0, wireframe: true, transparent:true, opacity: 0.5 });
+
+        const blockSize = 0.5;
+        const blockGeo = new THREE.BoxGeometry(blockSize, blockSize, blockSize);
+        let levels = 7; // Altura da pirâmide
+        let currentBase = levels;
+
+        // Algoritmo de Construção da Pirâmide
+        for(let y=0; y<levels; y++) {
+            for(let x=0; x<currentBase; x++) {
+                for(let z=0; z<currentBase; z++) {
+                    const block = new THREE.Mesh(blockGeo, blockMat);
+                    const offset = (currentBase - 1) * blockSize / 2;
+                    block.position.set((x*blockSize) - offset, y*blockSize, (z*blockSize) - offset);
+                    pyramidGroup.add(block);
+                }
+            }
+            currentBase--;
+        }
         
-        const pyramidBase = new THREE.Mesh(pyramidGeo, pyramidMat);
-        const pyramidWire = new THREE.Mesh(pyramidGeo, wireMat);
-        pyramidBase.add(pyramidWire); // Adiciona a malha à base
+        // Posição no canto inferior direito
+        pyramidGroup.position.set(12, -18, -5);
+        // Inclinação inicial
+        pyramidGroup.rotation.x = 0.4;
+        pyramidGroup.rotation.y = -0.5;
+        scene.add(pyramidGroup);
 
-        // Posição: Baixo e Direita
-        pyramidBase.position.set(14, -16, 0);
-        // Inclinação inicial para charme 3D
-        pyramidBase.rotation.x = 0.3;
-        pyramidBase.rotation.z = -0.1;
-        scene.add(pyramidBase);
 
-        // --- INTERAÇÃO MOUSE ---
+        // --- INTERAÇÃO E ANIMAÇÃO ---
         let mX = 0, mY = 0;
         document.addEventListener('mousemove', (e) => {
             mX = (e.clientX - window.innerWidth / 2) * 0.01; 
@@ -301,20 +325,18 @@
             const s = document.getElementById('cursor'); s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
         });
 
-        // --- LOOP DE ANIMAÇÃO ---
         function anim() {
             requestAnimationFrame(anim);
             const time = Date.now() * 0.001;
 
-            // Animação do Nó Superior (Reage ao mouse)
+            // Nó superior reage ao mouse
             knot.rotation.y += 0.002; 
-            knot.rotation.x += 0.001;
             knot.position.x += (mX * 0.5 - knot.position.x) * 0.05;
             
-            // Animação da Pirâmide Inferior (Gira e Flutua - "Como em cima, assim é embaixo")
-            if (pyramidBase) {
-                pyramidBase.rotation.y += 0.01; // Giro constante
-                pyramidBase.position.y = -16 + Math.sin(time) * 0.8; // Respiração vertical
+            // Pirâmide de blocos gira e flutua
+            if (pyramidGroup) {
+                pyramidGroup.rotation.y += 0.005;
+                pyramidGroup.position.y = -18 + Math.sin(time * 0.5) * 1; // Respiração lenta
             }
 
             particleSystem.rotation.y += 0.0005;
