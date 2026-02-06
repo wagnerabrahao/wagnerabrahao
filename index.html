@@ -26,18 +26,13 @@
         #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.7) brightness(0.2); }
         .gate-content { position: relative; z-index: 10; text-align: center; width: 90%; }
         .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2.5rem, 10vw, 5rem); font-weight: 900; letter-spacing: 15px; text-transform: uppercase; color: var(--silver); }
-        
         .gate-btn { 
             border: 2px solid var(--bright-gold); color: #fff; background: rgba(212, 175, 55, 0.1); 
             padding: 25px 80px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 10px; 
             text-transform: uppercase; font-size: 0.9rem; margin-top: 50px; transition: 1s; 
             backdrop-filter: blur(20px); animation: goldPulse 3s infinite;
         }
-        @keyframes goldPulse {
-            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: var(--gold); }
-            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.7); border-color: var(--bright-gold); transform: scale(1.02); }
-            100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: var(--gold); }
-        }
+        @keyframes goldPulse { 0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: var(--gold); } 50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.7); border-color: var(--bright-gold); transform: scale(1.02); } 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: var(--gold); } }
 
         nav { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
@@ -51,35 +46,46 @@
         .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 160px 8% 100px; overflow-y: auto; scrollbar-width: none; }
         .container::-webkit-scrollbar { display: none; }
         
-        .page { display: none; width: 100%; max-width: 1200px; animation: slideUp 1.5s ease forwards; }
+        .page { display: none; width: 100%; max-width: 1100px; animation: slideUp 1.5s ease forwards; }
         .page.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         .secao-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 2.2rem; text-align: center; margin-bottom: 60px; letter-spacing: 15px; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 20px; }
-
-        /* GRID DE LIVROS CORRIGIDO */
-        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; width: 100%; }
         
-        .caixa-dourada { 
-            border: 1px solid var(--gold); background: rgba(212, 175, 55, 0.05); padding: 45px; 
-            backdrop-filter: blur(30px); transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-            position: relative; display: flex; flex-direction: column; 
-            align-items: center; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2); }
-        .livro-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.8rem; margin-bottom: 10px; letter-spacing: 3px; text-transform: uppercase; }
-        .livro-subtitulo { font-size: 0.9rem; color: var(--silver); margin-bottom: 25px; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-        .livro-resumo { font-size: 1.1rem; line-height: 1.8; color: var(--white); font-style: italic; opacity: 0.9; }
-        .livro-selo { margin-top: 30px; font-family: 'Great Vibes'; font-size: 2rem; color: var(--gold); opacity: 0.8; }
+        /* ESTILO CONTOS E AFORISMOS */
+        .verbo-text-block { font-size: 1.2rem; line-height: 2.2; color: var(--silver); text-align: center; margin-bottom: 50px; font-style: italic; padding: 20px; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(212,175,55,0.1); }
+        .verbo-header { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; letter-spacing: 4px; text-transform: uppercase; font-style: normal; }
 
-        .aforismo-box { border-left: 3px solid var(--gold); padding: 25px 40px; margin: 40px 0; font-size: 1.4rem; line-height: 1.9; color: #fff; background: rgba(255,255,255,0.02); text-align: left; }
-        .verbo-item { border-bottom: 1px solid rgba(212,175,55,0.15); padding: 60px 0; text-align: center; }
-        .poesia-texto { font-size: 1.25rem; line-height: 2.2; color: var(--silver); font-style: italic; white-space: pre-wrap; }
+        /* LIVROS */
+        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
+        .caixa-dourada { border: 1px solid var(--gold); background: rgba(212, 175, 55, 0.05); padding: 45px; backdrop-filter: blur(30px); transition: 0.8s; text-align: center; }
+        .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2); }
+        .livro-selo { margin-top: 30px; font-family: 'Great Vibes'; font-size: 2rem; color: var(--gold); opacity: 0.9; }
+
+        /* PORTAIS SOCIAIS (ICON BOTÕES) */
+        .contato-links { display: flex; flex-direction: column; align-items: center; gap: 40px; margin-top: 20px; }
+        .email-link { color: var(--white); font-size: 1.1rem; text-decoration: none; border-bottom: 1px solid var(--gold); font-family: 'Bodoni Moda'; transition: 0.5s; opacity: 0.7; }
+        .social-portal-grid { display: flex; gap: 50px; margin-top: 20px; }
+        .portal-btn { 
+            width: 70px; height: 70px; border: 1px solid rgba(212, 175, 55, 0.4); 
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 50%; background: rgba(255,255,255,0.03); 
+            transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); backdrop-filter: blur(10px);
+            color: var(--gold); fill: var(--gold); text-decoration: none;
+        }
+        .portal-btn:hover { 
+            transform: scale(1.15) translateY(-5px); 
+            background: rgba(212, 175, 55, 0.15); 
+            border-color: var(--bright-gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+        .portal-btn svg { width: 32px; height: 32px; }
 
         @media (max-width: 768px) {
             body { cursor: auto; } #cursor { display: none; }
             .container { padding-top: 130px; }
             .livros-grid { grid-template-columns: 1fr; }
+            .portal-btn { width: 60px; height: 60px; }
         }
     </style>
 </head>
@@ -107,65 +113,45 @@
     <div class="container" id="main-container">
         
         <div id="home" class="page active">
-            <div class="glass-box" style="background: rgba(255,255,255,0.04); padding: 60px; backdrop-filter: blur(50px);">
+            <div class="glass-box" style="background: rgba(255,255,255,0.04); padding: 60px; backdrop-filter: blur(50px); border: 1px solid rgba(255,255,255,0.1);">
                 <div style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center;">
                     <img src="perfil.jpg" alt="Wagner Abrahão" style="width: 240px; height: 340px; object-fit: cover; border: 1px solid rgba(255,255,255,0.2);">
-                    <div style="flex: 1; min-width: 300px; font-size: 1.2rem; line-height: 2.1; font-style: italic;">"Observador das frequências que regem o oculto. Através da anestesia do Verbo, convido o leitor a desconstruir o ego e contemplar a arquitetura sagrada da própria existência."</div>
+                    <div style="flex: 1; min-width: 300px; font-size: 1.2rem; line-height: 2.1; font-style: italic;">"Observador das frequências que regem o oculto. Através da anestesia do Verbo, convido o leitor a contemplar a arquitetura sagrada da própria existência."</div>
                 </div>
                 <div style="font-family:'Great Vibes'; font-size:3.5rem; color:var(--gold); text-align:right; margin-top:50px;">Wagner Abrahão</div>
             </div>
         </div>
 
+        <div id="contos" class="page">
+            <h2 class="secao-titulo">Contos e Aforismos</h2>
+            <div class="verbo-text-block"><div class="verbo-header">O Despertar da Pedra</div>"A verdade é o entulho que sobra quando todas as suas mentiras de proteção são bombardeadas pelo infinito."</div>
+            <div class="verbo-text-block"><div class="verbo-header">A Frequência do Ser</div>"O silêncio não é a ausência de som, mas o útero onde a verdade é concebida."</div>
+        </div>
+
         <div id="obras" class="page">
             <h2 class="secao-titulo">Manuscritos de Luz</h2>
             <div class="livros-grid">
-                
-                <div class="caixa-dourada">
-                    <h3 class="livro-titulo">A Centelha Inquieta</h3>
-                    <div class="livro-subtitulo">Do Exílio à Lembrança da Própria Luz</div>
-                    <p class="livro-resumo">A história de uma alma que se perdeu em todos os labirintos: nas religiões, na música, no sucesso, no lado mais obscuro do ocultismo. É a narrativa crua de como a frustração se transforma em obsessão, a obsessão em colapso, e o colapso no útero escuro onde a única saída é lembrar a própria luz.</p>
-                    <div class="livro-selo">Wagner Luiz</div>
-                </div>
-
-                <div class="caixa-dourada">
-                    <h3 class="livro-titulo">Alquimia do Ser</h3>
-                    <div class="livro-subtitulo">Forjando a Própria Luz</div>
-                    <p class="livro-resumo">Todos que hoje caminham com certa firmeza na jornada espiritual já estiveram exatamente onde você está: na soleira da porta, entre a curiosidade e o medo, entre o chamado e a dúvida. Um tratado sobre a transmutação do chumbo da incerteza no ouro da consciência.</p>
-                    <div class="livro-selo">Wagner Abrahão</div>
-                </div>
-
-                <div class="caixa-dourada">
-                    <h3 class="livro-titulo">A Anestesia Divina</h3>
-                    <div class="livro-subtitulo">O Paradoxo do Prazer que adormece</div>
-                    <p class="livro-resumo">Mais que um romance — uma experiência sensorial, uma jornada metafísica disfarçada de narrativa. Conduzidos pela vida de Dante, um afinador de pianos cuja existência começa a rachar quando seu corpo se torna um instrumento sintonizado em frequências que a medicina não consegue diagnosticar.</p>
-                    <div class="livro-selo">Wagner Luiz</div>
-                </div>
-
-                <div class="caixa-dourada">
-                    <h3 class="livro-titulo">A Arquitetura do Invisível</h3>
-                    <div class="livro-subtitulo">Um romance sobre a memória, o tempo e a restauração da alma</div>
-                    <p class="livro-resumo">Vivemos numa era barulhenta. Construímos torres de babel digitais, preenchemos cada segundo com luzes artificiais. Temos medo do silêncio porque, no silêncio, ouvimos o eco de quem poderíamos ter sido e não fomos. Um convite à reconstrução do templo interior.</p>
-                    <div class="livro-selo">Wagner Abrahão</div>
-                </div>
-
+                <div class="caixa-dourada"><h3 class="livro-titulo">A Centelha Inquieta</h3><div class="livro-subtitulo">Do Exílio à Lembrança da Própria Luz</div><p class="livro-resumo">A narrativa crua de uma alma perdida onde a única saída é a própria luz.</p><div class="livro-selo">Wagner Abrahão</div></div>
+                <div class="caixa-dourada"><h3 class="livro-titulo">Alquimia do Ser</h3><div class="livro-subtitulo">Forjando a Própria Luz</div><p class="livro-resumo">Um convite para aqueles que estão na soleira da porta da jornada espiritual.</p><div class="livro-selo">Wagner Abrahão</div></div>
+                <div class="caixa-dourada"><h3 class="livro-titulo">A Anestesia Divina</h3><div class="livro-subtitulo">O Paradoxo do Prazer que adormece</div><p class="livro-resumo">Uma jornada metafísica sintonizada em frequências que a medicina não diagnostica.</p><div class="livro-selo">Wagner Abrahão</div></div>
+                <div class="caixa-dourada"><h3 class="livro-titulo">A Arquitetura do Invisível</h3><div class="livro-subtitulo">A Memória e a Restauração da Alma</div><p class="livro-resumo">Um romance sobre o medo do silêncio e o eco de quem poderíamos ter sido.</p><div class="livro-selo">Wagner Abrahão</div></div>
             </div>
-        </div>
-
-        <div id="contos" class="page">
-            <h2 class="secao-titulo">Contos e Aforismos</h2>
-            <div class="aforismo-box">"A verdade é o entulho que sobra quando todas as suas mentiras de proteção são bombardeadas pelo infinito."</div>
-            <div class="verbo-item">
-                <div class="poesia-texto">Tijolo por tijolo, ergui o meu silêncio,
-No canteiro de obras do que nunca fui.
-A planta era o vácuo, o mestre era o tempo,
-E a fundação, a luz que no peito flui.</div>
-            </div>
-            <div class="aforismo-box">"O alquimista não transforma chumbo em ouro; ele transmuta o medo em presença absoluta."</div>
         </div>
 
         <div id="contato" class="page">
-            <div style="text-align: center; padding-top: 50px;">
-                <a href="mailto:wagner.abrahao.31@gmail.com" style="color:var(--white); font-size: 1.8rem; text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda';">wagner.abrahao.31@gmail.com</a>
+            <h2 class="secao-titulo">Umbral de Contato</h2>
+            <div class="contato-links">
+                <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">wagner.abrahao.31@gmail.com</a>
+                
+                <div class="social-portal-grid">
+                    <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" class="portal-btn" title="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm8.12 3.63a.87.87 0 1 1 0 1.74.87.87 0 0 1 0-1.74zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg>
+                    </a>
+                    
+                    <a href="https://www.threads.net/@wagnerabrahao_" target="_blank" class="portal-btn" title="Threads">
+                        <svg viewBox="0 0 24 24"><path d="M15.11 15.06a3.59 3.59 0 0 1-2.92 1.44 3.39 3.39 0 0 1-3.41-3.39 3.39 3.39 0 0 1 3.41-3.39c.86 0 1.63.31 2.22.82l1.04-1.12a5.16 5.16 0 0 0-3.26-1.19 4.88 4.88 0 0 0-4.91 4.88 4.88 4.88 0 0 0 4.91 4.88c1.37 0 2.58-.57 3.44-1.48l-1.52-1.45z"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M17.47 11.55a5.53 5.53 0 0 0-1.54-3.43l-1.12 1.12a4.1 4.1 0 0 1 1.16 2.31h1.5z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -179,96 +165,4 @@ E a fundação, a luz que no peito flui.</div>
         let player, isReady = false;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
-                height: '0', width: '0', videoId: 'vRX91S7SKIU',
-                playerVars: { 'autoplay': 1, 'controls': 0, 'mute': 1, 'loop': 1, 'playlist': 'vRX91S7SKIU' },
-                events: { 'onReady': (e) => { isReady = true; } }
-            });
-        }
-        function unlock() {
-            if(isReady && player) { player.unMute(); player.setVolume(75); player.playVideo(); }
-            document.getElementById('gate').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('gate').style.display = 'none';
-                document.getElementById('main-nav').style.opacity = '1';
-                document.getElementById('main-container').style.opacity = '1';
-                document.getElementById('canvas-3d').style.opacity = '1';
-            }, 1500);
-        }
-        function show(id) { 
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); 
-            document.getElementById(id).classList.add('active');
-            if(event) event.target.classList.add('active'); 
-            document.getElementById('main-container').scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.0008);
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 4000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        camera.position.set(0, 40, 220);
-
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 0.3;
-
-        const goldSun = new THREE.SpotLight(0xFFD700, 4, 1500, Math.PI/4, 0.5, 2);
-        goldSun.position.set(200, 400, 200); scene.add(goldSun);
-        scene.add(new THREE.AmbientLight(0x404040, 1.5));
-
-        const starGeo = new THREE.BufferGeometry(); const starC = [];
-        for(let i=0; i<10000; i++) starC.push(THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500));
-        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starC, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.9, transparent: true, opacity: 0.6 })); scene.add(stars);
-
-        const meteors = [];
-        function createMeteor() {
-            const m = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent:true }));
-            m.position.set(THREE.MathUtils.randFloatSpread(1200), THREE.MathUtils.randFloat(200, 500), THREE.MathUtils.randFloatSpread(1200));
-            m.userData = { speed: THREE.MathUtils.randFloat(4, 9), trail: THREE.MathUtils.randFloat(25, 55) };
-            m.scale.set(1, 1, m.userData.trail); m.lookAt(0, -200, 0);
-            scene.add(m); meteors.push(m);
-        }
-        for(let i=0; i<35; i++) createMeteor();
-
-        const pyramid = new THREE.Group();
-        const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.2, flatShading: true });
-        const silvM = new THREE.MeshStandardMaterial({ color: 0xEEEEEE, metalness: 1, roughness: 0.1, flatShading: true });
-        let tiers = 60; let base = 140;
-        for(let i=0; i<tiers; i++) {
-            let curS = base * (1 - i/tiers); if(curS < 1) break;
-            let geo = new THREE.BoxGeometry(curS/2, 2, curS);
-            let bL = new THREE.Mesh(geo, goldM); bL.position.set(-curS/4, i*2, 0); pyramid.add(bL);
-            let bR = new THREE.Mesh(geo, silvM); bR.position.set(curS/4, i*2, 0); pyramid.add(bR);
-        }
-        const cap = new THREE.Mesh(new THREE.ConeGeometry(5, 7, 4), goldM); cap.position.y = tiers*2 + 2; pyramid.add(cap);
-        const owl = new THREE.Group();
-        owl.add(new THREE.Mesh(new THREE.SphereGeometry(1.8, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
-        const eL = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eL.position.set(-0.6, 0.5, 1.4);
-        const eR = eL.clone(); eR.position.set(0.6, 0.5, 1.4);
-        owl.add(eL, eR); owl.position.y = cap.position.y + 4; pyramid.add(owl);
-        
-        pyramid.position.y = -70; scene.add(pyramid);
-
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-            stars.rotation.y += 0.0001;
-            meteors.forEach(m => {
-                m.translateZ(m.userData.speed);
-                if(m.position.y < -400) { m.position.y = 500; m.position.x = THREE.MathUtils.randFloatSpread(1200); }
-            });
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        if(window.innerWidth > 768) {
-            document.addEventListener('mousemove', (e) => { 
-                const c=document.getElementById('cursor'); c.style.left=e.clientX+'px'; c.style.top=e.clientY+'px'; 
-            });
-        }
-        window.addEventListener('resize', () => { camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
-    </script>
-</body>
-</html>
+                height: '0', width: '0', videoId:
