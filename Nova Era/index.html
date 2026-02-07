@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
-        :root { --gold: #D4AF37; --bright-gold: #FFD700; --silver: #E0E0E0; --white: #ffffff; --glass: rgba(0, 0, 0, 0.4); --lapis: #00ffff; --sand: #C2B280; }
+        :root { --gold: #D4AF37; --bright-gold: #FFD700; --silver: #E0E0E0; --white: #ffffff; --glass-dark: rgba(10, 10, 10, 0.85); --lapis: #00ffff; --sand: #C2B280; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body, html { background: #000; color: #fff; font-family: 'Marcellus', serif; overflow-x: hidden; height: 100%; cursor: none; }
@@ -22,7 +22,7 @@
             transform: translate(-50%, -50%); mix-blend-mode: screen;
         }
 
-        #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #000; transition: 2.5s cubic-bezier(0.7, 0, 0.3, 1); }
+        #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #000; transition: 2s cubic-bezier(0.7, 0, 0.3, 1); }
         #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.7) brightness(0.2); }
         
         .gate-content { position: relative; z-index: 10; text-align: center; width: 90%; }
@@ -59,11 +59,11 @@
 
         .secao-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 2.2rem; text-align: center; margin-bottom: 60px; letter-spacing: 15px; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 20px; }
 
-        /* VIDRO FOSCO (BLUR 50PX) */
+        /* VIDRO FOSCO OPACO (BLUR 50PX) */
         .verbo-text-block { 
             font-size: 1.25rem; line-height: 2.2; color: var(--silver); 
             text-align: center; margin-bottom: 60px; font-style: italic;
-            padding: 45px; background: rgba(0,0,0,0.5);
+            padding: 45px; background: var(--glass-dark);
             border: 1px solid rgba(212,175,55,0.1); width: 100%;
             display: flex; flex-direction: column; align-items: center;
             backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
@@ -72,8 +72,8 @@
         .verbo-content { max-width: 800px; text-align: center; white-space: pre-wrap; }
 
         .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
-        /* VIDRO FOSCO (BLUR 50PX) NAS CAIXAS */
-        .caixa-dourada { border: 1px solid var(--gold); background: rgba(212, 175, 55, 0.05); padding: 45px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); transition: 0.8s; text-align: center; }
+        /* MANUSCRITOS COM FUNDO OPACO E FOSCO */
+        .caixa-dourada { border: 1px solid var(--gold); background: var(--glass-dark); padding: 45px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); transition: 0.8s; text-align: center; }
         .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2); }
         
         .livro-titulo { color: var(--gold) !important; font-family: 'Bodoni Moda'; margin-bottom: 15px; text-transform: uppercase; }
@@ -112,7 +112,7 @@
 
     <div class="container" id="main-container">
         <div id="home" class="page active">
-            <div class="glass-box" style="background: rgba(0,0,0,0.5); padding: 60px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); border: 1px solid rgba(255,255,255,0.1);">
+            <div class="glass-box" style="background: var(--glass-dark); padding: 60px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); border: 1px solid rgba(255,255,255,0.1);">
                 <div style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center;">
                     <img src="perfil.jpg" alt="Wagner Abrahão" style="width: 240px; height: 340px; object-fit: cover; border: 1px solid rgba(255,255,255,0.2);">
                     <div style="flex: 1; min-width: 300px; font-size: 1.2rem; line-height: 2.1; font-style: italic;">
@@ -170,23 +170,22 @@
             player = new YT.Player('yt-player', {
                 height: '0', width: '0', videoId: 'UkgSbK_PjXw',
                 playerVars: { 
-                    'autoplay': 0, 'controls': 0, 'mute': 1, 'loop': 1, 
-                    'playlist': 'UkgSbK_PjXw', 'playsinline': 1 
+                    'autoplay': 0, 'controls': 0, 'mute': 0, 'loop': 1, 
+                    'playlist': 'UkgSbK_PjXw', 'playsinline': 1, 'enablejsapi': 1 
                 },
                 events: { 'onReady': (e) => { isReady = true; } }
             });
         }
 
-        // FUNÇÃO DE UNLOCK OTIMIZADA PARA MOBILE
+        // CHAVE SÔNICA MOBILE OTIMIZADA
         function unlock() {
             if(isReady && player) { 
+                // Ação imediata no milissegundo do toque
                 player.unMute(); 
-                player.setVolume(80);
                 player.playVideo();
-                // Força um segundo comando para garantir o bypass do Safari/Chrome mobile
-                setTimeout(() => {
-                    try { player.playVideo(); } catch(e) {}
-                }, 100);
+                player.setVolume(85);
+                // Segundo disparo para garantir bypass em navegadores restritivos
+                setTimeout(() => { try { player.playVideo(); } catch(e) {} }, 50);
             }
             document.getElementById('gate').style.opacity = '0';
             setTimeout(() => {
@@ -194,7 +193,7 @@
                 document.getElementById('main-nav').style.opacity = '1';
                 document.getElementById('main-container').style.opacity = '1';
                 document.getElementById('canvas-3d').style.opacity = '1';
-            }, 1500);
+            }, 1000);
         }
 
         function show(id) { 
@@ -228,21 +227,20 @@
         const stoneM = new THREE.MeshPhongMaterial({ color: 0xC2B280, specular: 0x111111, shininess: 2, flatShading: true });
         const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1 });
         
-        // PIRÂMIDE DE QUÉOPS (MONUMENTAL)
-        let levels = 160; let baseSize = 260; let h = 1.8;
+        let levels = 160; let baseSize = 280; let h = 2.0;
         for(let i=0; i<levels; i++) {
             let size = baseSize * (1 - i/levels); if(size < 1) break;
             let layer = new THREE.Mesh(new THREE.BoxGeometry(size, h, size), stoneM);
             layer.position.set(0, i*h, 0);
             pyramid.add(layer);
         }
-        const cap = new THREE.Mesh(new THREE.ConeGeometry(12, 18, 4), goldM); cap.position.y = levels*h + 8; pyramid.add(cap);
+        const cap = new THREE.Mesh(new THREE.ConeGeometry(12, 20, 4), goldM); cap.position.y = levels*h + 10; pyramid.add(cap);
         const owl = new THREE.Group();
-        owl.add(new THREE.Mesh(new THREE.SphereGeometry(2.5, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
-        const eL = new THREE.Mesh(new THREE.SphereGeometry(0.6, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eL.position.set(-0.8, 0.8, 1.8);
-        const eR = eL.clone(); eR.position.set(0.8, 0.8, 1.8); owl.add(eL, eR); owl.position.y = cap.position.y + 10; pyramid.add(owl);
+        owl.add(new THREE.Mesh(new THREE.SphereGeometry(3, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
+        const eL = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eL.position.set(-1.0, 1.0, 2.0);
+        const eR = eL.clone(); eR.position.set(1.0, 1.0, 2.0); owl.add(eL, eR); owl.position.y = cap.position.y + 12; pyramid.add(owl);
         
-        pyramid.position.y = -120; scene.add(pyramid);
+        pyramid.position.y = -140; scene.add(pyramid);
 
         function animate() {
             requestAnimationFrame(animate);
