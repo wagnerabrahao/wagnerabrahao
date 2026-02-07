@@ -58,21 +58,24 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         .secao-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 2.2rem; text-align: center; margin-bottom: 60px; letter-spacing: 15px; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 20px; }
-        .verbo-item { border-bottom: 1px solid rgba(212,175,55,0.15); padding: 60px 0; text-align: center; }
-        .poesia-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.8rem; margin-bottom: 25px; letter-spacing: 5px; text-transform: uppercase; }
-        .poesia-texto { font-size: 1.25rem; line-height: 2.2; color: var(--silver); font-style: italic; white-space: pre-wrap; }
-        .aforismo-box { border-left: 3px solid var(--gold); padding: 25px 40px; margin: 40px 0; font-size: 1.4rem; line-height: 1.9; color: #fff; background: rgba(255,255,255,0.02); text-align: left; }
-        
-        .poema-fragmento { border: 1px solid rgba(255,255,255,0.1); padding: 40px; margin-bottom: 40px; text-align: center; backdrop-filter: blur(20px); font-size: 1.2rem; color: var(--silver); font-style: italic; }
+
+        .verbo-text-block { 
+            font-size: 1.25rem; line-height: 2.2; color: var(--silver); 
+            text-align: center; margin-bottom: 60px; font-style: italic;
+            padding: 45px; background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(212,175,55,0.1); width: 100%;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .verbo-header { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.6rem; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; font-style: normal; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
+        .verbo-content { max-width: 800px; text-align: center; }
 
         .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
         .caixa-dourada { border: 1px solid var(--gold); background: rgba(212, 175, 55, 0.05); padding: 45px; backdrop-filter: blur(30px); transition: 0.8s; text-align: center; }
         .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2); }
-        /* CORREÇÃO: Comentários/Descrições em Branco */
-        .livro-resumo { color: var(--white); opacity: 0.9; font-style: italic; margin-top: 15px; line-height: 1.7; }
+        /* CORREÇÃO: Títulos em Branco e Resumos em Branco */
+        .livro-titulo { color: var(--white); font-family: 'Bodoni Moda'; margin-bottom: 15px; text-transform: uppercase; }
+        .livro-resumo { color: var(--white); opacity: 0.8; font-style: italic; margin-top: 15px; line-height: 1.7; }
 
-        /* PORTAIS SOCIAIS */
-        .social-portal-grid { display: flex; gap: 40px; justify-content: center; margin-top: 50px; }
         .portal-btn { width: 60px; height: 60px; border: 2px solid var(--lapis); border-radius: 50%; display: flex; align-items: center; justify-content: center; fill: var(--lapis); transition: 0.6s; background: rgba(0,255,255,0.05); }
         .portal-btn:hover { background: var(--lapis); fill: #000; transform: scale(1.15) translateY(-5px); box-shadow: 0 0 30px rgba(0, 255, 255, 0.4); }
 
@@ -108,7 +111,9 @@
             <div class="glass-box" style="background: rgba(255,255,255,0.04); padding: 60px; backdrop-filter: blur(50px);">
                 <div style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center;">
                     <img src="perfil.jpg" alt="Wagner Abrahão" style="width: 240px; height: 340px; object-fit: cover; border: 1px solid rgba(255,255,255,0.2);">
-                    <div style="flex: 1; min-width: 300px; font-size: 1.2rem; line-height: 2.1; font-style: italic;">"Arquiteto das frequências que acolhem e iluminam. Minha obra é um ponto de ancoragem para aqueles que buscam o acalento no vácuo da matéria. Através da harmonia do Verbo, projeto pontes de sabedoria para que cada leitor redescubra a arquitetura da própria luz.""</div>
+                    <div style="flex: 1; min-width: 300px; font-size: 1.2rem; line-height: 2.1; font-style: italic;">
+                        "Buscador das frequências que acolhem e iluminam. Minha obra busca ser apenas um suporte para quem procura acalento na densidade da vida. Através da harmonia do Verbo, convido você a reconhecermos, juntos, a arquitetura de luz que já habita em cada um de nós."
+                    </div>
                 </div>
                 <div style="font-family:'Great Vibes'; font-size:3.5rem; color:var(--gold); text-align:right; margin-top:50px;">Wagner Abrahão</div>
             </div>
@@ -116,51 +121,50 @@
 
         <div id="contos" class="page">
             <h2 class="secao-titulo">Poemas e Aforismos</h2>
-            <div class="aforismo-box">"A verdade é o entulho que sobra quando todas as suas mentiras de proteção são bombardeadas pelo infinito."</div>
-            <div class="aforismo-box">"A luz que você busca no silêncio do outro é o reflexo da centelha que já aquece o seu próprio coração. No invisível, somos todos chamas de uma mesma fogueira espiritual."</div>
-           <div class="aforismo-box">"Ninguém caminha sozinho na densidade da vida. Minha obra busca ser o acalento necessário para que você redescubra a beleza da sua própria arquitetura interior."</div>
             
-            <div class="verbo-item">
-                <div class="poesia-titulo">A Anestesia de Dante</div>
-                <div class="poesia-texto">Dante não sabia que estava dormindo.
-Quarenta e dois anos em nota sustenida,
-Afinado em rotina, vida sem melodia,
-Até que o abismo abriu-se em sua vida.
-                </div>
+            <div class="verbo-text-block">
+                <div class="verbo-header">Anestesia Divina</div>
+                <div class="verbo-content">"Dante não sabia que estava dormindo. Durante quarenta e dois anos, viveu em estado de anestesia divina — não anestesiado pela falta de sensação, mas pelo excesso controlado. Até que a perda quebrou o mecanismo, e o que veio depois não foi colapso, foi revelação."</div>
             </div>
 
-            <div class="verbo-item">
-                <div class="poesia-titulo">A Arquitetura do Nada</div>
-                <div class="poesia-texto">Tijolo por tijolo, ergui o meu silêncio, No canteiro de obras do que nunca fui. A planta era o vácuo, o mestre era o tempo, E a fundação, a luz que no peito flui.</div>
+            <div class="verbo-text-block">
+                <div class="verbo-header">A Arquitetura do Invisível</div>
+                <div class="verbo-content">"O corpo não mente; ele traduz o que a alma não consegue mais carregar. Quando o ego silencia, os sentidos se expandem para oferecer suporte ao próximo. Onde despertar e paz se encontram, o Arquiteto constrói pontes de sabedoria."</div>
             </div>
 
-            <div class="poema-fragmento">"O Olho que Vê não pisca diante do abismo.<br>Ele sabe que o fundo é apenas o começo do voo."</div>
+            <div class="verbo-text-block">
+                <div class="verbo-header">A Fogueira Espiritual</div>
+                <div class="verbo-content">"A luz que você busca no silêncio do outro é o reflexo da centelha que já aquece o seu próprio coração. No invisível, somos todos chamas de uma mesma fogueira espiritual."</div>
+            </div>
+
+            <div class="verbo-text-block">
+                <div class="verbo-header">Ponte de Amparo</div>
+                <div class="verbo-content">"A verdadeira sabedoria não é um trono de isolamento, mas uma ponte de amparo. Ofereço o meu Verbo como suporte para que, juntos, possamos atravessar as névoas da dúvida."</div>
+            </div>
+
+            <div class="verbo-text-block">
+                <div class="verbo-header">Acalento Necessário</div>
+                <div class="verbo-content">"Ninguém caminha sozinho na densidade da vida. Minha obra busca ser o acalento necessário para que você redescubra a beleza da sua própria arquitetura interior."</div>
+            </div>
         </div>
 
         <div id="obras" class="page">
             <h2 class="secao-titulo">Manuscritos de Luz</h2>
             <div class="livros-grid">
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Anestesia Divina</h3><p class="livro-resumo">O despertar místico através da rendição absoluta ao invisível e o colapso do ego.</p><div style="margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; color:var(--white);">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Arquitetura do Invisível</h3><p class="livro-resumo">Um tratado sobre as estruturas ocultas que sustentam a realidade eterna.</p><div style="margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; color:var(--white);">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Centelha Inquieta</h3><p class="livro-resumo">A jornada poética da luz que resiste ao vácuo da matéria.</p><div style="margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; color:var(--white);">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">Alquimia do Ser</h3><p class="livro-resumo">Saga alquímica sobre a conexão das frequências espirituais através das gerações.</p><div style="margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; color:var(--white);">Wagner Abrahão</div></div>
+                <div class="caixa-dourada"><h3 class="livro-titulo">A Anestesia Divina</h3><p class="livro-resumo">O despertar místico através da rendição absoluta ao invisível e o colapso do ego.</p><div style="margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; color:var(--gold);">Wagner Abrahão</div></div>
+                <div class="caixa-dourada"><h3 class="livro-titulo">A Arquitetura do Invisível</h3><p class="livro-resumo">Um tratado sobre as estruturas ocultas que sustentam a realidade eterna.</p><div style="margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; color:var(--gold);">Wagner Abrahão</div></div>
+                <div class="caixa-dourada"><h3 class="livro-titulo">A Centelha Inquieta</h3><p class="livro-resumo">A jornada poética da luz que resiste ao vácuo da matéria.</p><div style="margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; color:var(--gold);">Wagner Abrahão</div></div>
+                <div class="caixa-dourada"><h3 class="livro-titulo">A Ressonância das Almas</h3><p class="livro-resumo">Saga alquímica sobre a conexão das frequências espirituais através das gerações.</p><div style="margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; color:var(--gold);">Wagner Abrahão</div></div>
             </div>
         </div>
 
         <div id="contato" class="page">
             <div style="text-align: center; padding-top: 50px;">
                 <a href="mailto:wagner.abrahao.31@gmail.com" style="color:var(--white); font-size: 1.8rem; text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda';">wagner.abrahao.31@gmail.com</a>
-                
-                <div class="social-portal-grid">
-                    <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" class="portal-btn" title="Instagram">
-                        <svg viewBox="0 0 24 24" width="28"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm8.12 3.63a.87.87 0 1 1 0 1.74.87.87 0 0 1 0-1.74zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" class="portal-btn" title="TikTok">
-                        <svg viewBox="0 0 24 24" width="28"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.26.54-4.5 2.1-6.11 1.62-1.67 3.97-2.58 6.3-2.4v4.27c-1.2-.07-2.47.3-3.36 1.12-.8.71-1.22 1.75-1.17 2.82.02 1.02.48 2.04 1.25 2.73.94.83 2.27 1.12 3.48.77 1.14-.27 2.09-1.15 2.53-2.22.18-.51.25-1.05.24-1.58.02-3.34 0-6.68.01-10.03z"/></svg>
-                    </a>
-                    <a href="https://www.threads.com/@wagnerabrahao_" target="_blank" class="portal-btn" title="Threads">
-                        <svg viewBox="0 0 24 24" width="28"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M15.11 15.06a3.59 3.59 0 0 1-2.92 1.44 3.39 3.39 0 0 1-3.41-3.39 3.39 3.39 0 0 1 3.41-3.39c.86 0 1.63.31 2.22.82l1.04-1.12a5.16 5.16 0 0 0-3.26-1.19 4.88 4.88 0 0 0-4.91 4.88 4.88 4.88 0 0 0 4.91 4.88c1.37 0 2.58-.57 3.44-1.48l-1.52-1.45z"/></svg>
-                    </a>
+                <div style="display: flex; gap: 40px; justify-content: center; margin-top: 50px;">
+                    <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm8.12 3.63a.87.87 0 1 1 0 1.74.87.87 0 0 1 0-1.74zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg></a>
+                    <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.26.54-4.5 2.1-6.11 1.62-1.67 3.97-2.58 6.3-2.4v4.27c-1.2-.07-2.47.3-3.36 1.12-.8.71-1.22 1.75-1.17 2.82.02 1.02.48 2.04 1.25 2.73.94.83 2.27 1.12 3.48.77 1.14-.27 2.09-1.15 2.53-2.22.18-.51.25-1.05.24-1.58.02-3.34 0-6.68.01-10.03z"/></svg></a>
+                    <a href="https://www.threads.com/@wagnerabrahao_" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M15.11 15.06a3.59 3.59 0 0 1-2.92 1.44 3.39 3.39 0 0 1-3.41-3.39 3.39 3.39 0 0 1 3.41-3.39c.86 0 1.63.31 2.22.82l1.04-1.12a5.16 5.16 0 0 0-3.26-1.19 4.88 4.88 0 0 0-4.91 4.88 4.88 4.88 0 0 0 4.91 4.88c1.37 0 2.58-.57 3.44-1.48l-1.52-1.45z"/></svg></a>
                 </div>
             </div>
         </div>
@@ -175,16 +179,14 @@ Até que o abismo abriu-se em sua vida.
         let player, isReady = false;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
-                height: '0', width: '0', videoId: 'nmZ1_rg9zG4',
-                playerVars: { 'autoplay': 1, 'controls': 0, 'mute': 0, 'loop': 1, 'playlist': 'nmZ1_rg9zG4' },
+                height: '0', width: '0', videoId: 'UkgSbK_PjXw',
+                playerVars: { 'autoplay': 1, 'controls': 0, 'mute': 0, 'loop': 1, 'playlist': 'UkgSbK_PjXw' },
                 events: { 'onReady': (e) => { isReady = true; } }
             });
         }
         function unlock() {
             if(isReady && player) { 
-                player.unMute(); 
-                player.setVolume(75); 
-                player.playVideo(); 
+                player.unMute(); player.setVolume(75); player.playVideo(); 
             }
             document.getElementById('gate').style.opacity = '0';
             setTimeout(() => {
@@ -214,11 +216,11 @@ Até que o abismo abriu-se em sua vida.
         goldSun.position.set(200, 400, 200); scene.add(goldSun);
         scene.add(new THREE.AmbientLight(0x404040, 1.5));
         
-        // ESTRELAS E METEOROS (RESTAURADOS)
         const starGeo = new THREE.BufferGeometry(); const starC = [];
         for(let i=0; i<10000; i++) starC.push(THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500));
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starC, 3));
         const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.9, transparent: true, opacity: 0.6 })); scene.add(stars);
+        
         const meteors = [];
         function createMeteor() {
             const m = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent:true }));
@@ -229,7 +231,6 @@ Até que o abismo abriu-se em sua vida.
         }
         for(let i=0; i<35; i++) createMeteor();
 
-        // NOVA PIRÂMIDE 5D REALISTA (PEDRA + OURO/PRATA)
         const pyramid = new THREE.Group();
         const stoneM = new THREE.MeshPhongMaterial({ color: 0xC2B280, specular: 0x111111, shininess: 5, flatShading: true });
         const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.2 });
@@ -241,7 +242,6 @@ Até que o abismo abriu-se em sua vida.
             let geo = new THREE.BoxGeometry(curS/2, 2.5, curS);
             let bL = new THREE.Mesh(geo, stoneM); bL.position.set(-curS/4, i*2.5, 0); pyramid.add(bL);
             let bR = new THREE.Mesh(geo, stoneM); bR.position.set(curS/4, i*2.5, 0); pyramid.add(bR);
-            // Efeito 5D no centro dos tijolos
             if(i % 10 === 0) {
                 let eL = new THREE.Mesh(new THREE.BoxGeometry(curS/10, 2.6, 2.6), goldM); eL.position.set(-curS/4, i*2.5, 0); pyramid.add(eL);
                 let eR = new THREE.Mesh(new THREE.BoxGeometry(curS/10, 2.6, 2.6), silvM); eR.position.set(curS/4, i*2.5, 0); pyramid.add(eR);
