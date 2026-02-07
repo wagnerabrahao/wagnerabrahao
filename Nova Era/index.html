@@ -2,260 +2,1024 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wagner Abrahão | Arquiteto do Invisível</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400&family=Cinzel:wght@400;700&family=Great+Vibes&family=Marcellus&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --bright-gold: #FFD700; --silver: #E0E0E0; --white: #ffffff; --glass-dark: rgba(10, 10, 10, 0.85); --lapis: #00ffff; --sand: #C2B280; }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body, html { background: #000; color: #fff; font-family: 'Marcellus', serif; overflow-x: hidden; height: 100%; cursor: none; }
-
-        #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: auto; opacity: 0; transition: opacity 3s ease; touch-action: pan-y; }
-
-        #cursor { 
-            width: 12px; height: 12px; background: #fff; border-radius: 50%; 
-            position: fixed; pointer-events: none; z-index: 10000; 
-            box-shadow: 0 0 25px 10px #fff, 0 0 50px 20px var(--bright-gold); 
-            transform: translate(-50%, -50%); mix-blend-mode: screen;
+        /* ===== VARIÁVEIS GLOBAIS ===== */
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
+            --silver: #E8E8E8;
+            --white: #FFFFFF;
+            --black: #0A0A0A;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-dark: rgba(10, 10, 10, 0.95);
+            --neon-blue: #00FFFF;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
-
-        #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #000; transition: 2s cubic-bezier(0.7, 0, 0.3, 1); }
-        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.7) brightness(0.2); }
         
-        .gate-content { position: relative; z-index: 10; text-align: center; width: 90%; }
-        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2.5rem, 10vw, 5rem); font-weight: 900; letter-spacing: 15px; text-transform: uppercase; color: var(--silver); }
+        /* ===== RESET E BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        .gate-btn { 
-            border: 2px solid var(--bright-gold); color: #fff; background: rgba(212, 175, 55, 0.1); 
-            padding: 25px 80px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 10px; 
-            text-transform: uppercase; font-size: 0.9rem; margin-top: 50px; transition: 1s; 
-            backdrop-filter: blur(20px); animation: goldPulse 3s infinite;
+        html {
+            scroll-behavior: smooth;
         }
-        @keyframes goldPulse {
-            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: var(--gold); }
-            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.7); border-color: var(--bright-gold); transform: scale(1.02); }
-            100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: var(--gold); }
-        }
-        .gate-btn:hover { background: var(--bright-gold); color: #000; letter-spacing: 15px; animation: none; }
-
-        nav { 
-            position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
-            flex-wrap: wrap; gap: clamp(10px, 4vw, 40px); padding: 35px 10px; z-index: 2000; opacity: 0; transition: 2s;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
-            backdrop-filter: blur(15px);
-        }
-        nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; cursor: pointer; opacity: 0.5; transition: 0.5s; font-weight: bold; }
-        nav a:hover, nav a.active { opacity: 1; color: var(--gold); border-bottom: 1px solid var(--gold); }
-
-        .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 160px 8% 100px; overflow-y: auto; scrollbar-width: none; }
-        .container::-webkit-scrollbar { display: none; }
         
-        .page { display: none; width: 100%; max-width: 1100px; animation: slideUp 1.5s ease forwards; }
-        .page.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-        .secao-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 2.2rem; text-align: center; margin-bottom: 60px; letter-spacing: 15px; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 20px; }
-
-        /* VIDRO FOSCO OPACO (BLUR 50PX) */
-        .verbo-text-block { 
-            font-size: 1.25rem; line-height: 2.2; color: var(--silver); 
-            text-align: center; margin-bottom: 60px; font-style: italic;
-            padding: 45px; background: var(--glass-dark);
-            border: 1px solid rgba(212,175,55,0.1); width: 100%;
-            display: flex; flex-direction: column; align-items: center;
-            backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+        body {
+            background: var(--black);
+            color: var(--silver);
+            font-family: 'Marcellus', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
-        .verbo-header { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.6rem; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; font-style: normal; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
-        .verbo-content { max-width: 800px; text-align: center; white-space: pre-wrap; }
-
-        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
-        /* MANUSCRITOS COM FUNDO OPACO E FOSCO */
-        .caixa-dourada { border: 1px solid var(--gold); background: var(--glass-dark); padding: 45px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); transition: 0.8s; text-align: center; }
-        .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2); }
         
-        .livro-titulo { color: var(--gold) !important; font-family: 'Bodoni Moda'; margin-bottom: 15px; text-transform: uppercase; }
-        .livro-resumo { color: var(--white) !important; opacity: 0.9; font-style: italic; margin-top: 15px; line-height: 1.7; }
-        .livro-assinatura { color: var(--gold) !important; margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; }
-
-        .portal-btn { width: 60px; height: 60px; border: 2px solid var(--lapis); border-radius: 50%; display: flex; align-items: center; justify-content: center; fill: var(--lapis); transition: 0.6s; background: rgba(0,255,255,0.05); }
-        .portal-btn:hover { background: var(--lapis); fill: #000; transform: scale(1.15) translateY(-5px); box-shadow: 0 0 30px rgba(0, 255, 255, 0.4); }
-
+        /* ===== BACKGROUND ANIMADO ===== */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, #0A0A0A 0%, #1A1A1A 100%);
+        }
+        
+        /* ===== PORTAL DE ENTRADA ===== */
+        #portal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease, visibility 1.5s;
+        }
+        
+        .portal-content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .portal-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .portal-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--silver);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .portal-button {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 1.5rem 4rem;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .portal-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: 0.6s;
+        }
+        
+        .portal-button:hover::before {
+            left: 100%;
+        }
+        
+        .portal-button:hover {
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        /* ===== NAVEGAÇÃO ===== */
+        #main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 900;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .nav-container {
+            display: flex;
+            gap: clamp(1.5rem, 4vw, 3rem);
+        }
+        
+        .nav-item {
+            color: var(--silver);
+            text-decoration: none;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            position: relative;
+            transition: var(--transition);
+            opacity: 0.7;
+        }
+        
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-item:hover::before,
+        .nav-item.active::before {
+            width: 100%;
+        }
+        
+        .nav-item:hover,
+        .nav-item.active {
+            color: var(--gold);
+            opacity: 1;
+        }
+        
+        /* ===== CONTEÚDO PRINCIPAL ===== */
+        #main-content {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* ===== SEÇÃO TÍTULO ===== */
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .gold-text {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .silver-text {
+            color: var(--silver);
+        }
+        
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(20px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            transition: 0.6s;
+        }
+        
+        .card:hover::before {
+            left: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow);
+        }
+        
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .card-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--silver);
+            margin-bottom: 2rem;
+        }
+        
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-align: right;
+            margin-top: 2rem;
+        }
+        
+        /* ===== GRID DE LIVROS ===== */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .book-card {
+            background: var(--glass);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .book-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--silver);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* ===== CONTATO ===== */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .email-link {
+            display: inline-block;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            margin: 2rem 0;
+            transition: var(--transition);
+        }
+        
+        .email-link:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-3px);
+        }
+        
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-blue);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background: var(--neon-blue);
+            color: var(--black);
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* ===== CONTROLES DE ÁUDIO ===== */
+        .audio-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 800;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--glass-dark);
+            padding: 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+        
+        .audio-controls.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .audio-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .audio-button:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .volume-slider {
+            width: 100px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gold);
+            cursor: pointer;
+        }
+        
+        /* ===== PIRÂMIDE 3D ===== */
+        #pyramid-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+        }
+        
+        /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 768px) {
-            body { cursor: auto; } #cursor { display: none !important; }
-            .container { padding-top: 130px; }
+            .portal-title {
+                letter-spacing: 0.2em;
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+            
+            .portal-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            #main-nav {
+                padding: 1rem;
+            }
+            
+            .nav-container {
+                gap: 1rem;
+            }
+            
+            .nav-item {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.5rem;
+            }
+            
+            #main-content {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .card {
+                padding: 2rem;
+            }
+            
+            .audio-controls {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .portal-title {
+                letter-spacing: 0.1em;
+            }
+            
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-grid {
+                flex-wrap: wrap;
+            }
+        }
+        
+        /* ===== UTILITÁRIOS ===== */
+        .hidden {
+            display: none !important;
+        }
+        
+        .visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+        
+        /* ===== CURSOR PERSONALIZADO ===== */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.2s;
         }
     </style>
 </head>
 <body>
-
-    <div id="cursor"></div>
-    <canvas id="canvas-3d"></canvas>
-
-    <div id="gate">
-        <div id="gate-bg"></div>
-        <div class="gate-content">
-            <h1 class="gate-title">Wagner Abrahão</h1>
-            <div style="font-family:'Great Vibes'; font-size:2.8rem; color:var(--silver); margin-top:15px;">Arquiteto do Invisível</div>
-            <button class="gate-btn" onclick="unlock()">Ativar Harmonia</button>
+    <!-- Background animado -->
+    <div class="bg-animation"></div>
+    
+    <!-- Container da pirâmide 3D -->
+    <div id="pyramid-container"></div>
+    
+    <!-- Portal de entrada -->
+    <div id="portal">
+        <div class="portal-content">
+            <h1 class="portal-title">WAGNER ABRAHÃO</h1>
+            <div class="portal-subtitle">Arquiteto do Invisível</div>
+            <button class="portal-button" onclick="enterPortal()">
+                <i class="fas fa-gem" style="margin-right: 10px;"></i>
+                ATIVAR PORTAL
+            </button>
+            <p style="color: var(--silver); margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">
+                Toque ou pressione qualquer tecla
+            </p>
         </div>
     </div>
-
+    
+    <!-- Navegação -->
     <nav id="main-nav">
-        <a onclick="show('home')" class="active">O Arquiteto</a>
-        <a onclick="show('contos')">Poemas e Aforismos</a>
-        <a onclick="show('obras')">Manuscritos</a>
-        <a onclick="show('contato')">Contato</a>
+        <div class="nav-container">
+            <a class="nav-item active" onclick="showPage('home')">O Arquiteto</a>
+            <a class="nav-item" onclick="showPage('poems')">Poemas</a>
+            <a class="nav-item" onclick="showPage('books')">Manuscritos</a>
+            <a class="nav-item" onclick="showPage('contact')">Contato</a>
+        </div>
     </nav>
-
-    <div class="container" id="main-container">
-        <div id="home" class="page active">
-            <div class="glass-box" style="background: var(--glass-dark); padding: 60px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); border: 1px solid rgba(255,255,255,0.1);">
-                <div style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center;">
-                    <img src="perfil.jpg" alt="Wagner Abrahão" style="width: 240px; height: 340px; object-fit: cover; border: 1px solid rgba(255,255,255,0.2);">
-                    <div style="flex: 1; min-width: 300px; font-size: 1.2rem; line-height: 2.1; font-style: italic;">
-                        "Arquiteto das frequências que acolhem e iluminam. Minha obra busca ser apenas um suporte para quem procura acalento na densidade da vida. Através da harmonia do Verbo, convido você a reconhecermos, juntos, a arquitetura de luz que já habita em cada um de nós."
+    
+    <!-- Conteúdo principal -->
+    <main id="main-content">
+        <!-- Página Inicial -->
+        <section id="home" class="page active">
+            <div class="card">
+                <div class="card-text">
+                    "Arquiteto das frequências que acolhem e iluminam. Minha obra busca ser apenas um suporte para quem procura acalento na densidade da vida. Através da harmonia do Verbo, convido você a reconhecermos, juntos, a arquitetura de luz que já habita em cada um de nós."
+                </div>
+                <div class="signature">Wagner Abrahão</div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">A JORNADA ESPIRITUAL</h3>
+                <div class="card-text">
+                    Cada manuscrito é uma porta para dimensões interiores. A "Anestesia Divina" revela o despertar através da rendição, enquanto a "Arquitetura do Invisível" mapeia as estruturas ocultas da realidade. São caminhos para quem busca transcender a matéria e acessar a essência pura da existência.
+                </div>
+            </div>
+        </section>
+        
+        <!-- Página Poemas -->
+        <section id="poems" class="page">
+            <h2 class="section-title gold-text">Poemas e Aforismos</h2>
+            
+            <div class="card">
+                <h3 class="card-title">ANESTESIA DIVINA</h3>
+                <div class="card-text">
+                    Dante não sabia que estava dormindo. Durante quarenta e dois anos, viveu em estado de anestesia divina. Excesso de rotina, de precisão, de identidades fixas. Sua existência era um Lá central perpétuo. Até que a perda se tornou revelação. A dor, um portal. O vazio, a plenitude. E ele descobriu que nunca esteve acordado até aprender a dormir acordado.
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">A ARQUITETURA DO INVISÍVEL</h3>
+                <div class="card-text">
+                    "O corpo não mente; ele traduz o que a alma não consegue mais carregar. Quando o ego silencia, os sentidos se expandem para oferecer suporte ao próximo. Onde despertar e paz se encontram, o Arquiteto constrói pontes de sabedoria entre mundos. A verdadeira morada não tem paredes - habita no espaço entre os átomos, na pausa entre as palavras, no silêncio entre os pensamentos."
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">CENTELHA INQUIETA</h3>
+                <div class="card-text">
+                    Há um fogo que não se apaga com água nem vento. Arde no vácuo entre os ossos, pulsando como memória ancestral. É a centelha que recusa o esquecimento, a luz que persiste quando todas as outras se vão. Não é chama que consome, mas brasa que aquece a alma nos invernos mais longos.
+                </div>
+            </div>
+        </section>
+        
+        <!-- Página Livros -->
+        <section id="books" class="page">
+            <h2 class="section-title gold-text">Manuscritos</h2>
+            
+            <div class="books-grid">
+                <div class="book-card">
+                    <h3 class="book-title">A ANESTESIA DIVINA</h3>
+                    <div class="book-description">
+                        O despertar místico através da rendição absoluta ao invisível. Uma jornada que atravessa os véus da percepção comum.
+                    </div>
+                    <div style="font-family: 'Great Vibes'; color: var(--gold); font-size: 1.5rem; text-align: right;">
+                        Wagner Abrahão
                     </div>
                 </div>
-                <div style="font-family:'Great Vibes'; font-size:3.5rem; color:var(--gold); text-align:right; margin-top:50px;">Wagner Abrahão</div>
-            </div>
-        </div>
-
-        <div id="contos" class="page">
-            <h2 class="secao-titulo">Poemas e Aforismos</h2>
-            
-            <div class="verbo-text-block">
-                <div class="verbo-header">Anestesia Divina</div>
-                <div class="verbo-content">Dante não sabia que estava dormindo. Durante quarenta e dois anos, viveu em estado de anestesia divina. Excesso de rotina, de precisão, de identidades fixas. Sua existência era um Lá central perpétuo. Até que a perda se tornou revelação.</div>
-            </div>
-
-            <div class="verbo-text-block">
-                <div class="verbo-header">A Arquitetura do Invisível</div>
-                <div class="verbo-content">"O corpo não mente; ele traduz o que a alma não consegue mais carregar. Quando o ego silencia, os sentidos se expandem para oferecer suporte ao próximo. Onde despertar e paz se encontram, o Arquiteto constrói pontes de sabedoria."</div>
-            </div>
-        </div>
-
-        <div id="obras" class="page">
-            <h2 class="secao-titulo">Manuscritos</h2>
-            <div class="livros-grid">
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Anestesia Divina</h3><p class="livro-resumo">O despertar místico através da rendição absoluta ao invisível e o colapso do ego.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Arquitetura do Invisível</h3><p class="livro-resumo">Um tratado sobre as estruturas ocultas que sustentam a realidade eterna.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Centelha Inquieta</h3><p class="livro-resumo">A jornada poética da luz que resiste ao vácuo da matéria.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">Alquimia do Ser</h3><p class="livro-resumo">Saga alquímica sobre a conexão das frequências espirituais através das gerações.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
-            </div>
-        </div>
-
-        <div id="contato" class="page">
-            <div style="text-align: center; padding-top: 50px;">
-                <a href="mailto:wagner.abrahao.31@gmail.com" style="color:var(--white); font-size: 1rem; text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda'; opacity: 0.8;">wagner.abrahao.31@gmail.com</a>
-                <div class="social-portal-grid" style="display:flex; gap:30px; justify-content:center; margin-top:40px;">
-                    <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm8.12 3.63a.87.87 0 1 1 0 1.74.87.87 0 0 1 0-1.74zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg></a>
-                    <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.26.54-4.5 2.1-6.11 1.62-1.67 3.97-2.58 6.3-2.4v4.27c-1.2-.07-2.47.3-3.36 1.12-.8.71-1.22 1.75-1.17 2.82.02 1.02.48 2.04 1.25 2.73.94.83 2.27 1.12 3.48.77 1.14-.27 2.09-1.15 2.53-2.22.18-.51.25-1.05.24-1.58.02-3.34 0-6.68.01-10.03z"/></svg></a>
-                    <a href="https://www.threads.com/@wagnerabrahao_" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M15.11 15.06a3.59 3.59 0 0 1-2.92 1.44 3.39 3.39 0 0 1-3.41-3.39 3.39 3.39 0 0 1 3.41-3.39c.86 0 1.63.31 2.22.82l1.04-1.12a5.16 5.16 0 0 0-3.26-1.19 4.88 4.88 0 0 0-4.91 4.88 4.88 4.88 0 0 0 4.91 4.88c1.37 0 2.58-.57 3.44-1.48l-1.52-1.45z"/></svg></a>
+                
+                <div class="book-card">
+                    <h3 class="book-title">A ARQUITETURA DO INVISÍVEL</h3>
+                    <div class="book-description">
+                        Um tratado sobre as estruturas ocultas que sustentam a realidade eterna. As fundações espirituais da existência.
+                    </div>
+                    <div style="font-family: 'Great Vibes'; color: var(--gold); font-size: 1.5rem; text-align: right;">
+                        Wagner Abrahão
+                    </div>
+                </div>
+                
+                <div class="book-card">
+                    <h3 class="book-title">A CENTELHA INQUIETA</h3>
+                    <div class="book-description">
+                        A jornada poética da luz que resiste ao vácuo da matéria. Versos que atravessam dimensões do ser.
+                    </div>
+                    <div style="font-family: 'Great Vibes'; color: var(--gold); font-size: 1.5rem; text-align: right;">
+                        Wagner Abrahão
+                    </div>
+                </div>
+                
+                <div class="book-card">
+                    <h3 class="book-title">ALQUIMIA DO SER</h3>
+                    <div class="book-description">
+                        Saga alquímica sobre a conexão das frequências espirituais. A transmutação da consciência em ouro puro.
+                    </div>
+                    <div style="font-family: 'Great Vibes'; color: var(--gold); font-size: 1.5rem; text-align: right;">
+                        Wagner Abrahão
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        
+        <!-- Página Contato -->
+        <section id="contact" class="page">
+            <h2 class="section-title gold-text">Contato</h2>
+            
+            <div class="contact-container">
+                <div class="card">
+                    <div class="card-text" style="text-align: center;">
+                        Para diálogos sobre arquitetura espiritual, colaborações criativas ou simplesmente compartilhar insights da jornada.
+                    </div>
+                    
+                    <a href="mailto:wagner.abrahao.31@gmail.com" class="email-link">
+                        <i class="fas fa-envelope" style="margin-right: 10px;"></i>
+                        wagner.abrahao.31@gmail.com
+                    </a>
+                    
+                    <div class="social-grid">
+                        <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" class="social-icon" title="Instagram">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" class="social-icon" title="TikTok">
+                            <i class="fab fa-tiktok fa-lg"></i>
+                        </a>
+                        <a href="https://www.threads.com/@wagnerabrahao_" target="_blank" class="social-icon" title="Threads">
+                            <i class="fab fa-threads fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Controles de Áudio -->
+    <div class="audio-controls" id="audioControls">
+        <button class="audio-button" onclick="toggleAudio()" id="audioToggle">
+            <i class="fas fa-play"></i>
+        </button>
+        <input type="range" min="0" max="100" value="50" class="volume-slider" oninput="changeVolume(this.value)">
     </div>
+    
+    <!-- Cursor personalizado -->
+    <div class="custom-cursor" id="cursor"></div>
+    
+    <!-- Elemento de áudio -->
+    <audio id="backgroundAudio" loop preload="metadata">
+        <source src="ambient.mp3" type="audio/mpeg">
+        <!-- SE A MÚSICA TIVER OUTRO NOME, MUDE AQUI -->
+        <!-- Exemplo: se o arquivo for "musica.mp3", mude para: src="musica.mp3" -->
+        Seu navegador não suporta áudio HTML5.
+    </audio>
 
-    <div id="yt-player" style="display:none;"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
-
+    <!-- ===== SCRIPT COMPLETO ===== -->
     <script>
-        let player, isReady = false;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('yt-player', {
-                height: '0', width: '0', videoId: 'UkgSbK_PjXw',
-                playerVars: { 
-                    'autoplay': 0, 'controls': 0, 'mute': 0, 'loop': 1, 
-                    'playlist': 'UkgSbK_PjXw', 'playsinline': 1, 'enablejsapi': 1 
-                },
-                events: { 'onReady': (e) => { isReady = true; } }
-            });
-        }
-
-        // CHAVE SÔNICA MOBILE OTIMIZADA
-        function unlock() {
-            if(isReady && player) { 
-                // Ação imediata no milissegundo do toque
-                player.unMute(); 
-                player.playVideo();
-                player.setVolume(85);
-                // Segundo disparo para garantir bypass em navegadores restritivos
-                setTimeout(() => { try { player.playVideo(); } catch(e) {} }, 50);
+        // ===== VARIÁVEIS GLOBAIS =====
+        let isPortalOpen = false;
+        let audio = document.getElementById('backgroundAudio');
+        let audioPlaying = false;
+        
+        // ===== INICIALIZAÇÃO =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Configurar cursor personalizado
+            if (window.innerWidth > 768) {
+                document.addEventListener('mousemove', (e) => {
+                    const cursor = document.getElementById('cursor');
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
+                
+                // Efeito de hover no cursor
+                document.querySelectorAll('a, button').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        document.getElementById('cursor').style.transform = 'scale(1.5)';
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        document.getElementById('cursor').style.transform = 'scale(1)';
+                    });
+                });
             }
-            document.getElementById('gate').style.opacity = '0';
+            
+            // Permitir entrada com qualquer tecla
+            document.addEventListener('keydown', (e) => {
+                if (!isPortalOpen) {
+                    enterPortal();
+                }
+            });
+            
+            // Configurar volume inicial
+            audio.volume = 0.5;
+            
+            // Precarregar fontes
+            document.fonts.ready.then(() => {
+                console.log('Fontes carregadas');
+            });
+        });
+        
+        // ===== FUNÇÃO PARA ENTRAR NO PORTAL =====
+        function enterPortal() {
+            if (isPortalOpen) return;
+            isPortalOpen = true;
+            
+            // Animação de saída do portal
+            const portal = document.getElementById('portal');
+            portal.style.opacity = '0';
+            
             setTimeout(() => {
-                document.getElementById('gate').style.display = 'none';
-                document.getElementById('main-nav').style.opacity = '1';
-                document.getElementById('main-container').style.opacity = '1';
-                document.getElementById('canvas-3d').style.opacity = '1';
+                portal.style.display = 'none';
+                
+                // Mostrar navegação e conteúdo
+                document.getElementById('main-nav').classList.add('visible');
+                document.getElementById('main-content').classList.add('visible');
+                document.getElementById('audioControls').classList.add('show');
+                
+                // Iniciar pirâmide 3D
+                initPyramid();
+                
+                // Tocar música automaticamente
+                playAudio();
+                
+                // Configurar navegação inicial
+                showPage('home');
             }, 1000);
         }
-
-        function show(id) { 
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); 
-            document.getElementById(id).classList.add('active');
-            if(event) event.target.classList.add('active'); 
-            document.getElementById('main-container').scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.0006);
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 4000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        camera.position.set(0, 100, 400);
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 0.4;
         
-        const goldSun = new THREE.SpotLight(0xFFD700, 5, 2000, Math.PI/4, 0.5, 2);
-        goldSun.position.set(300, 600, 300); scene.add(goldSun);
-        scene.add(new THREE.AmbientLight(0x404040, 2));
-        
-        const starGeo = new THREE.BufferGeometry(); const starC = [];
-        for(let i=0; i<12000; i++) starC.push(THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500));
-        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starC, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.8, transparent: true, opacity: 0.5 })); scene.add(stars);
-
-        const pyramid = new THREE.Group();
-        const stoneM = new THREE.MeshPhongMaterial({ color: 0xC2B280, specular: 0x111111, shininess: 2, flatShading: true });
-        const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1 });
-        
-        let levels = 160; let baseSize = 280; let h = 2.0;
-        for(let i=0; i<levels; i++) {
-            let size = baseSize * (1 - i/levels); if(size < 1) break;
-            let layer = new THREE.Mesh(new THREE.BoxGeometry(size, h, size), stoneM);
-            layer.position.set(0, i*h, 0);
-            pyramid.add(layer);
-        }
-        const cap = new THREE.Mesh(new THREE.ConeGeometry(12, 20, 4), goldM); cap.position.y = levels*h + 10; pyramid.add(cap);
-        const owl = new THREE.Group();
-        owl.add(new THREE.Mesh(new THREE.SphereGeometry(3, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
-        const eL = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eL.position.set(-1.0, 1.0, 2.0);
-        const eR = eL.clone(); eR.position.set(1.0, 1.0, 2.0); owl.add(eL, eR); owl.position.y = cap.position.y + 12; pyramid.add(owl);
-        
-        pyramid.position.y = -140; scene.add(pyramid);
-
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-            stars.rotation.y += 0.0001;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        if(window.innerWidth > 768) {
-            document.addEventListener('mousemove', (e) => { 
-                const c=document.getElementById('cursor'); c.style.left=e.clientX+'px'; c.style.top=e.clientY+'px'; 
+        // ===== FUNÇÃO PARA MOSTRAR PÁGINAS =====
+        function showPage(pageId) {
+            // Atualizar navegação
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
             });
+            event.target.classList.add('active');
+            
+            // Esconder todas as páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Mostrar página selecionada
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        window.addEventListener('resize', () => { camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+        
+        // ===== FUNÇÕES DE ÁUDIO =====
+        function playAudio() {
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    audioPlaying = true;
+                    updateAudioButton();
+                }).catch(error => {
+                    // Autoplay bloqueado - usuário precisa interagir
+                    console.log('Autoplay bloqueado. Aguardando interação do usuário.');
+                    audioPlaying = false;
+                    updateAudioButton();
+                });
+            }
+        }
+        
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                audioPlaying = true;
+            } else {
+                audio.pause();
+                audioPlaying = false;
+            }
+            updateAudioButton();
+        }
+        
+        function changeVolume(value) {
+            audio.volume = value / 100;
+        }
+        
+        function updateAudioButton() {
+            const button = document.getElementById('audioToggle');
+            const icon = button.querySelector('i');
+            
+            if (audioPlaying) {
+                icon.className = 'fas fa-pause';
+                button.style.color = 'var(--gold)';
+            } else {
+                icon.className = 'fas fa-play';
+                button.style.color = 'var(--silver)';
+            }
+        }
+        
+        // ===== PIRÂMIDE 3D COM THREE.JS =====
+        function initPyramid() {
+            // Verificar se o Three.js está disponível
+            if (typeof THREE === 'undefined') {
+                console.log('Three.js não carregado. Carregando...');
+                loadThreeJS();
+                return;
+            }
+            
+            createPyramidScene();
+        }
+        
+        function loadThreeJS() {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+            script.onload = createPyramidScene;
+            document.head.appendChild(script);
+        }
+        
+        function createPyramidScene() {
+            try {
+                // Configurar cena
+                const container = document.getElementById('pyramid-container');
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+                
+                // Configurar câmera
+                camera.position.z = 5;
+                
+                // Criar pirâmide moderna
+                const geometry = new THREE.ConeGeometry(1, 2, 4);
+                
+                // Material holográfico
+                const material = new THREE.MeshPhongMaterial({
+                    color: 0xD4AF37,
+                    transparent: true,
+                    opacity: 0.3,
+                    wireframe: true,
+                    wireframeLinewidth: 2,
+                    emissive: 0xD4AF37,
+                    emissiveIntensity: 0.2
+                });
+                
+                const pyramid = new THREE.Mesh(geometry, material);
+                pyramid.rotation.y = Math.PI / 4;
+                scene.add(pyramid);
+                
+                // Adicionar luzes
+                const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+                scene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xD4AF37, 0.8);
+                directionalLight.position.set(5, 5, 5);
+                scene.add(directionalLight);
+                
+                // Adicionar partículas
+                const particlesGeometry = new THREE.BufferGeometry();
+                const particlesCount = 500;
+                const posArray = new Float32Array(particlesCount * 3);
+                
+                for (let i = 0; i < particlesCount * 3; i++) {
+                    posArray[i] = (Math.random() - 0.5) * 10;
+                }
+                
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                
+                const particlesMaterial = new THREE.PointsMaterial({
+                    size: 0.02,
+                    color: 0xD4AF37,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                
+                const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particlesMesh);
+                
+                // Animação
+                function animate() {
+                    requestAnimationFrame(animate);
+                    
+                    // Rotação suave
+                    pyramid.rotation.y += 0.005;
+                    pyramid.rotation.x += 0.002;
+                    
+                    // Partículas flutuantes
+                    particlesMesh.rotation.y += 0.001;
+                    
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                
+                // Redimensionamento responsivo
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+                
+            } catch (error) {
+                console.log('Erro ao criar cena 3D:', error);
+            }
+        }
+        
+        // ===== EFEITOS VISUAIS ADICIONAIS =====
+        // Efeito de digitação para textos
+        function typeWriterEffect(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+        
+        // ===== CONFIGURAÇÃO PARA MÚSICA LOCAL =====
+        // Se a música não tocar, verifique:
+        // 1. O arquivo está na mesma pasta do HTML?
+        // 2. O nome do arquivo está correto? (padrão: ambient.mp3)
+        // 3. Se o arquivo tiver outro nome, edite a linha 935 do código
+        
+        // Para verificar se o áudio está carregado
+        audio.addEventListener('canplaythrough', () => {
+            console.log('Áudio carregado e pronto para tocar');
+        });
+        
+        audio.addEventListener('error', (e) => {
+            console.log('Erro ao carregar áudio:', e);
+            // Tentar carregar música alternativa online
+            audio.src = 'https://assets.mixkit.co/music/preview/mixkit-spiritual-awakening-915.mp3';
+        });
     </script>
 </body>
 </html>
