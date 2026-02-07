@@ -62,20 +62,21 @@
         .verbo-text-block { 
             font-size: 1.25rem; line-height: 2.2; color: var(--silver); 
             text-align: center; margin-bottom: 60px; font-style: italic;
-            padding: 45px; background: rgba(255,255,255,0.02);
+            padding: 45px; background: rgba(0,0,0,0.4);
             border: 1px solid rgba(212,175,55,0.1); width: 100%;
             display: flex; flex-direction: column; align-items: center;
-            /* BLUR INTENSO 50PX */
-            backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+            /* EFEITO FOSCO REFORÇADO */
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
         }
         .verbo-header { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.6rem; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; font-style: normal; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
         .verbo-content { max-width: 800px; text-align: center; white-space: pre-wrap; }
 
         .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
-        /* BLUR INTENSO 50PX */
-        .caixa-dourada { border: 1px solid var(--gold); background: rgba(212, 175, 55, 0.05); padding: 45px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); transition: 0.8s; text-align: center; }
+        /* EFEITO FOSCO NAS CAIXAS DOS LIVROS */
+        .caixa-dourada { border: 1px solid var(--gold); background: rgba(212, 175, 55, 0.04); padding: 45px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: 0.8s; text-align: center; }
         .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2); }
         
+        /* CORES RESTAURADAS */
         .livro-titulo { color: var(--gold) !important; font-family: 'Bodoni Moda'; margin-bottom: 15px; text-transform: uppercase; }
         .livro-resumo { color: var(--white) !important; opacity: 0.9; font-style: italic; margin-top: 15px; line-height: 1.7; }
         .livro-assinatura { color: var(--gold) !important; margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; }
@@ -112,7 +113,7 @@
 
     <div class="container" id="main-container">
         <div id="home" class="page active">
-            <div class="glass-box" style="background: rgba(255,255,255,0.04); padding: 60px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);">
+            <div class="glass-box" style="background: rgba(0,0,0,0.5); padding: 60px; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 1px solid rgba(255,255,255,0.1);">
                 <div style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center;">
                     <img src="perfil.jpg" alt="Wagner Abrahão" style="width: 240px; height: 340px; object-fit: cover; border: 1px solid rgba(255,255,255,0.2);">
                     <div style="flex: 1; min-width: 300px; font-size: 1.2rem; line-height: 2.1; font-style: italic;">
@@ -128,22 +129,22 @@
             
             <div class="verbo-text-block">
                 <div class="verbo-header">Anestesia Divina</div>
-                <div class="verbo-content">Dante não sabia que estava dormindo. Durante quarenta e dois anos, viveu em estado de anestesia divina. Excesso de rotina, de precisão, de identidades fixas. Até que a perda se tornou revelação, e o corpo começou a falar a linguagem da harmonia invisível.</div>
+                <div class="verbo-content">Dante não sabia que estava dormindo.
+Durante quarenta e dois anos, viveu em estado de anestesia divina.
+Excesso de rotina, de precisão, de identidades fixas. 
+Sua existência era um Lá central perpétuo.
+Até que a perda se tornou revelação, 
+e o corpo começou a falar a linguagem da harmonia invisível.</div>
             </div>
 
             <div class="verbo-text-block">
                 <div class="verbo-header">A Arquitetura do Invisível</div>
                 <div class="verbo-content">"O corpo não mente; ele traduz o que a alma não consegue mais carregar. Quando o ego silencia, os sentidos se expandem para oferecer suporte ao próximo. Onde despertar e paz se encontram, o Arquiteto constrói pontes de sabedoria."</div>
             </div>
-
-            <div class="verbo-text-block">
-                <div class="verbo-header">Ponte de Amparo</div>
-                <div class="verbo-content">"A verdadeira sabedoria não é um trono de isolamento, mas uma ponte de amparo. Ofereço o meu Verbo como suporte para que, juntos, possamos atravessar as névoas da dúvida."</div>
-            </div>
         </div>
 
         <div id="obras" class="page">
-            <h2 class="secao-titulo">Manuscritos de Luz</h2>
+            <h2 class="secao-titulo">Manuscritos</h2>
             <div class="livros-grid">
                 <div class="caixa-dourada"><h3 class="livro-titulo">A Anestesia Divina</h3><p class="livro-resumo">O despertar místico através da rendição absoluta ao invisível e o colapso do ego.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
                 <div class="caixa-dourada"><h3 class="livro-titulo">A Arquitetura do Invisível</h3><p class="livro-resumo">Um tratado sobre as estruturas ocultas que sustentam a realidade eterna.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
@@ -154,7 +155,7 @@
 
         <div id="contato" class="page">
             <div style="text-align: center; padding-top: 50px;">
-                <a href="mailto:wagner.abrahao.31@gmail.com" style="color:var(--white); font-size: 1rem; text-decoration: none; border-bottom: 1px solid var(--gold); font-family: 'Bodoni Moda'; opacity: 0.8;">wagner.abrahao.31@gmail.com</a>
+                <a href="mailto:wagner.abrahao.31@gmail.com" style="color:var(--white); font-size: 1rem; text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda'; opacity: 0.8;">wagner.abrahao.31@gmail.com</a>
                 <div class="social-portal-grid" style="display:flex; gap:30px; justify-content:center; margin-top:40px;">
                     <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm8.12 3.63a.87.87 0 1 1 0 1.74.87.87 0 0 1 0-1.74zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg></a>
                     <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.26.54-4.5 2.1-6.11 1.62-1.67 3.97-2.58 6.3-2.4v4.27c-1.2-.07-2.47.3-3.36 1.12-.8.71-1.22 1.75-1.17 2.82.02 1.02.48 2.04 1.25 2.73.94.83 2.27 1.12 3.48.77 1.14-.27 2.09-1.15 2.53-2.22.18-.51.25-1.05.24-1.58.02-3.34 0-6.68.01-10.03z"/></svg></a>
@@ -173,17 +174,16 @@
         let player, isReady = false;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('yt-player', {
-                height: '0', width: '0', videoId: '77Z_lxutORg',
-                playerVars: { 'autoplay': 1, 'controls': 0, 'mute': 0, 'loop': 1, 'playlist': '77Z_lxutORg' },
+                height: '0', width: '0', videoId: 'UkgSbK_PjXw',
+                playerVars: { 'autoplay': 1, 'controls': 0, 'mute': 0, 'loop': 1, 'playlist': 'UkgSbK_PjXw' },
                 events: { 'onReady': (e) => { isReady = true; } }
             });
         }
         function unlock() {
             if(isReady && player) { 
-                player.unMute(); 
-                player.setVolume(75); 
-                player.playVideo(); 
-                setTimeout(() => player.playVideo(), 50);
+                player.unMute(); player.setVolume(80); player.playVideo(); 
+                // GATILHO UNIVERSAL (MOBILE/DESKTOP)
+                setTimeout(() => { player.playVideo(); }, 100);
             }
             document.getElementById('gate').style.opacity = '0';
             setTimeout(() => {
@@ -201,63 +201,49 @@
             document.getElementById('main-container').scrollTo({top: 0, behavior: 'smooth'});
         }
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.0008);
+        scene.fog = new THREE.FogExp2(0x000000, 0.0006);
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 4000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        camera.position.set(0, 40, 200);
+        camera.position.set(0, 100, 400);
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 0.3;
-        const goldSun = new THREE.SpotLight(0xFFD700, 4, 1500, Math.PI/4, 0.5, 2);
-        goldSun.position.set(200, 400, 200); scene.add(goldSun);
-        scene.add(new THREE.AmbientLight(0x404040, 1.5));
+        controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 0.4;
+        const goldSun = new THREE.SpotLight(0xFFD700, 5, 2000, Math.PI/4, 0.5, 2);
+        goldSun.position.set(300, 600, 300); scene.add(goldSun);
+        scene.add(new THREE.AmbientLight(0x404040, 2));
         
         const starGeo = new THREE.BufferGeometry(); const starC = [];
-        for(let i=0; i<10000; i++) starC.push(THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500));
+        for(let i=0; i<12000; i++) starC.push(THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500));
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starC, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.9, transparent: true, opacity: 0.6 })); scene.add(stars);
-        const meteors = [];
-        function createMeteor() {
-            const m = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent:true }));
-            m.position.set(THREE.MathUtils.randFloatSpread(1200), THREE.MathUtils.randFloat(200, 500), THREE.MathUtils.randFloatSpread(1200));
-            m.userData = { speed: THREE.MathUtils.randFloat(4, 9), trail: THREE.MathUtils.randFloat(25, 55) };
-            m.scale.set(1, 1, m.userData.trail); m.lookAt(0, -200, 0);
-            scene.add(m); meteors.push(m);
-        }
-        for(let i=0; i<35; i++) createMeteor();
+        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.8, transparent: true, opacity: 0.5 })); scene.add(stars);
 
+        // RECONSTRUÇÃO DA PIRÂMIDE DE QUÉOPS (BLOCOS REAIS)
         const pyramid = new THREE.Group();
-        const stoneM = new THREE.MeshPhongMaterial({ color: 0xC2B280, specular: 0x111111, shininess: 5, flatShading: true });
-        const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.2 });
+        const stoneM = new THREE.MeshPhongMaterial({ color: 0xC2B280, specular: 0x111111, shininess: 2, flatShading: true });
+        const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1 });
         
-        // PIRÂMIDE DE QUÉOPS REFORMADA
-        let tiers = 120; let base = 180; let blockHeight = 2;
-        for(let i=0; i<tiers; i++) {
-            let curS = base * (1 - i/tiers); if(curS < 1.5) break;
-            let geo = new THREE.BoxGeometry(curS, blockHeight, curS);
-            let block = new THREE.Mesh(geo, stoneM);
-            block.position.set(0, i*blockHeight, 0);
-            pyramid.add(block);
+        let levels = 150; let baseSize = 240; let h = 1.8;
+        for(let i=0; i<levels; i++) {
+            let size = baseSize * (1 - i/levels); if(size < 1) break;
+            let geo = new THREE.BoxGeometry(size, h, size);
+            let layer = new THREE.Mesh(geo, stoneM);
+            layer.position.set(0, i*h, 0);
+            pyramid.add(layer);
         }
-        const cap = new THREE.Mesh(new THREE.ConeGeometry(8, 12, 4), goldM); cap.position.y = tiers*blockHeight + 6; pyramid.add(cap);
+        const cap = new THREE.Mesh(new THREE.ConeGeometry(10, 15, 4), goldM); cap.position.y = levels*h + 6; pyramid.add(cap);
         const owl = new THREE.Group();
-        owl.add(new THREE.Mesh(new THREE.SphereGeometry(2, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
-        const eL = new THREE.Mesh(new THREE.SphereGeometry(0.5, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eL.position.set(-0.7, 0.6, 1.6);
-        const eR = eL.clone(); eR.position.set(0.7, 0.6, 1.6);
-        owl.add(eL, eR); owl.position.y = cap.position.y + 8; pyramid.add(owl);
+        owl.add(new THREE.Mesh(new THREE.SphereGeometry(2.5, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
+        const eL = new THREE.Mesh(new THREE.SphereGeometry(0.6, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eL.position.set(-0.8, 0.8, 1.8);
+        const eR = eL.clone(); eR.position.set(0.8, 0.8, 1.8);
+        owl.add(eL, eR); owl.position.y = cap.position.y + 10; pyramid.add(owl);
         
-        pyramid.scale.set(0.8, 0.8, 0.8);
-        pyramid.position.y = -80; scene.add(pyramid);
+        pyramid.position.y = -120; scene.add(pyramid);
 
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
             stars.rotation.y += 0.0001;
-            meteors.forEach(m => {
-                m.translateZ(m.userData.speed);
-                if(m.position.y < -400) { m.position.y = 500; m.position.x = THREE.MathUtils.randFloatSpread(1200); }
-            });
             renderer.render(scene, camera);
         }
         animate();
