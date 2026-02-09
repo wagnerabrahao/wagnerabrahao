@@ -35,7 +35,7 @@
             background-color: var(--preto);
             color: var(--cinza-texto);
             font-family: 'Cormorant Garamond', serif;
-            overflow: hidden; /* O scroll é interno na div de conteúdo */
+            overflow: hidden;
         }
 
         /* TELA DE ENTRADA (Obrigatória para o Áudio funcionar) */
@@ -122,11 +122,20 @@
             filter: sepia(0.2) contrast(1.1);
         }
 
-        .titulo-principal {
+        /* CORREÇÃO: Apenas UM h1 por página */
+        .h1-principal {
             font-family: 'Cinzel', serif; font-size: 4rem; text-align: center;
             background: var(--gradiente); -webkit-background-clip: text; color: transparent;
             margin-bottom: 10px; text-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
+
+        /* CORREÇÃO: h2 para títulos de seção */
+        .h2-secao {
+            font-family: 'Cinzel', serif; font-size: 3rem; text-align: center;
+            background: var(--gradiente); -webkit-background-clip: text; color: transparent;
+            margin-bottom: 10px; text-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        }
+
         .subtitulo {
             font-family: 'Raleway', sans-serif; font-size: 1.2rem; text-align: center;
             letter-spacing: 4px; color: #aaa; margin-bottom: 60px; text-transform: uppercase;
@@ -168,10 +177,11 @@
 
         /* Responsividade */
         @media (max-width: 768px) {
-            .titulo-principal { font-size: 2.5rem; }
+            .h1-principal { font-size: 2.5rem; }
+            .h2-secao { font-size: 2rem; }
             #menu-lateral { top: auto; bottom: 20px; right: 50%; transform: translateX(50%); flex-direction: row; }
             .foto-container { width: 200px; height: 260px; }
-            .nav-btn::before { display: none; } /* Remove tooltip no mobile */
+            .nav-btn::before { display: none; }
         }
     </style>
 </head>
@@ -182,7 +192,8 @@
     </audio>
 
     <div id="overlay-entrada">
-        <h1 style="font-family: 'Cinzel'; color: var(--ouro); font-size: 2rem; margin-bottom: 10px;">WAGNER ABRAHÃO</h1>
+        <!-- CORREÇÃO: Este é o h1 principal do site -->
+        <h1 class="h1-principal" style="font-size: 2rem;">WAGNER ABRAHÃO</h1>
         <p style="letter-spacing: 3px; font-size: 1rem;">ARQUITETURA DO INVISÍVEL</p>
         <button class="btn-entrar" onclick="entrarNoSite()">ENTRAR NO PORTAL</button>
     </div>
@@ -209,14 +220,16 @@
 
         <section id="home" class="secao ativa">
             <div class="foto-container">
-                <img src="26053.jpg" alt="Wagner Abrahão" class="foto-img">
+                <img src="26053.jpg" alt="Retrato de Wagner Abrahão - Filósofo e escritor" class="foto-img">
             </div>
             
-            <h1 class="titulo-principal">WAGNER ABRAHÃO</h1>
+            <!-- CORREÇÃO: Apenas UM h1 na página inteira (este está escondido na tela de entrada) -->
+            <!-- Aqui usamos h2 pois já temos um h1 na tela de entrada -->
+            <h2 class="h2-secao">WAGNER ABRAHÃO</h2>
             <div class="subtitulo">FILOSOFIA • ESPIRITUALIDADE • LITERATURA</div>
 
             <div class="card">
-                <h2 class="titulo-card">MISSÃO</h2>
+                <h3 class="titulo-card">MISSÃO</h3>
                 <p>
                     Revelar as estruturas invisíveis que sustentam a nossa realidade. 
                     Minha obra é um convite para quem busca sentido e acalento na densidade da vida cotidiana.
@@ -225,7 +238,7 @@
             </div>
 
             <div class="card">
-                <h2 class="titulo-card">VISÃO UNIVERSAL</h2>
+                <h3 class="titulo-card">VISÃO UNIVERSAL</h3>
                 <p>
                     Acredito em uma espiritualidade livre, sem amarras, onde a arte e a palavra servem como pontes para a elevação da consciência humana.
                 </p>
@@ -233,11 +246,12 @@
         </section>
 
         <section id="poemas" class="secao">
-            <h1 class="titulo-principal" style="font-size: 3rem;">POESIA DA ALMA</h1>
+            <!-- CORREÇÃO: h2 para títulos de seção -->
+            <h2 class="h2-secao">POESIA DA ALMA</h2>
             <div class="subtitulo">REFLEXÕES EM VERSOS</div>
 
             <div class="card">
-                <h2 class="titulo-card">ANESTESIA DIVINA</h2>
+                <h3 class="titulo-card">ANESTESIA DIVINA</h3>
                 <p class="centro" style="font-style: italic;">
                     "Dante não sabia que estava dormindo.<br>
                     Viveu anos em um estado de espera silenciosa.<br>
@@ -247,7 +261,7 @@
             </div>
 
             <div class="card">
-                <h2 class="titulo-card">SOBRE A VERDADE</h2>
+                <h3 class="titulo-card">SOBRE A VERDADE</h3>
                 <p>
                     "A verdade não é uma linha reta a ser seguida, mas uma esfera a ser habitada. 
                     Cada ângulo revela uma faceta, cada experiência traz uma nova profundidade."
@@ -256,11 +270,12 @@
         </section>
 
         <section id="manuscritos" class="secao">
-            <h1 class="titulo-principal" style="font-size: 3rem;">OBRAS</h1>
+            <!-- CORREÇÃO: h2 para títulos de seção -->
+            <h2 class="h2-secao">OBRAS</h2>
             <div class="subtitulo">LIVROS E TEXTOS</div>
 
             <div class="card">
-                <h2 class="titulo-card">A ARQUITETURA DO INVISÍVEL</h2>
+                <h3 class="titulo-card">A ARQUITETURA DO INVISÍVEL</h3>
                 <p>
                     Um tratado sobre as estruturas sutis que sustentam a vida. 
                     Como construir uma existência sólida baseada em princípios espirituais e filosóficos atemporais.
@@ -268,7 +283,7 @@
             </div>
 
             <div class="card">
-                <h2 class="titulo-card">TRANSFORMAÇÃO DO SER</h2>
+                <h3 class="titulo-card">TRANSFORMAÇÃO DO SER</h3>
                 <p>
                     Uma jornada sobre a mudança interna. Como transformar as dores e desafios da vida em sabedoria e força pessoal.
                     (Anteriormente referenciado como Alquimia).
@@ -277,7 +292,8 @@
         </section>
 
         <section id="contato" class="secao">
-            <h1 class="titulo-principal" style="font-size: 3rem;">CONEXÃO</h1>
+            <!-- CORREÇÃO: h2 para títulos de seção -->
+            <h2 class="h2-secao">CONEXÃO</h2>
             <div class="subtitulo">FALE COM O AUTOR</div>
 
             <div class="card" style="text-align: center;">
