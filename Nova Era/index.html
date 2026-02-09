@@ -5,12 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wagner Abrahão | Arquiteto do Invisível</title>
     
-    <!-- Meta tags para SEO -->
-    <meta name="description" content="Wagner Abrahão, o Arquiteto do Invisível, explora as dimensões sutis da consciência através de aforismos, poemas e textos filosóficos.">
-    <meta name="keywords" content="Wagner Abrahão, filosofia, espiritualidade, poesia, aforismos, consciência">
-    <meta name="author" content="Wagner Abrahão">
-    
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -18,263 +12,78 @@
       gtag('js', new Date());
       gtag('config', 'G-5WZHN0YR19');
     </script>
-    
-    <!-- Fontes e ícones -->
+
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { 
-            --gold: #c5a059; 
-            --obsidian: #050505; 
-            --cream: #fdfaf1; 
-        }
-        
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            -webkit-font-smoothing: antialiased; 
-        }
-        
-        body, html { 
-            background-color: var(--obsidian); 
-            color: var(--cream); 
-            font-family: 'Montserrat', sans-serif; 
-            overflow-x: hidden; 
-            scroll-behavior: smooth; 
-        }
-        
-        /* PORTAL DE ENTRADA */
+        :root { --gold: #c5a059; --obsidian: #050505; --cream: #fdfaf1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body, html { background-color: var(--obsidian); color: var(--cream); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- CANVAS BACKGROUND --- */
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.4; }
+
+        /* --- PORTAL DE ENTRADA --- */
         #splash {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100vh;
-            z-index: 10000; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: 10000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2560&q=80');
-            background-size: cover; 
-            background-position: center;
-            transition: transform 1.8s cubic-bezier(0.85, 0, 0.15, 1);
+            background-size: cover; background-position: center;
+            transition: transform 2s cubic-bezier(0.85, 0, 0.15, 1);
         }
+        .splash-title { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 15px; color: var(--gold); margin-bottom: 50px; }
+        #btn-activate { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 22px 60px; font-family: 'Cinzel'; letter-spacing: 5px; cursor: pointer; transition: 0.5s; }
+        #btn-activate:hover { background: var(--gold); color: var(--obsidian); box-shadow: 0 0 40px var(--gold); }
+
+        /* --- NAVEGAÇÃO --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 500; mix-blend-mode: difference; }
+        .brand { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.2rem; letter-spacing: 6px; color: var(--gold); text-decoration: none; }
+
+        /* --- SEÇÕES --- */
+        section { padding: 150px 10%; position: relative; }
+        .title-sec { font-family: 'Cinzel'; font-size: 2.8rem; text-align: center; margin-bottom: 100px; letter-spacing: 12px; color: var(--gold); border-bottom: 1px solid rgba(197, 160, 89, 0.2); display: inline-block; left: 50%; transform: translateX(-50%); padding-bottom: 20px; }
         
-        /* CORREÇÃO: Mudado de div para h1 */
-        .splash-title { 
-            font-family: 'Cinzel', serif; 
-            font-size: clamp(2rem, 8vw, 4rem); 
-            letter-spacing: 15px; 
-            color: var(--gold); 
-            margin-bottom: 50px; 
-        }
-        
-        #btn-activate { 
-            background: none; 
-            border: 1px solid var(--gold); 
-            color: var(--gold); 
-            padding: 22px 60px; 
-            font-family: 'Cinzel'; 
-            letter-spacing: 5px; 
-            cursor: pointer; 
-            transition: 0.5s; 
-        }
-        
-        #btn-activate:hover { 
-            background: var(--gold); 
-            color: var(--obsidian); 
-            box-shadow: 0 0 40px var(--gold); 
-        }
-        
-        /* NAVEGAÇÃO */
-        nav { 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            padding: 40px 60px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            z-index: 500; 
-            mix-blend-mode: difference; 
-        }
-        
-        .brand { 
-            font-family: 'Cinzel', serif; 
-            font-weight: 700; 
-            font-size: 1.2rem; 
-            letter-spacing: 6px; 
-            color: var(--gold); 
-            text-decoration: none; 
-        }
-        
-        /* SEÇÕES */
-        section { 
-            padding: 150px 10%; 
-            position: relative; 
-        }
-        
-        .title-sec { 
-            font-family: 'Cinzel'; 
-            font-size: 2.8rem; 
-            text-align: center; 
-            margin-bottom: 100px; 
-            letter-spacing: 12px; 
-            color: var(--gold); 
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2); 
-            display: inline-block; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            padding-bottom: 20px; 
-        }
-        
-        /* MANUSCRITOS (PRADA GRID) */
-        .manuscritos { 
-            background: var(--cream); 
-            color: var(--obsidian); 
-        }
-        
-        .grid-manus { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 40px; 
-        }
-        
-        .card-manus { 
-            padding: 80px 40px; 
-            border: 1px solid #eee; 
-            text-align: center; 
-            transition: 0.6s; 
-        }
-        
-        .card-manus:hover { 
-            transform: translateY(-10px); 
-            background: #fff; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05); 
-        }
-        
-        .card-manus h3 { 
-            font-family: 'Cinzel'; 
-            color: var(--gold); 
-            margin-bottom: 30px; 
-            letter-spacing: 4px; 
-        }
-        
-        .card-manus p { 
-            font-family: 'Lora'; 
-            line-height: 2; 
-            opacity: 0.7; 
-        }
-        
-        /* GRID CONTEÚDO */
-        .content-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 40px; 
-            margin-bottom: 80px; 
-        }
-        
-        .content-item { 
-            padding: 40px; 
-            border: 1px solid rgba(197, 160, 89, 0.1); 
-            background: rgba(255,255,255,0.02); 
-        }
-        
-        /* CORREÇÃO: Mudado de h4 para h3 */
-        .content-item h3 { 
-            font-family: 'Cinzel'; 
-            color: var(--gold); 
-            margin-bottom: 20px; 
-            font-size: 1.1rem; 
-            letter-spacing: 2px; 
-        }
-        
-        .content-item p { 
-            font-family: 'Lora'; 
-            font-style: italic; 
-            opacity: 0.8; 
-            line-height: 1.8; 
-        }
-        
-        /* RODAPÉ */
-        footer { 
-            padding: 100px 10%; 
-            background: #000; 
-            border-top: 1px solid #111; 
-            text-align: center; 
-        }
-        
-        .social-icons { 
-            display: flex; 
-            justify-content: center; 
-            gap: 50px; 
-            margin-bottom: 60px; 
-        }
-        
-        .social-icons a { 
-            color: var(--gold); 
-            font-size: 2.2rem; 
-            transition: 0.4s; 
-        }
-        
-        .social-icons a:hover { 
-            transform: scale(1.2); 
-            color: #fff; 
-        }
-        
-        @media (max-width: 768px) { 
-            section { 
-                padding: 80px 5%; 
-            } 
-            nav { 
-                padding: 30px 20px; 
-            } 
-            .splash-title {
-                letter-spacing: 8px;
-            }
-            .title-sec {
-                font-size: 2rem;
-                letter-spacing: 8px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .splash-title {
-                letter-spacing: 6px;
-                font-size: 1.8rem;
-            }
-            .title-sec {
-                font-size: 1.5rem;
-                letter-spacing: 6px;
-            }
-            #btn-activate {
-                padding: 18px 40px;
-                font-size: 0.9rem;
-            }
-        }
+        /* --- MANUSCRITOS --- */
+        .manuscritos { background: var(--cream); color: var(--obsidian); }
+        .grid-manus { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .card-manus { padding: 80px 40px; border: 1px solid #eee; text-align: center; transition: 0.6s; }
+        .card-manus:hover { transform: translateY(-10px); background: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .card-manus h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 30px; letter-spacing: 4px; }
+        .card-manus p { font-family: 'Lora'; line-height: 2; opacity: 0.7; }
+
+        /* --- CONTENT GRID --- */
+        .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .content-item { padding: 40px; border: 1px solid rgba(197, 160, 89, 0.1); background: rgba(255,255,255,0.02); }
+        .content-item h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 20px; font-size: 1.1rem; letter-spacing: 2px; }
+        .content-item p { font-family: 'Lora'; font-style: italic; opacity: 0.8; line-height: 1.8; }
+
+        /* --- RODAPÉ --- */
+        footer { padding: 100px 10%; background: #000; border-top: 1px solid #111; text-align: center; }
+        .social-icons { display: flex; justify-content: center; gap: 50px; margin-bottom: 60px; }
+        .social-icons a { color: var(--gold); font-size: 2.2rem; transition: 0.4s; }
+        .social-icons a:hover { transform: scale(1.2); color: #fff; }
+
+        @media (max-width: 768px) { section { padding: 80px 5%; } nav { padding: 30px 20px; } }
     </style>
 </head>
 <body>
-    <!-- PORTAL DE ENTRADA COM H1 CORRETO -->
+
+    <canvas id="canvas-bg"></canvas>
+
     <div id="splash">
         <h1 class="splash-title">WAGNER ABRAHÃO</h1>
         <button id="btn-activate" onclick="launch()">ATIVAR CONSCIÊNCIA</button>
     </div>
-    
+
     <audio id="bg-audio" loop preload="auto">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-mysterious-magical-ritual-540.mp3" type="audio/mpeg">
+        <source src="musica.mp3" type="audio/mpeg">
     </audio>
-    
-    <nav>
-        <a href="#" class="brand">WAGNER ABRAHÃO</a>
-    </nav>
-    
-    <!-- SEÇÃO MANUSCRITOS -->
+
+    <nav><a href="#" class="brand">WAGNER ABRAHÃO</a></nav>
+
     <section class="manuscritos" id="manuscritos">
         <h2 class="title-sec">MANUSCRITOS</h2>
         <div class="grid-manus">
@@ -292,134 +101,109 @@
             </div>
         </div>
     </section>
-    
-    <!-- SEÇÃO AFORISMOS -->
+
     <section id="aforismos">
         <h2 class="title-sec">AFORISMOS</h2>
         <div class="content-grid">
-            <div class="content-item">
-                <p>"O silêncio é a geometria sagrada da alma."</p>
-            </div>
-            <div class="content-item">
-                <p>"A alma não tem pressa; a pressa é a poeira do ego."</p>
-            </div>
-            <div class="content-item">
-                <p>"Para tocar o invisível, é preciso soltar as amarras do tangível."</p>
-            </div>
-            <div class="content-item">
-                <p>"A dor é o cinzel divino que esculpe a consciência."</p>
-            </div>
-            <div class="content-item">
-                <p>"Somos a ponte etérea entre o barro e a luz original."</p>
-            </div>
+            <div class="content-item"><p>"O silêncio é a geometria sagrada da alma."</p></div>
+            <div class="content-item"><p>"A alma não tem pressa; a pressa é a poeira do ego."</p></div>
+            <div class="content-item"><p>"Para tocar o invisível, é preciso soltar as amarras do tangível."</p></div>
+            <div class="content-item"><p>"A dor é o cinzel divino que esculpe a consciência."</p></div>
+            <div class="content-item"><p>"Somos a ponte etérea entre o barro e a luz original."</p></div>
         </div>
     </section>
-    
-    <!-- SEÇÃO POESIAS COM H3 CORRETO -->
+
     <section id="poemas" style="background: rgba(255,255,255,0.01);">
         <h2 class="title-sec">POESIAS</h2>
         <div class="content-grid">
-            <div class="content-item">
-                <h3>Fogo Interno</h3>
-                <p>Na caverna do peito, a chama dança sem ar. Ela não pede lenha, pede apenas o olhar que se atreve a queimar.</p>
-            </div>
-            <div class="content-item">
-                <h3>Ouro do Peito</h3>
-                <p>Transmuto o chumbo do dia no brilho da noite serena. Cada lágrima é um grão de luz na minha pequena oficina eterna.</p>
-            </div>
-            <div class="content-item">
-                <h3>Manto de Paz</h3>
-                <p>Envolve-me o silêncio como um linho antigo. No acalento da alma, encontro o abrigo do que nunca foi dito.</p>
-            </div>
-            <div class="content-item">
-                <h3>Arquitetura do Ar</h3>
-                <p>Não ergo paredes, abro vãos. Minha casa é o espaço entre as mãos, onde Deus se faz oração.</p>
-            </div>
-            <div class="content-item">
-                <h3>O Vazio Sagrado</h3>
-                <p>Nada falta onde o tudo repousa. A alma é a nau, o mistério é a lousa onde a vida escreve sua causa.</p>
-            </div>
+            <div class="content-item"><h3>Fogo Interno</h3><p>Na caverna do peito, a chama dança sem ar. Ela não pede lenha, pede apenas o olhar que se atreve a queimar.</p></div>
+            <div class="content-item"><h3>Ouro do Peito</h3><p>Transmuto o chumbo do dia no brilho da noite serena. Cada lágrima é um grão de luz na minha pequena oficina eterna.</p></div>
+            <div class="content-item"><h3>Manto de Paz</h3><p>Envolve-me o silêncio como um linho antigo. No acalento da alma, encontro o abrigo do que nunca foi dito.</p></div>
+            <div class="content-item"><h3>Arquitetura do Ar</h3><p>Não ergo paredes, abro vãos. Minha casa é o espaço entre as mãos, onde Deus se faz oração.</p></div>
+            <div class="content-item"><h3>O Vazio Sagrado</h3><p>Nada falta onde o tudo repousa. A alma é a nau, o mistério é a lousa onde a vida escreve sua causa.</p></div>
         </div>
     </section>
-    
-    <!-- SEÇÃO REFLEXÕES COM H3 CORRETO -->
+
     <section id="textos">
         <h2 class="title-sec">REFLEXÕES</h2>
         <div class="content-grid">
-            <div class="content-item">
-                <h3>A Habitação do Ser</h3>
-                <p>Habitar o próprio ser exige a coragem de ser estrangeiro no mundo das formas.</p>
-            </div>
-            <div class="content-item">
-                <h3>O Ofício do Invisível</h3>
-                <p>Arquitetar o que não se vê é a única forma de construir o que jamais cairá.</p>
-            </div>
-            <div class="content-item">
-                <h3>A Cura pelo Verbo</h3>
-                <p>A palavra, quando grávida de silêncio, cura feridas que o tempo apenas escondeu.</p>
-            </div>
-            <div class="content-item">
-                <h3>O Tempo Circular</h3>
-                <p>Não avançamos; orbitamos o centro de nós mesmos até que o círculo se torne esfera.</p>
-            </div>
+            <div class="content-item"><h3>A Habitação do Ser</h3><p>Habitar o próprio ser exige a coragem de ser estrangeiro no mundo das formas.</p></div>
+            <div class="content-item"><h3>O Ofício do Invisível</h3><p>Arquitetar o que não se vê é a única forma de construir o que jamais cairá.</p></div>
+            <div class="content-item"><h3>A Cura pelo Verbo</h3><p>A palavra, quando grávida de silêncio, cura feridas que o tempo apenas escondeu.</p></div>
+            <div class="content-item"><h3>O Tempo Circular</h3><p>Não avançamos; orbitamos o centro de nós mesmos até que o círculo se torne esfera.</p></div>
+            <div class="content-item"><h3>A Transmutação</h3><p>A alquimia não é o fim da dor, mas o início da compreensão do seu propósito áureo.</p></div>
         </div>
     </section>
-    
-    <!-- RODAPÉ -->
+
     <footer>
         <div class="social-icons">
-            <a href="https://www.threads.net/@wagnerabrahao_" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="mailto:wagner.abrahao.31@gmail.com">
-                <i class="fas fa-envelope"></i>
-            </a>
+            <a href="https://www.threads.net/@wagnerabrahao_" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="mailto:wagner.abrahao.31@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
         <p style="font-family:'Cinzel'; letter-spacing:8px; color:var(--gold);">WAGNER ABRAHÃO</p>
-        <p style="font-size:0.6rem; opacity:0.3; margin-top:40px; letter-spacing:2px;">
-            © 2024 BELO HORIZONTE | MINAS GERAIS
-        </p>
+        <p style="font-size:0.6rem; opacity:0.3; margin-top:40px; letter-spacing:2px;">© 2026 BELO HORIZONTE | MINAS GERAIS</p>
     </footer>
-    
+
     <script>
+        // --- CANVAS PARTICLE SYSTEM (GOLD DUST) ---
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(197, 160, 89, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        function handleParticles() {
+            for (let i = 0; i < 150; i++) particles.push(new Particle());
+        }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+        window.addEventListener('resize', initCanvas);
+        initCanvas(); handleParticles(); animate();
+
+        // --- LAUNCH SYSTEM ---
         function launch() {
             const audio = document.getElementById('bg-audio');
             const splash = document.getElementById('splash');
-            
-            // Tenta reproduzir o áudio
             audio.volume = 0.3;
             audio.play().catch(e => {
-                console.log("Reprodução de áudio bloqueada pelo navegador. Clique novamente.");
-                // Se falhar, mostra um alerta
-                alert("Por favor, clique no botão novamente para ativar o som.");
+                alert("Clique novamente para ativar a sinfonia.");
                 return;
             });
-            
-            // Animação do splash screen
             splash.style.transform = "translateY(-100%)";
-            setTimeout(() => { 
-                splash.style.display = "none"; 
-                window.scrollTo(0,0); 
-            }, 1800);
+            setTimeout(() => { splash.style.display = "none"; window.scrollTo(0,0); }, 1800);
         }
-        
-        // Adiciona evento de tecla Enter para ativar
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                launch();
-            }
-        });
-        
-        // Se o usuário clicar em qualquer lugar, tenta ativar o áudio
-        document.addEventListener('click', function() {
-            const audio = document.getElementById('bg-audio');
-            if (audio.paused) {
-                audio.play().catch(e => console.log("Áudio ainda não pode ser reproduzido"));
-            }
-        }, { once: true }); // Executa apenas uma vez
     </script>
 </body>
 </html>
