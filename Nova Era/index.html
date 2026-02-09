@@ -43,7 +43,7 @@
         }
         .btn-adentrar:hover { background: var(--ouro); color: #000; box-shadow: 0 0 30px var(--ouro); }
 
-        /* PAISAGEM 3D E LUZ DO MOUSE */
+        /* CENÁRIO 3D E LUZ DO MOUSE */
         #cenario-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         #luz-cursor {
             position: fixed; width: 500px; height: 500px;
@@ -63,22 +63,22 @@
         }
         .nav-btn:hover, .nav-btn.ativo { background: var(--ouro); color: #000; transform: scale(1.1); box-shadow: 0 0 20px var(--ouro); }
 
-        /* CONTEÚDO */
+        /* ÁREA DE CONTEÚDO */
         #area-texto {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 100; overflow-y: auto; scrollbar-width: none; padding: 80px 10% 150px;
         }
         #area-texto::-webkit-scrollbar { display: none; }
         
-        .secao { display: none; opacity: 0; transform: translateY(30px); transition: 1s; max-width: 900px; margin: 0 auto; }
+        .secao { display: none; opacity: 0; transform: translateY(30px); transition: 0.8s; max-width: 900px; margin: 0 auto; }
         .secao.ativa { display: block; opacity: 1; transform: translateY(0); }
 
-        /* HIERARQUIA CORRIGIDA: Somente 1 H1 */
+        /* HIERARQUIA PURIFICADA: Único H1 para o nome */
         .h1-nome { font-family: 'Cinzel', serif; font-size: 4rem; background: var(--gradiente); -webkit-background-clip: text; color: transparent; text-align: center; margin-bottom: 5px; }
         .h2-secao { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--ouro); text-align: center; margin-bottom: 40px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
         .h3-card { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--ouro); margin-bottom: 15px; }
 
-        /* FOTO E CARDS */
+        /* ELEMENTOS VISUAIS */
         .moldura-foto { width: 220px; height: 280px; margin: 0 auto 30px; border: 2px solid var(--ouro); padding: 8px; background: #000; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
         .foto-principal { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1); }
         .card-luxo { background: rgba(10,10,10,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.15); padding: 40px; margin-bottom: 30px; }
@@ -94,13 +94,13 @@
 </head>
 <body>
 
-    <audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+    <audio id="som-ambiente" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 
     <div id="overlay-entrada">
         <div style="text-align:center;">
             <h2 style="font-family:'Cinzel'; color:var(--ouro); letter-spacing:5px; margin-bottom:10px;">WAGNER ABRAHÃO</h2>
             <p style="font-family:'Raleway'; color:#888; letter-spacing:3px; margin-bottom:30px;">ARQUITETURA DO INVISÍVEL</p>
-            <button class="btn-adentrar" onclick="iniciar()">ADENTRAR</button>
+            <button class="btn-adentrar" onclick="ativarPortal()">ADENTRAR</button>
         </div>
     </div>
 
@@ -108,10 +108,11 @@
     <div id="luz-cursor"></div>
 
     <nav id="menu-lateral">
-        <div class="nav-btn ativo" onclick="irPara('home')"><i class="fas fa-home"></i></div>
-        <div class="nav-btn" onclick="irPara('poesia')"><i class="fas fa-feather"></i></div>
-        <div class="nav-btn" onclick="irPara('manuscritos')"><i class="fas fa-book"></i></div>
-        <div class="nav-btn" onclick="irPara('contato')"><i class="fas fa-envelope"></i></div>
+        <div class="nav-btn ativo" onclick="irPara('home')" title="O Arquiteto"><i class="fas fa-home"></i></div>
+        <div class="nav-btn" onclick="irPara('poesia')" title="Poemas"><i class="fas fa-feather"></i></div>
+        <div class="nav-btn" onclick="irPara('aforismos')" title="Aforismos"><i class="fas fa-quote-right"></i></div>
+        <div class="nav-btn" onclick="irPara('manuscritos')" title="Manuscritos"><i class="fas fa-book"></i></div>
+        <div class="nav-btn" onclick="irPara('contato')" title="Contato"><i class="fas fa-envelope"></i></div>
     </nav>
 
     <main id="area-texto">
@@ -120,37 +121,51 @@
             <h1 class="h1-nome">WAGNER ABRAHÃO</h1>
             <p class="italico" style="letter-spacing: 5px; color: #aaa; margin-bottom: 50px;">ARQUITETURA DO INVISÍVEL</p>
             <div class="card-luxo">
-                <h3 class="h3-card">MISSÃO</h3>
-                <p>Revelar as estruturas que sustentam a nossa realidade cotidiana. Minha obra busca oferecer sentido e acalento através da palavra, conectando o visível ao transcendente de forma universal.</p>
+                <h2 class="h2-secao">MISSÃO UNIVERSAL</h2>
+                <p>Revelar as estruturas que sustentam a nossa realidade cotidiana. Minha obra busca oferecer sentido e acalento através da palavra, conectando o visível ao transcendente de forma universal e acolhedora.</p>
             </div>
         </section>
 
         <section id="poesia" class="secao">
-            <h2 class="h2-secao">POESIA E REFLEXÕES</h2>
+            <h2 class="h2-secao">REFLEXÕES EM VERSO</h2>
             <div class="card-luxo">
                 <h3 class="h3-card">ANESTESIA DIVINA</h3>
-                <p class="italico">"Dante não sabia que estava dormindo. Durante anos, viveu em estado de espera silenciosa. Sua existência era um ponto central perpétuo, até que a perda se tornou revelação."</p>
+                <p class="italico">"Dante não sabia que estava dormindo. Durante anos, viveu em estado de espera silenciosa. Sua existência era um ponto central perpétuo, até que a perda se tornou revelação".</p>
             </div>
             <div class="card-luxo">
-                <h3 class="h3-card">SOBRE A VERDADE</h3>
-                <p>"A verdade não é uma linha reta a ser seguida, mas uma esfera a ser habitada. Cada ângulo revela uma faceta, cada experiência traz uma nova profundidade."</p>
+                <h3 class="h3-card">A MEMÓRIA DA LUZ</h3>
+                <p class="italico">"Antes da forma, havia apenas luz. Em cada átomo, uma centelha lembra sua origem divina. Esquecer é humano; lembrar é o caminho de volta".</p>
+            </div>
+        </section>
+
+        <section id="aforismos" class="secao">
+            <h2 class="h2-secao">AFORISMOS</h2>
+            <div class="card-luxo">
+                <h3 class="h3-card">O SILÊNCIO</h3>
+                <p>"No vácuo entre as palavras, a sabedoria se revela. O silêncio não é ausência, é a plenitude do que ainda não foi dito".</p>
+            </div>
+            <div class="card-luxo">
+                <h3 class="h3-card">A BELEZA</h3>
+                <p>"A beleza verdadeira não está na perfeição da forma, mas na autenticidade da essência. É o invisível que torna o visível significativo".</p>
             </div>
         </section>
 
         <section id="manuscritos" class="secao">
             <h2 class="h2-secao">MANUSCRITOS</h2>
             <div class="card-luxo">
-                <h3 class="h3-card">A ARQUITETURA DO INVISÍVEL</h3> <p>Um tratado sobre as estruturas ocultas que sustentam a nossa existência. Uma análise profunda sobre as fundações espirituais e os princípios da construção consciente.</p>
+                <h3 class="h3-card">A ARQUITETURA DO INVISÍVEL</h3>
+                <p>Um tratado sobre as estruturas ocultas que sustentam a nossa existência. Uma análise profunda sobre as fundações espirituais e os princípios da construção consciente.</p>
             </div>
             <div class="card-luxo">
-                <h3 class="h3-card">A ANESTESIA DIVINA</h3> <p>Uma exploração sobre o despertar da consciência através da rendição. A obra investiga os véus da percepção que separam o cotidiano da vigília espiritual.</p>
+                <h3 class="h3-card">A ANESTESIA DIVINA</h3>
+                <p>Uma exploração sobre o despertar da consciência através da rendição. A obra investiga os véus da percepção que separam o cotidiano da vigília espiritual.</p>
             </div>
         </section>
 
         <section id="contato" class="secao">
             <h2 class="h2-secao">CONEXÃO</h2>
             <div class="card-luxo" style="text-align: center;">
-                <p>Para partilhas e diálogos:</p>
+                <p>Para parcerias e diálogos sobre a arquitetura espiritual:</p>
                 <p style="color: var(--ouro); font-weight: bold; margin-bottom:30px;">wagner.abrahao.31@gmail.com</p>
                 <div style="display: flex; justify-content: center; gap: 30px;">
                     <a href="https://instagram.com/wagnerabrahao_" style="color: var(--ouro); font-size: 2rem;"><i class="fab fa-instagram"></i></a>
@@ -161,22 +176,31 @@
     </main>
 
     <script>
-        function iniciar() {
+        // ATIVAR SITE E MÚSICA
+        function ativarPortal() {
             document.getElementById('overlay-entrada').style.opacity = '0';
             setTimeout(() => document.getElementById('overlay-entrada').style.display = 'none', 1500);
-            document.getElementById('musica').play().catch(e => console.log("Áudio aguarda interação"));
+            const audio = document.getElementById('som-ambiente');
+            audio.play().catch(e => console.log("O navegador bloqueou o áudio inicial."));
         }
 
+        // NAVEGAÇÃO ENTRE SEÇÕES
         function irPara(id) {
-            document.querySelectorAll('.secao').forEach(s => s.classList.remove('ativa'));
+            document.querySelectorAll('.secao').forEach(s => {
+                s.classList.remove('ativa');
+                s.style.display = 'none';
+            });
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('ativo'));
+            
             const alvo = document.getElementById(id);
             alvo.style.display = 'block';
             setTimeout(() => alvo.classList.add('ativa'), 50);
+            
             event.currentTarget.classList.add('ativo');
             document.getElementById('area-texto').scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // LUZ QUE SEGUE O MOUSE
         document.addEventListener('mousemove', e => {
             const luz = document.getElementById('luz-cursor');
             luz.style.left = e.clientX + 'px';
@@ -194,30 +218,36 @@
         const geometry = new THREE.PlaneGeometry(120, 120, 30, 30);
         const pos = geometry.attributes.position.array;
         for(let i=0; i<pos.length; i+=3) { pos[i+2] = Math.random() * 2.5; }
-        const material = new THREE.MeshPhongMaterial({ color: 0x222222, wireframe: true, transparent: true, opacity: 0.2 });
+        const material = new THREE.MeshPhongMaterial({ color: 0x222222, wireframe: true, transparent: true, opacity: 0.15 });
         const terrain = new THREE.Mesh(geometry, material);
         terrain.rotation.x = -Math.PI / 2;
         scene.add(terrain);
 
-        // Ponto de Luz Central (Pirâmide)
+        // Pirâmide de Luz
         const pGeo = new THREE.ConeGeometry(4, 8, 4);
-        const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.6 });
+        const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.5 });
         const pyramid = new THREE.Mesh(pGeo, pMat);
         pyramid.position.y = 4;
         scene.add(pyramid);
 
-        const light = new THREE.PointLight(0xFFD700, 1.5, 100);
+        const light = new THREE.PointLight(0xFFD700, 1.2, 100);
         light.position.set(0, 10, 0);
         scene.add(light);
         camera.position.z = 25; camera.position.y = 8;
 
         function animate() {
             requestAnimationFrame(animate);
-            terrain.rotation.z += 0.0005;
+            terrain.rotation.z += 0.0003;
             pyramid.rotation.y += 0.005;
             renderer.render(scene, camera);
         }
         animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
     </script>
 </body>
 </html>
