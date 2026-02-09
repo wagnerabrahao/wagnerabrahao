@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <title>WAGNER ABRAHÃO | Arquiteto do Invisível</title>
+    <meta name="description" content="Wagner Abrahão - Literatura filosófica, espiritualidade e arquitetura do invisível. Uma jornada transcendental através da palavra.">
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,223 +14,309 @@
         gtag('js', new Date());
         gtag('config', 'G-5WZHN0YR19');
     </script>
-    
-    <title>WAGNER ABRAHÃO | Arquiteto do Invisível</title>
-    <meta name="description" content="Wagner Abrahão - Literatura filosófica, espiritualidade e arquitetura do invisível.">
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,400&family=Raleway:wght@200;400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --ouro: #D4AF37;
-            --preto: #050505;
-            --cinza: #E0E0E0;
-            --gradiente: linear-gradient(135deg, #D4AF37, #F9E076, #D4AF37);
+            --ouro-brilho: #F9E076;
+            --preto-profundo: #020202;
+            --cinza-nobre: #A8A8A8;
+            --font-titulo: 'Cinzel', serif;
+            --font-texto: 'Cormorant Garamond', serif;
         }
-        
-        body { background: var(--preto); color: var(--cinza); font-family: 'Cormorant Garamond', serif; overflow: hidden; }
 
-        /* TELA DE ENTRADA (Música e Efeitos) */
-        #overlay-entrada {
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; background: var(--preto-profundo); color: #fff; font-family: var(--font-texto); overflow: hidden; }
+
+        /* TELA DE ENTRADA LUXUOSA */
+        #landing-page {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 10000; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; transition: 1.5s;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: transform 1.8s cubic-bezier(0.86, 0, 0.07, 1);
         }
-        .btn-adentrar {
-            padding: 15px 45px; background: transparent; border: 1px solid var(--ouro);
-            color: var(--ouro); font-family: 'Cinzel', serif; cursor: pointer;
-            letter-spacing: 5px; transition: 0.5s; text-transform: uppercase;
+        .intro-title { font-family: var(--font-titulo); font-size: 3rem; color: var(--ouro); letter-spacing: 10px; margin-bottom: 20px; opacity: 0; text-align: center; }
+        .btn-iniciar {
+            padding: 20px 60px; background: transparent; border: 1px solid var(--ouro);
+            color: var(--ouro); font-family: var(--font-titulo); cursor: pointer;
+            letter-spacing: 5px; overflow: hidden; position: relative; transition: 0.5s;
         }
-        .btn-adentrar:hover { background: var(--ouro); color: #000; box-shadow: 0 0 30px var(--ouro); }
+        .btn-iniciar:hover { background: var(--ouro); color: #000; box-shadow: 0 0 50px rgba(212, 175, 55, 0.4); }
 
-        /* PAISAGEM 3D E LUZ */
-        #cenario-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        #luz-cursor {
-            position: fixed; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 2;
+        /* CENÁRIO 3D & LUZ DO MOUSE */
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        #luz-rastro {
+            position: fixed; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 2; mix-blend-mode: screen;
         }
 
-        /* NAVEGAÇÃO */
-        #menu-lateral {
-            position: fixed; right: 25px; top: 50%; transform: translateY(-50%);
-            z-index: 1000; display: flex; flex-direction: column; gap: 20px;
+        /* NAVEGAÇÃO LATERAL TECNOLÓGICA */
+        #nav-menu {
+            position: fixed; left: 40px; top: 50%; transform: translateY(-50%);
+            z-index: 1000; display: flex; flex-direction: column; gap: 30px;
         }
-        .nav-btn {
-            width: 50px; height: 50px; border-radius: 50%; background: rgba(0,0,0,0.85);
-            border: 1px solid rgba(212,175,55,0.3); color: var(--ouro);
-            display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s;
+        .nav-link {
+            width: 12px; height: 12px; border: 1px solid var(--ouro); border-radius: 50%;
+            cursor: pointer; transition: 0.4s; position: relative;
         }
-        .nav-btn:hover, .nav-btn.ativo { background: var(--ouro); color: #000; transform: scale(1.1); box-shadow: 0 0 20px var(--ouro); }
-
-        /* CONTEÚDO */
-        #area-texto {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 100; overflow-y: auto; scrollbar-width: none; padding: 100px 10% 150px;
+        .nav-link.active { background: var(--ouro); box-shadow: 0 0 15px var(--ouro); }
+        .nav-link::after {
+            content: attr(data-label); position: absolute; left: 30px; top: -5px;
+            font-family: var(--font-titulo); font-size: 0.7rem; color: var(--ouro);
+            opacity: 0; transition: 0.3s; pointer-events: none; letter-spacing: 2px;
         }
-        #area-texto::-webkit-scrollbar { display: none; }
-        
-        .secao { display: none; opacity: 0; transform: translateY(30px); transition: 0.8s; max-width: 900px; margin: 0 auto; }
-        .secao.ativa { display: block; opacity: 1; transform: translateY(0); }
+        .nav-link:hover::after { opacity: 1; }
 
-        /* HIERARQUIA CORRIGIDA: Único h1 */
-        .h1-nome { font-family: 'Cinzel', serif; font-size: 4rem; background: var(--gradiente); -webkit-background-clip: text; color: transparent; text-align: center; margin-bottom: 5px; }
-        .h2-secao { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--ouro); text-align: center; margin-bottom: 40px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
-        .h3-card { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--ouro); margin-bottom: 15px; }
+        /* ÁREA DE CONTEÚDO SCROLLÁVEL */
+        #main-content {
+            position: relative; z-index: 100; height: 100vh; overflow-y: auto; scrollbar-width: none;
+            padding: 0 10% 200px; scroll-behavior: smooth;
+        }
+        #main-content::-webkit-scrollbar { display: none; }
 
-        /* FOTO E CARDS */
-        .moldura-foto { width: 220px; height: 280px; margin: 0 auto 30px; border: 2px solid var(--ouro); padding: 8px; background: #000; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
-        .foto-principal { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1); }
-        .card-luxo { background: rgba(10,10,10,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.15); padding: 40px; margin-bottom: 30px; transition: 0.4s; }
-        
-        p { font-size: 1.3rem; line-height: 1.8; text-align: justify; margin-bottom: 15px; }
-        .italico { font-style: italic; text-align: center; }
+        section { min-height: 100vh; padding: 150px 0; opacity: 0; transform: translateY(50px); transition: 1.2s; }
+        section.visible { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 768px) {
-            .h1-nome { font-size: 2.5rem; }
-            #menu-lateral { top: auto; bottom: 20px; right: 50%; transform: translateX(50%); flex-direction: row; }
+        /* FOTO E IDENTIDADE */
+        .perfil-container { display: flex; align-items: center; gap: 80px; margin-bottom: 100px; }
+        .foto-moldura {
+            width: 320px; height: 420px; border: 1px solid var(--ouro); padding: 15px;
+            background: rgba(255,255,255,0.02); position: relative; overflow: hidden;
+        }
+        .foto-img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.2) contrast(1.1); transition: 0.8s; }
+        .foto-img:hover { filter: sepia(0) contrast(1.2); transform: scale(1.05); }
+
+        /* TIPOGRAFIA CORRIGIDA (SEO) */
+        h1 { font-family: var(--font-titulo); font-size: 5rem; color: var(--ouro); letter-spacing: -2px; line-height: 0.9; margin-bottom: 20px; }
+        h2 { font-family: var(--font-titulo); font-size: 2.8rem; color: var(--ouro); margin-bottom: 50px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
+        h3 { font-family: var(--font-titulo); font-size: 1.8rem; color: var(--ouro); margin-bottom: 25px; }
+
+        .texto-universal { font-size: 1.5rem; line-height: 1.8; color: var(--cinza-nobre); max-width: 800px; text-align: justify; }
+        .quote-viva { font-style: italic; font-size: 2.2rem; color: var(--ouro); text-align: center; margin: 60px 0; font-family: 'Playfair Display', serif; }
+
+        /* CARDS DE LUXO */
+        .grid-manuscritos { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .card-obra {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.1);
+            padding: 50px; backdrop-filter: blur(15px); transition: 0.5s ease;
+        }
+        .card-obra:hover { border-color: var(--ouro); background: rgba(255,255,255,0.06); transform: translateY(-10px); }
+
+        /* CONTATOS */
+        .footer-contato { text-align: center; margin-top: 100px; }
+        .social-icons { display: flex; justify-content: center; gap: 50px; margin-top: 40px; }
+        .social-icons a { color: var(--ouro); font-size: 2.5rem; transition: 0.4s; }
+        .social-icons a:hover { color: #fff; transform: scale(1.2); text-shadow: 0 0 20px var(--ouro); }
+
+        /* YOUTUBE PLAYER HIDDEN */
+        #yt-player-container { position: fixed; bottom: -100px; left: -100px; opacity: 0; }
+        #audio-toggle {
+            position: fixed; bottom: 40px; left: 40px; z-index: 1000;
+            color: var(--ouro); font-size: 1.5rem; cursor: pointer; opacity: 0.5; transition: 0.3s;
+        }
+        #audio-toggle:hover { opacity: 1; }
+
+        @media (max-width: 1024px) {
+            .perfil-container { flex-direction: column; text-align: center; gap: 40px; }
+            h1 { font-size: 3.5rem; }
+            .grid-manuscritos { grid-template-columns: 1fr; }
+            .nav-link::after { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <audio id="som-ambiente" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+    <div id="yt-player-container">
+        <div id="player"></div>
+    </div>
+    <div id="audio-toggle" onclick="toggleAudio()"><i class="fas fa-volume-up" id="audio-icon"></i></div>
 
-    <div id="overlay-entrada">
-        <div style="text-align:center;">
-            <h2 style="font-family:'Cinzel'; color:var(--ouro); letter-spacing:5px; margin-bottom:10px;">WAGNER ABRAHÃO</h2>
-            <p style="font-family:'Raleway'; color:#888; letter-spacing:3px; margin-bottom:30px;">ARQUITETURA DO INVISÍVEL</p>
-            <button class="btn-adentrar" onclick="iniciar()">ADENTRAR</button>
-        </div>
+    <div id="landing-page">
+        <div class="intro-title" id="intro-name">WAGNER ABRAHÃO</div>
+        <button class="btn-iniciar" onclick="entrarNoSite()">ADENTRAR À OBRA</button>
     </div>
 
-    <div id="cenario-fundo"></div>
-    <div id="luz-cursor"></div>
+    <div id="luz-rastro"></div>
+    <div id="canvas-container"></div>
 
-    <nav id="menu-lateral">
-        <div class="nav-btn ativo" onclick="irPara('home')"><i class="fas fa-home" title="Início"></i></div>
-        <div class="nav-btn" onclick="irPara('poesia')"><i class="fas fa-feather" title="Poesia"></i></div>
-        <div class="nav-btn" onclick="irPara('manuscritos')"><i class="fas fa-book" title="Manuscritos"></i></div>
-        <div class="nav-btn" onclick="irPara('contato')"><i class="fas fa-envelope" title="Conexão"></i></div>
+    <nav id="nav-menu">
+        <div class="nav-link active" data-label="O ARQUITETO" onclick="scrollToSec('home')"></div>
+        <div class="nav-link" data-label="OBRAS" onclick="scrollToSec('obras')"></div>
+        <div class="nav-link" data-label="REFLEXÕES" onclick="scrollToSec('poesia')"></div>
+        <div class="nav-link" data-label="CONEXÃO" onclick="scrollToSec('contato')"></div>
     </nav>
 
-    <main id="area-texto">
-        <section id="home" class="secao ativa">
-            <div class="moldura-foto"><img src="26053.jpg" class="foto-principal" alt="Wagner Abrahão - Arquiteto do Invisível"></div>
-            <h1 class="h1-nome">WAGNER ABRAHÃO</h1>
-            <p class="italico" style="letter-spacing: 5px; color: #aaa; margin-bottom: 50px;">ARQUITETURA DO INVISÍVEL</p>
-            <div class="card-luxo">
-                <h2 class="h2-secao">MISSÃO UNIVERSAL</h2>
-                <p>Revelar as estruturas que sustentam a nossa realidade cotidiana. Minha obra busca oferecer sentido e acalento através da palavra, conectando o visível ao transcendente de forma acolhedora para todos os buscadores.</p>
+    <main id="main-content" onscroll="handleScroll()">
+        
+        <section id="home" class="visible">
+            <div class="perfil-container">
+                <div class="foto-moldura">
+                    <img src="26053.jpg" alt="Wagner Abrahão" class="foto-img">
+                </div>
+                <div>
+                    <h1>WAGNER<br>ABRAHÃO</h1>
+                    <p class="texto-universal">
+                        "Não construo com pedra ou madeira, mas com o espaço entre os átomos. Minha obra busca ser o suporte para quem procura acalento na densidade da vida cotidiana."
+                    </p>
+                </div>
+            </div>
+            <div class="card-obra">
+                <h3>MISSÃO UNIVERSAL</h3>
+                <p class="texto-universal">
+                    Revelar as estruturas invisíveis que sustentam a existência humana. Através da harmonia da palavra, conectamos o visível ao transcendente de forma acolhedora para todos os buscadores.
+                </p>
             </div>
         </section>
 
-        <section id="poesia" class="secao">
-            <h2 class="h2-secao">REFLEXÕES EM VERSO</h2>
-            <div class="card-luxo">
-                <h3 class="h3-card">ANESTESIA DIVINA</h3>
-                <p class="italico">"Dante não sabia que estava dormindo. Durante anos, viveu em estado de espera silenciosa. Sua existência era um ponto central perpétuo, até que a perda se tornou revelação."</p>
-            </div>
-            <div class="card-luxo">
-                <h3 class="h3-card">A MEMÓRIA DA LUZ</h3>
-                <p class="italico">"Antes da forma, havia apenas luz. Em cada átomo, uma centelha lembra sua origem divina. Esquecer é humano; lembrar é o caminho de volta."</p>
-            </div>
-        </section>
-
-        <section id="manuscritos" class="secao">
-            <h2 class="h2-secao">MANUSCRITOS</h2>
-            <div class="card-luxo">
-                <h3 class="h3-card">A ARQUITETURA DO INVISÍVEL</h3>
-                <p>Um tratado sobre as estruturas ocultas que sustentam a nossa existência. Uma análise sobre as fundações espirituais e os princípios da construção consciente.</p>
-            </div>
-            <div class="card-luxo">
-                <h3 class="h3-card">A ANESTESIA DIVINA (OBRA)</h3>
-                <p>Uma exploração sobre o despertar da consciência através da rendição. A obra investiga os véus da percepção que separam o cotidiano da vigília espiritual.</p>
-            </div>
-        </section>
-
-        <section id="contato" class="secao">
-            <h2 class="h2-secao">CONEXÃO</h2>
-            <div class="card-luxo" style="text-align: center;">
-                <p>Para parcerias e diálogos sobre a arquitetura espiritual:</p>
-                <p style="color: var(--ouro); font-weight: bold; margin-bottom:30px;">wagner.abrahao.31@gmail.com</p>
-                <div style="display: flex; justify-content: center; gap: 30px;">
-                    <a href="https://instagram.com/wagnerabrahao_" target="_blank" style="color: var(--ouro); font-size: 2rem;"><i class="fab fa-instagram"></i></a>
-                    <a href="https://tiktok.com/@wagner.abrahao" target="_blank" style="color: var(--ouro); font-size: 2rem;"><i class="fab fa-tiktok"></i></a>
+        <section id="obras">
+            <h2>MANUSCRITOS</h2>
+            <div class="grid-manuscritos">
+                <div class="card-obra">
+                    <h3>A ARQUITETURA DO INVISÍVEL</h3>
+                    <p class="texto-universal">Um tratado sobre as estruturas ocultas que sustentam a realidade eterna. As fundações espirituais da existência e os princípios da construção consciente.</p>
+                </div>
+                <div class="card-obra">
+                    <h3>A ANESTESIA DIVINA</h3>
+                    <p class="texto-universal">O despertar místico através da rendição absoluta. Uma jornada pelos véus da percepção que separam o sonho da vigília espiritual.</p>
                 </div>
             </div>
         </section>
+
+        <section id="poesia">
+            <h2>REFLEXÕES DA ALMA</h2>
+            <div class="quote-viva">"Dante não sabia que estava dormindo. Até que a perda se tornou revelação."</div>
+            <div class="grid-manuscritos">
+                <div class="card-obra">
+                    <h3>A VERDADE</h3>
+                    <p class="texto-universal">"A verdade não é uma linha reta, mas uma esfera a ser habitada. Cada ângulo revela uma faceta, cada experiência uma nova profundidade."</p>
+                </div>
+                <div class="card-obra">
+                    <h3>O SILÊNCIO</h3>
+                    <p class="texto-universal">"No vácuo entre as palavras, a sabedoria se revela. O silêncio é a plenitude do que ainda não foi dito."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato">
+            <h2>CONEXÃO</h2>
+            <div class="footer-contato">
+                <p class="texto-universal" style="margin: 0 auto 40px; text-align: center;">Para parcerias, diálogos profundos e partilhas sobre a arquitetura do ser.</p>
+                <p style="font-family: var(--font-titulo); color: var(--ouro); font-size: 1.2rem;">BELO HORIZONTE | MINAS GERAIS</p>
+                <p style="margin-top: 10px; color: var(--cinza-nobre);">wagner.abrahao.31@gmail.com</p>
+                
+                <div class="social-icons">
+                    <a href="https://instagram.com/wagnerabrahao_" target="_blank" title="Instagram Official"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@wagner.abrahao" target="_blank" title="TikTok Profile"><i class="fab fa-tiktok"></i></a>
+                    <a href="mailto:wagner.abrahao.31@gmail.com" title="Enviar E-mail"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <script>
-        function iniciar() {
-            document.getElementById('overlay-entrada').style.opacity = '0';
-            setTimeout(() => document.getElementById('overlay-entrada').style.display = 'none', 1500);
-            const musica = document.getElementById('som-ambiente');
-            musica.play().catch(e => console.log("Interação necessária para áudio"));
+        // 1. ANIMAÇÕES GSAP
+        gsap.to("#intro-name", { opacity: 1, duration: 2.5, delay: 0.5 });
+
+        // 2. MÚSICA YOUTUBE API (RESTAURADA)
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0', width: '0',
+                videoId: 'wFJeTeeXicU',
+                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'wFJeTeeXicU' },
+                events: { 'onReady': onPlayerReady }
+            });
+        }
+        function onPlayerReady(event) { player.setVolume(50); }
+
+        function entrarNoSite() {
+            document.getElementById('landing-page').style.transform = 'translateY(-100%)';
+            player.playVideo();
         }
 
-        function irPara(id) {
-            document.querySelectorAll('.secao').forEach(s => s.classList.remove('ativa'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('ativo'));
-            const alvo = document.getElementById(id);
-            alvo.style.display = 'block';
-            setTimeout(() => alvo.classList.add('ativa'), 50);
-            event.currentTarget.classList.add('ativo');
-            document.getElementById('area-texto').scrollTo({ top: 0, behavior: 'smooth' });
+        function toggleAudio() {
+            const icon = document.getElementById('audio-icon');
+            if (player.getPlayerState() === 1) {
+                player.pauseVideo();
+                icon.className = "fas fa-volume-mute";
+            } else {
+                player.playVideo();
+                icon.className = "fas fa-volume-up";
+            }
         }
 
-        document.addEventListener('mousemove', e => {
-            const luz = document.getElementById('luz-cursor');
-            luz.style.left = e.clientX + 'px';
-            luz.style.top = e.clientY + 'px';
-        });
-
-        // CENÁRIO 3D: Paisagem e Horizonte
+        // 3. CENÁRIO 3D (THREE.JS)
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('cenario-fundo').appendChild(renderer.domElement);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        // Geometria da Paisagem
-        const geometry = new THREE.PlaneGeometry(120, 120, 40, 40);
-        const pos = geometry.attributes.position.array;
-        for(let i=0; i<pos.length; i+=3) { pos[i+2] = Math.random() * 2.5; }
-        const material = new THREE.MeshPhongMaterial({ color: 0x222222, wireframe: true, transparent: true, opacity: 0.15 });
-        const terrain = new THREE.Mesh(geometry, material);
-        terrain.rotation.x = -Math.PI / 2;
-        scene.add(terrain);
+        // Geometria Estelar
+        const starGeo = new THREE.BufferGeometry();
+        const starCount = 5000;
+        const starArr = new Float32Array(starCount * 3);
+        for(let i=0; i < starCount*3; i++) starArr[i] = (Math.random() - 0.5) * 150;
+        starGeo.setAttribute('position', new THREE.BufferAttribute(starArr, 3));
+        const starMat = new THREE.PointsMaterial({ color: 0xD4AF37, size: 0.04 });
+        const stars = new THREE.Points(starGeo, starMat);
+        scene.add(stars);
 
-        // Pirâmide Central
-        const pGeo = new THREE.ConeGeometry(4, 8, 4);
-        const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.6 });
+        // Horizonte (Pirâmide do Invisível)
+        const pGeo = new THREE.ConeGeometry(8, 12, 4);
+        const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37, wireframe: true, transparent: true, opacity: 0.2 });
         const pyramid = new THREE.Mesh(pGeo, pMat);
-        pyramid.position.y = 4;
+        pyramid.position.set(20, -5, -20);
         scene.add(pyramid);
 
-        const light = new THREE.PointLight(0xFFD700, 1.5, 100);
-        light.position.set(0, 10, 0);
+        const light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(0, 10, 10);
         scene.add(light);
-        camera.position.z = 25; camera.position.y = 10;
+        camera.position.z = 35;
 
         function animate() {
             requestAnimationFrame(animate);
-            terrain.rotation.z += 0.0005;
-            pyramid.rotation.y += 0.005;
+            stars.rotation.y += 0.0004;
+            pyramid.rotation.y += 0.003;
             renderer.render(scene, camera);
         }
         animate();
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+        // 4. INTERAÇÃO E NAVEGAÇÃO
+        document.addEventListener('mousemove', e => {
+            const luz = document.getElementById('luz-rastro');
+            luz.style.left = e.clientX + 'px';
+            luz.style.top = e.clientY + 'px';
         });
+
+        function scrollToSec(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleScroll() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            sections.forEach((sec, i) => {
+                const top = sec.getBoundingClientRect().top;
+                if(top < window.innerHeight * 0.6) {
+                    sec.classList.add('visible');
+                    navLinks.forEach(n => n.classList.remove('active'));
+                    navLinks[i].classList.add('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>
