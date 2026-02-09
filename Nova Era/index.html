@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wagner Abrahão | Arquiteto do Invisível</title>
     
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Wagner Abrahão - Arquiteto do Invisível. Manuscritos, aforismos, poesias e reflexões sobre a alma e o silêncio.">
+    <meta name="keywords" content="filosofia, espiritualidade, poesia, Wagner Abrahão, arquiteto do invisível">
+    <meta name="author" content="Wagner Abrahão">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -13,206 +19,802 @@
       gtag('config', 'G-5WZHN0YR19');
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Wagner Abrahão",
+      "description": "Arquiteto do Invisível, autor de obras filosóficas e poéticas",
+      "url": "https://wagnerabrahao.com",
+      "sameAs": [
+        "https://www.threads.net/@wagnerabrahao_",
+        "https://www.tiktok.com/@wagner.abrahao"
+      ]
+    }
+    </script>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --gold: #c5a059; --obsidian: #050505; --ethereal: #fdfaf1; }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        :root {
+            --gold: #c5a059;
+            --gold-light: #d4b67c;
+            --obsidian: #050505;
+            --obsidian-light: #1a1a1a;
+            --cream: #fdfaf1;
+            --cream-dark: #f5f0e1;
+        }
         
-        body, html { 
-            background-color: var(--obsidian); 
-            color: var(--ethereal); 
-            font-family: 'Montserrat', sans-serif; 
-            overflow-x: hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
             scroll-behavior: smooth;
         }
-
-        /* --- PORTAL DE ENTRADA (A MÁGICA) --- */
+        
+        body, html {
+            background-color: var(--obsidian);
+            color: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        /* Acessibilidade - foco visível */
+        :focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+        }
+        
+        /* Reduzir movimento para quem preferir */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* PORTAL DE ENTRADA */
         #splash {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            z-index: 10000; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2560&q=80');
-            background-size: cover; background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.95));
             transition: transform 1.8s cubic-bezier(0.85, 0, 0.15, 1);
+            overflow: hidden;
         }
-
+        
+        .splash-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
         .splash-title {
-            font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 4rem);
-            letter-spacing: 15px; color: var(--gold); margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 7vw, 3.5rem);
+            letter-spacing: 12px;
+            color: var(--gold);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-weight: 900;
+            line-height: 1.2;
         }
-
+        
         .splash-subtitle {
-            font-family: 'Lora', serif; font-style: italic; font-size: 1.2rem;
-            margin-bottom: 50px; opacity: 0.8; letter-spacing: 3px;
+            font-family: 'Lora', serif;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-style: italic;
+            color: var(--cream);
+            margin-bottom: 60px;
+            max-width: 600px;
+            padding: 0 20px;
+            opacity: 0.8;
         }
-
+        
         #btn-activate {
-            background: none; border: 1px solid var(--gold); color: var(--gold);
-            padding: 22px 60px; font-family: 'Cinzel'; letter-spacing: 5px;
-            cursor: pointer; transition: 0.5s; font-size: 0.9rem;
-            backdrop-filter: blur(5px);
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 18px 50px;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-
-        #btn-activate:hover { background: var(--gold); color: var(--obsidian); box-shadow: 0 0 40px var(--gold); }
-
-        /* --- NAVEGAÇÃO SUPERIOR --- */
+        
+        #btn-activate:hover {
+            background: var(--gold);
+            color: var(--obsidian);
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+        }
+        
+        /* NAVEGAÇÃO */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 40px 60px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 500; mix-blend-mode: difference;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
         }
-
-        .brand-full {
-            font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.1rem;
-            letter-spacing: 6px; color: var(--gold);
-        }
-
-        /* --- SEÇÃO HERO --- */
-        .hero { 
-            height: 100vh; display: flex; align-items: center; justify-content: center; 
-            text-align: center; position: relative;
-        }
-
-        .hero-text h2 {
-            font-family: 'Cinzel'; font-size: clamp(1.5rem, 5vw, 3rem);
-            font-weight: 400; letter-spacing: 12px; margin-bottom: 20px;
-        }
-
-        /* --- MANUSCRITOS (PRADA LUXE) --- */
-        .collection { 
-            background-color: var(--ethereal); color: var(--obsidian);
-            padding: 150px 10%;
-        }
-
-        .collection h2 {
-            font-family: 'Cinzel'; font-size: 2.5rem; letter-spacing: 10px;
-            text-align: center; margin-bottom: 100px; color: var(--obsidian);
-        }
-
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2px; background-color: #e5e5e5;
-        }
-
-        .book-card {
-            background-color: var(--ethereal); padding: 80px 50px;
-            text-align: center; transition: 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .book-card:hover { background-color: #ffffff; transform: scale(0.97); }
-
-        .book-card h3 { 
-            font-family: 'Cinzel'; font-size: 1.4rem; color: var(--gold);
-            margin-bottom: 25px; letter-spacing: 3px;
-        }
-
-        .book-card p { font-family: 'Lora'; line-height: 2; font-size: 1rem; color: #555; }
-
-        /* --- RODAPÉ --- */
-        footer { padding: 120px 10% 60px; background-color: var(--obsidian); border-top: 1px solid #111; }
         
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; }
-        
-        .footer-logo { font-family: 'Cinzel'; font-size: 1.8rem; letter-spacing: 8px; color: var(--gold); }
-
-        .footer-links a { 
-            display: block; color: #444; text-decoration: none; 
-            margin: 15px 0; font-size: 0.75rem; letter-spacing: 3px; transition: 0.3s;
+        .brand {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
         }
-        .footer-links a:hover { color: var(--gold); }
-
-        /* OTIMIZAÇÃO MOBILE */
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        #audio-toggle {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+        
+        #audio-toggle:hover {
+            background: rgba(197, 160, 89, 0.1);
+        }
+        
+        /* SEÇÕES */
+        section {
+            padding: 140px 10% 100px;
+            position: relative;
+        }
+        
+        .title-sec {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: 8px;
+            color: var(--gold);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        /* MANUSCRITOS */
+        .manuscritos {
+            background: var(--cream);
+            color: var(--obsidian);
+            padding-top: 160px;
+        }
+        
+        .grid-manus {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .card-manus {
+            padding: 60px 30px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            text-align: center;
+            transition: all 0.6s ease;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-manus:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--gold-light);
+        }
+        
+        .card-manus h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .card-manus p {
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            opacity: 0.8;
+            font-size: 1.05rem;
+        }
+        
+        /* GRID CONTEÚDO */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .content-item {
+            padding: 35px 30px;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(197, 160, 89, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .content-item h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        .content-item p {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            opacity: 0.85;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        /* POEMAS */
+        #poemas {
+            background: rgba(255, 255, 255, 0.01);
+        }
+        
+        /* RODAPÉ */
+        footer {
+            padding: 80px 10% 60px;
+            background: #000;
+            border-top: 1px solid rgba(17, 17, 17, 0.8);
+            text-align: center;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .social-icons a {
+            color: var(--gold);
+            font-size: 1.8rem;
+            transition: all 0.4s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid transparent;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            color: var(--cream);
+            border-color: var(--gold);
+            background: rgba(197, 160, 89, 0.1);
+        }
+        
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 6px;
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .footer-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.5;
+            margin-top: 40px;
+            letter-spacing: 2px;
+        }
+        
+        /* ANIMAÇÕES */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* MEDIA QUERIES */
+        @media (max-width: 1024px) {
+            section {
+                padding: 120px 8% 80px;
+            }
+            
+            nav {
+                padding: 25px 40px;
+            }
+        }
+        
         @media (max-width: 768px) {
-            nav { padding: 30px 20px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-            .collection { padding: 100px 5%; }
+            section {
+                padding: 100px 5% 70px;
+            }
+            
+            .title-sec {
+                font-size: 1.6rem;
+                letter-spacing: 5px;
+                margin-bottom: 60px;
+            }
+            
+            nav {
+                padding: 20px 25px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            
+            .grid-manus, .content-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .card-manus {
+                padding: 40px 25px;
+            }
+            
+            .card-manus h3 {
+                font-size: 1.3rem;
+            }
+            
+            .content-item {
+                padding: 30px 25px;
+            }
+            
+            .social-icons {
+                gap: 25px;
+            }
+            
+            .social-icons a {
+                font-size: 1.5rem;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .splash-title {
+                letter-spacing: 8px;
+            }
+            
+            #btn-activate {
+                padding: 15px 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            section {
+                padding: 90px 5% 60px;
+            }
+            
+            .title-sec {
+                font-size: 1.4rem;
+                letter-spacing: 4px;
+                margin-bottom: 50px;
+            }
+            
+            .splash-title {
+                letter-spacing: 6px;
+                padding: 0 15px;
+            }
+            
+            .splash-subtitle {
+                padding: 0 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+            
+            .card-manus h3 {
+                font-size: 1.2rem;
+            }
+            
+            .card-manus p, .content-item p {
+                font-size: 1rem;
+            }
+            
+            .social-icons {
+                gap: 20px;
+            }
+            
+            .social-icons a {
+                font-size: 1.4rem;
+                width: 45px;
+                height: 45px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Portal de entrada -->
     <div id="splash">
+        <div class="splash-bg"></div>
         <div class="splash-title">WAGNER ABRAHÃO</div>
-        <div class="splash-subtitle">Arquiteto do Invisível</div>
-        <button id="btn-activate" onclick="launch()">ATIVAR CONSCIÊNCIA</button>
+        <div class="splash-subtitle">Arquiteto do Invisível • Filósofo da Alma • Poeta do Silêncio</div>
+        <button id="btn-activate" aria-label="Ativar consciência e entrar no site">ATIVAR CONSCIÊNCIA</button>
     </div>
 
-    <audio id="bg-audio" loop>
+    <!-- Áudio de fundo -->
+    <audio id="bg-audio" loop preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
     </audio>
 
+    <!-- Navegação -->
     <nav>
-        <div class="brand-full">WAGNER ABRAHÃO</div>
-        <div style="font-size: 0.6rem; letter-spacing: 4px; opacity: 0.4;">PORTAL OFICIAL</div>
+        <a href="#" class="brand">WAGNER ABRAHÃO</a>
+        <div class="nav-links">
+            <a href="#manuscritos">Manuscritos</a>
+            <a href="#aforismos">Aforismos</a>
+            <a href="#poemas">Poesias</a>
+            <a href="#textos">Reflexões</a>
+            <button id="audio-toggle" aria-label="Ligar/desligar áudio de fundo">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-text">
-            <h2>ALQUIMIA DA ALMA</h2>
-            <p style="opacity: 0.5; font-style: italic;">"O invisível é a fundação de tudo o que se torna real."</p>
-        </div>
-    </section>
-
-    <section class="collection" id="obras">
-        <h2>OS MANUSCRITOS</h2>
-        <div class="grid">
-            <div class="book-card">
+    <!-- Seção Manuscritos -->
+    <section class="manuscritos" id="manuscritos">
+        <h2 class="title-sec">MANUSCRITOS</h2>
+        <div class="grid-manus">
+            <div class="card-manus fade-in">
                 <h3>A CENTELHA INQUIETA</h3>
-                <p>O despertar do fogo primordial. Uma investigação profunda sobre a origem da luz que habita o silêncio da alma.</p>
+                <p>O despertar do fogo primordial que reside no silêncio da alma. Uma investigação profunda sobre a origem da luz que habita o invisível. Cada capítulo é uma jornada rumo ao centro do ser, onde a quietude se revela como a verdadeira morada da essência.</p>
             </div>
-            <div class="book-card">
+            <div class="card-manus fade-in">
                 <h3>ALQUIMIA DO SER</h3>
-                <p>A transmutação da existência cotidiana. Como converter a densidade da vida no ouro da consciência plena.</p>
+                <p>A transmutação da existência cotidiana em experiência sagrada. Como converter a densidade da vida no ouro da consciência plena e eterna. Uma obra sobre o processo de transformação interior que nos liberta das amarras do efêmero para alcançar o atemporal.</p>
             </div>
-            <div class="book-card">
+            <div class="card-manus fade-in">
                 <h3>ANESTESIA DIVINA</h3>
-                <p>O suporte espiritual supremo. Um porto seguro para os buscadores que navegam na densidade do visível.</p>
+                <p>O suporte espiritual supremo para os buscadores que navegam na densidade do visível. Um porto seguro e acalento para a alma em processo de despertar. Explorando os mecanismos de proteção que a consciência superior oferece durante a travessia entre dimensões.</p>
             </div>
         </div>
     </section>
 
+    <!-- Seção Aforismos -->
+    <section id="aforismos">
+        <h2 class="title-sec">AFORISMOS</h2>
+        <div class="content-grid">
+            <div class="content-item fade-in">
+                <p>"O silêncio é a geometria sagrada da alma. Nele, todas as formas se dissolvem para revelar a essência sem contornos."</p>
+            </div>
+            <div class="content-item fade-in">
+                <p>"A alma não tem pressa; a pressa é a poeira do ego que obscurece o caminho para o eterno presente."</p>
+            </div>
+            <div class="content-item fade-in">
+                <p>"Para tocar o invisível, é preciso soltar as amarras do tangível. A verdadeira liberdade reside na entrega ao intangível."</p>
+            </div>
+            <div class="content-item fade-in">
+                <p>"A dor é o cinzel divino que esculpe a consciência. Cada golpe revela formas que estavam ocultas na pedra bruta do ser."</p>
+            </div>
+            <div class="content-item fade-in">
+                <p>"Somos a ponte etérea entre o barro e a luz original. Nossa existência é a dança entre a matéria e o espírito."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Poemas -->
+    <section id="poemas">
+        <h2 class="title-sec">POESIAS</h2>
+        <div class="content-grid">
+            <div class="content-item fade-in">
+                <h4>Fogo Interno</h4>
+                <p>Na caverna do peito, a chama dança sem ar. Ela não pede lenha, pede apenas o olhar que se atreve a queimar. É no crepitar da alma que encontramos o calor que nunca se apaga.</p>
+            </div>
+            <div class="content-item fade-in">
+                <h4>Ouro do Peito</h4>
+                <p>Transmuto o chumbo do dia no brilho da noite serena. Cada lágrima é um grão de luz na minha pequena oficina eterna. O coração, meu cadinho sagrado, onde o divino se funde ao humano.</p>
+            </div>
+            <div class="content-item fade-in">
+                <h4>Manto de Paz</h4>
+                <p>Envolve-me o silêncio como um linho antigo. No acalento da alma, encontro o abrigo do que nunca foi dito. Esta paz que veste meu ser é tecida nos teares do infinito.</p>
+            </div>
+            <div class="content-item fade-in">
+                <h4>Arquitetura do Ar</h4>
+                <p>Não ergo paredes, abro vãos. Minha casa é o espaço entre as mãos, onde Deus se faz oração. Construo com o invisível, moro no intangível, habito a eternidade em expansão.</p>
+            </div>
+            <div class="content-item fade-in">
+                <h4>O Vazio Sagrado</h4>
+                <p>Nada falta onde o tudo repousa. A alma é a nau, o mistério é a lousa onde a vida escreve sua causa. No vazio pleno encontro meu abrigo, no silêncio profundo sou finalmente ouvido.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Reflexões -->
+    <section id="textos">
+        <h2 class="title-sec">REFLEXÕES</h2>
+        <div class="content-grid">
+            <div class="content-item fade-in">
+                <h4>A Habitação do Ser</h4>
+                <p>Habitar o próprio ser exige a coragem de ser estrangeiro no mundo das formas. É no desapego das identidades transitórias que descobrimos nossa verdadeira morada interior, além de todos os conceitos e definições.</p>
+            </div>
+            <div class="content-item fade-in">
+                <h4>O Ofício do Invisível</h4>
+                <p>Arquitetar o que não se vê é a única forma de construir o que jamais cairá. Enquanto as estruturas materiais se desfazem com o tempo, as construções da alma permanecem intocadas pela decadência.</p>
+            </div>
+            <div class="content-item fade-in">
+                <h4>A Cura pelo Verbo</h4>
+                <p>A palavra, quando grávida de silêncio, cura feridas que o tempo apenas escondeu. O dizer essencial nasce do não-dito, e é neste espaço entre as palavras que a transformação verdadeira acontece.</p>
+            </div>
+            <div class="content-item fade-in">
+                <h4>O Tempo Circular</h4>
+                <p>Não avançamos; orbitamos o centro de nós mesmos até que o círculo se torne esfera. A espiral da evolução nos leva sempre de volta ao ponto de origem, mas em uma dimensão mais profunda e ampla.</p>
+            </div>
+            <div class="content-item fade-in">
+                <h4>A Dança das Sombras</h4>
+                <p>Aceitar a sombra é o primeiro passo da alquimia; sem o negro, o ouro não tem onde brilhar. A integração dos opostos é o caminho para a totalidade, onde luz e escuridão dançam em perfeita harmonia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
     <footer>
-        <div class="footer-grid">
-            <div>
-                <div class="footer-logo">WAGNER ABRAHÃO</div>
-                <p style="margin-top: 25px; color: #222; font-size: 0.7rem; letter-spacing: 2px;">BELO HORIZONTE | MINAS GERAIS</p>
-            </div>
-            <div class="footer-links">
-                <strong style="font-size: 0.7rem; letter-spacing: 2px;">DIGITAL</strong>
-                <a href="https://instagram.com/wagner.abrahao.31">INSTAGRAM</a>
-                <a href="https://tiktok.com/@wagnerabrahao">TIKTOK</a>
-            </div>
-            <div class="footer-links">
-                <strong style="font-size: 0.7rem; letter-spacing: 2px;">CONTATO</strong>
-                <a href="mailto:wagner.abrahao.31@gmail.com">MENSAGEM DIRETA</a>
-                <a href="#">BIBLIOTECA</a>
-            </div>
+        <div class="social-icons">
+            <a href="https://www.threads.net/@wagnerabrahao_" target="_blank" aria-label="Perfil no Threads">
+                <i class="fab fa-threads"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" aria-label="Perfil no Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" aria-label="Perfil no TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="mailto:wagner.abrahao.31@gmail.com" aria-label="Enviar e-mail">
+                <i class="fas fa-envelope"></i>
+            </a>
         </div>
-        <div style="margin-top: 100px; font-size: 0.5rem; color: #111; letter-spacing: 3px; text-align: center;">
-            © 2026 WAGNER ABRAHÃO. TODOS OS DIREITOS RESERVADOS.
-        </div>
+        <p class="footer-title">WAGNER ABRAHÃO</p>
+        <p class="footer-subtitle">© 2024 BELO HORIZONTE | MINAS GERAIS | ARQUITETO DO INVISÍVEL</p>
     </footer>
 
     <script>
+        // Função principal de ativação
         function launch() {
             const audio = document.getElementById('bg-audio');
             const splash = document.getElementById('splash');
             
-            // Ativa o áudio (Liberado pelo clique no botão)
-            audio.volume = 0.4;
-            audio.play().catch(e => console.log("Áudio ativado com sucesso."));
+            // Tentar tocar áudio (pode ser bloqueado por autoplay policies)
+            audio.volume = 0.3;
+            const playPromise = audio.play();
             
-            // Transição Mercedes Style
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Reprodução automática de áudio bloqueada. O áudio será ativado após interação do usuário.");
+                });
+            }
+            
+            // Animação de saída do splash
             splash.style.transform = "translateY(-100%)";
-            
             setTimeout(() => {
                 splash.style.display = "none";
                 window.scrollTo(0, 0);
+                
+                // Ativar animações de fade-in
+                setTimeout(initAnimations, 300);
             }, 1800);
         }
+        
+        // Configurar botão de ativação
+        document.getElementById('btn-activate').addEventListener('click', launch);
+        
+        // Controle de áudio
+        let isAudioPlaying = false;
+        const audioToggle = document.getElementById('audio-toggle');
+        const audioIcon = audioToggle.querySelector('i');
+        const audio = document.getElementById('bg-audio');
+        
+        audioToggle.addEventListener('click', function() {
+            if (isAudioPlaying) {
+                audio.pause();
+                audioIcon.className = 'fas fa-volume-mute';
+                audioToggle.setAttribute('aria-label', 'Ligar áudio de fundo');
+            } else {
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Não foi possível reproduzir o áudio.");
+                    });
+                }
+                audioIcon.className = 'fas fa-volume-up';
+                audioToggle.setAttribute('aria-label', 'Desligar áudio de fundo');
+            }
+            isAudioPlaying = !isAudioPlaying;
+        });
+        
+        // Navegação suave
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Fechar menu mobile se aplicável
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('.nav-links').classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Animações de fade-in ao scroll
+        function initAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(el => {
+                fadeObserver.observe(el);
+            });
+        }
+        
+        // Verificar se já saímos do splash (caso de recarga)
+        window.addEventListener('load', function() {
+            const splash = document.getElementById('splash');
+            if (splash.style.display === 'none' || splash.style.transform === 'translateY(-100%)') {
+                initAnimations();
+            }
+            
+            // Pré-carregar imagem de fundo para melhor performance
+            const bgImage = new Image();
+            bgImage.src = 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80';
+        });
+        
+        // Menu responsivo para telas muito pequenas
+        function handleResponsiveNav() {
+            const navLinks = document.querySelector('.nav-links');
+            if (window.innerWidth <= 480) {
+                // Simplificar navegação em telas muito pequenas
+                navLinks.style.flexWrap = 'wrap';
+                navLinks.style.justifyContent = 'center';
+                navLinks.style.gap = '10px';
+            }
+        }
+        
+        // Inicializar ao carregar
+        window.addEventListener('resize', handleResponsiveNav);
+        handleResponsiveNav();
     </script>
 </body>
 </html>
