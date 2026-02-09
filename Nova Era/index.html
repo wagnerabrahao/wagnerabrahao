@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wagner Abrahão | Arquiteto do Invisível</title>
-    
-    <!-- Meta tags para SEO -->
-    <meta name="description" content="Wagner Abrahão - Arquiteto do Invisível. Manuscritos, aforismos, poesias e reflexões sobre a alma e o silêncio.">
-    <meta name="keywords" content="filosofia, espiritualidade, poesia, Wagner Abrahão, arquiteto do invisível">
+    <title>Wagner Abrahão | Arquiteto do Invisível - Filosofia, Poesia e Consciência</title>
+    <meta name="description" content="Wagner Abrahão, o Arquiteto do Invisível, explora as dimensões sutis da consciência através de aforismos, poemas e textos filosóficos. Descubra uma visão única da espiritualidade contemporânea.">
+    <meta name="keywords" content="Wagner Abrahão, Arquiteto do Invisível, filosofia, espiritualidade, poesia, aforismos, consciência, autoconhecimento, alquimia espiritual">
     <meta name="author" content="Wagner Abrahão">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Portuguese">
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
@@ -18,797 +18,2083 @@
       gtag('js', new Date());
       gtag('config', 'G-5WZHN0YR19');
     </script>
-
-    <!-- Schema Markup -->
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wagnerabrahao.com/">
+    <meta property="og:title" content="Wagner Abrahão | Arquiteto do Invisível">
+    <meta property="og:description" content="Explorador das dimensões sutis da consciência através de aforismos, poemas e textos filosóficos.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://wagnerabrahao.com/">
+    <meta property="twitter:title" content="Wagner Abrahão | Arquiteto do Invisível">
+    <meta property="twitter:description" content="Explorador das dimensões sutis da consciência através de aforismos, poemas e textos filosóficos.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80">
+    
+    <!-- Fontes e ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Wagner Abrahão",
-      "description": "Arquiteto do Invisível, autor de obras filosóficas e poéticas",
+      "description": "Arquiteto do Invisível, explorador das dimensões sutis da consciência",
       "url": "https://wagnerabrahao.com",
+      "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
       "sameAs": [
-        "https://www.threads.net/@wagnerabrahao_",
-        "https://www.tiktok.com/@wagner.abrahao"
+        "https://www.threads.com/@wagnerabrahao_",
+        "https://www.instagram.com/wagnerabrahao_",
+        "https://www.tiktok.com/@wagner.abrahao?lang=pt-BR"
       ]
     }
     </script>
-
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --gold: #c5a059;
-            --gold-light: #d4b67c;
-            --obsidian: #050505;
-            --obsidian-light: #1a1a1a;
-            --cream: #fdfaf1;
-            --cream-dark: #f5f0e1;
+            --ouro: #d4af37;
+            --ouro-claro: #e6c158;
+            --ouro-escuro: #b8941f;
+            --obsidiana: #050505;
+            --obsidiana-claro: #1a1a1a;
+            --obsidiana-medio: #0f0f0f;
+            --obsidiana-transparente: rgba(5, 5, 5, 0.95);
+            --creme: #fdfaf1;
+            --creme-medio: #f5f0e1;
+            --creme-escuro: #e8e0cd;
+            --marrom-claro: #8b7355;
+            --sombra: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --sombra-ouro: 0 0 20px rgba(212, 175, 55, 0.3);
+            --transicao: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            cursor: none; /* Remove cursor padrão para usar o personalizado */
         }
         
         html {
             scroll-behavior: smooth;
         }
         
-        body, html {
-            background-color: var(--obsidian);
-            color: var(--cream);
-            font-family: 'Montserrat', sans-serif;
+        body {
+            background-color: var(--obsidiana);
+            color: var(--creme);
+            font-family: 'Lora', serif;
             overflow-x: hidden;
-            font-weight: 300;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 18px;
+            font-weight: 400;
+            min-height: 100vh;
+            position: relative;
         }
         
-        h1, h2, h3, h4, h5 {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        
-        /* Acessibilidade - foco visível */
-        :focus {
-            outline: 2px solid var(--gold);
-            outline-offset: 3px;
-        }
-        
-        /* Reduzir movimento para quem preferir */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-        
-        /* PORTAL DE ENTRADA */
-        #splash {
+        /* Wallpaper 4K de Floresta */
+        .wallpaper-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.95));
-            transition: transform 1.8s cubic-bezier(0.85, 0, 0.15, 1);
+            height: 100%;
+            z-index: -3;
             overflow: hidden;
         }
         
-        .splash-bg {
+        .wallpaper {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+            filter: brightness(0.3) sepia(0.5) hue-rotate(10deg);
+        }
+        
+        .wallpaper-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            opacity: 0.4;
-            z-index: -1;
-        }
-        
-        .splash-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 7vw, 3.5rem);
-            letter-spacing: 12px;
-            color: var(--gold);
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-        
-        .splash-subtitle {
-            font-family: 'Lora', serif;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            font-style: italic;
-            color: var(--cream);
-            margin-bottom: 60px;
-            max-width: 600px;
-            padding: 0 20px;
-            opacity: 0.8;
-        }
-        
-        #btn-activate {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 18px 50px;
-            font-family: 'Cinzel', serif;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            letter-spacing: 4px;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.7) 50%, rgba(5,5,5,0.9) 100%);
             z-index: 1;
         }
         
-        #btn-activate:hover {
-            background: var(--gold);
-            color: var(--obsidian);
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            line-height: 1.3;
         }
         
-        /* NAVEGAÇÃO */
-        nav {
+        strong {
+            color: var(--creme-medio);
+            font-weight: 600;
+        }
+        
+        em {
+            font-style: italic;
+            color: var(--creme-escuro);
+        }
+        
+        /* Fundo de Partículas Etéreas */
+        #canvas-bg { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: -2; 
+            width: 100%; 
+            height: 100%; 
+            opacity: 0.25; 
+            pointer-events: none;
+        }
+        
+        /* Gradiente de fundo dinâmico */
+        .gradient-bg {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            padding: 30px 60px;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 25%, rgba(212, 175, 55, 0.07) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(253, 250, 241, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(5, 5, 5, 0) 0%, rgba(5,5,5,0.8) 80%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Cursor personalizado - Ponteiro do Windows estilizado */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.5);
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+        }
+        
+        .custom-cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--ouro);
+            pointer-events: none;
+            z-index: 10001;
+            transition: transform 0.05s ease;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 1);
+        }
+        
+        /* Ponto de luz brilhante que segue o mouse */
+        .light-spot {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(40px);
+            opacity: 0.6;
+            transition: transform 0.3s ease-out;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Botão de Música Luxuoso */
+        #music-toggle {
+            position: fixed; 
+            top: 20px; 
+            right: 20px; 
+            z-index: 100;
+            background: var(--obsidiana-transparente); 
+            border: 1px solid var(--ouro); 
+            color: var(--ouro);
+            padding: 12px 24px; 
+            cursor: none; 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px; 
+            transition: var(--transicao);
+            backdrop-filter: blur(10px);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            box-shadow: var(--sombra);
+        }
+        
+        #music-toggle:hover { 
+            background: var(--ouro); 
+            color: var(--obsidiana);
+            box-shadow: var(--sombra-ouro);
+            transform: translateY(-2px);
+        }
+        
+        /* Navegação */
+        #main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 90;
+            padding: 20px 10%;
+            background: var(--obsidiana-transparente);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            display: flex;
+            justify-content: center;
+            transition: var(--transicao);
+        }
+        
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            background-color: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            width: 100%;
+            max-width: 1400px;
         }
         
-        .brand {
+        .nav-logo {
             font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 5px;
-            color: var(--gold);
+            font-size: 1.3rem;
+            color: var(--ouro);
+            letter-spacing: 3px;
             text-decoration: none;
-            text-transform: uppercase;
+            transition: var(--transicao);
+        }
+        
+        .nav-logo:hover {
+            color: var(--ouro-claro);
+            text-shadow: var(--sombra-ouro);
         }
         
         .nav-links {
             display: flex;
-            gap: 30px;
-            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
         }
         
         .nav-links a {
-            color: var(--cream);
+            color: var(--creme);
             text-decoration: none;
             font-family: 'Cinzel', serif;
             letter-spacing: 2px;
-            font-size: 0.85rem;
-            transition: color 0.3s;
-            padding: 5px 0;
+            font-size: 0.9rem;
+            transition: var(--transicao);
             position: relative;
+            padding: 5px 0;
+            white-space: nowrap;
+            cursor: none;
         }
         
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-        
-        .nav-links a::after {
+        .nav-links a:after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 1px;
-            background-color: var(--gold);
-            transition: width 0.3s;
+            background: var(--ouro);
+            transition: width 0.4s ease;
         }
         
-        .nav-links a:hover::after {
+        .nav-links a:hover {
+            color: var(--ouro);
+        }
+        
+        .nav-links a:hover:after {
             width: 100%;
         }
         
-        #audio-toggle {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            margin-left: 10px;
+        .nav-links a.active {
+            color: var(--ouro);
         }
         
-        #audio-toggle:hover {
-            background: rgba(197, 160, 89, 0.1);
+        .nav-links a.active:after {
+            width: 100%;
         }
         
-        /* SEÇÕES */
-        section {
-            padding: 140px 10% 100px;
-            position: relative;
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--ouro);
+            font-size: 1.5rem;
+            cursor: none;
         }
         
-        .title-sec {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+        /* Header Imersivo */
+        header {
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
             text-align: center;
-            margin-bottom: 80px;
-            letter-spacing: 8px;
-            color: var(--gold);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            display: inline-block;
+            position: relative;
+            padding: 140px 5% 80px;
+        }
+        
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(40px); 
+            transition: 1.2s all cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        
+        h1 {
+            font-size: clamp(2.8rem, 6vw, 4rem); /* Reduzido de 5rem para 4rem */
+            background: linear-gradient(135deg, #d4af37 0%, #fdfaf1 50%, #d4af37 100%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: clamp(8px, 2vw, 12px); /* Reduzido */
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            font-weight: 900;
+        }
+        
+        .subtitle {
+            font-family: 'Cinzel', serif; 
+            letter-spacing: 4px; /* Reduzido de 6px */
+            opacity: 0.9;
+            font-size: clamp(1rem, 2.5vw, 1.3rem); /* Ajustado */
+            margin-bottom: 40px;
+            color: var(--creme-medio);
+            font-weight: 400;
+        }
+        
+        .header-description {
+            max-width: 800px;
+            padding: 0 20px;
+            font-size: 1.25rem;
+            line-height: 1.9;
+            margin-bottom: 50px;
+            color: var(--creme-medio);
+        }
+        
+        /* Foto de Autor - CORRIGIDA */
+        .profile-container {
+            width: 280px; 
+            height: 280px; 
+            border-radius: 50%;
+            border: 2px solid var(--ouro); 
+            padding: 8px; 
+            margin-bottom: 50px;
+            overflow: hidden; 
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.25);
+            position: relative;
+            transition: var(--transicao);
+        }
+        
+        .profile-container:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 0 80px rgba(212, 175, 55, 0.4);
+        }
+        
+        .profile-container img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            filter: sepia(0.25) contrast(1.1);
+            transition: var(--transicao);
+        }
+        
+        .profile-container:hover img {
+            filter: sepia(0.1) contrast(1.2) brightness(1.05);
+            transform: scale(1.05);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
+            color: var(--ouro);
+            font-size: 1.8rem;
+            animation: bounce 2s infinite;
+            cursor: none;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-15px);}
+            60% {transform: translateX(-50%) translateY(-7px);}
+        }
+        
+        /* Seções Gerais */
+        .section-lux { 
+            padding: 140px 10% 100px; 
+            max-width: 1400px; 
+            margin: auto; 
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif; 
+            text-align: center; 
+            margin-bottom: 80px; 
+            font-size: clamp(2rem, 4vw, 2.5rem); /* Ajustado para não ser muito grande */
+            border-bottom: 2px solid var(--ouro); 
+            display: inline-block; 
             padding-bottom: 15px;
-            text-transform: uppercase;
-            font-weight: 700;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--creme);
+            width: auto;
+            white-space: nowrap;
         }
         
-        /* MANUSCRITOS */
-        .manuscritos {
-            background: var(--cream);
-            color: var(--obsidian);
-            padding-top: 160px;
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ouro), transparent);
         }
         
-        .grid-manus {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            margin-top: 30px;
-        }
-        
-        .card-manus {
-            padding: 60px 30px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
+        .section-subtitle {
             text-align: center;
-            transition: all 0.6s ease;
-            background-color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card-manus:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            border-color: var(--gold-light);
-        }
-        
-        .card-manus h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            margin-bottom: 25px;
-            letter-spacing: 3px;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-        
-        .card-manus p {
-            font-family: 'Lora', serif;
-            line-height: 1.8;
-            opacity: 0.8;
-            font-size: 1.05rem;
-        }
-        
-        /* GRID CONTEÚDO */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-        
-        .content-item {
-            padding: 35px 30px;
-            border: 1px solid rgba(197, 160, 89, 0.1);
-            background: rgba(255, 255, 255, 0.02);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .content-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(197, 160, 89, 0.3);
-            transform: translateY(-5px);
-        }
-        
-        .content-item h4 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-        
-        .content-item p {
-            font-family: 'Lora', serif;
+            font-size: 1.2rem; /* Reduzido de 1.3rem */
+            color: var(--creme-escuro);
+            max-width: 800px;
+            margin: 0 auto 60px; /* Reduzido de 80px */
             font-style: italic;
-            opacity: 0.85;
-            line-height: 1.8;
-            font-size: 1.05rem;
+            line-height: 1.7;
         }
         
-        /* POEMAS */
-        #poemas {
-            background: rgba(255, 255, 255, 0.01);
+        /* Seção Descrição Estendida */
+        .descricao-estendida {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 60px;
+            border-radius: 4px;
+            margin-bottom: 100px;
         }
         
-        /* RODAPÉ */
-        footer {
-            padding: 80px 10% 60px;
-            background: #000;
-            border-top: 1px solid rgba(17, 17, 17, 0.8);
+        .descricao-estendida h2 {
+            color: var(--ouro);
+            margin-bottom: 40px;
+            font-size: 2rem; /* Reduzido de 2.2rem */
             text-align: center;
         }
         
-        .social-icons {
-            display: flex;
-            justify-content: center;
+        .descricao-estendida p {
+            margin-bottom: 30px;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-align: justify;
+        }
+        
+        .descricao-estendida blockquote {
+            border-left: 3px solid var(--ouro);
+            padding-left: 30px;
+            margin: 40px 0 40px 30px;
+            font-style: italic;
+            font-size: 1.2rem; /* Reduzido de 1.3rem */
+            color: var(--creme-medio);
+            line-height: 1.8;
+        }
+        
+        .descricao-estendida blockquote:before {
+            content: "“";
+            font-size: 2.5rem; /* Reduzido de 3rem */
+            color: var(--ouro);
+            position: absolute;
+            left: 10px;
+            margin-top: -10px;
+        }
+        
+        .pillars-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            margin-bottom: 50px;
+            margin-top: 60px;
+        }
+        
+        .pillar {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 40px;
+            border-radius: 4px;
+            transition: var(--transicao);
+            cursor: none;
+        }
+        
+        .pillar:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-10px);
+            box-shadow: var(--sombra);
+        }
+        
+        .pillar h3 {
+            color: var(--ouro);
+            margin-bottom: 20px;
+            font-size: 1.4rem; /* Reduzido de 1.5rem */
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .pillar h3 i {
+            font-size: 1.6rem; /* Reduzido de 1.8rem */
+        }
+        
+        /* Seção Manuscritos - CORRIGIDOS OS NOMES */
+        .book-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); 
+            gap: 50px; 
+            margin-bottom: 80px;
+        }
+        
+        .book-card {
+            border: 1px solid rgba(212, 175, 55, 0.15); 
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.02); 
+            transition: var(--transicao);
+            text-align: center; 
+            position: relative;
+            border-radius: 4px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            cursor: none;
+        }
+        
+        .book-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ouro), var(--ouro-claro));
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+        }
+        
+        .book-card:hover:before {
+            transform: translateX(0);
+        }
+        
+        .book-card:hover { 
+            border-color: var(--ouro); 
+            background: rgba(212, 175, 55, 0.04); 
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .book-card h3 { 
+            font-family: 'Cinzel', serif; 
+            color: var(--ouro); 
+            margin-bottom: 25px; 
+            letter-spacing: 2px; /* Reduzido de 3px */
+            font-size: 1.5rem; /* Reduzido de 1.7rem */
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .book-card h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--ouro);
+            transition: width 0.5s ease;
+        }
+        
+        .book-card:hover h3:after {
+            width: 80px;
+        }
+        
+        .book-card p {
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .book-icon {
+            font-size: 2.5rem; /* Reduzido de 3rem */
+            color: rgba(212, 175, 55, 0.3);
+            margin-bottom: 25px;
+        }
+        
+        /* Seção Aforismos */
+        .aforismos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+        
+        .aforismo-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 4px solid var(--ouro);
+            padding: 40px 35px;
+            transition: var(--transicao);
+            position: relative;
+            font-style: italic;
+            line-height: 1.9;
+            font-size: 1.1rem; /* Reduzido de 1.15rem */
+            border-radius: 0 4px 4px 0;
+            cursor: none;
+        }
+        
+        .aforismo-card:hover {
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .aforismo-card:before {
+            content: "❝";
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            font-size: 3rem; /* Reduzido de 3.5rem */
+            color: rgba(212, 175, 55, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .aforismo-card:after {
+            content: "❞";
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 3rem; /* Reduzido de 3.5rem */
+            color: rgba(212, 175, 55, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        /* Seção Poemas */
+        .poemas-container {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            margin-bottom: 100px;
+        }
+        
+        .poema {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 60px 50px;
+            position: relative;
+            transition: var(--transicao);
+            border-radius: 4px;
+            cursor: none;
+        }
+        
+        .poema:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .poema-title {
+            color: var(--ouro);
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.8rem; /* Reduzido de 2rem */
+            letter-spacing: 2px; /* Reduzido de 3px */
+        }
+        
+        .poema-content {
+            font-size: 1.15rem; /* Reduzido de 1.2rem */
+            line-height: 1.9; /* Reduzido de 2 */
+            white-space: pre-line;
+            text-align: center;
+            font-family: 'Lora', serif;
+        }
+        
+        .poema-content p {
+            margin-bottom: 30px;
+        }
+        
+        .poema-signature {
+            text-align: right;
+            margin-top: 40px;
+            font-style: italic;
+            color: var(--marrom-claro);
+            font-size: 1.1rem;
+        }
+        
+        /* Seção Textos (Reflexões) */
+        .textos-container {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+            margin-bottom: 100px;
+        }
+        
+        .texto {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 60px;
+            position: relative;
+            border-radius: 4px;
+            cursor: none;
+        }
+        
+        .texto-title {
+            color: var(--ouro);
+            margin-bottom: 40px;
+            font-size: 2rem; /* Reduzido de 2.2rem */
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 20px;
+        }
+        
+        .texto-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+        
+        .texto-content p {
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+        
+        .texto-meta {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            font-style: italic;
+            color: var(--marrom-claro);
+            font-size: 1rem;
+        }
+        
+        /* Seção Biografia */
+        .bio-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 80px;
+            margin-bottom: 120px;
             flex-wrap: wrap;
         }
         
-        .social-icons a {
-            color: var(--gold);
-            font-size: 1.8rem;
-            transition: all 0.4s ease;
+        .bio-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .bio-text h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--ouro);
+            margin-bottom: 40px;
+            font-size: 2rem; /* Reduzido de 2.3rem */
+            letter-spacing: 2px;
+        }
+        
+        .bio-text p {
+            margin-bottom: 30px;
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+        
+        .principles {
+            flex: 1;
+            min-width: 350px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px;
+            border-radius: 4px;
+            cursor: none;
+        }
+        
+        .principles h3 {
+            color: var(--ouro);
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            font-size: 1.6rem; /* Reduzido de 1.8rem */
+        }
+        
+        .principles ul {
+            list-style-type: none;
+        }
+        
+        .principles li {
+            margin-bottom: 25px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .principles i {
+            color: var(--ouro);
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 1.3rem;
+        }
+        
+        /* Footer e Conexão */
+        footer { 
+            padding: 120px 0 60px; 
+            text-align: center; 
+            border-top: 1px solid rgba(212, 175, 55, 0.15); 
+            position: relative;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .quote {
+            font-style: italic; 
+            margin-bottom: 60px; 
+            opacity: 0.9;
+            font-size: 1.3rem; /* Reduzido de 1.4rem */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.9;
+            position: relative;
+            padding: 0 30px;
+            color: var(--creme-medio);
+        }
+        
+        .quote:before, .quote:after {
+            content: '"';
+            color: var(--ouro);
+            font-size: 2.5rem; /* Reduzido de 3rem */
+            font-family: 'Cinzel', serif;
+            position: absolute;
+            opacity: 0.6;
+        }
+        
+        .quote:before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .quote:after {
+            bottom: -40px;
+            right: 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            color: var(--ouro); 
+            text-decoration: none; 
+            font-family: 'Cinzel', serif; 
+            font-size: 1rem; /* Reduzido de 1.1rem */
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transicao);
+            padding: 15px 30px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 4px;
+            cursor: none;
+        }
+        
+        .social-links a:hover {
+            background: rgba(212, 175, 55, 0.12);
+            border-color: var(--ouro);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+        }
+        
+        .social-links i {
+            font-size: 1.3rem;
+        }
+        
+        .newsletter {
+            max-width: 600px;
+            margin: 0 auto 80px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 4px;
+        }
+        
+        .newsletter h3 {
+            color: var(--ouro);
+            margin-bottom: 25px;
+            font-size: 1.5rem; /* Reduzido de 1.6rem */
+        }
+        
+        .newsletter p {
+            margin-bottom: 30px;
+            color: var(--creme-escuro);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--creme);
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: var(--transicao);
+            cursor: none;
+        }
+        
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--ouro);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        
+        .newsletter-form button {
+            padding: 15px 35px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--ouro);
+            color: var(--ouro);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            cursor: none;
+            transition: var(--transicao);
+            border-radius: 4px;
+        }
+        
+        .newsletter-form button:hover {
+            background: var(--ouro);
+            color: var(--obsidiana);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.95rem;
+            margin-top: 40px;
+            color: var(--creme-escuro);
+        }
+        
+        /* Botão de voltar ao topo */
+        #back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
             width: 60px;
             height: 60px;
+            background: var(--obsidiana-transparente);
+            border: 1px solid var(--ouro);
+            color: var(--ouro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transicao);
+            z-index: 80;
+            backdrop-filter: blur(10px);
+            font-size: 1.3rem;
+        }
+        
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        #back-to-top:hover {
+            background: var(--ouro);
+            color: var(--obsidiana);
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-ouro);
+        }
+        
+        /* Separador decorativo */
+        .separator {
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+            margin: 80px auto;
+        }
+        
+        /* Efeito de foco para leitura */
+        .reading-focus {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transicao);
+            padding: 20px;
+        }
+        
+        .reading-focus.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .focus-content {
+            background: var(--obsidiana);
+            border: 1px solid var(--ouro);
+            padding: 60px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+        }
+        
+        .close-focus {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: var(--ouro);
+            font-size: 1.8rem;
+            cursor: none;
+            transition: var(--transicao);
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            border: 1px solid transparent;
         }
         
-        .social-icons a:hover {
-            transform: translateY(-5px);
-            color: var(--cream);
-            border-color: var(--gold);
-            background: rgba(197, 160, 89, 0.1);
+        .close-focus:hover {
+            transform: rotate(90deg);
+            background: rgba(212, 175, 55, 0.1);
         }
         
-        .footer-title {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 6px;
-            color: var(--gold);
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        
-        .footer-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.5;
-            margin-top: 40px;
-            letter-spacing: 2px;
-        }
-        
-        /* ANIMAÇÕES */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* MEDIA QUERIES */
-        @media (max-width: 1024px) {
-            section {
-                padding: 120px 8% 80px;
+        /* Responsividade - Ajustes para títulos não cortarem */
+        @media (max-width: 1200px) {
+            .section-lux {
+                padding: 120px 5% 80px;
             }
             
-            nav {
-                padding: 25px 40px;
+            .book-grid {
+                grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            }
+            
+            .nav-links {
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: clamp(1.8rem, 4vw, 2.2rem);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem; /* Reduzido de 3.5rem */
+            }
+            
+            .section-title {
+                font-size: 2rem; /* Reduzido de 2.4rem */
+                white-space: normal;
+                padding: 0 20px;
+                line-height: 1.3;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--obsidiana-transparente);
+                flex-direction: column;
+                padding: 30px;
+                gap: 25px;
+                border-top: 1px solid rgba(212, 175, 55, 0.1);
+                backdrop-filter: blur(15px);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-container {
+                justify-content: space-between;
+            }
+            
+            .poema, .texto, .descricao-estendida {
+                padding: 40px 30px;
+            }
+            
+            .bio-section {
+                gap: 50px;
+            }
+            
+            .profile-container {
+                width: 240px;
+                height: 240px;
             }
         }
         
         @media (max-width: 768px) {
-            section {
-                padding: 100px 5% 70px;
+            h1 {
+                letter-spacing: 6px; /* Reduzido de 8px */
+                font-size: 2.5rem; /* Reduzido de 2.8rem */
             }
             
-            .title-sec {
-                font-size: 1.6rem;
-                letter-spacing: 5px;
-                margin-bottom: 60px;
+            .subtitle {
+                letter-spacing: 3px; /* Reduzido de 4px */
+                font-size: 1.1rem; /* Reduzido de 1.2rem */
             }
             
-            nav {
-                padding: 20px 25px;
-                flex-direction: column;
-                gap: 15px;
+            .profile-container {
+                width: 220px; /* Reduzido de 240px */
+                height: 220px; /* Reduzido de 240px */
             }
             
-            .nav-links {
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
+            .section-title {
+                font-size: 1.8rem; /* Reduzido de 2.2rem */
+                margin-bottom: 60px; /* Reduzido de 70px */
+                white-space: normal;
+                text-align: center;
+                padding: 0 15px;
             }
             
-            .nav-links a {
-                font-size: 0.8rem;
+            #main-nav {
+                padding: 15px 5%;
             }
             
-            .grid-manus, .content-grid {
+            .descricao-estendida, .poema, .texto, .book-card, .aforismo-card {
+                padding: 35px 25px;
+            }
+            
+            .pillars-container {
                 grid-template-columns: 1fr;
-                gap: 25px;
             }
             
-            .card-manus {
-                padding: 40px 25px;
+            .newsletter-form {
+                flex-direction: column;
             }
             
-            .card-manus h3 {
-                font-size: 1.3rem;
+            .newsletter-form input {
+                min-width: 100%;
             }
             
-            .content-item {
-                padding: 30px 25px;
+            #music-toggle {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+                top: 15px;
+                right: 15px;
             }
             
-            .social-icons {
-                gap: 25px;
+            .social-links {
+                gap: 20px;
             }
             
-            .social-icons a {
-                font-size: 1.5rem;
-                width: 50px;
-                height: 50px;
-            }
-            
-            .splash-title {
-                letter-spacing: 8px;
-            }
-            
-            #btn-activate {
-                padding: 15px 40px;
+            .social-links a {
+                padding: 12px 20px;
             }
         }
         
         @media (max-width: 480px) {
-            section {
-                padding: 90px 5% 60px;
+            .book-grid {
+                grid-template-columns: 1fr;
             }
             
-            .title-sec {
-                font-size: 1.4rem;
-                letter-spacing: 4px;
-                margin-bottom: 50px;
+            .social-links {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .splash-title {
-                letter-spacing: 6px;
-                padding: 0 15px;
+            .social-links a {
+                width: 250px;
+                justify-content: center;
             }
             
-            .splash-subtitle {
-                padding: 0 15px;
+            h1 {
+                font-size: 2rem; /* Reduzido de 2.3rem */
+                letter-spacing: 4px; /* Reduzido de 5px */
             }
             
-            .nav-links {
-                gap: 15px;
+            .section-title {
+                font-size: 1.6rem; /* Reduzido de 1.9rem */
+                white-space: normal;
+                line-height: 1.3;
+                padding: 0 10px;
+            }
+            
+            .header-description {
+                font-size: 1.1rem;
+            }
+            
+            #back-to-top {
+                bottom: 25px;
+                right: 25px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .section-title {
+                word-break: keep-all;
+                overflow-wrap: break-word;
+            }
+        }
+        
+        /* Ajuste extra para evitar cortes em telas muito pequenas */
+        @media (max-width: 400px) {
+            .section-title {
+                font-size: 1.5rem;
+                line-height: 1.3;
+                padding: 0 5px;
             }
             
             .nav-links a {
-                font-size: 0.75rem;
-            }
-            
-            .card-manus h3 {
-                font-size: 1.2rem;
-            }
-            
-            .card-manus p, .content-item p {
-                font-size: 1rem;
-            }
-            
-            .social-icons {
-                gap: 20px;
-            }
-            
-            .social-icons a {
-                font-size: 1.4rem;
-                width: 45px;
-                height: 45px;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Portal de entrada -->
-    <div id="splash">
-        <div class="splash-bg"></div>
-        <div class="splash-title">WAGNER ABRAHÃO</div>
-        <div class="splash-subtitle">Arquiteto do Invisível • Filósofo da Alma • Poeta do Silêncio</div>
-        <button id="btn-activate" aria-label="Ativar consciência e entrar no site">ENTRAR</button>
+    <!-- Wallpaper 4K Floresta -->
+    <div class="wallpaper-container">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="Floresta mística" class="wallpaper">
+        <div class="wallpaper-overlay"></div>
     </div>
-
-    <!-- Áudio de fundo -->
-    <audio id="bg-audio" loop preload="auto">
-        <source src="musica.mp3" type="audio/mpeg">
+    
+    <div class="gradient-bg"></div>
+    <button id="music-toggle" onclick="toggleMusic()">
+        <i class="fas fa-music"></i> <span>Sinfonia: Off</span>
+    </button>
+    
+    <!-- Cursor personalizado -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="custom-cursor-dot" id="customCursorDot"></div>
+    
+    <!-- Ponto de luz que segue o mouse -->
+    <div class="light-spot" id="lightSpot"></div>
+    
+    <!-- Áudio ambiente -->
+    <audio id="myAudio" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-mysterious-magical-ritual-540.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
-
+    
     <!-- Navegação -->
-    <nav>
-        <a href="#" class="brand">WAGNER ABRAHÃO</a>
-        <div class="nav-links">
-               <a href="#manuscritos">Manuscritos</a>
-               <a href="#aforismos">Aforismos</a>
-               <a href="#poemas">Poesias</a>
-               <a href="#textos">Reflexões</a>
-               <button id="audio-toggle" aria-label="Ligar/desligar áudio de fundo">
-                   <i class="fas fa-volume-up"></i>
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">W.A.</a>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="active">Home</a>
+                <a href="#descricao">Descrição</a>
+                <a href="#manuscritos">Manuscritos</a>
+                <a href="#aforismos">Aforismos</a>
+                <a href="#poemas">Poesias</a>
+                <a href="#textos">Reflexões</a>
+                <a href="#biografia">Biografia</a>
+                <a href="#contato">Conexão</a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Seção Manuscritos -->
-    <section class="manuscritos" id="manuscritos">
-               <h2 class="title-sec">MANUSCRITOS</h2>
-        <div class="grid-manus">
-            <div class="card-manus fade-in">
-                <h3>A CENTELHA INQUIETA</h3>
-                <p>O despertar do fogo primordial que reside no silêncio da alma. Uma investigação profunda sobre a origem da luz que habita o invisível. Cada capítulo é uma jornada rumo ao centro do ser, onde a quietude se revela como a verdadeira morada da essência.</p>
+    <!-- Fundo animado -->
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Header com foto CORRIGIDA -->
+    <header id="home">
+        <div class="profile-container reveal">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Wagner Abrahão - Arquiteto do Invisível">
+        </div>
+        <h1 class="reveal">WAGNER ABRAHÃO</h1>
+        <p class="subtitle reveal">Arquiteto do Invisível</p>
+        <div class="header-description reveal">
+            <p>Pensador contemporâneo que explora as dimensões sutis da consciência, construindo pontes entre o visível e o invisível através da palavra escrita. Sua obra integra filosofia, poesia e espiritualidade em uma abordagem única para o autoconhecimento no século XXI.</p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Descrição Estendida -->
+    <section class="section-lux" id="descricao">
+        <h2 class="section-title reveal">Descrição Estendida</h2>
+        <p class="section-subtitle reveal">Uma exploração aprofundada da filosofia, método e visão de mundo do Arquiteto do Invisível</p>
+        
+        <div class="descricao-estendida reveal">
+            <h2>Arquitetura do Invisível: Uma Filosofia para o Século XXI</h2>
+            
+            <p>Wagner Abrahão desenvolveu ao longo de décadas de estudo e prática uma abordagem única para compreender e navegar as complexidades da existência humana, que denomina <strong>"Arquitetura do Invisível"</strong>. Esta filosofia não é um sistema dogmático, mas um método de exploração da consciência que reconhece a multidimensionalidade da realidade e a capacidade humana de interagir criativamente com dimensões que transcendem o puramente material.</p>
+            
+            <p>Ao contrário de muitas tradições espirituais que propõem caminhos pré-determinados, a Arquitetura do Invisível enfatiza a <strong>singularidade de cada jornada</strong>. Cada indivíduo é convidado a tornar-se o arquiteto de sua própria experiência interior, utilizando ferramentas de percepção, reflexão e criação para construir uma relação mais autêntica com o mistério da existência.</p>
+            
+            <blockquote>
+                "Não existem mapas para os territórios da alma, apenas bússolas internas que cada um deve aprender a calibrar através da experiência direta."
+            </blockquote>
+            
+            <p>Esta abordagem integra elementos de várias tradições sapienciais - do estoicismo grego ao budismo, do misticismo cristão ao tantra - sempre com um olhar crítico e contemporâneo. O objetivo não é a adesão a um sistema de crenças, mas o desenvolvimento de uma <strong>sensibilidade ampliada</strong> que permita perceber e dialogar com as múltiplas camadas da realidade.</p>
+            
+            <div class="pillars-container">
+                <div class="pillar">
+                    <h3><i class="fas fa-eye"></i> Percepção Expandida</h3>
+                    <p>Desenvolvimento da capacidade de perceber não apenas o que é evidente, mas também os matizes, as sutilezas e os padrões que normalmente escapam à atenção ordinária. Treinamento da sensibilidade para captar o invisível que estrutura o visível.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3><i class="fas fa-pen-nib"></i> Linguagem Criadora</h3>
+                    <p>Uso consciente da palavra como ferramenta de revelação e criação. Reconhecimento de que a linguagem não apenas descreve a realidade, mas participa ativamente em sua constituição, especialmente quando utilizada com intencionalidade poética.</p>
+                </div>
+                
+                <div class="pillar">
+                    <h3><i class="fas fa-bridge"></i> Construção de Pontes</h3>
+                    <p>Arte de estabelecer conexões significativas entre dimensões aparentemente desconexas da experiência: entre razão e intuição, entre tradição e contemporaneidade, entre o pessoal e o universal, entre o finito e o infinito.</p>
+                </div>
             </div>
-            <div class="card-manus fade-in">
-                <h3>ALQUIMIA DO SER</h3>
-                <p>A transmutação da existência cotidiana em experiência sagrada. Como converter a densidade da vida no ouro da consciência plena e eterna. Uma obra sobre o processo de transformação interior que nos liberta das amarras do efêmero para alcançar o atemporal.</p>
+            
+            <p>A obra de Wagner Abrahão, em seus múltiplos formatos - aforismos, poemas, textos filosóficos - pode ser entendida como uma <strong>oficina permanente</strong> onde são oferecidas as ferramentas para esta arquitetura interior. Cada texto é simultaneamente uma reflexão concluída e um ponto de partida para novas investigações, mantendo sempre uma abertura para o mistério que resiste a qualquer tentativa de definição final.</p>
+            
+            <p>No contexto do século XXI, marcado por crises existenciais, fragmentação do sentido e aceleração tecnológica, a Arquitetura do Invisível se apresenta como uma <strong>prática de resistência espiritual</strong>: resistência à superficialidade, à alienação de si mesmo, à tirania do utilitarismo. É um convite a habitar a própria profundidade em um mundo que muitas vezes nos incita a permanecer na superfície.</p>
+        </div>
+        
+        <div class="separator"></div>
+    </section>
+
+    <!-- Manuscritos - NOMES CORRIGIDOS -->
+    <section class="section-lux" id="manuscritos">
+        <h2 class="section-title reveal">MANUSCRITOS</h2>
+        <p class="section-subtitle reveal">Tratados filosóficos que exploram os fundamentos da Arquitetura do Invisível</p>
+        
+        <div class="book-grid">
+            <div class="book-card reveal">
+                <div class="book-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3>A Centelha Inquieta</h3>
+                <p>Exploração do despertar do fogo primordial que reside no silêncio da alma. Investigação sobre a origem da luz interna e sua manifestação através da intuição e criatividade. A jornada da centelha que desafia a escuridão e ilumina os caminhos interiores.</p>
+                <div style="margin-top: auto;">
+                    <div style="font-size: 0.95rem; opacity: 0.8; font-style: italic;">Tratado I da série "Alquimia da Alma"</div>
+                </div>
             </div>
-            <div class="card-manus fade-in">
-                <h3>ANESTESIA DIVINA</h3>
-                <p>O suporte espiritual supremo para os buscadores que navegam na densidade do visível. Um porto seguro e acalento para a alma em processo de despertar. Explorando os mecanismos de proteção que a consciência superior oferece durante a travessia entre dimensões.</p>
+            <div class="book-card reveal">
+                <div class="book-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3>Alquimia do Ser</h3>
+                <p>Estudo sobre a transmutação consciente. Como converter a densidade da vida cotidiana no ouro da consciência plena. Guia prático para transformar desafios em crescimento espiritual e encontrar significado na impermanência através do trabalho interior.</p>
+                <div style="margin-top: auto;">
+                    <div style="font-size: 0.95rem; opacity: 0.8; font-style: italic;">Tratado II da série "Alquimia da Alma"</div>
+                </div>
+            </div>
+            <div class="book-card reveal">
+                <div class="book-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Anestesia Divina</h3>
+                <p>Reflexão sobre o acalento necessário para os buscadores da verdade. Um suporte espiritual na densidade do visível, oferecendo conforto e clareza para navegar os desafios do caminho espiritual sem perder a conexão com o essencial que nos sustenta.</p>
+                <div style="margin-top: auto;">
+                    <div style="font-size: 0.95rem; opacity: 0.8; font-style: italic;">Tratado III da série "Alquimia da Alma"</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="separator"></div>
+    </section>
+
+    <!-- Aforismos -->
+    <section class="section-lux" id="aforismos">
+        <h2 class="section-title reveal">AFORISMOS</h2>
+        <p class="section-subtitle reveal">Pensamentos condensados que revelam múltiplas camadas de significado</p>
+        
+        <div class="aforismos-container">
+            <div class="aforismo-card reveal">
+                A verdade não habita no exterior, mas no silêncio entre dois pensamentos.
+            </div>
+            <div class="aforismo-card reveal">
+                A alma não se mede em palavras, mas no espaço que ocupamos no vazio do outro.
+            </div>
+            <div class="aforismo-card reveal">
+                O invisível é a matéria-prima de tudo que se torna visível.
+            </div>
+            <div class="aforismo-card reveal">
+                Cada ferida é uma porta para uma dimensão ainda não habitada.
+            </div>
+            <div class="aforismo-card reveal">
+                O mistério não é algo a ser desvendado, mas uma casa a ser habitada.
+            </div>
+            <div class="aforismo-card reveal">
+                A verdadeira liberdade está em abraçar os próprios limites como fronteiras sagradas.
+            </div>
+            <div class="aforismo-card reveal">
+                A luz mais pura nasce da aceitação consciente da própria sombra.
+            </div>
+            <div class="aforismo-card reveal">
+                O tempo não é linear, mas esférico: tudo que foi será novamente, mas diferente.
+            </div>
+            <div class="aforismo-card reveal">
+                A sabedoria não está nas respostas, mas na qualidade das perguntas que ousamos fazer.
+            </div>
+            <div class="aforismo-card reveal">
+                O silêncio é a linguagem primordial; tudo o mais é tradução.
+            </div>
+            <div class="aforismo-card reveal">
+                A transcendência começa quando aceitamos totalmente a imanência.
+            </div>
+            <div class="aforismo-card reveal">
+                O amor não é um sentimento, mas um espaço onde os sentimentos podem existir.
+            </div>
+        </div>
+        
+        <div class="separator"></div>
+    </section>
+
+    <!-- Poemas -->
+    <section class="section-lux" id="poemas">
+        <h2 class="section-title reveal">POESIAS</h2>
+        <p class="section-subtitle reveal">Expressões poéticas que transcendem o racional para tocar o indizível</p>
+        
+        <div class="poemas-container">
+            <div class="poema reveal">
+                <h3 class="poema-title">A Arquitetura do Invisível</h3>
+                <div class="poema-content">
+Entre o visível e o que apenas pressinto,
+ergo pontes com as palavras que não disse.
+Cada silêncio é um alicerce,
+cada dúvida, uma coluna que sustenta
+o templo do ainda-não-nascido.
+
+A matéria do invisível é feita de ausência
+e presença simultânea.
+É o vácuo que dá forma ao cheio,
+o intervalo que compõe a melodia,
+o espaço entre as estrelas que as conecta.
+
+Não construo com pedras, mas com intervalos.
+Não ergo paredes, mas abro vãos.
+Não defino espaços, mas liberto limites.
+Esta é minha arquitetura: desconstruir
+para que o essencial se revele.
+                </div>
+                <div class="poema-signature">— Wagner Abrahão</div>
+            </div>
+            
+            <div class="poema reveal">
+                <h3 class="poema-title">Alquimia Noturna</h3>
+                <div class="poema-content">
+À noite, quando o mundo visível se recolhe,
+o invisível expande seus domínios.
+Na fornalha do silêncio,
+transmuto as dores do dia
+em estrelas para minhas noites futuras.
+
+Cada memória pesada vira chão fértil.
+Cada lágrima, semente de compreensão.
+Cada medo, combustível para a coragem
+que ainda não nomeei.
+
+A escuridão não é vazia:
+está repleta de matéria prima
+à espera do fogo interno
+que a converta em luz.
+
+E assim, no cadinho da alma,
+o chumbo do cotidiano
+aos poucos revela seu núcleo áureo:
+a essência indestrutível
+que nenhuma forma consegue conter.
+                </div>
+                <div class="poema-signature">— Wagner Abrahão</div>
+            </div>
+            
+            <div class="poema reveal">
+                <h3 class="poema-title">Cartografia do Intangível</h3>
+                <div class="poema-content">
+Mapeio territórios que os olhos não veem,
+desenho contornos do que apenas se intui.
+Minha bússola aponta para o norte interior,
+onde os mapas conhecidos são inúteis.
+
+Anoto coordenadas de sentimentos,
+topografias de estados de alma,
+hidrografia de correntes sutis
+que fluem sob a superfície do aparente.
+
+Não há legendas para esta cartografia:
+cada viajante deve criar a sua.
+Não há rotas pré-determinadas,
+apenas a bússola do coração
+e as estrelas da intuição.
+
+E assim, desbravador do invisível,
+avanço sem garantir chegada,
+pois o verdadeiro território
+é o próprio ato de caminhar
+em direção ao desconhecido
+que sempre esteve aqui.
+                </div>
+                <div class="poema-signature">— Wagner Abrahão</div>
+            </div>
+        </div>
+        
+        <div class="separator"></div>
+    </section>
+
+    <!-- Textos (Reflexões) -->
+    <section class="section-lux" id="textos">
+        <h2 class="section-title reveal">REFLEXÕES</h2>
+        <p class="section-subtitle reveal">Reflexões aprofundadas sobre consciência, existência e transcendência</p>
+        
+        <div class="textos-container">
+            <div class="texto reveal">
+                <h3 class="texto-title">A Arte de Habitar o Invisível</h3>
+                <div class="texto-content">
+                    <p>Em um mundo que valoriza tão ardentemente o visível, o mensurável, o tangível, que espaço resta para aquilo que não pode ser capturado pela lente, registrado em planilhas ou armazenado em bancos de dados? O invisível, longe de ser uma ausência, é uma presença mais sutil, mais profunda, mais essencial.</p>
+                    
+                    <p>Habitar o invisível é uma arte esquecida. Requer desaprender a necessidade constante de provas, de garantias, de certezas palpáveis. É um exercício de fé, não em deuses externos, mas na capacidade da consciência de perceber realidades que transcendem os sentidos físicos. É cultivar a sensibilidade para o que está entre, além e dentro do aparente.</p>
+                    
+                    <p>O invisível se manifesta de várias formas: na intuição que surge sem explicação lógica, na sincronicidade que tece conexões significativas entre eventos aparentemente desconexos, na empatia que nos permite sentir o que o outro sente sem que uma palavra seja dita, na criatividade que faz surgir do nada algo completamente novo.</p>
+                    
+                    <p>Esta habitação não é uma fuga da realidade, mas um aprofundamento nela. É perceber que a realidade possui camadas, dimensões, profundidades que a visão comum não alcança. O visível é apenas a superfície, a ponta do iceberg de uma existência muito mais vasta e complexa.</p>
+                    
+                    <p>Arquitetar o invisível significa criar estruturas internas – de pensamento, de sensibilidade, de percepção – que nos permitam não apenas acreditar no invisível, mas habitá-lo, senti-lo, dialogar com ele. É construir pontes entre o mundo das formas e o mundo das essências, entre o efêmero e o eterno, entre o pessoal e o transcendente.</p>
+                    
+                    <p>Nesta arquitetura, as ferramentas são sutis: a atenção plena, a contemplação silenciosa, a abertura ao mistério, a coragem de questionar as certezas estabelecidas, a humildade para reconhecer os limites do conhecimento racional. Os materiais são intangíveis: o silêncio, a pausa, o intervalo, o vazio fértil de onde tudo brota.</p>
+                    
+                    <p>Ao cultivar esta arte, descobrimos que o invisível não está em outro lugar, mas permeia completamente o visível. É a dimensão oculta do agora, o substrato de tudo que existe. Habitá-lo é expandir radicalmente nossa experiência de ser, é redescobrir a sacralidade no ordinário, é encontrar significado na própria tessitura da existência.</p>
+                </div>
+                <div class="texto-meta">Fragmento do ensaio "A Arquitetura do Invisível", 2023</div>
+            </div>
+            
+            <div class="texto reveal">
+                <h3 class="texto-title">Da Centelha à Conflagração: O Caminho do Fogo Interno</h3>
+                <div class="texto-content">
+                    <p>Em cada ser humano habita uma centelha. Não metafórica, mas real como o batimento cardíaco, ainda que não mensurável por instrumentos. Esta centelha é o ponto de contacto com o transcendente, a porta dimensional para realidades que a consciência ordinária não consegue conceber.</p>
+                    
+                    <p>No início, é apenas um brilho tênue, quase imperceptível sob as camadas de condicionamento, de preocupações cotidianas, de identidades sociais. Muitos passam a vida inteira sem nunca suspeitar de sua existência. Outros percebem seu brilho em momentos raros: na contemplação de uma paisagem que toca a alma, no êxtase criativo, na profundidade de um olhar compartilhado, no silêncio que desce após uma grande perda.</p>
+                    
+                    <p>Reconhecer esta centelha é o primeiro passo. O segundo é alimentá-la. E aqui começa o verdadeiro trabalho alquímico, pois o combustível adequado não é encontrado no exterior, mas nas próprias experiências da vida, especialmente nas mais desafiadoras.</p>
+                    
+                    <p>A centelha se alimenta de atenção consciente. Cresce quando lhe dedicamos momentos de quietude, de introspecção, de contemplação. Fortalece-se quando escolhemos a autenticidade sobre a conveniência, a verdade interior sobre a aprovação externa. Brilha mais intensamente quando a usamos como bússola para navegar as complexidades da existência.</p>
+                    
+                    <p>Com o time e a prática dedicada, a centelha pode se transformar em uma chama estável. Já não é apenas um vislumbre ocasional, mas uma presença constante na paisagem interior. Ilumina as sombras, aquece o frio existencial, oferece direção nas encruzilhadas da vida.</p>
+                    
+                    <p>E em alguns raros momentos de graça, a chama pode expandir-se em uma conflagração – uma experiência de unidade, de transcendência, de compreensão direta da natureza da realidade. Nestes momentos, a distinção entre interno e externo dissolve-se, e percebemos que a centelha nunca foi nossa, mas sim Nós que éramos dela.</p>
+                    
+                    <p>Este caminho do fogo interno não é linear, nem garantido. É uma dança com o mistério, um diálogo com o invisível. Requer coragem para enfrentar as próprias sombras, paciência para cultivar o que não oferece resultados imediatos, fé para confiar no processo mesmo quando não há garantias visíveis.</p>
+                    
+                    <p>Mas para quem persevera, a recompensa é incomensurável: a transformação de uma centelha quase extinta em um sol interior que ilumina não apenas a própria vida, mas que, por irradiação sutil, contribui para iluminar o mundo.</p>
+                </div>
+                <div class="texto-meta">Excerto de "A Centelha Inquieta", Capítulo III</div>
+            </div>
+        </div>
+        
+        <div class="separator"></div>
+    </section>
+
+    <!-- Biografia -->
+    <section class="section-lux" id="biografia">
+        <h2 class="section-title reveal">BIOGRAFIA</h2>
+        <p class="section-subtitle reveal">A trajetória, formação e evolução do pensamento do Arquiteto do Invisível</p>
+        
+        <div class="bio-section">
+            <div class="bio-text reveal">
+                <h2>O Arquiteto do Invisível</h2>
+                <p>Wagner Abrahão é um pensador contemporâneo que explora as fronteiras entre o espiritual e o material, o visível e o invisível. Com uma trajetória marcada pela busca do autoconhecimento, ele desenvolveu uma abordagem única para compreender as dinâmicas sutis da existência, que denomina "Arquitetura do Invisível".</p>
+                
+                <p>Nascido no Brasil, sua jornada intelectual começou cedo, com o estudo das grandes tradições filosóficas e espirituais da humanidade. Formado em filosofia, dedicou anos ao estudo comparativo de tradições orientais e ocidentais, psicologia transpessoal, mitologia e simbologia, sempre buscando os fios comuns que tecem a experiência humana do sagrado.</p>
+                
+                <p>Seus escritos refletem uma síntese original entre profundidade espiritual e linguagem contemporânea, tornando acessíveis ao buscador moderno insights que tradicionalmente estavam restritos a círculos especializados. Wagner rejeita o dogmatismo em todas as suas formas, preferindo uma abordagem experiencial que valoriza a dúvida como ferramenta de aprofundamento e a pergunta como portal para novas compreensões.</p>
+                
+                <p>Como "Arquiteto do Invisível", Wagner se dedica a construir pontes de compreensão entre dimensões da realidade, ajudando indivíduos a encontrarem significado e propósito em suas jornadas existenciais. Seu trabalho não propõe sistemas fechados de crenças, mas ferramentas de percepção que cada pessoa pode adaptar à sua própria experiência.</p>
+                
+                <p>Além de seus manuscritos, aforismos, poemas e textos, Wagner oferece orientação individual e grupos de estudo para aqueles que desejam aprofundar sua compreensão da "Arquitetura do Invisível". Sua abordagem combina rigor intelectual com sensibilidade poética, criando um espaço único para a exploração das dimensões mais profundas da consciência.</p>
+                
+                <p>Atualmente, Wagner Abrahão continua seu trabalho de escrita e orientação, desenvolvendo novos projetos que integram sua filosofia com as questões mais prementes do nosso tempo, sempre mantendo o foco no desenvolvimento de uma consciência mais ampla e integrada.</p>
+            </div>
+            
+            <div class="principles reveal">
+                <h3>Princípios Filosóficos</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-star"></i>
+                        <strong>A realidade é multidimensional</strong>
+                        <div style="opacity: 0.8; font-size: 0.95rem; margin-top: 5px;">O visível e o invisível coexistem em interação constante, formando uma realidade mais complexa do que percebemos ordinariamente.</div>
+                    </li>
+                    <li>
+                        <i class="fas fa-star"></i>
+                        <strong>A consciência é criadora</strong>
+                        <div style="opacity: 0.8; font-size: 0.95rem; margin-top: 5px;">Nossos pensamentos, intenções e estados internos participam ativamente na configuração da realidade que experimentamos.</div>
+                    </li>
+                    <li>
+                        <i class="fas fa-star"></i>
+                        <strong>A alquimia é possível</strong>
+                        <div style="opacity: 0.8; font-size: 0.95rem; margin-top: 5px;">Podemos transmutar sofrimento em sabedoria, medo em amor, limitações em potenciais através do trabalho consciente com a energia psíquica.</div>
+                    </li>
+                    <li>
+                        <i class="fas fa-star"></i>
+                        <strong>O silêncio é fonte</strong>
+                        <div style="opacity: 0.8; font-size: 0.95rem; margin-top: 5px;">No silêncio interior encontramos acesso a saberes que transcendem o conhecimento intelectual e racional.</div>
+                    </li>
+                    <li>
+                        <i class="fas fa-star"></i>
+                        <strong>A verdade é esférica</strong>
+                        <div style="opacity: 0.8; font-size: 0.95rem; margin-top: 5px;">Não existem visões únicas e absolutas da verdade, mas múltiplas perspectivas que, integradas, aproximam-nos de uma compreensão mais completa.</div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Seção Aforismos -->
-    <section id="aforismos">
-               <h2 class="title-sec">AFORISMOS</h2>
-        <div class="content-grid">
-            <div class="content-item fade-in">
-                <p>"O silêncio é a geometria sagrada da alma. Nele, todas as formas se dissolvem para revelar a essência sem contornos."</p>
-            </div>
-            <div class="content-item fade-in">
-                <p>"A alma não tem pressa; a pressa é a poeira do ego que obscurece o caminho para o eterno presente."</p>
-            </div>
-            <div class="content-item fade-in">
-                <p>"Para tocar o invisível, é preciso soltar as amarras do tangível. A verdadeira liberdade reside na entrega ao intangível."</p>
-            </div>
-            <div class="content-item fade-in">
-                <p>"A dor é o cinzel divino que esculpe a consciência. Cada golpe revela formas que estavam ocultas na pedra bruta do ser."</p>
-            </div>
-            <div class="content-item fade-in">
-                <p>"Somos a ponte etérea entre o barro e a luz original. Nossa existência é a dança entre a matéria e o espírito."</p>
-            </div>
+    <!-- Footer com links CORRIGIDOS -->
+    <footer id="contato">
+        <p class="quote reveal">"A verdade não é uma linha reta, mas uma esfera a ser habitada. Cada ponto de vista revela uma faceta diferente do todo, e somente quando nos permitimos orbitar em torno dela é que começamos a compreender sua magnitude infinita."</p>
+        
+        <div class="newsletter reveal">
+            <h3>Mantenha-se Conectado</h3>
+            <p>Receba reflexões, poemas e aforismos exclusivos diretamente em seu e-mail. Junte-se a uma comunidade de buscadores do invisível.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit">Inscrever-se</button>
+            </form>
         </div>
-    </section>
-
-    <!-- Seção Poemas -->
-    <section id="poemas">
-               <h2 class="title-sec">POESIAS</h2>
-        <div class="content-grid">
-            <div class="content-item fade-in">
-                <h4>Fogo Interno</h4>
-                <p>Na caverna do peito, a chama dança sem ar. Ela não pede lenha, pede apenas o olhar que se atreve a queimar. É no crepitar da alma que encontramos o calor que nunca se apaga.</p>
-            </div>
-            <div class="content-item fade-in">
-                <h4>Ouro do Peito</h4>
-                <p>Transmuto o chumbo do dia no brilho da noite serena. Cada lágrima é um grão de luz na minha pequena oficina eterna. O coração, meu cadinho sagrado, onde o divino se funde ao humano.</p>
-            </div>
-            <div class="content-item fade-in">
-                <h4>Manto de Paz</h4>
-                <p>Envolve-me o silêncio como um linho antigo. No acalento da alma, encontro o abrigo do que nunca foi dito. Esta paz que veste meu ser é tecida nos teares do infinito.</p>
-            </div>
-            <div class="content-item fade-in">
-                <h4>Arquitetura do Ar</h4>
-                <p>Não ergo paredes, abro vãos. Minha casa é o espaço entre as mãos, onde Deus se faz oração. Construo com o invisível, moro no intangível, habito a eternidade em expansão.</p>
-            </div>
-            <div class="content-item fade-in">
-                <h4>O Vazio Sagrado</h4>
-                <p>Nada falta onde o tudo repousa. A alma é a nau, o mistério é a lousa onde a vida escreve sua causa. No vazio pleno encontro meu abrigo, no silêncio profundo sou finalmente ouvido.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Reflexões -->
-    <section id="textos">
-               <h2 class="title-sec">REFLEXÕES</h2>
-        <div class="content-grid">
-            <div class="content-item fade-in">
-                <h4>A Habitação do Ser</h4>
-                <p>Habitar o próprio ser exige a coragem de ser estrangeiro no mundo das formas. É no desapego das identidades transitórias que descobrimos nossa verdadeira morada interior, além de todos os conceitos e definições.</p>
-            </div>
-            <div class="content-item fade-in">
-                <h4>O Ofício do Invisível</h4>
-                <p>Arquitetar o que não se vê é a única forma de construir o que jamais cairá. Enquanto as estruturas materiais se desfazem com o tempo, as construções da alma permanecem intocadas pela decadência.</p>
-            </div>
-            <div class="content-item fade-in">
-                <h4>O Tempo Circular</h4>
-                <p>Não avançamos; orbitamos o centro de nós mesmos até que o círculo se torne esfera. A espiral da evolução nos leva sempre de volta ao ponto de origem, mas em uma dimensão mais profunda e ampla.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rodapé -->
-    <footer>
-        <div class="social-icons">
-            <a href="https://www.threads.net/@wagnerabrahao_" target="_blank" aria-label="Perfil no Threads">
-                <i class="fab fa-threads"></i>
+        
+        <div class="social-links reveal">
+            <a href="https://www.threads.com/@wagnerabrahao_" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-threads"></i> Threads
             </a>
-            <a href="https://www.instagram.com" target="_blank" aria-label="Perfil no Instagram">
-                <i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com/wagnerabrahao_" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i> Instagram
             </a>
-            <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" aria-label="Perfil no TikTok">
-                <i class="fab fa-tiktok"></i>
+            <a href="https://www.tiktok.com/@wagner.abrahao?lang=pt-BR" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-tiktok"></i> TikTok
             </a>
-            <a href="mailto:wagner.abrahao.31@gmail.com" aria-label="Enviar e-mail">
-                <i class="fas fa-envelope"></i>
+            <a href="mailto:wagner.abrahao.31@gmail.com">
+                <i class="fas fa-envelope"></i> Email
             </a>
         </div>
-        <p class="footer-title">WAGNER ABRAHÃO</p>
-        <p class="footer-subtitle">© 2024 BELO HORIZONTE | MINAS GERAIS | ARQUITETO DO INVISÍVEL</p>
+        
+        <div class="copyright">
+            © 2023 Wagner Abrahão. Todos os direitos reservados.<br>
+            <small style="opacity: 0.5; margin-top: 10px; display: block;">Arquiteto do Invisível - Uma filosofia para o século XXI</small>
+        </div>
     </footer>
 
-    <script>
-        // Função principal de ativação
-        function launch() {
-            const audio = document.getElementById('bg-audio');
-            const splash = document.getElementById('splash');
-            
-            // Tentar tocar áudio (pode ser bloqueado por autoplay policies)
-            audio.volume = 0.3;
-            const playPromise = audio.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Reprodução automática de áudio bloqueada. O áudio será ativado após interação do usuário.");
-                });
-            }
-            
-            // Animação de saída do splash
-            splash.style.transform = "translateY(-100%)";
-            setTimeout(() => {
-                splash.style.display = "none";
-                window.scrollTo(0, 0);
+    <!-- Modal de leitura focada -->
+    <div class="reading-focus" id="readingFocus">
+        <div class="focus-content">
+            <button class="close-focus" onclick="closeReadingFocus()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 style="color: var(--ouro); margin-bottom: 30px; font-size: 2rem;">Leituras Recomendadas</h3>
+            <div style="line-height: 1.9; font-size: 1.1rem;">
+                <p>Para quem deseja se aprofundar nas temáticas exploradas por Wagner Abrahão, recomendamos as seguintes obras que dialogam com sua filosofia da Arquitetura do Invisível:</p>
                 
-                // Ativar animações de fade-in
-                setTimeout(initAnimations, 300);
-            }, 1800);
-        }
+                <ul style="margin: 30px 0 30px 25px; line-height: 2.2;">
+                    <li><strong>Filosofia Perene</strong> - Aldous Huxley</li>
+                    <li><strong>O Poder do Agora</strong> - Eckhart Tolle</li>
+                    <li><strong>O Profeta</strong> - Khalil Gibran</li>
+                    <li><strong>O Livro Tibetano do Viver e do Morrer</strong> - Sogyal Rinpoche</li>
+                    <li><strong>A Sutil Arte de Ligar o F*da-se</strong> - Mark Manson</li>
+                    <li><strong>O Alquimista</strong> - Paulo Coelho</li>
+                    <li><strong>Meditações</strong> - Marco Aurélio</li>
+                    <li><strong>O Eneagrama</strong> - Helen Palmer</li>
+                    <li><strong>O Homem e Seus Símbolos</strong> - Carl Gustav Jung</li>
+                    <li><strong>Assim Falou Zaratustra</strong> - Friedrich Nietzsche</li>
+                </ul>
+                
+                <p>Estas obras oferecem diferentes perspectivas sobre temas como consciência, espiritualidade, autoconhecimento e transformação pessoal, complementando a abordagem desenvolvida por Wagner Abrahão em seus escritos. Cada uma, à sua maneira, contribui para a construção dessa "arquitetura do invisível" que nos permite habitar dimensões mais amplas da realidade.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão de voltar ao topo -->
+    <div id="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Sistema de cursor personalizado e luz
+        const customCursor = document.getElementById('customCursor');
+        const customCursorDot = document.getElementById('customCursorDot');
+        const lightSpot = document.getElementById('lightSpot');
         
-        // Configurar botão de ativação
-        document.getElementById('btn-activate').addEventListener('click', launch);
+        // Posição do cursor
+        let mouseX = 0;
+        let mouseY = 0;
         
-        // Controle de áudio
-        let isAudioPlaying = false;
-        const audioToggle = document.getElementById('audio-toggle');
-        const audioIcon = audioToggle.querySelector('i');
-        const audio = document.getElementById('bg-audio');
+        // Posição suavizada para o cursor
+        let cursorX = 0;
+        let cursorY = 0;
         
-        audioToggle.addEventListener('click', function() {
-            if (isAudioPlaying) {
-                audio.pause();
-                audioIcon.className = 'fas fa-volume-mute';
-                audioToggle.setAttribute('aria-label', 'Ligar áudio de fundo');
-            } else {
-                const playPromise = audio.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.log("Não foi possível reproduzir o áudio.");
-                    });
-                }
-                audioIcon.className = 'fas fa-volume-up';
-                audioToggle.setAttribute('aria-label', 'Desligar áudio de fundo');
-            }
-            isAudioPlaying = !isAudioPlaying;
+        // Posição suavizada para o ponto de luz
+        let lightX = 0;
+        let lightY = 0;
+        
+        // Velocidade de suavização
+        const cursorSpeed = 0.1;
+        const lightSpeed = 0.05;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
         
-        // Navegação suave
-        document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        function animateCursor() {
+            // Suavizar movimento do cursor
+            cursorX += (mouseX - cursorX) * cursorSpeed;
+            cursorY += (mouseY - cursorY) * cursorSpeed;
+            
+            // Suavizar movimento da luz (mais lento)
+            lightX += (mouseX - lightX) * lightSpeed;
+            lightY += (mouseY - lightY) * lightSpeed;
+            
+            // Aplicar posições
+            customCursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+            customCursorDot.style.transform = `translate(${mouseX - 3}px, ${mouseY - 3}px)`;
+            lightSpot.style.transform = `translate(${lightX - 150}px, ${lightY - 150}px)`;
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        animateCursor();
+        
+        // Efeitos de interação do cursor
+        document.querySelectorAll('a, button, .book-card, .aforismo-card, .pillar, .poema, .texto').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                customCursor.style.transform += ' scale(1.5)';
+                customCursor.style.background = 'rgba(212, 175, 55, 0.8)';
+                lightSpot.style.opacity = '0.8';
+                lightSpot.style.filter = 'blur(30px)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                customCursor.style.transform = customCursor.style.transform.replace(' scale(1.5)', '');
+                customCursor.style.background = 'rgba(212, 175, 55, 0.5)';
+                lightSpot.style.opacity = '0.6';
+                lightSpot.style.filter = 'blur(40px)';
+            });
+        });
+        
+        // Efeito de Revelação ao Rolar
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+            
+            // Botão de voltar ao topo
+            var backToTop = document.getElementById("back-to-top");
+            if (window.scrollY > 300) {
+                backToTop.classList.add("show");
+            } else {
+                backToTop.classList.remove("show");
+            }
+            
+            // Navegação fixa e ativa
+            var nav = document.getElementById("main-nav");
+            if (window.scrollY > 50) {
+                nav.style.padding = "15px 5%";
+                nav.style.background = "rgba(5, 5, 5, 0.98)";
+            } else {
+                nav.style.padding = "20px 10%";
+                nav.style.background = "rgba(5, 5, 5, 0.95)";
+            }
+            
+            // Ativar link da navegação conforme a seção visível
+            var sections = document.querySelectorAll('section[id], header[id]');
+            var navLinks = document.querySelectorAll('.nav-links a');
+            
+            var current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+        
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Controle da Música
+        var audio = document.getElementById("myAudio");
+        var btn = document.getElementById("music-toggle");
+        var isPlaying = false;
+        
+        // Tentar tocar música automaticamente (com interação do usuário)
+        document.addEventListener('click', function() {
+            if (!isPlaying) {
+                audio.volume = 0.3;
+                audio.play().then(() => {
+                    isPlaying = true;
+                    btn.innerHTML = '<i class="fas fa-music"></i> <span>Sinfonia: On</span>';
+                }).catch(e => {
+                    console.log("Reprodução automática bloqueada:", e);
+                });
+            }
+        }, { once: true });
+        
+        function toggleMusic() {
+            if (audio.paused) { 
+                audio.volume = 0.3;
+                audio.play(); 
+                btn.innerHTML = '<i class="fas fa-music"></i> <span>Sinfonia: On</span>'; 
+            } else { 
+                audio.pause(); 
+                btn.innerHTML = '<i class="fas fa-music"></i> <span>Sinfonia: Off</span>'; 
+            }
+        }
+        
+        // Fundo Animado (Estrelas/Partículas)
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        let particles = [];
+        
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(200, Math.floor(window.innerWidth * window.innerHeight / 4000));
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({ 
+                    x: Math.random() * canvas.width, 
+                    y: Math.random() * canvas.height, 
+                    r: Math.random() * 2 + 0.5, 
+                    d: Math.random() * 0.3 + 0.1,
+                    o: Math.random() * 0.5 + 0.2,
+                    t: Math.random() * Math.PI * 2
+                });
+            }
+        }
+        
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                ctx.beginPath(); 
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); 
+                ctx.fillStyle = `rgba(212, 175, 55, ${p.o})`;
+                ctx.fill();
+                
+                // Movimento suave com leve oscilação
+                p.y -= p.d;
+                p.x += Math.sin(p.t) * 0.2;
+                p.t += 0.02;
+                
+                if (p.y < 0) {
+                    p.y = canvas.height;
+                    p.x = Math.random() * canvas.width;
+                }
+            });
+            
+            requestAnimationFrame(draw);
+        }
+        
+        draw();
+        
+        // Rolagem suave para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
+                
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Fechar menu mobile se aplicável
-                    if (window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').classList.remove('active');
-                    }
                 }
             });
         });
         
-        // Animações de fade-in ao scroll
-        function initAnimations() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const fadeObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
-            fadeElements.forEach(el => {
-                fadeObserver.observe(el);
+        // Função para voltar ao topo
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         }
         
-        // Verificar se já saímos do splash (caso de recarga)
-        window.addEventListener('load', function() {
-            const splash = document.getElementById('splash');
-            if (splash.style.display === 'none' || splash.style.transform === 'translateY(-100%)') {
-                initAnimations();
+        // Efeito de digitação no título
+        const title = document.querySelector('h1');
+        const originalText = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < originalText.length) {
+                title.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
             }
-            
-            // Pré-carregar imagem de fundo para melhor performance
-            const bgImage = new Image();
-            bgImage.src = 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80';
+        }
+        
+        // Iniciar efeito de digitação após um breve delay
+        setTimeout(typeWriter, 800);
+        
+        // Modal de leitura focada
+        function openReadingFocus() {
+            document.getElementById('readingFocus').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeReadingFocus() {
+            document.getElementById('readingFocus').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Fechar modal ao clicar fora
+        document.getElementById('readingFocus').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeReadingFocus();
+            }
         });
         
-        // Menu responsivo para telas muito pequenas
-        function handleResponsiveNav() {
-            const navLinks = document.querySelector('.nav-links');
-            if (window.innerWidth <= 480) {
-                // Simplificar navegação em telas muito pequenas
-                navLinks.style.flexWrap = 'wrap';
-                navLinks.style.justifyContent = 'center';
-                navLinks.style.gap = '10px';
-            }
-        }
+        // Animar elementos ao carregar a página
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 100) {
+                        el.classList.add('active');
+                    }
+                });
+            }, 300);
+        });
         
-        // Inicializar ao carregar
-        window.addEventListener('resize', handleResponsiveNav);
-        handleResponsiveNav();
+        // Efeito parallax simples para o wallpaper
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.3;
+            
+            const wallpaper = document.querySelector('.wallpaper');
+            if (wallpaper) {
+                wallpaper.style.transform = `translateY(${rate * 0.2}px)`;
+            }
+        });
+        
+        // Newsletter form
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`Obrigado por se inscrever, ${email.split('@')[0]}! Em breve você receberá conteúdos exclusivos.`);
+            this.reset();
+        });
+        
+        // Efeito de brilho intermitente no cursor
+        setInterval(() => {
+            const intensity = 0.3 + Math.random() * 0.4;
+            customCursorDot.style.boxShadow = `0 0 ${10 + intensity * 10}px rgba(212, 175, 55, ${0.7 + intensity * 0.3})`;
+        }, 500);
+        
+        // Adicionar ícone do Threads (Font Awesome não tem ícone oficial do Threads, usaremos um similar)
+        // Adicionaremos o estilo para o ícone do Threads
+        const style = document.createElement('style');
+        style.textContent = `
+            .fa-threads:before {
+                content: "T";
+                font-family: 'Cinzel', serif;
+                font-weight: bold;
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
-
 </html>
-
