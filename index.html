@@ -1,261 +1,1482 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" data-domain="wagnerabrahao.com.br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Wagner Abrahão | Arquiteto do Invisível</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,900;1,400&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-5WZHN0YR19');
+    </script>
+
+    <title>Wagner Abrahão | Arquiteto do Invisível - Site Oficial</title>
+    <meta name="description" content="Portal oficial de Wagner Abrahão - Arquiteto do Invisível. Poesia transcendental, manuscritos arcanos e a arquitetura espiritual da existência.">
+    <meta name="keywords" content="Wagner Abrahão, arquiteto do invisível, poesia espiritual, despertar de consciência, livros espiritualidade, autor brasileiro">
+    <meta name="author" content="Wagner Abrahão">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://wagnerabrahao.com.br">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Wagner Abrahão | Arquiteto do Invisível">
+    <meta property="og:description" content="Portal oficial de espiritualidade e poesia transcendental">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wagnerabrahao.com.br">
+    <meta property="og:image" content="https://wagnerabrahao.com.br/og-image.jpg">
+    <meta property="og:site_name" content="Wagner Abrahão">
+
+    <!-- Preload crítico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300&family=Great+Vibes&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <style>
-        :root { --gold: #D4AF37; --bright-gold: #FFD700; --silver: #E0E0E0; --white: #ffffff; --glass-dark: rgba(10, 10, 10, 0.85); --lapis: #00ffff; --sand: #C2B280; }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body, html { background: #000; color: #fff; font-family: 'Marcellus', serif; overflow-x: hidden; height: 100%; cursor: none; }
-
-        #canvas-3d { position: fixed; inset: 0; z-index: 1; pointer-events: auto; opacity: 0; transition: opacity 3s ease; touch-action: pan-y; }
-
-        #cursor { 
-            width: 12px; height: 12px; background: #fff; border-radius: 50%; 
-            position: fixed; pointer-events: none; z-index: 10000; 
-            box-shadow: 0 0 25px 10px #fff, 0 0 50px 20px var(--bright-gold); 
-            transform: translate(-50%, -50%); mix-blend-mode: screen;
+        /* ============ CSS OTIMIZADO E MODERNO ============ */
+        :root {
+            --ouro: #D4AF37;
+            --ouro-gradiente: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #B8860B 100%);
+            --prata: #F0F0F0;
+            --preto: #0A0A0A;
+            --preto-cinza: #1A1A1A;
+            --ciano: #00FFFF;
+            --roxo: #8A2BE2;
+            --sombra-ouro: 0 0 30px rgba(212, 175, 55, 0.5);
+            --sombra-neon: 0 0 15px var(--ciano);
+            
+            --fonte-titulo: 'Cinzel', serif;
+            --fonte-texto: 'Cormorant Garamond', serif;
+            --fonte-assinatura: 'Great Vibes', cursive;
+            
+            --raio-borda: 4px;
+            --transicao-rapida: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transicao-lenta: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        #gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: #000; transition: 2s cubic-bezier(0.7, 0, 0.3, 1); }
-        #gate-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover; filter: grayscale(0.7) brightness(0.2); }
-        
-        .gate-content { position: relative; z-index: 10; text-align: center; width: 90%; }
-        .gate-title { font-family: 'Bodoni Moda'; font-size: clamp(2.5rem, 10vw, 5rem); font-weight: 900; letter-spacing: 15px; text-transform: uppercase; color: var(--silver); }
-        
-        .gate-btn { 
-            border: 2px solid var(--bright-gold); color: #fff; background: rgba(212, 175, 55, 0.1); 
-            padding: 25px 80px; cursor: pointer; font-family: 'Bodoni Moda'; letter-spacing: 10px; 
-            text-transform: uppercase; font-size: 0.9rem; margin-top: 50px; transition: 1s; 
-            backdrop-filter: blur(20px); animation: goldPulse 3s infinite;
+        /* Reset moderno */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        @keyframes goldPulse {
-            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: var(--gold); }
-            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.7); border-color: var(--bright-gold); transform: scale(1.02); }
-            100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: var(--gold); }
-        }
-        .gate-btn:hover { background: var(--bright-gold); color: #000; letter-spacing: 15px; animation: none; }
 
-        nav { 
-            position: fixed; top: 0; width: 100%; display: flex; justify-content: center; 
-            flex-wrap: wrap; gap: clamp(10px, 4vw, 40px); padding: 35px 10px; z-index: 2000; opacity: 0; transition: 2s;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+            background: var(--preto);
+        }
+
+        body {
+            font-family: var(--fonte-texto);
+            background: var(--preto);
+            color: var(--prata);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        body.carregado {
+            opacity: 1;
+        }
+
+        /* === PORTAL DE ENTRADA ANIMADO === */
+        #portal-dominio {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #000 0%, #111 100%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease, visibility 1.5s;
+        }
+
+        .portal-conteudo {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .titulo-portal {
+            font-family: var(--fonte-titulo);
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            background: var(--ouro-gradiente);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: var(--sombra-ouro);
+            animation: pulsar 4s infinite alternate;
+        }
+
+        .subtitulo-portal {
+            font-family: var(--fonte-assinatura);
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: var(--prata);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .sigilo-portal {
+            width: 150px; height: 150px;
+            margin: 2rem auto;
+            border: 3px solid var(--ouro);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            animation: girar 20s linear infinite;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+        }
+
+        .sigilo-inner {
+            font-size: 3.5rem;
+            color: var(--ouro);
+            text-shadow: var(--sombra-ouro);
+        }
+
+        .btn-entrar {
+            background: transparent;
+            border: 2px solid var(--ouro);
+            color: var(--ouro);
+            padding: 1rem 3rem;
+            font-family: var(--fonte-titulo);
+            font-size: 1rem;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: var(--transicao-rapida);
+            margin-top: 2rem;
+            text-transform: uppercase;
+        }
+
+        .btn-entrar:hover {
+            background: rgba(212, 175, 55, 0.1);
+            letter-spacing: 0.25em;
+            box-shadow: var(--sombra-ouro);
+        }
+
+        /* === NAVEGAÇÃO PREMIUM === */
+        #navegacao-principal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 999;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: var(--transicao-lenta);
         }
-        nav a { color: var(--silver); text-decoration: none; text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; cursor: pointer; opacity: 0.5; transition: 0.5s; font-weight: bold; }
-        nav a:hover, nav a.active { opacity: 1; color: var(--gold); border-bottom: 1px solid var(--gold); }
 
-        .container { position: relative; z-index: 100; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: 2.5s; padding: 160px 8% 100px; overflow-y: auto; scrollbar-width: none; }
-        .container::-webkit-scrollbar { display: none; }
-        
-        .page { display: none; width: 100%; max-width: 1100px; animation: slideUp 1.5s ease forwards; }
-        .page.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-        .secao-titulo { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 2.2rem; text-align: center; margin-bottom: 60px; letter-spacing: 15px; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 20px; }
-
-        /* VIDRO FOSCO OPACO (BLUR 50PX) */
-        .verbo-text-block { 
-            font-size: 1.25rem; line-height: 2.2; color: var(--silver); 
-            text-align: center; margin-bottom: 60px; font-style: italic;
-            padding: 45px; background: var(--glass-dark);
-            border: 1px solid rgba(212,175,55,0.1); width: 100%;
-            display: flex; flex-direction: column; align-items: center;
-            backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+        #navegacao-principal.visivel {
+            transform: translateY(0);
+            opacity: 1;
         }
-        .verbo-header { font-family: 'Bodoni Moda'; color: var(--gold); font-size: 1.6rem; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; font-style: normal; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
-        .verbo-content { max-width: 800px; text-align: center; white-space: pre-wrap; }
 
-        .livros-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; width: 100%; }
-        /* MANUSCRITOS COM FUNDO OPACO E FOSCO */
-        .caixa-dourada { border: 1px solid var(--gold); background: var(--glass-dark); padding: 45px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); transition: 0.8s; text-align: center; }
-        .caixa-dourada:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2); }
-        
-        .livro-titulo { color: var(--gold) !important; font-family: 'Bodoni Moda'; margin-bottom: 15px; text-transform: uppercase; }
-        .livro-resumo { color: var(--white) !important; opacity: 0.9; font-style: italic; margin-top: 15px; line-height: 1.7; }
-        .livro-assinatura { color: var(--gold) !important; margin-top:20px; font-family:'Great Vibes'; font-size:1.8rem; }
+        .nav-link {
+            color: var(--prata);
+            text-decoration: none;
+            font-family: var(--fonte-titulo);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            transition: var(--transicao-rapida);
+            position: relative;
+            opacity: 0.7;
+        }
 
-        .portal-btn { width: 60px; height: 60px; border: 2px solid var(--lapis); border-radius: 50%; display: flex; align-items: center; justify-content: center; fill: var(--lapis); transition: 0.6s; background: rgba(0,255,255,0.05); }
-        .portal-btn:hover { background: var(--lapis); fill: #000; transform: scale(1.15) translateY(-5px); box-shadow: 0 0 30px rgba(0, 255, 255, 0.4); }
+        .nav-link:hover, .nav-link.ativo {
+            color: var(--ouro);
+            opacity: 1;
+        }
 
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: var(--ouro-gradiente);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* === CONTEÚDO PRINCIPAL === */
+        #conteudo-principal {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transicao-lenta);
+        }
+
+        #conteudo-principal.visivel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pagina {
+            display: none;
+            animation: aparecer 0.8s ease-out;
+        }
+
+        .pagina.ativa {
+            display: block;
+        }
+
+        .titulo-secao {
+            font-family: var(--fonte-titulo);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--ouro);
+            letter-spacing: 0.2em;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .titulo-secao::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100px; height: 2px;
+            background: var(--ouro-gradiente);
+        }
+
+        /* === CARDS PREMIUM === */
+        .card-premium {
+            background: linear-gradient(145deg, rgba(30,30,30,0.7) 0%, rgba(10,10,10,0.9) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: var(--raio-borda);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: var(--transicao-rapida);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-premium::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 1px;
+            background: var(--ouro-gradiente);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        .card-premium:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: var(--sombra-ouro);
+        }
+
+        .card-premium:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-titulo {
+            font-family: var(--fonte-titulo);
+            font-size: 1.8rem;
+            color: var(--ouro);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .card-texto {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--prata);
+            margin-bottom: 2rem;
+        }
+
+        .assinatura {
+            font-family: var(--fonte-assinatura);
+            font-size: 2.5rem;
+            color: var(--ouro);
+            text-align: right;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            margin-top: 1.5rem;
+        }
+
+        /* === NOVA PIRÂMIDE EGÍPCIA INTERATIVA === */
+        #piramide-egipcia {
+            position: fixed;
+            bottom: 0;
+            right: 5%;
+            width: 300px;
+            height: 300px;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+            transform-style: preserve-3d;
+            transform: rotateX(70deg) rotateZ(45deg);
+        }
+
+        .camada-piramide {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            transform-style: preserve-3d;
+        }
+
+        .tijolo {
+            width: 20px;
+            height: 10px;
+            background: linear-gradient(to bottom, #D4AF37 0%, #B8860B 100%);
+            margin: 0 1px;
+            position: relative;
+            border-bottom: 1px solid #8B6914;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tijolo:hover {
+            background: linear-gradient(to bottom, #FFD700 0%, #DAA520 100%);
+            z-index: 10;
+        }
+
+        .tijolo.ativo {
+            background: linear-gradient(to bottom, #00FFFF 0%, #008B8B 100%);
+            animation: brilho-tijolo 2s infinite;
+        }
+
+        /* === INTERAÇÕES PARA VISITANTES === */
+        #painel-interativo {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 800;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transicao-lenta);
+        }
+
+        #painel-interativo.visivel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-interacao {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--ouro);
+            color: var(--ouro);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: var(--transicao-rapida);
+            font-size: 1.2rem;
+        }
+
+        .btn-interacao:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+            box-shadow: var(--sombra-ouro);
+        }
+
+        #gerador-aforismo {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--ouro);
+            padding: 1.5rem;
+            border-radius: var(--raio-borda);
+            max-width: 300px;
+            z-index: 800;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: var(--transicao-rapida);
+            backdrop-filter: blur(10px);
+        }
+
+        #gerador-aforismo.visivel {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .aforismo-gerado {
+            font-style: italic;
+            color: var(--prata);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .btn-gerar {
+            background: transparent;
+            border: 1px solid var(--ciano);
+            color: var(--ciano);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transicao-rapida);
+            width: 100%;
+        }
+
+        .btn-gerar:hover {
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        /* === DIÁRIO ESPIRITUAL (NOVO) === */
+        #diario-espiritual {
+            position: fixed;
+            top: 50%;
+            right: -400px;
+            transform: translateY(-50%);
+            width: 350px;
+            height: 500px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid var(--roxo);
+            border-radius: var(--raio-borda) 0 0 var(--raio-borda);
+            padding: 2rem;
+            z-index: 900;
+            transition: right 0.5s ease;
+            backdrop-filter: blur(15px);
+            box-shadow: -5px 0 30px rgba(138, 43, 226, 0.3);
+        }
+
+        #diario-espiritual.aberto {
+            right: 0;
+        }
+
+        .diario-titulo {
+            color: var(--roxo);
+            font-family: var(--fonte-titulo);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        #entrada-diario {
+            width: 100%;
+            height: 300px;
+            background: transparent;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            color: var(--prata);
+            padding: 1rem;
+            resize: none;
+            font-family: var(--fonte-texto);
+            margin-bottom: 1rem;
+        }
+
+        #entrada-diario:focus {
+            outline: none;
+            border-color: var(--roxo);
+        }
+
+        /* === SEÇÃO DE NOVOS POEMAS E AFORISMOS === */
+        .grid-poemas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .poema-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: var(--raio-borda);
+            padding: 2rem;
+            transition: var(--transicao-rapida);
+            height: 100%;
+        }
+
+        .poema-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* === CONTADOR DE VISITAS === */
+        #contador-visitas {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--ciano);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        /* === ANIMAÇÕES === */
+        @keyframes pulsar {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        @keyframes girar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes brilho-tijolo {
+            0%, 100% { box-shadow: 0 0 5px #00FFFF; }
+            50% { box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF; }
+        }
+
+        @keyframes flutuar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* === RESPONSIVIDADE === */
         @media (max-width: 768px) {
-            body { cursor: auto; } #cursor { display: none !important; }
-            .container { padding-top: 130px; }
+            #navegacao-principal {
+                padding: 1rem;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+            
+            .nav-link {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.5rem;
+            }
+            
+            #conteudo-principal {
+                padding: 7rem 1rem 3rem;
+            }
+            
+            .card-premium {
+                padding: 2rem;
+            }
+            
+            #piramide-egipcia {
+                width: 200px;
+                height: 200px;
+                right: -50px;
+            }
+            
+            #diario-espiritual {
+                width: 100%;
+                height: 70vh;
+                right: -100%;
+            }
+            
+            #gerador-aforismo {
+                left: 1rem;
+                right: 1rem;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-poemas {
+                grid-template-columns: 1fr;
+            }
+            
+            .titulo-secao {
+                font-size: 1.8rem;
+            }
+            
+            .titulo-portal {
+                letter-spacing: 0.1em;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- CONTADOR DE VISITAS -->
+    <div id="contador-visitas">
+        <i class="fas fa-users"></i> <span id="contador">1</span> almas conectadas
+    </div>
 
-    <div id="cursor"></div>
-    <canvas id="canvas-3d"></canvas>
-
-    <div id="gate">
-        <div id="gate-bg"></div>
-        <div class="gate-content">
-            <h1 class="gate-title">Wagner Abrahão</h1>
-            <div style="font-family:'Great Vibes'; font-size:2.8rem; color:var(--silver); margin-top:15px;">Arquiteto do Invisível</div>
-            <button class="gate-btn" onclick="unlock()">Ativar Harmonia</button>
+    <!-- PORTAL DE ENTRADA -->
+    <div id="portal-dominio">
+        <div class="portal-conteudo">
+            <h1 class="titulo-portal">WAGNER ABRAHÃO</h1>
+            <div class="subtitulo-portal">Arquiteto do Invisível</div>
+            
+            <div class="sigilo-portal">
+                <div class="sigilo-inner">⚕</div>
+            </div>
+            
+            <button class="btn-entrar" onclick="iniciarExperiencia()">
+                Adentrar o Portal
+            </button>
+            
+            <div style="margin-top: 3rem; color: #666; font-size: 0.9rem;">
+                wagnerabrahao.com.br
+            </div>
         </div>
     </div>
 
-    <nav id="main-nav">
-        <a onclick="show('home')" class="active">O Arquiteto</a>
-        <a onclick="show('contos')">Poemas e Aforismos</a>
-        <a onclick="show('obras')">Manuscritos</a>
-        <a onclick="show('contato')">Contato</a>
+    <!-- NAVEGAÇÃO PRINCIPAL -->
+    <nav id="navegacao-principal">
+        <a class="nav-link ativo" onclick="mostrarPagina('inicio')">O Arquiteto</a>
+        <a class="nav-link" onclick="mostrarPagina('poemas')">Poemas Arcanos</a>
+        <a class="nav-link" onclick="mostrarPagina('aforismos')">Aforismos</a>
+        <a class="nav-link" onclick="mostrarPagina('piramide')">Pirâmide</a>
+        <a class="nav-link" onclick="mostrarPagina('contato')">Contato</a>
+        <a class="nav-link" onclick="abrirDiario()"><i class="fas fa-book"></i></a>
     </nav>
 
-    <div class="container" id="main-container">
-        <div id="home" class="page active">
-            <div class="glass-box" style="background: var(--glass-dark); padding: 60px; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); border: 1px solid rgba(255,255,255,0.1);">
-                <div style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center;">
-                    <img src="perfil.jpg" alt="Wagner Abrahão" style="width: 240px; height: 340px; object-fit: cover; border: 1px solid rgba(255,255,255,0.2);">
-                    <div style="flex: 1; min-width: 300px; font-size: 1.2rem; line-height: 2.1; font-style: italic;">
-                        "Arquiteto das frequências que acolhem e iluminam. Minha obra busca ser apenas um suporte para quem procura acalento na densidade da vida. Através da harmonia do Verbo, convido você a reconhecermos, juntos, a arquitetura de luz que já habita em cada um de nós."
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="conteudo-principal">
+        <!-- PÁGINA INICIAL -->
+        <section id="inicio" class="pagina ativa">
+            <h2 class="titulo-secao">O ARQUITETO DO INVISÍVEL</h2>
+            
+            <div class="card-premium">
+                <p class="card-texto">
+                    "Arquiteto das frequências que acolhem e iluminam. Minha obra busca ser apenas um suporte 
+                    para quem procura acalento na densidade da vida. Através da harmonia do Verbo, convido você 
+                    a reconhecermos, juntos, a arquitetura de luz que já habita em cada um de nós."
+                </p>
+                <div class="assinatura">Wagner Abrahão</div>
+            </div>
+
+            <div class="grid-poemas">
+                <div class="poema-card">
+                    <h3 class="card-titulo">MISSÃO TRANSCENDENTE</h3>
+                    <p class="card-texto">
+                        Revelar as estruturas invisíveis que sustentam a realidade, oferecendo pontes 
+                        de compreensão entre o visível e o transcendente. Cada palavra é um tijolo na 
+                        construção de uma nova percepção.
+                    </p>
+                </div>
+                
+                <div class="poema-card">
+                    <h3 class="card-titulo">VISÃO CÓSMICA</h3>
+                    <p class="card-texto">
+                        Um mundo onde cada ser reconhece sua própria arquitetura interior e constrói, 
+                        a partir dela, uma existência em harmonia com o cosmos. A dança entre sombra e luz.
+                    </p>
+                </div>
+                
+                <div class="poema-card">
+                    <h3 class="card-titulo">VALORES IMUTÁVEIS</h3>
+                    <p class="card-texto">
+                        Autenticidade, profundidade, reconexão, beleza espiritual e serviço à elevação 
+                        da consciência coletiva. Pilares que sustentam o templo interior.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA DE POEMAS (EXPANDIDA) -->
+        <section id="poemas" class="pagina">
+            <h2 class="titulo-secao">POEMAS ARCANOS</h2>
+            
+            <div class="grid-poemas">
+                <div class="poema-card">
+                    <h3 class="card-titulo">ANESTESIA DIVINA</h3>
+                    <p class="card-texto" style="font-style: italic; text-align: center;">
+                        Dante não sabia que estava dormindo.<br>
+                        Durante quarenta e dois anos, viveu em estado de anestesia divina.<br>
+                        Excesso de rotina, de precisão, de identidades fixas.<br>
+                        Sua existência era um Lá central perpétuo.<br>
+                        Até que a perda se tornou revelação.
+                    </p>
+                    <div class="assinatura">Wagner Abrahão</div>
+                </div>
+                
+                <div class="poema-card">
+                    <h3 class="card-titulo">O DESPERTAR DO SILÊNCIO</h3>
+                    <p class="card-texto" style="font-style: italic; text-align: center;">
+                        No vácuo entre um pensamento e outro,<br>
+                        habita a verdade que não precisa de palavras.<br>
+                        O silêncio não é vazio, é plenitude.<br>
+                        É no não-dito que o universo sussurra<br>
+                        os segredos mais antigos da criação.
+                    </p>
+                    <div class="assinatura">Wagner Abrahão</div>
+                </div>
+
+                <div class="poema-card">
+                    <h3 class="card-titulo">A MEMÓRIA DA LUZ</h3>
+                    <p class="card-texto" style="font-style: italic; text-align: center;">
+                        Antes da forma, havia apenas luz.<br>
+                        Antes do nome, havia apenas ser.<br>
+                        Em cada átomo, uma centelha lembra<br>
+                        sua origem divina, sua dança primordial.<br>
+                        Esquecer é humano; lembrar é divino.
+                    </p>
+                    <div class="assinatura">Wagner Abrahão</div>
+                </div>
+
+                <div class="poema-card">
+                    <h3 class="card-titulo">ALQUIMIA INTERIOR</h3>
+                    <p class="card-texto" style="font-style: italic; text-align: center;">
+                        Chumbo do medo, mercúrio da dúvida,<br>
+                        enxofre da paixão desgovernada.<br>
+                        No athanor da alma paciente,<br>
+                        transmutam-se em ouro puro da compreensão.<br>
+                        A pedra filosofal habita no coração.
+                    </p>
+                    <div class="assinatura">Wagner Abrahão</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA DE AFORISMOS (NOVA) -->
+        <section id="aforismos" class="pagina">
+            <h2 class="titulo-secao">AFORISMOS DO INVISÍVEL</h2>
+            
+            <div class="grid-poemas">
+                <div class="poema-card">
+                    <h3 class="card-titulo">SOBRE A VERDADE</h3>
+                    <p class="card-texto" style="font-style: italic;">
+                        "A verdade não é uma linha reta a ser seguida, mas uma esfera a ser habitada. 
+                        Cada ângulo revela uma faceta, cada perspectiva uma nova profundidade."
+                    </p>
+                    <div class="assinatura">Wagner Abrahão</div>
+                </div>
+                
+                <div class="poema-card">
+                    <h3 class="card-titulo">SOBRE O TEMPO</h3>
+                    <p class="card-texto" style="font-style: italic;">
+                        "O passado é uma memória, o futuro uma possibilidade, o presente um ponto de poder. 
+                        No agora, todos os tempos se encontram e se reconciliam."
+                    </p>
+                    <div class="assinatura">Wagner Abrahão</div>
+                </div>
+
+                <div class="poema-card">
+                    <h3 class="card-titulo">SOBRE A BELEZA</h3>
+                    <p class="card-texto" style="font-style: italic;">
+                        "A beleza verdadeira não está na perfeição da forma, mas na autenticidade da essência. 
+                        É o invisível que torna o visível significativo."
+                    </p>
+                    <div class="assinatura">Wagner Abrahão</div>
+                </div>
+
+                <div class="poema-card">
+                    <h3 class="card-titulo">SOBRE O SILÊNCIO</h3>
+                    <p class="card-texto" style="font-style: italic;">
+                        "No silêncio, todas as perguntas encontram suas respostas. 
+                        É no vácuo entre as palavras que a sabedoria se revela."
+                    </p>
+                    <div class="assinatura">Wagner Abrahão</div>
+                </div>
+            </div>
+
+            <div class="card-premium mt-4">
+                <h3 class="card-titulo">COLETÂNEA DE SABEDORIA</h3>
+                <div class="card-texto">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; text-align: center;">
+                        "Não construo com pedra ou madeira, mas com o espaço entre os átomos. 
+                        Minha arquitetura não tem paredes, apenas portais."
+                    </p>
+                    
+                    <p style="margin-bottom: 1.5rem; font-style: italic; text-align: center;">
+                        "A memória não é do passado - é a presença do passado no agora, 
+                        criando futuros possíveis a partir de lembranças escolhidas."
+                    </p>
+                    
+                    <p style="font-style: italic; text-align: center;">
+                        "O despertar não é alcançar algo novo, mas reconhecer o que sempre foi. 
+                        A elevação não é conquista, mas lembrança."
+                    </p>
+                </div>
+                <div class="assinatura">Wagner Abrahão</div>
+            </div>
+        </section>
+
+        <!-- PÁGINA DA PIRÂMIDE INTERATIVA -->
+        <section id="piramide" class="pagina">
+            <h2 class="titulo-secao">A PIRÂMIDE DA ASCENSÃO</h2>
+            
+            <div class="card-premium">
+                <h3 class="card-titulo">CONSTRUA SUA PRÓPRIA PIRÂMIDE</h3>
+                <p class="card-texto">
+                    Cada tijolo representa um pensamento, uma palavra, uma ação consciente. 
+                    Clique nos tijolos para ativá-los e construir sua própria pirâmide interna. 
+                    A cada camada completada, uma nova compreensão se revela.
+                </p>
+                
+                <div style="text-align: center; margin: 2rem 0;">
+                    <button class="btn-gerar" onclick="construirPiramide()" style="width: auto; margin: 0 1rem;">
+                        <i class="fas fa-play"></i> Iniciar Construção
+                    </button>
+                    <button class="btn-gerar" onclick="resetarPiramide()" style="width: auto; margin: 0 1rem; border-color: var(--ouro); color: var(--ouro);">
+                        <i class="fas fa-redo"></i> Reiniciar
+                    </button>
+                </div>
+                
+                <div style="text-align: center; color: var(--ciano); margin-top: 2rem;">
+                    <i class="fas fa-info-circle"></i> Tijolos ativados: <span id="contador-tijolos">0</span>
+                    <div style="height: 10px; background: rgba(0,255,255,0.1); margin-top: 1rem; border-radius: 5px;">
+                        <div id="progresso-piramide" style="height: 100%; width: 0%; background: var(--ciano); border-radius: 5px; transition: width 0.5s ease;"></div>
                     </div>
                 </div>
-                <div style="font-family:'Great Vibes'; font-size:3.5rem; color:var(--gold); text-align:right; margin-top:50px;">Wagner Abrahão</div>
             </div>
-        </div>
-
-        <div id="contos" class="page">
-            <h2 class="secao-titulo">Poemas e Aforismos</h2>
             
-            <div class="verbo-text-block">
-                <div class="verbo-header">Anestesia Divina</div>
-                <div class="verbo-content">Dante não sabia que estava dormindo. Durante quarenta e dois anos, viveu em estado de anestesia divina. Excesso de rotina, de precisão, de identidades fixas. Sua existência era um Lá central perpétuo. Até que a perda se tornou revelação.</div>
-            </div>
-
-            <div class="verbo-text-block">
-                <div class="verbo-header">A Arquitetura do Invisível</div>
-                <div class="verbo-content">"O corpo não mente; ele traduz o que a alma não consegue mais carregar. Quando o ego silencia, os sentidos se expandem para oferecer suporte ao próximo. Onde despertar e paz se encontram, o Arquiteto constrói pontes de sabedoria."</div>
-            </div>
-        </div>
-
-        <div id="obras" class="page">
-            <h2 class="secao-titulo">Manuscritos</h2>
-            <div class="livros-grid">
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Anestesia Divina</h3><p class="livro-resumo">O despertar místico através da rendição absoluta ao invisível e o colapso do ego.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Arquitetura do Invisível</h3><p class="livro-resumo">Um tratado sobre as estruturas ocultas que sustentam a realidade eterna.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">A Centelha Inquieta</h3><p class="livro-resumo">A jornada poética da luz que resiste ao vácuo da matéria.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
-                <div class="caixa-dourada"><h3 class="livro-titulo">Alquimia do Ser</h3><p class="livro-resumo">Saga alquímica sobre a conexão das frequências espirituais através das gerações.</p><div class="livro-assinatura">Wagner Abrahão</div></div>
-            </div>
-        </div>
-
-        <div id="contato" class="page">
-            <div style="text-align: center; padding-top: 50px;">
-                <a href="mailto:wagner.abrahao.31@gmail.com" style="color:var(--white); font-size: 1rem; text-decoration: none; border-bottom: 2px solid var(--gold); font-family: 'Bodoni Moda'; opacity: 0.8;">wagner.abrahao.31@gmail.com</a>
-                <div class="social-portal-grid" style="display:flex; gap:30px; justify-content:center; margin-top:40px;">
-                    <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm8.12 3.63a.87.87 0 1 1 0 1.74.87.87 0 0 1 0-1.74zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg></a>
-                    <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.26.54-4.5 2.1-6.11 1.62-1.67 3.97-2.58 6.3-2.4v4.27c-1.2-.07-2.47.3-3.36 1.12-.8.71-1.22 1.75-1.17 2.82.02 1.02.48 2.04 1.25 2.73.94.83 2.27 1.12 3.48.77 1.14-.27 2.09-1.15 2.53-2.22.18-.51.25-1.05.24-1.58.02-3.34 0-6.68.01-10.03z"/></svg></a>
-                    <a href="https://www.threads.com/@wagnerabrahao_" target="_blank" class="portal-btn"><svg viewBox="0 0 24 24" width="28"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M15.11 15.06a3.59 3.59 0 0 1-2.92 1.44 3.39 3.39 0 0 1-3.41-3.39 3.39 3.39 0 0 1 3.41-3.39c.86 0 1.63.31 2.22.82l1.04-1.12a5.16 5.16 0 0 0-3.26-1.19 4.88 4.88 0 0 0-4.91 4.88 4.88 4.88 0 0 0 4.91 4.88c1.37 0 2.58-.57 3.44-1.48l-1.52-1.45z"/></svg></a>
+            <div class="grid-poemas">
+                <div class="poema-card">
+                    <h3 class="card-titulo">PRIMEIRA CAMADA: BASE</h3>
+                    <p class="card-texto">
+                        A fundação sólida do autoconhecimento. Pedras brutas transformadas em alicerce. 
+                        Aqui reside a coragem de olhar para dentro sem medo.
+                    </p>
+                </div>
+                
+                <div class="poema-card">
+                    <h3 class="card-titulo">CAMADA INTERMEDIÁRIA: PROCESSO</h3>
+                    <p class="card-texto">
+                        A arte da paciência e da precisão. Cada tijolo colocado com intenção. 
+                        O espaço entre as pedras permite a respiração da alma.
+                    </p>
+                </div>
+                
+                <div class="poema-card">
+                    <h3 class="card-titulo">CAMADA SUPERIOR: ELEVAÇÃO</h3>
+                    <p class="card-texto">
+                        A convergência de todas as linhas para o ponto único do ápice. 
+                        Onde o humano toca o divino, e o visível encontra o invisível.
+                    </p>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- PÁGINA DE CONTATO -->
+        <section id="contato" class="pagina">
+            <h2 class="titulo-secao">CONTATO & CONEXÃO</h2>
+            
+            <div class="card-premium">
+                <div style="text-align: center;">
+                    <p class="card-texto">
+                        Para diálogos sobre arquitetura espiritual, colaborações criativas 
+                        ou simplesmente compartilhar insights da jornada:
+                    </p>
+                    
+                    <a href="mailto:wagner.abrahao.31@gmail.com" style="display: inline-block; font-family: var(--fonte-titulo); font-size: 1.3rem; color: var(--ouro); text-decoration: none; padding: 1rem 2rem; border: 2px solid rgba(212, 175, 55, 0.3); margin: 2rem 0; transition: var(--transicao-rapida);">
+                        wagner.abrahao.31@gmail.com
+                    </a>
+                    
+                    <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 3rem;">
+                        <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--ciano); display: flex; align-items: center; justify-content: center; color: var(--ciano); text-decoration: none; transition: var(--transicao-rapida);">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--roxo); display: flex; align-items: center; justify-content: center; color: var(--roxo); text-decoration: none; transition: var(--transicao-rapida);">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-premium mt-4">
+                <p class="card-texto" style="text-align: center; font-style: italic;">
+                    "Cada mensagem é recebida como parte do diálogo cósmico. 
+                    Respondo não apenas às palavras, mas à frequência que as carrega."
+                </p>
+                <div class="assinatura">Wagner Abrahão</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- DIÁRIO ESPIRITUAL -->
+    <div id="diario-espiritual">
+        <h3 class="diario-titulo"><i class="fas fa-book-open"></i> DIÁRIO DA JORNADA</h3>
+        <textarea id="entrada-diario" placeholder="Registre aqui seus insights, reflexões e epifanias..."></textarea>
+        <button class="btn-gerar" onclick="salvarDiario()" style="margin-bottom: 1rem;">
+            <i class="fas fa-save"></i> Guardar no Templo Interior
+        </button>
+        <button class="btn-gerar" onclick="fecharDiario()" style="border-color: #666; color: #666;">
+            <i class="fas fa-times"></i> Fechar
+        </button>
+        <div id="historico-diario" style="margin-top: 1rem; max-height: 100px; overflow-y: auto; font-size: 0.8rem; color: #888;"></div>
     </div>
 
-    <div id="yt-player" style="display:none;"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
+    <!-- PAINEL INTERATIVO -->
+    <div id="painel-interativo">
+        <button class="btn-interacao" onclick="alternarAudio()" id="controle-audio">
+            <i class="fas fa-play"></i>
+        </button>
+        <button class="btn-interacao" onclick="mostrarGeradorAforismo()">
+            <i class="fas fa-quote-right"></i>
+        </button>
+        <button class="btn-interacao" onclick="criarCometa()">
+            <i class="fas fa-star"></i>
+        </button>
+        <button class="btn-interacao" onclick="scrollParaTopo()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
 
+    <!-- GERADOR DE AFORISMOS -->
+    <div id="gerador-aforismo">
+        <h4 style="color: var(--ciano); margin-bottom: 1rem; font-family: var(--fonte-titulo);">
+            <i class="fas fa-random"></i> SABEDORIA DO DIA
+        </h4>
+        <div class="aforismo-gerado" id="texto-aforismo">
+            Clique para gerar uma pérola de sabedoria...
+        </div>
+        <button class="btn-gerar" onclick="gerarAforismo()">
+            <i class="fas fa-redo"></i> Nova Revelação
+        </button>
+    </div>
+
+    <!-- PIRÂMIDE EGÍPCIA (Canvas para melhor performance) -->
+    <div id="piramide-egipcia"></div>
+
+    <!-- ÁUDIO DA MÚSICA SOLICITADA -->
+    <audio id="audio-ambiente" loop preload="metadata">
+        <source src="https://audio.jukehost.co.uk/4SFPImyQw9YdImL1wssB8V35jV63b1rZ" type="audio/mpeg">
+    </audio>
+
+    <!-- SISTEMA AVANÇADO DO SITE -->
     <script>
-        let player, isReady = false;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('yt-player', {
-                height: '0', width: '0', videoId: 'UkgSbK_PjXw',
-                playerVars: { 
-                    'autoplay': 0, 'controls': 0, 'mute': 0, 'loop': 1, 
-                    'playlist': 'UkgSbK_PjXw', 'playsinline': 1, 'enablejsapi': 1 
-                },
-                events: { 'onReady': (e) => { isReady = true; } }
-            });
-        }
+        // ============ CONFIGURAÇÃO DO SISTEMA ============
+        const CONFIG = {
+            dominio: 'wagnerabrahao.com.br',
+            versao: '2.0.0',
+            audioUrl: 'https://audio.jukehost.co.uk/4SFPImyQw9YdImL1wssB8V35jV63b1rZ'
+        };
 
-        // CHAVE SÔNICA MOBILE OTIMIZADA
-        function unlock() {
-            if(isReady && player) { 
-                // Ação imediata no milissegundo do toque
-                player.unMute(); 
-                player.playVideo();
-                player.setVolume(85);
-                // Segundo disparo para garantir bypass em navegadores restritivos
-                setTimeout(() => { try { player.playVideo(); } catch(e) {} }, 50);
-            }
-            document.getElementById('gate').style.opacity = '0';
+        // ============ ESTADO GLOBAL ============
+        let estado = {
+            experienciaIniciada: false,
+            audioAtivo: false,
+            paginaAtual: 'inicio',
+            tijolosAtivados: 0,
+            totalTijolos: 0,
+            visitas: localStorage.getItem('visitas') ? parseInt(localStorage.getItem('visitas')) : 1
+        };
+
+        // ============ BANCO DE DADOS DE CONTEÚDO ============
+        const bancoConteudo = {
+            aforismos: [
+                "A verdadeira morada não tem paredes - habita no espaço entre os átomos, na pausa entre as palavras, no silêncio entre os pensamentos.",
+                "Não construo com pedra ou madeira, mas com o espaço entre os átomos. Minha arquitetura não tem paredes, apenas portais para outras dimensões do ser.",
+                "A memória não é do passado - é a presença do passado no agora, criando futuros possíveis a partir de lembranças escolhidas.",
+                "O despertar não é alcançar algo novo, mas reconhecer o que sempre foi. A elevação não é conquista, mas lembrança.",
+                "Cada átomo do universo guarda a memória da luz primordial. Nós somos essa lembrança tornada consciente.",
+                "A alma não habita o corpo; o corpo habita a alma, como uma cidade habita seu território sagrado.",
+                "No centro do redemoinho, há uma calma absoluta. No coração do caos, há uma ordem perfeita esperando ser reconhecida.",
+                "As palavras são pontes entre mundos, mas o silêncio é o terreno sagrado onde esses mundos se encontram.",
+                "A beleza que comove não está na perfeição, mas na autenticidade do imperfeito que reconhece sua origem divina.",
+                "Cada encontro é um reconhecimento de almas que já dançaram juntas em outras constelações."
+            ],
+            
+            poemas: [
+                {
+                    titulo: "CENTELHA INQUIETA",
+                    texto: `Há um fogo que não se apaga com água
+nem se extingue com vento.
+Arde em silêncio, pulsando no vazio entre os átomos.
+É a centelha que recusa o esquecimento,
+a memória ancestral da luz que já fomos.`
+                },
+                {
+                    titulo: "ARQUITETURA DO INVISÍVEL",
+                    texto: `O corpo não mente;
+ele traduz o que a alma não consegue mais carregar.
+Quando o ego silencia,
+os sentidos se expandem para oferecer suporte ao próximo.
+Onde despertar e paz se encontram,
+o Arquiteto constrói pontes de sabedoria.`
+                },
+                {
+                    titulo: "O TEMPLO INTERIOR",
+                    texto: `Não busque templos de pedra e ouro,
+erguidos por mãos humanas.
+Seu corpo já é um santuário,
+sua respiração um mantra,
+seu coração o altar
+onde o divino e o humano se beijam
+em eterno reconhecimento.`
+                }
+            ]
+        };
+
+        // ============ INICIALIZAÇÃO DO SISTEMA ============
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log(`%c DOMÍNIO OFICIAL: ${CONFIG.dominio} - V${CONFIG.versao} `, 
+                'background: linear-gradient(90deg, #D4AF37, #000); color: white; font-size: 14px; font-weight: bold; padding: 5px; border-radius: 3px;');
+            
+            // Atualizar contador de visitas
+            estado.visitas++;
+            localStorage.setItem('visitas', estado.visitas);
+            document.getElementById('contador').textContent = estado.visitas.toLocaleString();
+            
+            // Preparar áudio
+            const audio = document.getElementById('audio-ambiente');
+            audio.volume = 0.4;
+            
+            // Carregar diário salvo
+            carregarDiario();
+            
+            // Inicializar sistema de cometas
+            iniciarSistemaCometas();
+            
+            // Marcar corpo como carregado
             setTimeout(() => {
-                document.getElementById('gate').style.display = 'none';
-                document.getElementById('main-nav').style.opacity = '1';
-                document.getElementById('main-container').style.opacity = '1';
-                document.getElementById('canvas-3d').style.opacity = '1';
+                document.body.classList.add('carregado');
+            }, 100);
+        });
+
+        // ============ SISTEMA DE EXPERIÊNCIA ============
+        function iniciarExperiencia() {
+            if (estado.experienciaIniciada) return;
+            estado.experienciaIniciada = true;
+            
+            const portal = document.getElementById('portal-dominio');
+            portal.style.opacity = '0';
+            
+            // Iniciar música (com interação do usuário)
+            const audio = document.getElementById('audio-ambiente');
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    estado.audioAtivo = true;
+                    atualizarControleAudio();
+                }).catch(error => {
+                    console.log('Áudio aguarda interação direta do usuário');
+                });
+            }
+            
+            setTimeout(() => {
+                portal.style.display = 'none';
+                
+                // Revelar elementos
+                document.getElementById('navegacao-principal').classList.add('visivel');
+                document.getElementById('conteudo-principal').classList.add('visivel');
+                document.getElementById('painel-interativo').classList.add('visivel');
+                document.getElementById('gerador-aforismo').classList.add('visivel');
+                
+                // Iniciar construção da pirâmide
+                construirPiramide();
+                
+                // Primeiro aforismo
+                gerarAforismo();
             }, 1000);
         }
 
-        function show(id) { 
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active')); 
-            document.getElementById(id).classList.add('active');
-            if(event) event.target.classList.add('active'); 
-            document.getElementById('main-container').scrollTo({top: 0, behavior: 'smooth'});
+        // ============ SISTEMA DE ÁUDIO ============
+        function alternarAudio() {
+            const audio = document.getElementById('audio-ambiente');
+            const botao = document.getElementById('controle-audio');
+            const icone = botao.querySelector('i');
+            
+            if (audio.paused) {
+                audio.play();
+                estado.audioAtivo = true;
+                icone.className = 'fas fa-pause';
+                botao.style.color = 'var(--ouro)';
+                botao.style.borderColor = 'var(--ouro)';
+                botao.style.boxShadow = 'var(--sombra-ouro)';
+            } else {
+                audio.pause();
+                estado.audioAtivo = false;
+                icone.className = 'fas fa-play';
+                botao.style.color = 'var(--prata)';
+                botao.style.borderColor = 'var(--prata)';
+                botao.style.boxShadow = 'none';
+            }
         }
 
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.0006);
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 4000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        camera.position.set(0, 100, 400);
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 0.4;
-        
-        const goldSun = new THREE.SpotLight(0xFFD700, 5, 2000, Math.PI/4, 0.5, 2);
-        goldSun.position.set(300, 600, 300); scene.add(goldSun);
-        scene.add(new THREE.AmbientLight(0x404040, 2));
-        
-        const starGeo = new THREE.BufferGeometry(); const starC = [];
-        for(let i=0; i<12000; i++) starC.push(THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500), THREE.MathUtils.randFloatSpread(3500));
-        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starC, 3));
-        const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xaaaaaa, size: 0.8, transparent: true, opacity: 0.5 })); scene.add(stars);
-
-        const pyramid = new THREE.Group();
-        const stoneM = new THREE.MeshPhongMaterial({ color: 0xC2B280, specular: 0x111111, shininess: 2, flatShading: true });
-        const goldM = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 1, roughness: 0.1 });
-        
-        let levels = 160; let baseSize = 280; let h = 2.0;
-        for(let i=0; i<levels; i++) {
-            let size = baseSize * (1 - i/levels); if(size < 1) break;
-            let layer = new THREE.Mesh(new THREE.BoxGeometry(size, h, size), stoneM);
-            layer.position.set(0, i*h, 0);
-            pyramid.add(layer);
+        function atualizarControleAudio() {
+            const botao = document.getElementById('controle-audio');
+            const icone = botao.querySelector('i');
+            
+            if (estado.audioAtivo) {
+                icone.className = 'fas fa-pause';
+                botao.style.color = 'var(--ouro)';
+                botao.style.borderColor = 'var(--ouro)';
+            } else {
+                icone.className = 'fas fa-play';
+                botao.style.color = 'var(--prata)';
+                botao.style.borderColor = 'var(--prata)';
+            }
         }
-        const cap = new THREE.Mesh(new THREE.ConeGeometry(12, 20, 4), goldM); cap.position.y = levels*h + 10; pyramid.add(cap);
-        const owl = new THREE.Group();
-        owl.add(new THREE.Mesh(new THREE.SphereGeometry(3, 8, 8), new THREE.MeshStandardMaterial({color: 0x3d2b1f})));
-        const eL = new THREE.Mesh(new THREE.SphereGeometry(0.7, 8, 8), new THREE.MeshBasicMaterial({color: 0x00ffff})); eL.position.set(-1.0, 1.0, 2.0);
-        const eR = eL.clone(); eR.position.set(1.0, 1.0, 2.0); owl.add(eL, eR); owl.position.y = cap.position.y + 12; pyramid.add(owl);
-        
-        pyramid.position.y = -140; scene.add(pyramid);
 
-        function animate() {
-            requestAnimationFrame(animate);
-            controls.update();
-            stars.rotation.y += 0.0001;
-            renderer.render(scene, camera);
+        // ============ SISTEMA DE NAVEGAÇÃO ============
+        function mostrarPagina(paginaId) {
+            // Atualizar navegação
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('ativo');
+            });
+            event.target.classList.add('ativo');
+            
+            // Esconder todas as páginas
+            document.querySelectorAll('.pagina').forEach(pagina => {
+                pagina.classList.remove('ativa');
+            });
+            
+            // Mostrar página selecionada
+            document.getElementById(paginaId).classList.add('ativa');
+            estado.paginaAtual = paginaId;
+            
+            // Scroll suave para o topo
+            scrollParaTopo();
         }
-        animate();
 
-        if(window.innerWidth > 768) {
-            document.addEventListener('mousemove', (e) => { 
-                const c=document.getElementById('cursor'); c.style.left=e.clientX+'px'; c.style.top=e.clientY+'px'; 
+        // ============ SISTEMA DA PIRÂMIDE EGÍPCIA ============
+        function construirPiramide() {
+            const container = document.getElementById('piramide-egipcia');
+            container.innerHTML = '';
+            
+            const camadas = 15;
+            const tijolosPorCamada = [];
+            let tijoloIndex = 0;
+            
+            // Calcular tijolos por camada (pirâmide típica)
+            for (let i = 0; i < camadas; i++) {
+                tijolosPorCamada[i] = (i * 2) + 1;
+            }
+            
+            // Criar camadas
+            for (let camada = 0; camada < camadas; camada++) {
+                const camadaDiv = document.createElement('div');
+                camadaDiv.className = 'camada-piramide';
+                camadaDiv.style.bottom = (camada * 15) + 'px';
+                
+                // Criar tijolos
+                for (let t = 0; t < tijolosPorCamada[camadas - camada - 1]; t++) {
+                    const tijolo = document.createElement('div');
+                    tijolo.className = 'tijolo';
+                    tijolo.dataset.index = tijoloIndex++;
+                    tijolo.dataset.camada = camada;
+                    tijolo.dataset.posicao = t;
+                    
+                    // Efeito de desvanecimento progressivo
+                    const opacidade = 0.3 + (camada * 0.05);
+                    tijolo.style.opacity = opacidade;
+                    
+                    // Evento de clique
+                    tijolo.addEventListener('click', function() {
+                        if (!this.classList.contains('ativo')) {
+                            this.classList.add('ativo');
+                            estado.tijolosAtivados++;
+                            
+                            // Atualizar contador
+                            document.getElementById('contador-tijolos').textContent = estado.tijolosAtivados;
+                            
+                            // Atualizar progresso
+                            const progresso = (estado.tijolosAtivados / estado.totalTijolos) * 100;
+                            document.getElementById('progresso-piramide').style.width = progresso + '%';
+                            
+                            // Efeito sonoro
+                            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                            const oscillator = audioContext.createOscillator();
+                            const gainNode = audioContext.createGain();
+                            
+                            oscillator.connect(gainNode);
+                            gainNode.connect(audioContext.destination);
+                            
+                            oscillator.frequency.value = 432 + (camada * 50);
+                            oscillator.type = 'sine';
+                            
+                            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                            
+                            oscillator.start();
+                            oscillator.stop(audioContext.currentTime + 0.5);
+                            
+                            // Verificar se completou
+                            if (estado.tijolosAtivados === estado.totalTijolos) {
+                                setTimeout(() => {
+                                    alert('✨ PIRÂMIDE COMPLETA! ✨\n\nVocê alcançou o ápice da construção interior. Cada tijolo ativado representa um insight integrado, uma camada de consciência despertada.');
+                                }, 500);
+                            }
+                        }
+                    });
+                    
+                    camadaDiv.appendChild(tijolo);
+                }
+                
+                container.appendChild(camadaDiv);
+            }
+            
+            // Calcular total de tijolos
+            estado.totalTijolos = tijoloIndex;
+            estado.tijolosAtivados = 0;
+            document.getElementById('contador-tijolos').textContent = '0';
+            document.getElementById('progresso-piramide').style.width = '0%';
+        }
+
+        function resetarPiramide() {
+            document.querySelectorAll('.tijolo').forEach(tijolo => {
+                tijolo.classList.remove('ativo');
+            });
+            estado.tijolosAtivados = 0;
+            document.getElementById('contador-tijolos').textContent = '0';
+            document.getElementById('progresso-piramide').style.width = '0%';
+        }
+
+        // ============ SISTEMA DE GERADOR DE AFORISMOS ============
+        function gerarAforismo() {
+            const aforismos = bancoConteudo.aforismos;
+            const indiceAleatorio = Math.floor(Math.random() * aforismos.length);
+            const aforismo = aforismos[indiceAleatorio];
+            
+            document.getElementById('texto-aforismo').textContent = `"${aforismo}"`;
+            
+            // Efeito visual
+            const elemento = document.getElementById('texto-aforismo');
+            elemento.style.opacity = '0';
+            elemento.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                elemento.style.transition = 'all 0.5s ease';
+                elemento.style.opacity = '1';
+                elemento.style.transform = 'translateY(0)';
+            }, 10);
+            
+            // Registrar no Analytics (simulado)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'gerar_aforismo', {
+                    'event_category': 'interacao',
+                    'event_label': 'aforismo_gerado'
+                });
+            }
+        }
+
+        function mostrarGeradorAforismo() {
+            const gerador = document.getElementById('gerador-aforismo');
+            gerador.classList.toggle('visivel');
+        }
+
+        // ============ SISTEMA DE DIÁRIO ESPIRITUAL ============
+        function abrirDiario() {
+            document.getElementById('diario-espiritual').classList.add('aberto');
+        }
+
+        function fecharDiario() {
+            document.getElementById('diario-espiritual').classList.remove('aberto');
+        }
+
+        function salvarDiario() {
+            const texto = document.getElementById('entrada-diario').value.trim();
+            
+            if (texto) {
+                // Salvar no localStorage
+                const entradas = JSON.parse(localStorage.getItem('diario_espiritual') || '[]');
+                const entrada = {
+                    data: new Date().toISOString(),
+                    texto: texto
+                };
+                
+                entradas.push(entrada);
+                localStorage.setItem('diario_espiritual', JSON.stringify(entradas));
+                
+                // Atualizar histórico
+                carregarDiario();
+                
+                // Limpar campo
+                document.getElementById('entrada-diario').value = '';
+                
+                // Feedback
+                alert('Insight guardado no templo interior da sua consciência.');
+                
+                // Registrar no Analytics (simulado)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'salvar_diario', {
+                        'event_category': 'interacao',
+                        'event_label': 'diario_salvo'
+                    });
+                }
+            }
+        }
+
+        function carregarDiario() {
+            const entradas = JSON.parse(localStorage.getItem('diario_espiritual') || '[]');
+            const historico = document.getElementById('historico-diario');
+            
+            if (entradas.length > 0) {
+                historico.innerHTML = '<div style="color: var(--ciano); margin-bottom: 0.5rem;">Últimas reflexões:</div>';
+                
+                // Mostrar últimas 3 entradas
+                const recentes = entradas.slice(-3).reverse();
+                
+                recentes.forEach((entrada, index) => {
+                    const data = new Date(entrada.data);
+                    const dataFormatada = data.toLocaleDateString('pt-BR');
+                    const textoResumido = entrada.texto.length > 50 ? 
+                        entrada.texto.substring(0, 50) + '...' : entrada.texto;
+                    
+                    historico.innerHTML += `
+                        <div style="margin-bottom: 0.3rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <div style="color: #666; font-size: 0.7rem;">${dataFormatada}</div>
+                            <div>${textoResumido}</div>
+                        </div>
+                    `;
+                });
+            } else {
+                historico.innerHTML = '<div style="color: #666; font-style: italic;">Seu diário espiritual está aguardando suas primeiras anotações...</div>';
+            }
+        }
+
+        // ============ SISTEMA DE COMETAS ============
+        function iniciarSistemaCometas() {
+            // Criar cometas aleatórios
+            setInterval(() => {
+                if (Math.random() > 0.7 && estado.experienciaIniciada) {
+                    criarCometa();
+                }
+            }, 8000);
+        }
+
+        function criarCometa() {
+            const cometa = document.createElement('div');
+            cometa.style.cssText = `
+                position: fixed;
+                width: 2px;
+                height: 2px;
+                background: white;
+                border-radius: 50%;
+                box-shadow: 0 0 20px white;
+                z-index: -1;
+                opacity: 0;
+                pointer-events: none;
+            `;
+            
+            // Posição inicial aleatória
+            const startX = Math.random() > 0.5 ? -100 : window.innerWidth + 100;
+            const startY = Math.random() * window.innerHeight;
+            
+            // Cor aleatória
+            const cores = ['#FFD700', '#00FFFF', '#FFFFFF', '#D4AF37'];
+            const cor = cores[Math.floor(Math.random() * cores.length)];
+            
+            cometa.style.left = startX + 'px';
+            cometa.style.top = startY + 'px';
+            cometa.style.background = cor;
+            cometa.style.boxShadow = `0 0 20px ${cor}`;
+            
+            document.body.appendChild(cometa);
+            
+            // Animação
+            const duracao = Math.random() * 2 + 1;
+            cometa.style.animation = `cometa-voar ${duracao}s linear forwards`;
+            
+            // Definir animação CSS dinamicamente
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes cometa-voar {
+                    0% {
+                        opacity: 0;
+                        transform: translateX(0) translateY(0);
+                    }
+                    10% {
+                        opacity: 1;
+                    }
+                    90% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translateX(${window.innerWidth * (Math.random() > 0.5 ? 1 : -1)}px) 
+                                   translateY(${window.innerHeight * (Math.random() > 0.5 ? 0.5 : -0.5)}px);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Remover após animação
+            setTimeout(() => {
+                cometa.remove();
+                style.remove();
+            }, duracao * 1000);
+        }
+
+        // ============ FUNÇÕES UTILITÁRIAS ============
+        function scrollParaTopo() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============ INTEGRAÇÃO COM GOOGLE ANALYTICS AVANÇADA ============
+        // Eventos personalizados (já integrados nas funções acima)
+        // O código do gtag.js já está no <head>
+
+        // ============ SERVICE WORKER PARA PWA (OPCIONAL) ============
+        if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(() => {
+                    console.log('Service Worker registrado com sucesso');
+                }).catch(error => {
+                    console.log('Falha no registro do Service Worker:', error);
+                });
             });
         }
-        window.addEventListener('resize', () => { camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+
+        // ============ DETECÇÃO DE RECURSOS MODERNOS ============
+        const recursosModernos = {
+            webgl: (() => {
+                try {
+                    const canvas = document.createElement('canvas');
+                    return !!(window.WebGLRenderingContext && 
+                        (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+                } catch(e) {
+                    return false;
+                }
+            })(),
+            
+            webaudio: !!(window.AudioContext || window.webkitAudioContext),
+            
+            intersectionObserver: 'IntersectionObserver' in window,
+            
+            webanimations: 'animate' in document.documentElement
+        };
+
+        console.log('Recursos modernos detectados:', recursosModernos);
     </script>
+
+    <!-- ESTILOS ADICIONAIS PARA ANIMAÇÕES -->
+    <style>
+        /* Animações CSS modernas */
+        .flutuante {
+            animation: flutuar 3s ease-in-out infinite;
+        }
+        
+        .pulsante {
+            animation: pulsar 2s ease-in-out infinite;
+        }
+        
+        /* Efeitos de entrada */
+        [data-aos] {
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        [data-aos="fade-up"] {
+            transform: translateY(30px);
+        }
+        
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </body>
 </html>
