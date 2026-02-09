@@ -19,7 +19,6 @@
     <!-- Three.js para 3D -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
     
     <!-- Fontes Luxuosas -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300&family=Playfair+Display:wght@400;700;900&family=Raleway:wght@100;300;400;700&display=swap" rel="stylesheet">
@@ -63,6 +62,38 @@
             scroll-behavior: smooth;
         }
         
+        /* ============ FUNDO ORIGINAL RESTAURADO ============ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 255, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
+                linear-gradient(45deg, #000 0%, #0A0A0A 50%, #111 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* ============ RASTREIO DO MOUSE (PONTO DE LUZ) ============ */
+        #rastreio-mouse {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+            filter: blur(20px);
+            mix-blend-mode: screen;
+        }
+        
         /* ============ CENÁRIO 3D ============ */
         #cenario-3d {
             position: fixed;
@@ -70,8 +101,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 0;
             pointer-events: none;
+            opacity: 0.3;
         }
         
         /* ============ OVERLAY COM TRANSPARÊNCIAS ============ */
@@ -242,6 +274,28 @@
             opacity: 0.9;
         }
         
+        /* ============ TÍTULOS DE SEÇÃO (CORRIGIDOS - AGORA h2) ============ */
+        .titulo-secao {
+            font-family: var(--fonte-subtitulo);
+            font-size: 2.5rem;
+            color: var(--ouro);
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .titulo-secao::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--gradiente-ouro);
+        }
+        
         /* ============ CARDS COM TRANSPARÊNCIA ============ */
         .card-transparente {
             background: rgba(255, 255, 255, 0.03);
@@ -284,15 +338,6 @@
             left: 100%;
         }
         
-        .card-titulo {
-            font-family: var(--fonte-subtitulo);
-            font-size: 2rem;
-            color: var(--ouro);
-            margin-bottom: 25px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-        
         .card-texto {
             font-size: 1.4rem;
             line-height: 1.8;
@@ -320,7 +365,7 @@
             left: 50px;
             width: 400px;
             height: 400px;
-            z-index: 4;
+            z-index: 1;
             pointer-events: none;
         }
         
@@ -492,7 +537,7 @@
             .titulo-3d { font-size: 2.8rem; }
             .subtitulo { font-size: 1.5rem; }
             .card-transparente { padding: 30px; }
-            .card-titulo { font-size: 1.5rem; }
+            .titulo-secao { font-size: 1.8rem; }
             .card-texto { font-size: 1.1rem; }
             #navegacao-principal { 
                 top: auto; 
@@ -512,6 +557,9 @@
     </style>
 </head>
 <body>
+    <!-- RASTREIO DO MOUSE (PONTO DE LUZ) -->
+    <div id="rastreio-mouse"></div>
+    
     <!-- CENÁRIO 3D -->
     <div id="cenario-3d"></div>
     
@@ -551,7 +599,7 @@
         <i class="fas fa-play"></i>
     </div>
     
-    <!-- NAVEGAÇÃO LATERAL (AGORA FUNCIONANDO) -->
+    <!-- NAVEGAÇÃO LATERAL -->
     <nav id="navegacao-principal">
         <div class="nav-item ativo" onclick="mostrarPagina('inicio')">
             <i class="fas fa-home"></i>
@@ -593,7 +641,8 @@
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
                 <div class="card-transparente">
-                    <h3 class="card-titulo">MISSÃO</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">MISSÃO</h2>
                     <p class="card-texto">
                         Revelar as estruturas invisíveis que sustentam a realidade, oferecendo pontes 
                         de compreensão entre o visível e o transcendente.
@@ -601,7 +650,8 @@
                 </div>
                 
                 <div class="card-transparente">
-                    <h3 class="card-titulo">VISÃO</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">VISÃO</h2>
                     <p class="card-texto">
                         Um mundo onde cada ser reconhece sua própria arquitetura interior e constrói, 
                         a partir dela, uma existência em harmonia com o cosmos.
@@ -609,7 +659,8 @@
                 </div>
                 
                 <div class="card-transparente">
-                    <h3 class="card-titulo">VALORES</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">VALORES</h2>
                     <p class="card-texto">
                         Autenticidade, profundidade, reconexão, beleza espiritual e serviço à elevação 
                         da consciência coletiva.
@@ -624,7 +675,8 @@
             <div class="subtitulo">Verbos que atravessam dimensões</div>
             
             <div class="card-transparente">
-                <h3 class="card-titulo">ANESTESIA DIVINA</h3>
+                <!-- CORREÇÃO: h2 em vez de h3 -->
+                <h2 class="titulo-secao">ANESTESIA DIVINA</h2>
                 <p class="card-texto" style="text-align: center; font-style: italic;">
                     Dante não sabia que estava dormindo.<br>
                     Durante quarenta e dois anos, viveu em estado de anestesia divina.<br>
@@ -636,7 +688,8 @@
             </div>
             
             <div class="card-transparente">
-                <h3 class="card-titulo">ARQUITETURA DO INVISÍVEL</h3>
+                <!-- CORREÇÃO: h2 em vez de h3 -->
+                <h2 class="titulo-secao">ARQUITETURA DO INVISÍVEL</h2>
                 <p class="card-texto" style="text-align: center; font-style: italic;">
                     O corpo não mente;<br>
                     ele traduz o que a alma não consegue mais carregar.<br>
@@ -649,7 +702,8 @@
             </div>
             
             <div class="card-transparente">
-                <h3 class="card-titulo">A MEMÓRIA DA LUZ</h3>
+                <!-- CORREÇÃO: h2 em vez de h3 -->
+                <h2 class="titulo-secao">A MEMÓRIA DA LUZ</h2>
                 <p class="card-texto" style="text-align: center; font-style: italic;">
                     Antes da forma, havia apenas luz.<br>
                     Antes do nome, havia apenas ser.<br>
@@ -668,7 +722,8 @@
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
                 <div class="card-transparente">
-                    <h3 class="card-titulo">SOBRE A VERDADE</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">SOBRE A VERDADE</h2>
                     <p class="card-texto" style="font-style: italic;">
                         "A verdade não é uma linha reta a ser seguida, mas uma esfera a ser habitada. 
                         Cada ângulo revela uma faceta, cada perspectiva uma nova profundidade."
@@ -676,7 +731,8 @@
                 </div>
                 
                 <div class="card-transparente">
-                    <h3 class="card-titulo">SOBRE O TEMPO</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">SOBRE O TEMPO</h2>
                     <p class="card-texto" style="font-style: italic;">
                         "O passado é uma memória, o futuro uma possibilidade, o presente um ponto de poder. 
                         No agora, todos os tempos se encontram e se reconciliam."
@@ -684,7 +740,8 @@
                 </div>
                 
                 <div class="card-transparente">
-                    <h3 class="card-titulo">SOBRE A BELEZA</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">SOBRE A BELEZA</h2>
                     <p class="card-texto" style="font-style: italic;">
                         "A beleza verdadeira não está na perfeição da forma, mas na autenticidade da essência. 
                         É o invisível que torna o visível significativo."
@@ -692,7 +749,8 @@
                 </div>
                 
                 <div class="card-transparente">
-                    <h3 class="card-titulo">SOBRE O SILÊNCIO</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">SOBRE O SILÊNCIO</h2>
                     <p class="card-texto" style="font-style: italic;">
                         "No silêncio, todas as perguntas encontram suas respostas. 
                         É no vácuo entre as palavras que a sabedoria se revela."
@@ -701,7 +759,8 @@
             </div>
             
             <div class="card-transparente" style="margin-top: 40px;">
-                <h3 class="card-titulo">COLETÂNEA DE SABEDORIA</h3>
+                <!-- CORREÇÃO: h2 em vez de h3 -->
+                <h2 class="titulo-secao">COLETÂNEA DE SABEDORIA</h2>
                 <div class="card-texto" style="text-align: center;">
                     <p style="margin-bottom: 30px; font-style: italic;">
                         "Não construo com pedra ou madeira, mas com o espaço entre os átomos. 
@@ -723,7 +782,8 @@
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
                 <div class="card-transparente">
-                    <h3 class="card-titulo">A ANESTESIA DIVINA</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">A ANESTESIA DIVINA</h2>
                     <p class="card-texto">
                         O despertar místico através da rendição absoluta ao invisível. Uma jornada pelos véus 
                         da percepção que separam o sonho da vigília espiritual.
@@ -734,7 +794,8 @@
                 </div>
                 
                 <div class="card-transparente">
-                    <h3 class="card-titulo">A ARQUITETURA DO INVISÍVEL</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">A ARQUITETURA DO INVISÍVEL</h2>
                     <p class="card-texto">
                         Um tratado sobre as estruturas ocultas que sustentam a realidade eterna. As fundações 
                         espirituais da existência e os princípios da construção consciente.
@@ -745,7 +806,8 @@
                 </div>
                 
                 <div class="card-transparente">
-                    <h3 class="card-titulo">ALQUIMIA DO SER</h3>
+                    <!-- CORREÇÃO: h2 em vez de h3 -->
+                    <h2 class="titulo-secao">ALQUIMIA DO SER</h2>
                     <p class="card-texto">
                         Saga alquímica sobre a conexão das frequências espirituais. A transmutação da 
                         consciência em ouro puro através dos processos internos de transformação.
@@ -758,326 +820,4 @@
         </section>
         
         <!-- PÁGINA DE CONTATO -->
-        <section id="contato" class="pagina">
-            <h1 class="titulo-3d">CONEXÃO</h1>
-            <div class="subtitulo">Diálogos sobre arquitetura espiritual</div>
-            
-            <div class="card-transparente" style="max-width: 600px; margin: 0 auto;">
-                <p class="card-texto" style="text-align: center;">
-                    Para colaborações criativas, diálogos profundos ou simplesmente compartilhar insights da jornada:
-                </p>
-                
-                <a href="mailto:wagner.abrahao.31@gmail.com" 
-                   style="display: block; text-align: center; font-family: var(--fonte-subtitulo); 
-                          font-size: 1.5rem; color: var(--ouro); text-decoration: none; 
-                          padding: 25px; border: 2px solid rgba(212, 175, 55, 0.3); 
-                          margin: 40px 0; transition: var(--transicao-media);">
-                    wagner.abrahao.31@gmail.com
-                </a>
-                
-                <div style="display: flex; justify-content: center; gap: 30px; margin-top: 40px;">
-                    <a href="https://www.instagram.com/wagnerabrahao_/" target="_blank" 
-                       style="width: 70px; height: 70px; border-radius: 50%; 
-                              background: rgba(255, 255, 255, 0.05); 
-                              border: 2px solid var(--ciano-neon); 
-                              display: flex; align-items: center; justify-content: center; 
-                              color: var(--ciano-neon); text-decoration: none; 
-                              transition: var(--transicao-media); font-size: 1.5rem;">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    
-                    <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" 
-                       style="width: 70px; height: 70px; border-radius: 50%; 
-                              background: rgba(255, 255, 255, 0.05); 
-                              border: 2px solid var(--roxo-neon); 
-                              display: flex; align-items: center; justify-content: center; 
-                              color: var(--roxo-neon); text-decoration: none; 
-                              transition: var(--transicao-media); font-size: 1.5rem;">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="card-transparente" style="max-width: 600px; margin: 40px auto 0;">
-                <p class="card-texto" style="text-align: center; font-style: italic;">
-                    "Cada mensagem é recebida como parte do diálogo cósmico. 
-                    Respondo não apenas às palavras, mas à frequência que as carrega."
-                </p>
-                <span class="assinatura">Wagner Abrahão</span>
-            </div>
-        </section>
-    </main>
-
-    <!-- ÁUDIO DA MÚSICA SOLICITADA -->
-    <audio id="audio-ambiente" loop preload="metadata">
-        <source src="https://audio.jukehost.co.uk/4SFPImyQw9YdImL1wssB8V35jV63b1rZ" type="audio/mpeg">
-    </audio>
-
-    <!-- SISTEMA AVANÇADO -->
-    <script>
-        // ============ SISTEMA 3D AVANÇADO ============
-        let cena, camera, renderizador, piramide;
-        
-        function iniciarCenario3D() {
-            // Configurar cena
-            cena = new THREE.Scene();
-            cena.fog = new THREE.Fog(0x000000, 10, 100);
-            
-            // Configurar câmera
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 10, 20);
-            
-            // Configurar renderizador
-            renderizador = new THREE.WebGLRenderer({ 
-                alpha: true, 
-                antialias: true,
-                powerPreference: "high-performance"
-            });
-            renderizador.setSize(window.innerWidth, window.innerHeight);
-            renderizador.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderizador.shadowMap.enabled = true;
-            renderizador.shadowMap.type = THREE.PCFSoftShadowMap;
-            document.getElementById('cenario-3d').appendChild(renderizador.domElement);
-            
-            // Adicionar luzes
-            const luzAmbiente = new THREE.AmbientLight(0x333333);
-            cena.add(luzAmbiente);
-            
-            const luzPrincipal = new THREE.DirectionalLight(0xD4AF37, 2);
-            luzPrincipal.position.set(10, 20, 10);
-            luzPrincipal.castShadow = true;
-            cena.add(luzPrincipal);
-            
-            const luzNeon = new THREE.PointLight(0x00FFFF, 1, 50);
-            luzNeon.position.set(-10, 5, -10);
-            cena.add(luzNeon);
-            
-            // Criar partículas
-            criarParticulas();
-            
-            // Criar pirâmide 3D interativa
-            criarPiramide3D();
-            
-            // Controles de câmera
-            const controls = new THREE.OrbitControls(camera, renderizador.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
-            controls.enableZoom = false;
-            controls.enablePan = false;
-            controls.maxPolarAngle = Math.PI / 2;
-            controls.minPolarAngle = Math.PI / 6;
-            
-            // Animação
-            function animar() {
-                requestAnimationFrame(animar);
-                
-                if (piramide) {
-                    piramide.rotation.y += 0.002;
-                    piramide.rotation.x += 0.001;
-                }
-                
-                controls.update();
-                renderizador.render(cena, camera);
-            }
-            animar();
-            
-            // Resize handler
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderizador.setSize(window.innerWidth, window.innerHeight);
-            });
-        }
-        
-        function criarParticulas() {
-            const geometria = new THREE.BufferGeometry();
-            const vertices = [];
-            const count = 5000;
-            
-            for (let i = 0; i < count; i++) {
-                const x = Math.random() * 200 - 100;
-                const y = Math.random() * 200 - 100;
-                const z = Math.random() * 200 - 100;
-                vertices.push(x, y, z);
-            }
-            
-            geometria.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-            
-            const material = new THREE.PointsMaterial({
-                color: 0xD4AF37,
-                size: 0.1,
-                transparent: true,
-                opacity: 0.6,
-                blending: THREE.AdditiveBlending
-            });
-            
-            const particulas = new THREE.Points(geometria, material);
-            cena.add(particulas);
-            
-            // Animação de partículas
-            function animarParticulas() {
-                const posicoes = particulas.geometry.attributes.position.array;
-                for (let i = 0; i < posicoes.length; i += 3) {
-                    posicoes[i + 1] += 0.05;
-                    if (posicoes[i + 1] > 100) {
-                        posicoes[i + 1] = -100;
-                    }
-                }
-                particulas.geometry.attributes.position.needsUpdate = true;
-                requestAnimationFrame(animarParticulas);
-            }
-            animarParticulas();
-        }
-        
-        function criarPiramide3D() {
-            const altura = 8;
-            const larguraBase = 12;
-            const geometria = new THREE.ConeGeometry(larguraBase / 2, altura, 4);
-            
-            // Material gradiente
-            const material = new THREE.MeshPhongMaterial({
-                color: 0xD4AF37,
-                shininess: 100,
-                transparent: true,
-                opacity: 0.9,
-                side: THREE.DoubleSide
-            });
-            
-            piramide = new THREE.Mesh(geometria, material);
-            piramide.position.y = altura / 2;
-            piramide.castShadow = true;
-            piramide.receiveShadow = true;
-            
-            cena.add(piramide);
-            
-            // Adicionar efeito de brilho
-            const geometriaBrilho = new THREE.ConeGeometry(larguraBase / 2 + 0.5, altura + 0.5, 4);
-            const materialBrilho = new THREE.MeshBasicMaterial({
-                color: 0x00FFFF,
-                transparent: true,
-                opacity: 0.2,
-                side: THREE.BackSide
-            });
-            
-            const brilho = new THREE.Mesh(geometriaBrilho, materialBrilho);
-            brilho.position.y = altura / 2;
-            piramide.add(brilho);
-            
-            // Animar brilho
-            function animarBrilho() {
-                materialBrilho.opacity = 0.1 + Math.sin(Date.now() * 0.002) * 0.1;
-                requestAnimationFrame(animarBrilho);
-            }
-            animarBrilho();
-        }
-        
-        // ============ SISTEMA DE NAVEGAÇÃO ============
-        function mostrarPagina(paginaId) {
-            // Atualizar navegação
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('ativo');
-            });
-            event.currentTarget.classList.add('ativo');
-            
-            // Esconder todas as páginas
-            document.querySelectorAll('.pagina').forEach(pagina => {
-                pagina.classList.remove('ativa');
-            });
-            
-            // Mostrar página selecionada
-            document.getElementById(paginaId).classList.add('ativa');
-            
-            // Registrar no Analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'navegar', {
-                    'event_category': 'navegacao',
-                    'event_label': paginaId
-                });
-            }
-        }
-        
-        // ============ SISTEMA DE ÁUDIO ============
-        function alternarAudio() {
-            const audio = document.getElementById('audio-ambiente');
-            const botao = document.getElementById('controle-audio');
-            const icone = botao.querySelector('i');
-            
-            if (audio.paused) {
-                audio.play();
-                icone.className = 'fas fa-pause';
-                botao.style.background = 'rgba(0, 255, 255, 0.1)';
-            } else {
-                audio.pause();
-                icone.className = 'fas fa-play';
-                botao.style.background = 'rgba(0, 0, 0, 0.7)';
-            }
-        }
-        
-        // ============ INICIAR EXPERIÊNCIA ============
-        function iniciarExperiencia() {
-            const telaInicial = document.getElementById('tela-inicial');
-            telaInicial.style.opacity = '0';
-            telaInicial.style.visibility = 'hidden';
-            
-            // Iniciar áudio
-            const audio = document.getElementById('audio-ambiente');
-            audio.volume = 0.5;
-            audio.play().catch(e => {
-                console.log('Áudio aguarda interação do usuário');
-            });
-            
-            // Iniciar cena 3D
-            iniciarCenario3D();
-            
-            // Criar partículas 2D adicionais
-            criarParticulas2D();
-            
-            // Registrar no Analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'iniciar_experiencia', {
-                    'event_category': 'engajamento',
-                    'event_label': 'experiencia_iniciada'
-                });
-            }
-        }
-        
-        function criarParticulas2D() {
-            const container = document.getElementById('particulas');
-            const count = 100;
-            
-            for (let i = 0; i < count; i++) {
-                const particula = document.createElement('div');
-                particula.className = 'particula';
-                particula.style.left = Math.random() * 100 + 'vw';
-                particula.style.top = Math.random() * 100 + 'vh';
-                particula.style.animation = `flutuar ${3 + Math.random() * 4}s infinite ease-in-out`;
-                particula.style.opacity = Math.random() * 0.5 + 0.1;
-                particula.style.width = particula.style.height = (Math.random() * 3 + 1) + 'px';
-                
-                // Cores variadas
-                const cores = ['#FFD700', '#00FFFF', '#8A2BE2', '#FFFFFF'];
-                particula.style.background = cores[Math.floor(Math.random() * cores.length)];
-                
-                container.appendChild(particula);
-            }
-        }
-        
-        // ============ INICIALIZAÇÃO ============
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('%c✨ WAGNER ABRAHÃO | SITE OFICIAL 2026 ✨', 
-                'background: linear-gradient(90deg, #000, #D4AF37); color: white; font-size: 16px; padding: 10px; border-radius: 5px;');
-            
-            // Pré-carregar áudio
-            const audio = document.getElementById('audio-ambiente');
-            audio.load();
-            
-            // Permitir entrada por tecla
-            document.addEventListener('keydown', (e) => {
-                if (e.code === 'Enter' || e.code === 'Space') {
-                    iniciarExperiencia();
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        <section id="contato" class="pag
