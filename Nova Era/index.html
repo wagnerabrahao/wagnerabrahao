@@ -1,322 +1,170 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>WAGNER ABRAHÃO | Arquiteto do Invisível</title>
-    <meta name="description" content="Wagner Abrahão - Literatura filosófica, espiritualidade e arquitetura do invisível. Uma jornada transcendental através da palavra.">
-    
+    <title>Wagner Abrahão | Arquiteto do Invisível</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-5WZHN0YR19');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5WZHN0YR19');
     </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ouro: #D4AF37;
-            --ouro-brilho: #F9E076;
-            --preto-profundo: #020202;
-            --cinza-nobre: #A8A8A8;
-            --font-titulo: 'Cinzel', serif;
-            --font-texto: 'Cormorant Garamond', serif;
+            --ouro: #d4af37;
+            --obsidiana: #050505;
+            --creme: #fdfaf1;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { width: 100%; height: 100%; background: var(--preto-profundo); color: #fff; font-family: var(--font-texto); overflow: hidden; }
-
-        /* TELA DE ENTRADA LUXUOSA */
-        #landing-page {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-            z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: transform 1.8s cubic-bezier(0.86, 0, 0.07, 1);
+        body {
+            background-color: var(--obsidiana);
+            color: var(--creme);
+            font-family: 'Lora', serif;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-        .intro-title { font-family: var(--font-titulo); font-size: 3rem; color: var(--ouro); letter-spacing: 10px; margin-bottom: 20px; opacity: 0; text-align: center; }
-        .btn-iniciar {
-            padding: 20px 60px; background: transparent; border: 1px solid var(--ouro);
-            color: var(--ouro); font-family: var(--font-titulo); cursor: pointer;
-            letter-spacing: 5px; overflow: hidden; position: relative; transition: 0.5s;
+        /* Fundo de Partículas Etéreas */
+        #canvas-bg { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.3; }
+
+        /* Botão de Música Luxuoso */
+        #music-toggle {
+            position: fixed; top: 20px; right: 20px; z-index: 100;
+            background: none; border: 1px solid var(--ouro); color: var(--ouro);
+            padding: 10px 20px; cursor: pointer; font-family: 'Cinzel';
+            letter-spacing: 2px; transition: 0.5s;
         }
-        .btn-iniciar:hover { background: var(--ouro); color: #000; box-shadow: 0 0 50px rgba(212, 175, 55, 0.4); }
+        #music-toggle:hover { background: var(--ouro); color: var(--obsidiana); }
 
-        /* CENÁRIO 3D & LUZ DO MOUSE */
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        #luz-rastro {
-            position: fixed; width: 800px; height: 800px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 2; mix-blend-mode: screen;
+        /* Header Imersivo */
+        header {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 2s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        h1 {
+            font-family: 'Cinzel', serif; font-size: 4rem; font-weight: 700;
+            background: linear-gradient(to right, #d4af37, #fdfaf1, #d4af37);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 15px; margin-bottom: 10px;
         }
 
-        /* NAVEGAÇÃO LATERAL TECNOLÓGICA */
-        #nav-menu {
-            position: fixed; left: 40px; top: 50%; transform: translateY(-50%);
-            z-index: 1000; display: flex; flex-direction: column; gap: 30px;
+        /* Foto de Autor - Enquadrada com Luxo */
+        .profile-container {
+            width: 250px; height: 250px; border-radius: 50%;
+            border: 2px solid var(--ouro); padding: 5px; margin-bottom: 30px;
+            overflow: hidden; box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
         }
-        .nav-link {
-            width: 12px; height: 12px; border: 1px solid var(--ouro); border-radius: 50%;
-            cursor: pointer; transition: 0.4s; position: relative;
+        .profile-container img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.3); }
+
+        /* Seções de Manuscritos */
+        .section-lux { padding: 150px 10% 100px; max-width: 1100px; margin: auto; }
+        .book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .book-card {
+            border: 1px solid rgba(212, 175, 55, 0.15); padding: 40px;
+            background: rgba(255, 255, 255, 0.01); transition: 0.8s;
+            text-align: center; position: relative;
         }
-        .nav-link.active { background: var(--ouro); box-shadow: 0 0 15px var(--ouro); }
-        .nav-link::after {
-            content: attr(data-label); position: absolute; left: 30px; top: -5px;
-            font-family: var(--font-titulo); font-size: 0.7rem; color: var(--ouro);
-            opacity: 0; transition: 0.3s; pointer-events: none; letter-spacing: 2px;
-        }
-        .nav-link:hover::after { opacity: 1; }
+        .book-card:hover { border-color: var(--ouro); background: rgba(212, 175, 55, 0.03); }
+        .book-card h3 { font-family: 'Cinzel'; color: var(--ouro); margin-bottom: 20px; letter-spacing: 3px; }
 
-        /* ÁREA DE CONTEÚDO SCROLLÁVEL */
-        #main-content {
-            position: relative; z-index: 100; height: 100vh; overflow-y: auto; scrollbar-width: none;
-            padding: 0 10% 200px; scroll-behavior: smooth;
-        }
-        #main-content::-webkit-scrollbar { display: none; }
-
-        section { min-height: 100vh; padding: 150px 0; opacity: 0; transform: translateY(50px); transition: 1.2s; }
-        section.visible { opacity: 1; transform: translateY(0); }
-
-        /* FOTO E IDENTIDADE */
-        .perfil-container { display: flex; align-items: center; gap: 80px; margin-bottom: 100px; }
-        .foto-moldura {
-            width: 320px; height: 420px; border: 1px solid var(--ouro); padding: 15px;
-            background: rgba(255,255,255,0.02); position: relative; overflow: hidden;
-        }
-        .foto-img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.2) contrast(1.1); transition: 0.8s; }
-        .foto-img:hover { filter: sepia(0) contrast(1.2); transform: scale(1.05); }
-
-        /* TIPOGRAFIA CORRIGIDA (SEO) */
-        h1 { font-family: var(--font-titulo); font-size: 5rem; color: var(--ouro); letter-spacing: -2px; line-height: 0.9; margin-bottom: 20px; }
-        h2 { font-family: var(--font-titulo); font-size: 2.8rem; color: var(--ouro); margin-bottom: 50px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
-        h3 { font-family: var(--font-titulo); font-size: 1.8rem; color: var(--ouro); margin-bottom: 25px; }
-
-        .texto-universal { font-size: 1.5rem; line-height: 1.8; color: var(--cinza-nobre); max-width: 800px; text-align: justify; }
-        .quote-viva { font-style: italic; font-size: 2.2rem; color: var(--ouro); text-align: center; margin: 60px 0; font-family: 'Playfair Display', serif; }
-
-        /* CARDS DE LUXO */
-        .grid-manuscritos { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .card-obra {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.1);
-            padding: 50px; backdrop-filter: blur(15px); transition: 0.5s ease;
-        }
-        .card-obra:hover { border-color: var(--ouro); background: rgba(255,255,255,0.06); transform: translateY(-10px); }
-
-        /* CONTATOS */
-        .footer-contato { text-align: center; margin-top: 100px; }
-        .social-icons { display: flex; justify-content: center; gap: 50px; margin-top: 40px; }
-        .social-icons a { color: var(--ouro); font-size: 2.5rem; transition: 0.4s; }
-        .social-icons a:hover { color: #fff; transform: scale(1.2); text-shadow: 0 0 20px var(--ouro); }
-
-        /* YOUTUBE PLAYER HIDDEN */
-        #yt-player-container { position: fixed; bottom: -100px; left: -100px; opacity: 0; }
-        #audio-toggle {
-            position: fixed; bottom: 40px; left: 40px; z-index: 1000;
-            color: var(--ouro); font-size: 1.5rem; cursor: pointer; opacity: 0.5; transition: 0.3s;
-        }
-        #audio-toggle:hover { opacity: 1; }
-
-        @media (max-width: 1024px) {
-            .perfil-container { flex-direction: column; text-align: center; gap: 40px; }
-            h1 { font-size: 3.5rem; }
-            .grid-manuscritos { grid-template-columns: 1fr; }
-            .nav-link::after { display: none; }
+        /* Footer e Conexão */
+        footer { padding: 100px 0; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1); }
+        .social-links a {
+            color: var(--ouro); text-decoration: none; margin: 0 15px;
+            font-family: 'Cinzel'; font-size: 0.9rem; letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 
-    <div id="yt-player-container">
-        <div id="player"></div>
-    </div>
-    <div id="audio-toggle" onclick="toggleAudio()"><i class="fas fa-volume-up" id="audio-icon"></i></div>
+    <button id="music-toggle" onclick="toggleMusic()">Sinfonia: Off</button>
+    <audio id="myAudio" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 
-    <div id="landing-page">
-        <div class="intro-title" id="intro-name">WAGNER ABRAHÃO</div>
-        <button class="btn-iniciar" onclick="entrarNoSite()">ADENTRAR À OBRA</button>
-    </div>
+    <canvas id="canvas-bg"></canvas>
 
-    <div id="luz-rastro"></div>
-    <div id="canvas-container"></div>
+    <header>
+        <div class="profile-container reveal">
+            <img src="https://lh3.googleusercontent.com/d/1vGv_vX3Lp0yD7E1_H0x9m9jG-8Y5vH6i" alt="Wagner Abrahão">
+        </div>
+        <h1 class="reveal">WAGNER ABRAHÃO</h1>
+        <p class="reveal" style="font-family:'Cinzel'; letter-spacing: 5px; opacity: 0.7;">Arquiteto do Invisível</p>
+    </header>
 
-    <nav id="nav-menu">
-        <div class="nav-link active" data-label="O ARQUITETO" onclick="scrollToSec('home')"></div>
-        <div class="nav-link" data-label="OBRAS" onclick="scrollToSec('obras')"></div>
-        <div class="nav-link" data-label="REFLEXÕES" onclick="scrollToSec('poesia')"></div>
-        <div class="nav-link" data-label="CONEXÃO" onclick="scrollToSec('contato')"></div>
-    </nav>
-
-    <main id="main-content" onscroll="handleScroll()">
+    <section class="section-lux">
+        <h2 class="reveal" style="font-family:'Cinzel'; text-align: center; margin-bottom: 80px; font-size: 2.5rem; border-bottom: 1px solid var(--ouro); display: inline-block; padding-bottom: 10px;">Manuscritos</h2>
         
-        <section id="home" class="visible">
-            <div class="perfil-container">
-                <div class="foto-moldura">
-                    <img src="26053.jpg" alt="Wagner Abrahão" class="foto-img">
-                </div>
-                <div>
-                    <h1>WAGNER<br>ABRAHÃO</h1>
-                    <p class="texto-universal">
-                        "Não construo com pedra ou madeira, mas com o espaço entre os átomos. Minha obra busca ser o suporte para quem procura acalento na densidade da vida cotidiana."
-                    </p>
-                </div>
+        <div class="book-grid">
+            <div class="book-card reveal">
+                <h3>A Centelha Inquieta</h3>
+                <p>O despertar do fogo primordial que reside no silêncio da alma. Uma exploração sobre a origem da luz interna.</p>
             </div>
-            <div class="card-obra">
-                <h3>MISSÃO UNIVERSAL</h3>
-                <p class="texto-universal">
-                    Revelar as estruturas invisíveis que sustentam a existência humana. Através da harmonia da palavra, conectamos o visível ao transcendente de forma acolhedora para todos os buscadores.
-                </p>
+            <div class="book-card reveal">
+                <h3>Alquimia do Ser</h3>
+                <p>O tratado da transmutação. Como converter a densidade da vida cotidiana no ouro da consciência plena.</p>
             </div>
-        </section>
+            <div class="book-card reveal">
+                <h3>Anestesia Divina</h3>
+                <p>O acalento necessário para os buscadores da verdade. Um suporte espiritual na densidade do visível.</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="obras">
-            <h2>MANUSCRITOS</h2>
-            <div class="grid-manuscritos">
-                <div class="card-obra">
-                    <h3>A ARQUITETURA DO INVISÍVEL</h3>
-                    <p class="texto-universal">Um tratado sobre as estruturas ocultas que sustentam a realidade eterna. As fundações espirituais da existência e os princípios da construção consciente.</p>
-                </div>
-                <div class="card-obra">
-                    <h3>A ANESTESIA DIVINA</h3>
-                    <p class="texto-universal">O despertar místico através da rendição absoluta. Uma jornada pelos véus da percepção que separam o sonho da vigília espiritual.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="poesia">
-            <h2>REFLEXÕES DA ALMA</h2>
-            <div class="quote-viva">"Dante não sabia que estava dormindo. Até que a perda se tornou revelação."</div>
-            <div class="grid-manuscritos">
-                <div class="card-obra">
-                    <h3>A VERDADE</h3>
-                    <p class="texto-universal">"A verdade não é uma linha reta, mas uma esfera a ser habitada. Cada ângulo revela uma faceta, cada experiência uma nova profundidade."</p>
-                </div>
-                <div class="card-obra">
-                    <h3>O SILÊNCIO</h3>
-                    <p class="texto-universal">"No vácuo entre as palavras, a sabedoria se revela. O silêncio é a plenitude do que ainda não foi dito."</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contato">
-            <h2>CONEXÃO</h2>
-            <div class="footer-contato">
-                <p class="texto-universal" style="margin: 0 auto 40px; text-align: center;">Para parcerias, diálogos profundos e partilhas sobre a arquitetura do ser.</p>
-                <p style="font-family: var(--font-titulo); color: var(--ouro); font-size: 1.2rem;">BELO HORIZONTE | MINAS GERAIS</p>
-                <p style="margin-top: 10px; color: var(--cinza-nobre);">wagner.abrahao.31@gmail.com</p>
-                
-                <div class="social-icons">
-                    <a href="https://instagram.com/wagnerabrahao_" target="_blank" title="Instagram Official"><i class="fab fa-instagram"></i></a>
-                    <a href="https://tiktok.com/@wagner.abrahao" target="_blank" title="TikTok Profile"><i class="fab fa-tiktok"></i></a>
-                    <a href="mailto:wagner.abrahao.31@gmail.com" title="Enviar E-mail"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </section>
-
-    </main>
+    <footer>
+        <p class="reveal" style="font-style: italic; margin-bottom: 40px; opacity: 0.6;">"A verdade não é uma linha reta, mas uma esfera a ser habitada."</p>
+        <div class="social-links reveal">
+            <a href="https://instagram.com/wagner.abrahao.31">Instagram</a>
+            <a href="mailto:wagner.abrahao.31@gmail.com">Contato</a>
+            <a href="https://tiktok.com/@wagnerabrahao">TikTok</a>
+        </div>
+    </footer>
 
     <script>
-        // 1. ANIMAÇÕES GSAP
-        gsap.to("#intro-name", { opacity: 1, duration: 2.5, delay: 0.5 });
-
-        // 2. MÚSICA YOUTUBE API (RESTAURADA)
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0', width: '0',
-                videoId: 'wFJeTeeXicU',
-                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'wFJeTeeXicU' },
-                events: { 'onReady': onPlayerReady }
-            });
-        }
-        function onPlayerReady(event) { player.setVolume(50); }
-
-        function entrarNoSite() {
-            document.getElementById('landing-page').style.transform = 'translateY(-100%)';
-            player.playVideo();
-        }
-
-        function toggleAudio() {
-            const icon = document.getElementById('audio-icon');
-            if (player.getPlayerState() === 1) {
-                player.pauseVideo();
-                icon.className = "fas fa-volume-mute";
-            } else {
-                player.playVideo();
-                icon.className = "fas fa-volume-up";
+        // Efeito de Revelação ao Rolar
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
             }
         }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
 
-        // 3. CENÁRIO 3D (THREE.JS)
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        // Geometria Estelar
-        const starGeo = new THREE.BufferGeometry();
-        const starCount = 5000;
-        const starArr = new Float32Array(starCount * 3);
-        for(let i=0; i < starCount*3; i++) starArr[i] = (Math.random() - 0.5) * 150;
-        starGeo.setAttribute('position', new THREE.BufferAttribute(starArr, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0xD4AF37, size: 0.04 });
-        const stars = new THREE.Points(starGeo, starMat);
-        scene.add(stars);
-
-        // Horizonte (Pirâmide do Invisível)
-        const pGeo = new THREE.ConeGeometry(8, 12, 4);
-        const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37, wireframe: true, transparent: true, opacity: 0.2 });
-        const pyramid = new THREE.Mesh(pGeo, pMat);
-        pyramid.position.set(20, -5, -20);
-        scene.add(pyramid);
-
-        const light = new THREE.PointLight(0xffffff, 1, 100);
-        light.position.set(0, 10, 10);
-        scene.add(light);
-        camera.position.z = 35;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            stars.rotation.y += 0.0004;
-            pyramid.rotation.y += 0.003;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        // 4. INTERAÇÃO E NAVEGAÇÃO
-        document.addEventListener('mousemove', e => {
-            const luz = document.getElementById('luz-rastro');
-            luz.style.left = e.clientX + 'px';
-            luz.style.top = e.clientY + 'px';
-        });
-
-        function scrollToSec(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        // Controle da Música
+        var audio = document.getElementById("myAudio");
+        var btn = document.getElementById("music-toggle");
+        function toggleMusic() {
+            if (audio.paused) { audio.play(); btn.innerText = "Sinfonia: On"; }
+            else { audio.pause(); btn.innerText = "Sinfonia: Off"; }
         }
 
-        function handleScroll() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            sections.forEach((sec, i) => {
-                const top = sec.getBoundingClientRect().top;
-                if(top < window.innerHeight * 0.6) {
-                    sec.classList.add('visible');
-                    navLinks.forEach(n => n.classList.remove('active'));
-                    navLinks[i].classList.add('active');
-                }
+        // Fundo Animado Simples (Estrelas/Partículas)
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+        for (let i = 0; i < 100; i++) {
+            particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2, d: Math.random()*1 });
+        }
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle = "rgba(212, 175, 55, 0.5)";
+            particles.forEach(p => {
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+                p.y -= p.d; if(p.y < 0) p.y = canvas.height;
             });
+            requestAnimationFrame(draw);
         }
+        draw();
     </script>
 </body>
 </html>
