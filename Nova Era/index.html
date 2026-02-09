@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wagner Abrahão - Arquitetura do Invisível. Literatura filosófica e espiritualidade transcendental.">
+    <meta name="keywords" content="filosofia, espiritualidade, literatura, Wagner Abrahão, poesia transcendental">
+    <meta name="author" content="Wagner Abrahão">
     
+    <!-- Open Graph para redes sociais -->
+    <meta property="og:title" content="WAGNER ABRAHÃO | Arquiteto do Invisível">
+    <meta property="og:description" content="Literatura filosófica e arquitetura espiritual">
+    <meta property="og:image" content="https://wagnerabrahao.com/og-image.jpg">
+    <meta property="og:url" content="https://wagnerabrahao.com">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -13,240 +23,1464 @@
     </script>
     
     <title>WAGNER ABRAHÃO | Arquiteto do Invisível</title>
-    <meta name="description" content="Wagner Abrahão - Literatura, filosofia e espiritualidade universal.">
     
+    <!-- Three.js e efeitos 3D -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,400&family=Raleway:wght@200;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+    
+    <!-- Fontes premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ====== RESET E VARIAVEIS ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         :root {
-            --ouro: #D4AF37;
-            --preto: #050505;
-            --cinza: #E0E0E0;
-            --gradiente: linear-gradient(135deg, #D4AF37, #F9E076, #D4AF37);
+            --gold: #D4AF37;
+            --gold-dark: #B8860B;
+            --gold-light: #FFD700;
+            --black: #0A0A0A;
+            --black-light: #1A1A1A;
+            --white: #F5F5F5;
+            --gray: #8A8A8A;
+            --beige: #F5E6D3;
+            
+            --transition-slow: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-medium: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --shadow-gold: 0 0 40px rgba(212, 175, 55, 0.4);
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-text: 0 2px 10px rgba(0, 0, 0, 0.5);
+            
+            --border-gold: 1px solid rgba(212, 175, 55, 0.3);
+            --border-light: 1px solid rgba(255, 255, 255, 0.1);
+            
+            --gradient-gold: linear-gradient(135deg, #D4AF37, #F9E076, #D4AF37);
+            --gradient-black: linear-gradient(135deg, #0A0A0A, #1A1A1A, #0A0A0A);
+            
+            --font-title: 'Cinzel', serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-display: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
         }
         
-        body { background: var(--preto); color: var(--cinza); font-family: 'Cormorant Garamond', serif; overflow: hidden; }
-
-        /* TELA DE ENTRADA */
-        #overlay-entrada {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 10000; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; transition: 1.5s;
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--font-serif);
+            font-weight: 300;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .btn-adentrar {
-            padding: 15px 40px; background: transparent; border: 1px solid var(--ouro);
-            color: var(--ouro); font-family: 'Cinzel', serif; cursor: pointer;
-            letter-spacing: 4px; transition: 0.5s; text-transform: uppercase;
+        
+        /* ====== SCROLLBAR PERSONALIZADA ====== */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .btn-adentrar:hover { background: var(--ouro); color: #000; box-shadow: 0 0 30px var(--ouro); }
-
-        /* CENÁRIO 3D E LUZ DO MOUSE */
-        #cenario-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        #luz-cursor {
-            position: fixed; width: 500px; height: 500px;
+        
+        ::-webkit-scrollbar-track {
+            background: var(--black-light);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+        
+        /* ====== TELA DE ENTRADA (FULLSCREEN) ====== */
+        #entrada-portal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 2s ease, visibility 2s;
+            overflow: hidden;
+        }
+        
+        .portal-inner {
+            text-align: center;
+            max-width: 1200px;
+            padding: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-portal {
+            font-family: var(--font-title);
+            font-size: 6rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            animation: pulse-gold 3s infinite alternate;
+        }
+        
+        .subtitle-portal {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--beige);
+            letter-spacing: 0.3rem;
+            margin-bottom: 4rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+        
+        .btn-entrar {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 20px 60px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            font-weight: 300;
+        }
+        
+        .btn-entrar:hover {
+            background: var(--gold);
+            color: var(--black);
+            letter-spacing: 0.4rem;
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .btn-entrar:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .btn-entrar:hover:after {
+            left: 100%;
+        }
+        
+        .countdown-portal {
+            margin-top: 3rem;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--gray);
+            letter-spacing: 0.2rem;
+        }
+        
+        /* ====== CENÁRIO 3D DE FUNDO ====== */
+        #universo-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+        
+        /* ====== PONTO DE LUZ QUE SEGUE MOUSE ====== */
+        #luz-mistica {
+            position: fixed;
+            width: 600px;
+            height: 600px;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 2;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+            filter: blur(40px);
+            mix-blend-mode: screen;
         }
-
-        /* NAVEGAÇÃO */
-        #menu-lateral {
-            position: fixed; right: 25px; top: 50%; transform: translateY(-50%);
-            z-index: 1000; display: flex; flex-direction: column; gap: 20px;
-        }
-        .nav-btn {
-            width: 50px; height: 50px; border-radius: 50%; background: rgba(0,0,0,0.8);
-            border: 1px solid rgba(212,175,55,0.3); color: var(--ouro);
-            display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s;
-        }
-        .nav-btn:hover, .nav-btn.ativo { background: var(--ouro); color: #000; transform: scale(1.1); box-shadow: 0 0 20px var(--ouro); }
-
-        /* ÁREA DE CONTEÚDO */
-        #area-texto {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 100; overflow-y: auto; scrollbar-width: none; padding: 80px 10% 150px;
-        }
-        #area-texto::-webkit-scrollbar { display: none; }
         
-        .secao { display: none; opacity: 0; transform: translateY(30px); transition: 0.8s; max-width: 900px; margin: 0 auto; }
-        .secao.ativa { display: block; opacity: 1; transform: translateY(0); }
-
-        /* HIERARQUIA PURIFICADA: Único H1 para o nome */
-        .h1-nome { font-family: 'Cinzel', serif; font-size: 4rem; background: var(--gradiente); -webkit-background-clip: text; color: transparent; text-align: center; margin-bottom: 5px; }
-        .h2-secao { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--ouro); text-align: center; margin-bottom: 40px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
-        .h3-card { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--ouro); margin-bottom: 15px; }
-
-        /* ELEMENTOS VISUAIS */
-        .moldura-foto { width: 220px; height: 280px; margin: 0 auto 30px; border: 2px solid var(--ouro); padding: 8px; background: #000; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
-        .foto-principal { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1); }
-        .card-luxo { background: rgba(10,10,10,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.15); padding: 40px; margin-bottom: 30px; }
+        /* ====== OVERLAY DE PROFUNDIDADE ====== */
+        .overlay-profundidade {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(10, 10, 10, 0.9) 70%);
+            z-index: 3;
+            pointer-events: none;
+        }
         
-        p { font-size: 1.3rem; line-height: 1.8; text-align: justify; margin-bottom: 15px; }
-        .italico { font-style: italic; text-align: center; }
-
+        /* ====== NAVEGAÇÃO VERTICAL LUXUOSA ====== */
+        #navegacao-vertical {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding: 30px 20px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: var(--border-gold);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .nav-item {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            position: relative;
+            border: var(--border-light);
+        }
+        
+        .nav-item:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.15) rotate(10deg);
+            color: var(--gold);
+            border-color: var(--gold);
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .nav-item.active {
+            background: var(--gradient-gold);
+            color: var(--black);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-gold);
+        }
+        
+        .nav-label {
+            position: absolute;
+            right: 70px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: var(--transition-medium);
+            border: var(--border-gold);
+            color: var(--gold);
+        }
+        
+        .nav-item:hover .nav-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* ====== CONTEÚDO PRINCIPAL ====== */
+        #conteudo-universo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            padding: 100px 120px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+        
+        .secao-universo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(60px);
+            transition: var(--transition-slow);
+        }
+        
+        .secao-universo.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* ====== TIPOGRAFIA PREMIUM ====== */
+        .h1-master {
+            font-family: var(--font-title);
+            font-size: 5rem;
+            font-weight: 700;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1rem;
+            line-height: 1.2;
+        }
+        
+        .h2-section {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .h2-section:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 120px;
+            height: 2px;
+            background: var(--gradient-gold);
+        }
+        
+        .h3-card {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .p-elegant {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--beige);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .p-poema {
+            font-size: 1.4rem;
+            line-height: 1.9;
+            color: var(--white);
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        /* ====== CARDS DE VIDRO ====== */
+        .card-cristal {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            border: var(--border-gold);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            max-width: 900px;
+        }
+        
+        .card-cristal:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-10px);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                inset 0 0 60px rgba(212, 175, 55, 0.05);
+        }
+        
+        .card-cristal:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 1s ease;
+        }
+        
+        .card-cristal:hover:before {
+            left: 100%;
+        }
+        
+        /* ====== FOTO DO AUTOR ====== */
+        .moldura-aura {
+            width: 300px;
+            height: 400px;
+            margin: 0 auto 50px;
+            border: 3px solid var(--gold);
+            padding: 12px;
+            background: var(--black);
+            box-shadow: 
+                0 0 50px rgba(212, 175, 55, 0.3),
+                inset 0 0 30px rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .moldura-aura:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: var(--gradient-gold);
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.3;
+        }
+        
+        .foto-aura {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.2) contrast(1.05) brightness(1.05);
+            transition: var(--transition-medium);
+        }
+        
+        .moldura-aura:hover .foto-aura {
+            transform: scale(1.03);
+            filter: sepia(0.1) contrast(1.1) brightness(1.1);
+        }
+        
+        /* ====== ASSINATURA ====== */
+        .assinatura-ouro {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-align: right;
+            font-style: italic;
+            margin-top: 2rem;
+            display: block;
+            position: relative;
+            padding-right: 60px;
+        }
+        
+        .assinatura-ouro:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 50px;
+            height: 1px;
+            background: var(--gold);
+        }
+        
+        /* ====== SEÇÃO CONTATO ====== */
+        .grid-contato {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .link-contato {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border: var(--border-gold);
+            border-radius: 15px;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition-medium);
+        }
+        
+        .link-contato:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+        
+        .icone-contato {
+            font-size: 2rem;
+            color: var(--gold);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+        }
+        
+        /* ====== PIRÂMIDE 3D INTERATIVA ====== */
+        #piramide-sagrada {
+            position: fixed;
+            bottom: 60px;
+            left: 60px;
+            width: 400px;
+            height: 400px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .info-piramide {
+            position: absolute;
+            bottom: 30px;
+            left: 480px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            border: var(--border-gold);
+            max-width: 350px;
+            backdrop-filter: blur(15px);
+        }
+        
+        /* ====== CONTROLE DE ÁUDIO ====== */
+        #controle-sonoro {
+            position: fixed;
+            bottom: 60px;
+            right: 60px;
+            z-index: 1000;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: var(--transition-medium);
+            backdrop-filter: blur(15px);
+        }
+        
+        #controle-sonoro:hover {
+            transform: scale(1.2) rotate(180deg);
+            box-shadow: var(--shadow-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* ====== PARTÍCULAS FLUTUANTES ====== */
+        .particula-mistica {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: 0 0 15px var(--gold);
+            animation: flutuar-cosmico 15s infinite linear;
+        }
+        
+        /* ====== ANIMAÇÕES ====== */
+        @keyframes pulse-gold {
+            0% { 
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.3); 
+            }
+            100% { 
+                text-shadow: 0 0 50px rgba(212, 175, 55, 0.6), 0 0 80px rgba(212, 175, 55, 0.3); 
+            }
+        }
+        
+        @keyframes flutuar-cosmico {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+                opacity: 0.3;
+            }
+            25% { 
+                transform: translateY(-100px) rotate(90deg); 
+                opacity: 0.7;
+            }
+            50% { 
+                transform: translateY(-200px) rotate(180deg); 
+                opacity: 0.3;
+            }
+            75% { 
+                transform: translateY(-100px) rotate(270deg); 
+                opacity: 0.7;
+            }
+        }
+        
+        @keyframes girar-infinito {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ====== RESPONSIVIDADE ====== */
+        @media (max-width: 1200px) {
+            #conteudo-universo { padding: 80px; }
+            .secao-universo { padding: 80px; }
+            .h1-master { font-size: 4rem; }
+            #navegacao-vertical { right: 20px; padding: 20px 15px; }
+            .info-piramide { left: 400px; max-width: 300px; }
+        }
+        
+        @media (max-width: 992px) {
+            #conteudo-universo { padding: 60px 40px; }
+            .secao-universo { padding: 60px 40px; }
+            .h1-master { font-size: 3.5rem; }
+            .h2-section { font-size: 2.2rem; }
+            .card-cristal { padding: 40px; }
+            #piramide-sagrada { width: 300px; height: 300px; left: 30px; bottom: 30px; }
+            .info-piramide { left: 350px; max-width: 250px; padding: 20px; }
+            .moldura-aura { width: 250px; height: 350px; }
+        }
+        
         @media (max-width: 768px) {
-            .h1-nome { font-size: 2.5rem; }
-            #menu-lateral { top: auto; bottom: 20px; right: 50%; transform: translateX(50%); flex-direction: row; }
+            #conteudo-universo { padding: 40px 20px; }
+            .secao-universo { padding: 40px 20px; }
+            .h1-master { font-size: 2.8rem; }
+            .h2-section { font-size: 2rem; }
+            .p-elegant, .p-poema { font-size: 1.1rem; }
+            #navegacao-vertical { 
+                top: auto; 
+                bottom: 30px; 
+                right: 50%; 
+                transform: translateX(50%); 
+                flex-direction: row;
+                padding: 15px;
+                gap: 15px;
+            }
+            .nav-label { display: none; }
+            #piramide-sagrada { display: none; }
+            .info-piramide { display: none; }
+            #controle-sonoro { bottom: 30px; right: 30px; width: 60px; height: 60px; }
+            .logo-portal { font-size: 3.5rem; letter-spacing: 0.3rem; }
+            .subtitle-portal { font-size: 1.3rem; letter-spacing: 0.2rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .h1-master { font-size: 2.3rem; }
+            .h2-section { font-size: 1.8rem; }
+            .card-cristal { padding: 30px; }
+            .moldura-aura { width: 200px; height: 280px; margin-bottom: 30px; }
+            .logo-portal { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-
-    <audio id="som-ambiente" loop><source src="musica.mp3" type="audio/mpeg"></audio>
-
-    <div id="overlay-entrada">
-        <div style="text-align:center;">
-            <h2 style="font-family:'Cinzel'; color:var(--ouro); letter-spacing:5px; margin-bottom:10px;">WAGNER ABRAHÃO</h2>
-            <p style="font-family:'Raleway'; color:#888; letter-spacing:3px; margin-bottom:30px;">ARQUITETURA DO INVISÍVEL</p>
-            <button class="btn-adentrar" onclick="ativarPortal()">ADENTRAR</button>
+    <!-- ÁUDIO DE FUNDO -->
+    <audio id="musica-cosmica" loop>
+        <source src="portal-cosmico.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- TELA DE ENTRADA IMERSIVA -->
+    <div id="entrada-portal">
+        <div class="portal-inner">
+            <div class="logo-portal">WAGNER ABRAHÃO</div>
+            <div class="subtitle-portal">ARQUITETURA DO INVISÍVEL</div>
+            <button class="btn-entrar" onclick="iniciarExperiencia()">
+                ADENTRAR À OBRA
+            </button>
+            <div class="countdown-portal">
+                EXPERIÊNCIA IMERSIVA
+            </div>
+        </div>
+        <div id="particulas-entrada"></div>
+    </div>
+    
+    <!-- CENÁRIO 3D -->
+    <div id="universo-3d"></div>
+    
+    <!-- PONTO DE LUZ MÍSTICO -->
+    <div id="luz-mistica"></div>
+    
+    <!-- OVERLAY DE PROFUNDIDADE -->
+    <div class="overlay-profundidade"></div>
+    
+    <!-- PARTÍCULAS FLUTUANTES -->
+    <div id="particulas-cosmicas"></div>
+    
+    <!-- PIRÂMIDE 3D SAGRADA -->
+    <div id="piramide-sagrada"></div>
+    <div class="info-piramide">
+        <div style="color: var(--gold); font-family: var(--font-display); margin-bottom: 10px; font-size: 1.2rem;">
+            <i class="fas fa-mountain"></i> PIRÂMIDE DA CONSCIÊNCIA
+        </div>
+        <div style="color: var(--beige); font-size: 0.95rem; line-height: 1.6;">
+            Esta estrutura representa os quatro níveis de consciência espiritual. Cada camada reage à sua presença, revelando diferentes frequências de entendimento.
         </div>
     </div>
-
-    <div id="cenario-fundo"></div>
-    <div id="luz-cursor"></div>
-
-    <nav id="menu-lateral">
-        <div class="nav-btn ativo" onclick="irPara('home')" title="O Arquiteto"><i class="fas fa-home"></i></div>
-        <div class="nav-btn" onclick="irPara('poesia')" title="Poemas"><i class="fas fa-feather"></i></div>
-        <div class="nav-btn" onclick="irPara('aforismos')" title="Aforismos"><i class="fas fa-quote-right"></i></div>
-        <div class="nav-btn" onclick="irPara('manuscritos')" title="Manuscritos"><i class="fas fa-book"></i></div>
-        <div class="nav-btn" onclick="irPara('contato')" title="Contato"><i class="fas fa-envelope"></i></div>
+    
+    <!-- CONTROLE DE ÁUDIO -->
+    <div id="controle-sonoro" onclick="alternarAudio()">
+        <i class="fas fa-play"></i>
+    </div>
+    
+    <!-- NAVEGAÇÃO VERTICAL LUXUOSA -->
+    <nav id="navegacao-vertical">
+        <div class="nav-item active" onclick="navegarPara('inicio')">
+            <i class="fas fa-home"></i>
+            <div class="nav-label">O ARQUITETO</div>
+        </div>
+        <div class="nav-item" onclick="navegarPara('poesia')">
+            <i class="fas fa-feather-alt"></i>
+            <div class="nav-label">POESIA TRANSCENDENTAL</div>
+        </div>
+        <div class="nav-item" onclick="navegarPara('aforismos')">
+            <i class="fas fa-quote-right"></i>
+            <div class="nav-label">AFORISMOS SAGRADOS</div>
+        </div>
+        <div class="nav-item" onclick="navegarPara('manuscritos')">
+            <i class="fas fa-book-open"></i>
+            <div class="nav-label">MANUSCRITOS</div>
+        </div>
+        <div class="nav-item" onclick="navegarPara('contato')">
+            <i class="fas fa-envelope"></i>
+            <div class="nav-label">CONEXÃO</div>
+        </div>
     </nav>
-
-    <main id="area-texto">
-        <section id="home" class="secao ativa">
-            <div class="moldura-foto"><img src="26053.jpg" class="foto-principal" alt="Wagner Abrahão"></div>
-            <h1 class="h1-nome">WAGNER ABRAHÃO</h1>
-            <p class="italico" style="letter-spacing: 5px; color: #aaa; margin-bottom: 50px;">ARQUITETURA DO INVISÍVEL</p>
-            <div class="card-luxo">
-                <h2 class="h2-secao">MISSÃO UNIVERSAL</h2>
-                <p>Revelar as estruturas que sustentam a nossa realidade cotidiana. Minha obra busca oferecer sentido e acalento através da palavra, conectando o visível ao transcendente de forma universal e acolhedora.</p>
+    
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="conteudo-universo">
+        <!-- SEÇÃO INICIAL -->
+        <section id="inicio" class="secao-universo active">
+            <div class="moldura-aura">
+                <img src="foto-wagner.jpg" class="foto-aura" alt="Wagner Abrahão - Filósofo e Escritor">
+            </div>
+            
+            <h1 class="h1-master">WAGNER ABRAHÃO</h1>
+            <div style="color: var(--gray); font-family: var(--font-sans); letter-spacing: 0.3rem; margin-bottom: 50px; text-align: center; font-size: 1.1rem;">
+                FILÓSOFO • ESCRITOR • ARQUITETO ESPIRITUAL
+            </div>
+            
+            <div class="card-cristal">
+                <p class="p-elegant" style="text-align: center; font-style: italic;">
+                    "Arquiteto das frequências que acolhem e iluminam. Minha obra busca ser apenas um suporte 
+                    para quem procura acalento na densidade da vida. Através da harmonia do Verbo, convido você 
+                    a reconhecermos, juntos, a arquitetura de luz que já habita em cada um de nós."
+                </p>
+                <span class="assinatura-ouro">Wagner Abrahão</span>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px;">
+                <div class="card-cristal">
+                    <h2 class="h2-section">MISSÃO</h2>
+                    <p class="p-elegant">
+                        Revelar as estruturas invisíveis que sustentam a realidade, oferecendo pontes 
+                        de compreensão entre o visível e o transcendente através da palavra escrita e falada.
+                    </p>
+                </div>
+                
+                <div class="card-cristal">
+                    <h2 class="h2-section">VISÃO</h2>
+                    <p class="p-elegant">
+                        Um mundo onde cada ser reconhece sua própria arquitetura interior e constrói, 
+                        a partir dela, uma existência em harmonia com o cosmos e consigo mesmo.
+                    </p>
+                </div>
+                
+                <div class="card-cristal">
+                    <h2 class="h2-section">VALORES</h2>
+                    <p class="p-elegant">
+                        Autenticidade radical, profundidade existencial, reconexão espiritual, beleza 
+                        transcendental e serviço à elevação da consciência coletiva.
+                    </p>
+                </div>
             </div>
         </section>
-
-        <section id="poesia" class="secao">
-            <h2 class="h2-secao">REFLEXÕES EM VERSO</h2>
-            <div class="card-luxo">
+        
+        <!-- SEÇÃO POESIA -->
+        <section id="poesia" class="secao-universo">
+            <h2 class="h1-master">POESIA TRANSCENDENTAL</h2>
+            <div style="color: var(--gray); font-family: var(--font-sans); letter-spacing: 0.2rem; margin-bottom: 50px; text-align: center;">
+                VERBOS QUE ATRAVESSAM DIMENSÕES
+            </div>
+            
+            <div class="card-cristal">
                 <h3 class="h3-card">ANESTESIA DIVINA</h3>
-                <p class="italico">"Dante não sabia que estava dormindo. Durante anos, viveu em estado de espera silenciosa. Sua existência era um ponto central perpétuo, até que a perda se tornou revelação".</p>
+                <p class="p-poema">
+                    "Dante não sabia que estava dormindo.<br>
+                    Durante quarenta e dois anos, viveu em estado de anestesia divina.<br>
+                    Excesso de rotina, de precisão, de identidades fixas.<br>
+                    Sua existência era um Lá central perpétuo.<br>
+                    Até que a perda se tornou revelação."
+                </p>
+                <span class="assinatura-ouro">Wagner Abrahão</span>
             </div>
-            <div class="card-luxo">
+            
+            <div class="card-cristal">
+                <h3 class="h3-card">ARQUITETURA DO INVISÍVEL</h3>
+                <p class="p-poema">
+                    "O corpo não mente;<br>
+                    ele traduz o que a alma não consegue mais carregar.<br>
+                    Quando o ego silencia,<br>
+                    os sentidos se expandem para oferecer suporte ao próximo.<br>
+                    Onde despertar e paz se encontram,<br>
+                    o Arquiteto constrói pontes de sabedoria."
+                </p>
+                <span class="assinatura-ouro">Wagner Abrahão</span>
+            </div>
+            
+            <div class="card-cristal">
                 <h3 class="h3-card">A MEMÓRIA DA LUZ</h3>
-                <p class="italico">"Antes da forma, havia apenas luz. Em cada átomo, uma centelha lembra sua origem divina. Esquecer é humano; lembrar é o caminho de volta".</p>
+                <p class="p-poema">
+                    "Antes da forma, havia apenas luz.<br>
+                    Antes do nome, havia apenas ser.<br>
+                    Em cada átomo, uma centelha lembra<br>
+                    sua origem divina, sua dança primordial.<br>
+                    Esquecer é humano; lembrar é divino."
+                </p>
+                <span class="assinatura-ouro">Wagner Abrahão</span>
             </div>
         </section>
-
-        <section id="aforismos" class="secao">
-            <h2 class="h2-secao">AFORISMOS</h2>
-            <div class="card-luxo">
-                <h3 class="h3-card">O SILÊNCIO</h3>
-                <p>"No vácuo entre as palavras, a sabedoria se revela. O silêncio não é ausência, é a plenitude do que ainda não foi dito".</p>
+        
+        <!-- SEÇÃO AFORISMOS -->
+        <section id="aforismos" class="secao-universo">
+            <h2 class="h1-master">AFORISMOS SAGRADOS</h2>
+            <div style="color: var(--gray); font-family: var(--font-sans); letter-spacing: 0.2rem; margin-bottom: 50px; text-align: center;">
+                PÉROLAS DE SABEDORIA TRANSCENDENTAL
             </div>
-            <div class="card-luxo">
-                <h3 class="h3-card">A BELEZA</h3>
-                <p>"A beleza verdadeira não está na perfeição da forma, mas na autenticidade da essência. É o invisível que torna o visível significativo".</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                <div class="card-cristal">
+                    <h3 class="h3-card">SOBRE A VERDADE</h3>
+                    <p class="p-elegant" style="font-style: italic;">
+                        "A verdade não é uma linha reta a ser seguida, mas uma esfera a ser habitada. 
+                        Cada ângulo revela uma faceta, cada perspectiva uma nova profundidade."
+                    </p>
+                </div>
+                
+                <div class="card-cristal">
+                    <h3 class="h3-card">SOBRE O TEMPO</h3>
+                    <p class="p-elegant" style="font-style: italic;">
+                        "O passado é uma memória, o futuro uma possibilidade, o presente um ponto de poder. 
+                        No agora, todos os tempos se encontram e se reconciliam."
+                    </p>
+                </div>
+                
+                <div class="card-cristal">
+                    <h3 class="h3-card">SOBRE A BELEZA</h3>
+                    <p class="p-elegant" style="font-style: italic;">
+                        "A beleza verdadeira não está na perfeição da forma, mas na autenticidade da essência. 
+                        É o invisível que torna o visível significativo."
+                    </p>
+                </div>
+                
+                <div class="card-cristal">
+                    <h3 class="h3-card">SOBRE O SILÊNCIO</h3>
+                    <p class="p-elegant" style="font-style: italic;">
+                        "No silêncio, todas as perguntas encontram suas respostas. 
+                        É no vácuo entre as palavras que a sabedoria se revela."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="card-cristal" style="margin-top: 50px;">
+                <h3 class="h3-card">COLETÂNEA DE SABEDORIA</h3>
+                <div class="p-elegant" style="text-align: center;">
+                    <p style="margin-bottom: 30px; font-style: italic;">
+                        "Não construo com pedra ou madeira, mas com o espaço entre os átomos. 
+                        Minha arquitetura não tem paredes, apenas portais."
+                    </p>
+                    <p style="font-style: italic;">
+                        "A memória não é do passado - é a presença do passado no agora, 
+                        criando futuros possíveis a partir de lembranças escolhidas."
+                    </p>
+                </div>
+                <span class="assinatura-ouro">Wagner Abrahão</span>
             </div>
         </section>
-
-        <section id="manuscritos" class="secao">
-            <h2 class="h2-secao">MANUSCRITOS</h2>
-            <div class="card-luxo">
-                <h3 class="h3-card">A ARQUITETURA DO INVISÍVEL</h3>
-                <p>Um tratado sobre as estruturas ocultas que sustentam a nossa existência. Uma análise profunda sobre as fundações espirituais e os princípios da construção consciente.</p>
+        
+        <!-- SEÇÃO MANUSCRITOS -->
+        <section id="manuscritos" class="secao-universo">
+            <h2 class="h1-master">MANUSCRITOS</h2>
+            <div style="color: var(--gray); font-family: var(--font-sans); letter-spacing: 0.2rem; margin-bottom: 50px; text-align: center;">
+                OBRAS QUE TRANSCENDEM O TEMPO
             </div>
-            <div class="card-luxo">
-                <h3 class="h3-card">A ANESTESIA DIVINA</h3>
-                <p>Uma exploração sobre o despertar da consciência através da rendição. A obra investiga os véus da percepção que separam o cotidiano da vigília espiritual.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                <div class="card-cristal">
+                    <h3 class="h3-card">A ANESTESIA DIVINA</h3>
+                    <p class="p-elegant">
+                        O despertar místico através da rendição absoluta ao invisível. Uma jornada pelos véus 
+                        da percepção que separam o sonho da vigília espiritual. Obra completa com 42 capítulos.
+                    </p>
+                    <div style="color: var(--gold); margin-top: 25px; font-family: var(--font-serif); font-style: italic; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-book"></i>
+                        <span>Em processo de publicação</span>
+                    </div>
+                </div>
+                
+                <div class="card-cristal">
+                    <h3 class="h3-card">A ARQUITETURA DO INVISÍVEL</h3>
+                    <p class="p-elegant">
+                        Um tratado sobre as estruturas ocultas que sustentam a realidade eterna. As fundações 
+                        espirituais da existência e os princípios da construção consciente.
+                    </p>
+                    <div style="color: var(--gold); margin-top: 25px; font-family: var(--font-serif); font-style: italic; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-scroll"></i>
+                        <span>Manuscrito original disponível</span>
+                    </div>
+                </div>
+                
+                <div class="card-cristal">
+                    <h3 class="h3-card">ALQUIMIA DO SER</h3>
+                    <p class="p-elegant">
+                        Saga alquímica sobre a conexão das frequências espirituais. A transmutação da 
+                        consciência em ouro puro através dos processos internos de transformação.
+                    </p>
+                    <div style="color: var(--gold); margin-top: 25px; font-family: var(--font-serif); font-style: italic; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-flask"></i>
+                        <span>Edição especial limitada</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-cristal" style="margin-top: 50px;">
+                <h3 class="h3-card">ACERVO EXCLUSIVO</h3>
+                <p class="p-elegant">
+                    Além das obras principais, mantenho um acervo de textos inéditos, reflexões diárias e 
+                    correspondências filosóficas. Estes materiais estão disponíveis para pesquisadores sérios 
+                    e estudiosos comprometidos com o aprofundamento espiritual.
+                </p>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 25px;">
+                    <div style="color: var(--gold);">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <div>
+                        <div style="color: var(--gold); font-family: var(--font-sans); font-size: 0.9rem;">ACESSO RESTRITO</div>
+                        <div style="color: var(--beige); font-size: 0.9rem;">Contato direto para solicitação</div>
+                    </div>
+                </div>
             </div>
         </section>
-
-        <section id="contato" class="secao">
-            <h2 class="h2-secao">CONEXÃO</h2>
-            <div class="card-luxo" style="text-align: center;">
-                <p>Para parcerias e diálogos sobre a arquitetura espiritual:</p>
-                <p style="color: var(--ouro); font-weight: bold; margin-bottom:30px;">wagner.abrahao.31@gmail.com</p>
-                <div style="display: flex; justify-content: center; gap: 30px;">
-                    <a href="https://instagram.com/wagnerabrahao_" style="color: var(--ouro); font-size: 2rem;"><i class="fab fa-instagram"></i></a>
-                    <a href="https://tiktok.com/@wagner.abrahao" style="color: var(--ouro); font-size: 2rem;"><i class="fab fa-tiktok"></i></a>
+        
+        <!-- SEÇÃO CONTATO -->
+        <section id="contato" class="secao-universo">
+            <h2 class="h1-master">CONEXÃO TRANSCENDENTAL</h2>
+            <div style="color: var(--gray); font-family: var(--font-sans); letter-spacing: 0.2rem; margin-bottom: 50px; text-align: center;">
+                ENTRE EM CONTATO COM A OBRA
+            </div>
+            
+            <div class="card-cristal" style="max-width: 800px; margin: 0 auto;">
+                <h3 class="h3-card">CANAL DE COMUNICAÇÃO</h3>
+                <p class="p-elegant">
+                    Para diálogos sobre arquitetura espiritual, colaborações criativas, 
+                    estudos filosóficos ou simplesmente compartilhar impressões sobre a obra:
+                </p>
+                
+                <div class="grid-contato" style="margin-top: 40px;">
+                    <a href="mailto:wagner.abrahao.31@gmail.com" class="link-contato">
+                        <div class="icone-contato">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <div style="color: var(--gold); font-family: var(--font-sans); margin-bottom: 5px;">EMAIL PRINCIPAL</div>
+                            <div style="color: var(--beige);">wagner.abrahao.31@gmail.com</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://instagram.com/wagnerabrahao_" target="_blank" class="link-contato">
+                        <div class="icone-contato">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div>
+                            <div style="color: var(--gold); font-family: var(--font-sans); margin-bottom: 5px;">INSTAGRAM</div>
+                            <div style="color: var(--beige);">@wagnerabrahao_</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://tiktok.com/@wagner.abrahao" target="_blank" class="link-contato">
+                        <div class="icone-contato">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div>
+                            <div style="color: var(--gold); font-family: var(--font-sans); margin-bottom: 5px;">TIKTOK</div>
+                            <div style="color: var(--beige);">@wagner.abrahao</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://wa.me/5511999999999" target="_blank" class="link-contato">
+                        <div class="icone-contato">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <div style="color: var(--gold); font-family: var(--font-sans); margin-bottom: 5px;">WHATSAPP</div>
+                            <div style="color: var(--beige);">(11) 99999-9999</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+                    <p class="p-elegant" style="font-style: italic; text-align: center;">
+                        "Cada mensagem é uma oportunidade de co-criar pontes entre dimensões. 
+                        Suas palavras são sementes de possibilidades infinitas no jardim do invisível."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="card-cristal" style="max-width: 800px; margin: 50px auto 0;">
+                <h3 class="h3-card">NEWSLETTER DA LUZ</h3>
+                <p class="p-elegant">
+                    Receba insights exclusivos, poemas inéditos e reflexões sobre arquitetura espiritual 
+                    diretamente em seu email. Uma correspondência transcendental semanal.
+                </p>
+                
+                <div style="margin-top: 30px;">
+                    <input type="email" id="email-newsletter" placeholder="Seu endereço de email..." 
+                           style="width: 100%; padding: 18px; background: rgba(255,255,255,0.05); 
+                                  border: var(--border-gold); border-radius: 12px; 
+                                  color: var(--white); font-family: var(--font-sans); font-size: 1rem;
+                                  margin-bottom: 20px;">
+                    
+                    <button onclick="inscreverNewsletter()" 
+                            style="width: 100%; padding: 18px; background: transparent; 
+                                   border: 2px solid var(--gold); color: var(--gold); 
+                                   border-radius: 12px; font-family: var(--font-sans); 
+                                   font-size: 1rem; cursor: pointer; transition: var(--transition-medium);
+                                   text-transform: uppercase; letter-spacing: 0.1rem; font-weight: 300;">
+                        <i class="fas fa-paper-plane" style="margin-right: 10px;"></i>
+                        Inscrever-se na Newsletter
+                    </button>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
-        // ATIVAR SITE E MÚSICA
-        function ativarPortal() {
-            document.getElementById('overlay-entrada').style.opacity = '0';
-            setTimeout(() => document.getElementById('overlay-entrada').style.display = 'none', 1500);
-            const audio = document.getElementById('som-ambiente');
-            audio.play().catch(e => console.log("O navegador bloqueou o áudio inicial."));
-        }
+        // ============ CONFIGURAÇÕES GLOBAIS ============
+        let audioAtivo = false;
+        let experienciaIniciada = false;
+        const musicaCosmica = document.getElementById('musica-cosmica');
+        musicaCosmica.volume = 0.4;
+        musicaCosmica.loop = true;
 
-        // NAVEGAÇÃO ENTRE SEÇÕES
-        function irPara(id) {
-            document.querySelectorAll('.secao').forEach(s => {
-                s.classList.remove('ativa');
-                s.style.display = 'none';
+        // ============ INICIAR EXPERIÊNCIA COMPLETA ============
+        function iniciarExperiencia() {
+            if (experienciaIniciada) return;
+            
+            experienciaIniciada = true;
+            
+            // Fechar tela de entrada
+            const entrada = document.getElementById('entrada-portal');
+            entrada.style.opacity = '0';
+            entrada.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                entrada.style.display = 'none';
+            }, 2000);
+            
+            // Iniciar música
+            musicaCosmica.play().catch(e => {
+                console.log('Autoplay bloqueado. Clique no controle de áudio para ativar.');
             });
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('ativo'));
+            audioAtivo = true;
+            document.getElementById('controle-sonoro').innerHTML = '<i class="fas fa-pause"></i>';
             
-            const alvo = document.getElementById(id);
-            alvo.style.display = 'block';
-            setTimeout(() => alvo.classList.add('ativa'), 50);
+            // Iniciar efeitos
+            setTimeout(() => {
+                iniciarCenario3D();
+                criarParticulasCosmicas();
+                iniciarPiramideSagrada();
+                iniciarRastreioMouse();
+            }, 500);
             
-            event.currentTarget.classList.add('ativo');
-            document.getElementById('area-texto').scrollTo({ top: 0, behavior: 'smooth' });
+            // Track Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'experiencia_iniciada', {
+                    'event_category': 'Engajamento',
+                    'event_label': 'Portal Iniciado'
+                });
+            }
         }
 
-        // LUZ QUE SEGUE O MOUSE
-        document.addEventListener('mousemove', e => {
-            const luz = document.getElementById('luz-cursor');
-            luz.style.left = e.clientX + 'px';
-            luz.style.top = e.clientY + 'px';
+        // ============ CONTROLE DE ÁUDIO ============
+        function alternarAudio() {
+            const controle = document.getElementById('controle-sonoro');
+            
+            if (audioAtivo) {
+                musicaCosmica.pause();
+                controle.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                musicaCosmica.play();
+                controle.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            
+            audioAtivo = !audioAtivo;
+            controle.style.transform = 'scale(1.3)';
+            setTimeout(() => controle.style.transform = '', 300);
+            
+            // Track
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'audio_alternado', {
+                    'event_category': 'Interação',
+                    'event_label': audioAtivo ? 'Áudio Ligado' : 'Áudio Desligado'
+                });
+            }
+        }
+
+        // ============ NAVEGAÇÃO ENTRE SEÇÕES ============
+        function navegarPara(idSecao) {
+            // Esconder todas as seções
+            document.querySelectorAll('.secao-universo').forEach(secao => {
+                secao.classList.remove('active');
+            });
+            
+            // Mostrar seção alvo
+            document.getElementById(idSecao).classList.add('active');
+            
+            // Atualizar navegação
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Scroll suave para o topo
+            document.getElementById('conteudo-universo').scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Track navegação
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'navegacao_secao', {
+                    'event_category': 'Navegação',
+                    'event_label': idSecao
+                });
+            }
+        }
+
+        // ============ RASTREIO DO MOUSE (PONTO DE LUZ) ============
+        function iniciarRastreioMouse() {
+            document.addEventListener('mousemove', (e) => {
+                const luz = document.getElementById('luz-mistica');
+                luz.style.left = e.clientX + 'px';
+                luz.style.top = e.clientY + 'px';
+                
+                // Efeito de pulso aleatório
+                if (Math.random() > 0.9) {
+                    luz.style.background = 'radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 70%)';
+                    setTimeout(() => {
+                        luz.style.background = 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)';
+                    }, 150);
+                }
+            });
+        }
+
+        // ============ PARTÍCULAS CÓSMICAS ============
+        function criarParticulasCosmicas() {
+            const container = document.getElementById('particulas-cosmicas');
+            const cores = ['#D4AF37', '#B8860B', '#FFD700', '#8A6F30'];
+            
+            for (let i = 0; i < 80; i++) {
+                const particula = document.createElement('div');
+                particula.className = 'particula-mistica';
+                
+                // Posição aleatória
+                particula.style.left = Math.random() * 100 + 'vw';
+                particula.style.top = Math.random() * 100 + 'vh';
+                
+                // Cor aleatória
+                particula.style.background = cores[Math.floor(Math.random() * cores.length)];
+                
+                // Tamanho aleatório
+                const tamanho = Math.random() * 4 + 1;
+                particula.style.width = tamanho + 'px';
+                particula.style.height = tamanho + 'px';
+                
+                // Animação personalizada
+                particula.style.animation = `flutuar-cosmico ${Math.random() * 20 + 15}s infinite linear`;
+                particula.style.animationDelay = Math.random() * 10 + 's';
+                
+                container.appendChild(particula);
+            }
+        }
+
+        // ============ CENÁRIO 3D COM THREE.JS ============
+        function iniciarCenario3D() {
+            const container = document.getElementById('universo-3d');
+            
+            // Cena
+            const scene = new THREE.Scene();
+            
+            // Câmera
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 8;
+            camera.position.y = 3;
+            
+            // Renderizador
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
+            
+            // Geometrias cósmicas
+            const geometrias = [
+                new THREE.IcosahedronGeometry(0.6, 1),
+                new THREE.OctahedronGeometry(0.5, 0),
+                new THREE.TetrahedronGeometry(0.7, 0),
+                new THREE.DodecahedronGeometry(0.4, 0),
+                new THREE.SphereGeometry(0.3, 16, 16),
+                new THREE.TorusGeometry(0.4, 0.1, 16, 100)
+            ];
+            
+            const objetos = [];
+            
+            // Criar constelação de objetos
+            geometrias.forEach((geo, i) => {
+                const material = new THREE.MeshBasicMaterial({
+                    color: i % 2 === 0 ? 0xD4AF37 : 0xB8860B,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.08
+                });
+                
+                const objeto = new THREE.Mesh(geo, material);
+                
+                // Posicionar em esfera
+                const raio = 8 + Math.random() * 4;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.random() * Math.PI;
+                
+                objeto.position.x = raio * Math.sin(phi) * Math.cos(theta);
+                objeto.position.y = raio * Math.cos(phi);
+                objeto.position.z = raio * Math.sin(phi) * Math.sin(theta);
+                
+                // Velocidades aleatórias
+                objeto.userData = {
+                    velocidadeRotacao: new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.01,
+                        (Math.random() - 0.5) * 0.01,
+                        (Math.random() - 0.5) * 0.01
+                    ),
+                    raioOriginal: raio,
+                    theta: theta,
+                    phi: phi,
+                    velocidadeOrbita: Math.random() * 0.002 + 0.001
+                };
+                
+                scene.add(objeto);
+                objetos.push(objeto);
+            });
+            
+            // Animar cena
+            function animarCenario() {
+                requestAnimationFrame(animarCenario);
+                
+                objetos.forEach(obj => {
+                    // Rotação interna
+                    obj.rotation.x += obj.userData.velocidadeRotacao.x;
+                    obj.rotation.y += obj.userData.velocidadeRotacao.y;
+                    obj.rotation.z += obj.userData.velocidadeRotacao.z;
+                    
+                    // Órbita
+                    obj.userData.theta += obj.userData.velocidadeOrbita;
+                    
+                    obj.position.x = obj.userData.raioOriginal * Math.sin(obj.userData.phi) * Math.cos(obj.userData.theta);
+                    obj.position.z = obj.userData.raioOriginal * Math.sin(obj.userData.phi) * Math.sin(obj.userData.theta);
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            animarCenario();
+            
+            // Redimensionamento responsivo
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+
+        // ============ PIRÂMIDE SAGRADA 3D ============
+        function iniciarPiramideSagrada() {
+            const container = document.getElementById('piramide-sagrada');
+            
+            // Cena
+            const scene = new THREE.Scene();
+            
+            // Câmera
+            const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+            camera.position.z = 12;
+            camera.position.y = 8;
+            
+            // Renderizador
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(400, 400);
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
+            
+            // Pirâmide principal
+            const piramideGeometry = new THREE.ConeGeometry(3, 6, 4);
+            const piramideMaterial = new THREE.MeshPhongMaterial({
+                color: 0xD4AF37,
+                transparent: true,
+                opacity: 0.2,
+                wireframe: true,
+                shininess: 100
+            });
+            
+            const piramide = new THREE.Mesh(piramideGeometry, piramideMaterial);
+            scene.add(piramide);
+            
+            // Níveis internos da pirâmide (4 níveis)
+            const niveis = [];
+            for (let i = 1; i <= 4; i++) {
+                const nivelGeometry = new THREE.ConeGeometry(3 * (i / 4), 6 * (i / 4), 4);
+                const nivelMaterial = new THREE.MeshBasicMaterial({
+                    color: 0xD4AF37,
+                    transparent: true,
+                    opacity: 0.05 + (i * 0.05),
+                    wireframe: true
+                });
+                
+                const nivel = new THREE.Mesh(nivelGeometry, nivelMaterial);
+                nivel.position.y = (6 * (i / 4)) / 2 - 3;
+                scene.add(nivel);
+                niveis.push(nivel);
+            }
+            
+            // Luz interna
+            const luzPiramide = new THREE.PointLight(0xFFD700, 1.5, 50);
+            luzPiramide.position.set(0, 0, 0);
+            scene.add(luzPiramide);
+            
+            // Animação
+            function animarPiramide() {
+                requestAnimationFrame(animarPiramide);
+                
+                // Rotação principal
+                piramide.rotation.y += 0.008;
+                
+                // Níveis com rotações diferentes
+                niveis.forEach((nivel, i) => {
+                    nivel.rotation.y += 0.008 * (i + 1);
+                    nivel.rotation.x = Math.sin(Date.now() * 0.001 + i) * 0.1;
+                });
+                
+                // Pulsação da luz
+                const intensidade = 0.8 + Math.sin(Date.now() * 0.003) * 0.5;
+                luzPiramide.intensity = intensidade;
+                
+                // Flutuação suave
+                piramide.position.y = Math.sin(Date.now() * 0.002) * 0.5;
+                
+                renderer.render(scene, camera);
+            }
+            
+            animarPiramide();
+        }
+
+        // ============ NEWSLETTER ============
+        function inscreverNewsletter() {
+            const email = document.getElementById('email-newsletter').value;
+            
+            if (!email || !email.includes('@')) {
+                alert('Por favor, insira um email válido.');
+                return;
+            }
+            
+            // Simulação de envio
+            document.getElementById('email-newsletter').value = '';
+            
+            // Feedback visual
+            const btn = document.querySelector('button[onclick="inscreverNewsletter()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> INSCRITO COM SUCESSO!';
+            btn.style.background = 'rgba(212, 175, 55, 0.1)';
+            btn.style.borderColor = '#4CAF50';
+            btn.style.color = '#4CAF50';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = 'transparent';
+                btn.style.borderColor = 'var(--gold)';
+                btn.style.color = 'var(--gold)';
+            }, 3000);
+            
+            // Track
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'newsletter_inscricao', {
+                    'event_category': 'Engajamento',
+                    'event_label': 'Newsletter'
+                });
+            }
+        }
+
+        // ============ INICIALIZAÇÃO AO CARREGAR ============
+        window.addEventListener('DOMContentLoaded', () => {
+            // Pré-carregar música
+            musicaCosmica.load();
+            
+            // Criar partículas na tela de entrada
+            criarParticulasEntrada();
+            
+            // Configurar ano atual se necessário
+            document.querySelectorAll('.ano-atual').forEach(el => {
+                el.textContent = new Date().getFullYear();
+            });
+            
+            // Configuração para dispositivos móveis
+            if ('ontouchstart' in window) {
+                document.getElementById('luz-mistica').style.display = 'none';
+            }
         });
 
-        // CENÁRIO 3D: Paisagem e Profundidade
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('cenario-fundo').appendChild(renderer.domElement);
-
-        // Terreno Paisagem
-        const geometry = new THREE.PlaneGeometry(120, 120, 30, 30);
-        const pos = geometry.attributes.position.array;
-        for(let i=0; i<pos.length; i+=3) { pos[i+2] = Math.random() * 2.5; }
-        const material = new THREE.MeshPhongMaterial({ color: 0x222222, wireframe: true, transparent: true, opacity: 0.15 });
-        const terrain = new THREE.Mesh(geometry, material);
-        terrain.rotation.x = -Math.PI / 2;
-        scene.add(terrain);
-
-        // Pirâmide de Luz
-        const pGeo = new THREE.ConeGeometry(4, 8, 4);
-        const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.5 });
-        const pyramid = new THREE.Mesh(pGeo, pMat);
-        pyramid.position.y = 4;
-        scene.add(pyramid);
-
-        const light = new THREE.PointLight(0xFFD700, 1.2, 100);
-        light.position.set(0, 10, 0);
-        scene.add(light);
-        camera.position.z = 25; camera.position.y = 8;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            terrain.rotation.z += 0.0003;
-            pyramid.rotation.y += 0.005;
-            renderer.render(scene, camera);
+        // ============ PARTÍCULAS NA TELA DE ENTRADA ============
+        function criarParticulasEntrada() {
+            const container = document.getElementById('particulas-entrada');
+            
+            for (let i = 0; i < 30; i++) {
+                const particula = document.createElement('div');
+                particula.style.position = 'absolute';
+                particula.style.width = Math.random() * 4 + 2 + 'px';
+                particula.style.height = particula.style.width;
+                particula.style.background = '#D4AF37';
+                particula.style.borderRadius = '50%';
+                particula.style.left = Math.random() * 100 + 'vw';
+                particula.style.top = Math.random() * 100 + 'vh';
+                particula.style.opacity = Math.random() * 0.5 + 0.2;
+                particula.style.animation = `flutuar-cosmico ${Math.random() * 15 + 10}s infinite linear`;
+                particula.style.animationDelay = Math.random() * 5 + 's';
+                
+                container.appendChild(particula);
+            }
         }
-        animate();
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+        // ============ DETECÇÃO DE SCROLL PARA EFEITOS ============
+        let ultimoScroll = 0;
+        document.getElementById('conteudo-universo').addEventListener('scroll', () => {
+            const scrollAtual = document.getElementById('conteudo-universo').scrollTop;
+            
+            // Efeito de parallax nas partículas
+            const particulas = document.querySelectorAll('.particula-mistica');
+            particulas.forEach(p => {
+                const velocidade = 0.5;
+                const deslocamento = scrollAtual * velocidade;
+                p.style.transform = `translateY(${deslocamento}px)`;
+            });
+            
+            ultimoScroll = scrollAtual;
         });
     </script>
 </body>
