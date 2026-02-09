@@ -2,7 +2,7 @@
 <meta name="keywords" content="Wagner Abrahão, Arquitetura do Invisível, A Anestesia Divina, Filosofia Contemporânea, Espiritualidade Universal, Escritor Belo Horizonte">
 
 <div class="card-luxo">
-    <h3>A ARQUITETURA DO SER</h3>
+    <h3>ALQUIMIA DO SER</h3>
     <p class="texto-universal">
         A obra de Wagner Abrahão é um convite à exploração das estruturas sutis que sustentam a existência eterna. Como Arquiteto do Invisível, ele utiliza a harmonia da palavra para construir pontes entre a densidade do cotidiano e a leveza do transcendente. 
     </p>
