@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wagner Abrahão | Arquiteto do Invisível</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5WZHN0YR19');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@200;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --ouro: #c5a059; --preto: #000000; --branco: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body, html { background-color: var(--preto); color: var(--branco); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* PORTAL DE ENTRADA (MERCEDES/FERRARI STYLE) */
+        #splash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--preto); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .splash-logo { font-family: 'Cinzel', serif; font-size: 2rem; letter-spacing: 12px; margin-bottom: 40px; text-align: center; }
+        #btn-entrar {
+            background: none; border: 1px solid var(--ouro); color: var(--ouro);
+            padding: 18px 50px; font-family: 'Cinzel'; letter-spacing: 4px;
+            cursor: pointer; transition: 0.4s; font-size: 0.8rem;
+        }
+        #btn-entrar:hover { background: var(--ouro); color: var(--preto); }
+
+        /* HEADER E NAVEGAÇÃO */
+        nav { position: fixed; top: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: space-between; z-index: 100; mix-blend-mode: difference; }
+        .nav-brand { font-family: 'Cinzel'; font-weight: 900; letter-spacing: 5px; }
+
+        /* SEÇÃO HERO */
+        .hero { 
+            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center;
+        }
+        .hero h1 { font-family: 'Cinzel'; font-size: clamp(2.5rem, 8vw, 5rem); letter-spacing: 15px; font-weight: 400; }
+
+        /* MANUSCRITOS (PRADA STYLE) */
+        .manuscritos { background: var(--branco); color: var(--preto); padding: 120px 10%; }
+        .manuscritos h2 { font-family: 'Cinzel'; font-size: 2.5rem; margin-bottom: 70px; letter-spacing: 8px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .card { padding: 60px 40px; border: 1px solid #eee; transition: 0.5s; text-align: center; }
+        .card:hover { border-color: var(--ouro); transform: translateY(-10px); }
+        .card h3 { font-family: 'Cinzel'; color: var(--ouro); margin-bottom: 20px; letter-spacing: 3px; }
+        .card p { font-family: 'Lora'; font-size: 1rem; line-height: 1.8; color: #444; }
+
+        /* FOOTER */
+        footer { padding: 80px 10%; background: var(--preto); border-top: 1px solid #111; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-links a { display: block; color: #666; text-decoration: none; margin: 10px 0; font-size: 0.8rem; letter-spacing: 2px; }
+        .footer-links a:hover { color: var(--ouro); }
+
+        @media (max-width: 768px) { nav { padding: 20px; } .hero h1 { letter-spacing: 8px; } }
+    </style>
+</head>
+<body>
+
+    <div id="splash">
+        <div class="splash-logo">WAGNER ABRAHÃO</div>
+        <button id="btn-entrar" onclick="ativar()">ATIVAR CONSCIÊNCIA</button>
+    </div>
+
+    <audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+
+    <nav><div class="nav-brand">W.A</div></nav>
+
+    <section class="hero">
+        <div>
+            <h1>ARQUITETO DO INVISÍVEL</h1>
+            <p style="font-family:'Lora'; font-style:italic; opacity:0.7;">A evolução da consciência através da palavra.</p>
+        </div>
+    </section>
+
+    <section class="manuscritos" id="obras">
+        <h2>MANUSCRITOS</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>A CENTELHA INQUIETA</h3>
+                <p>O despertar do fogo primordial que reside no silêncio da alma. Uma investigação sobre a origem da luz interna.</p>
+            </div>
+            <div class="card">
+                <h3>ALQUIMIA DO SER</h3>
+                <p>Tratado sobre a transmutação consciente. Converter a densidade cotidiana no ouro da consciência plena.</p>
+            </div>
+            <div class="card">
+                <h3>ANESTESIA DIVINA</h3>
+                <p>O suporte espiritual necessário para os buscadores da verdade. Acalento na densidade do visível.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div><p style="font-family:'Cinzel'; color:var(--ouro);">WAGNER ABRAHÃO</p><p style="font-size:0.7rem; color:#333; margin-top:10px;">Belo Horizonte | MG</p></div>
+            <div class="footer-links"><strong>REDES</strong><a href="https://instagram.com/wagner.abrahao.31">INSTAGRAM</a><a href="https://tiktok.com/@wagnerabrahao">TIKTOK</a></div>
+            <div class="footer-links"><strong>CONTATO</strong><a href="mailto:wagner.abrahao.31@gmail.com">EMAIL</a></div>
+        </div>
+    </footer>
+
+    <script>
+        function ativar() {
+            const audio = document.getElementById('musica');
+            const splash = document.getElementById('splash');
+            audio.volume = 0.3;
+            audio.play().catch(e => console.log("Áudio aguardando interação."));
+            splash.style.transform = "translateY(-100%)";
+            setTimeout(() => { splash.style.display = "none"; }, 1500);
+        }
+    </script>
+</body>
+</html>
 
