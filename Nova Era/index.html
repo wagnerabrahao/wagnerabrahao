@@ -1,4 +1,4 @@
-00:56 09/02/2026<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
     </script>
     
     <title>WAGNER ABRAHÃO | Arquiteto do Invisível</title>
+    <meta name="description" content="Wagner Abrahão - Literatura, filosofia e espiritualidade universal.">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,400&family=Raleway:wght@200;400&display=swap" rel="stylesheet">
@@ -29,24 +30,24 @@
         
         body { background: var(--preto); color: var(--cinza); font-family: 'Cormorant Garamond', serif; overflow: hidden; }
 
-        /* TELA DE ENTRADA (MÚSICA) */
+        /* TELA DE ENTRADA */
         #overlay-entrada {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 10000; display: flex; flex-direction: column;
             align-items: center; justify-content: center; transition: 1.5s;
         }
-        .btn-portal {
+        .btn-adentrar {
             padding: 15px 40px; background: transparent; border: 1px solid var(--ouro);
             color: var(--ouro); font-family: 'Cinzel', serif; cursor: pointer;
-            letter-spacing: 4px; transition: 0.5s;
+            letter-spacing: 4px; transition: 0.5s; text-transform: uppercase;
         }
-        .btn-portal:hover { background: var(--ouro); color: #000; box-shadow: 0 0 30px var(--ouro); }
+        .btn-adentrar:hover { background: var(--ouro); color: #000; box-shadow: 0 0 30px var(--ouro); }
 
-        /* PAISAGEM 3D E LUZ */
-        #cenario-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        /* PAISAGEM 3D E LUZ DO MOUSE */
+        #cenario-fundo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         #luz-cursor {
-            position: fixed; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            position: fixed; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
             transform: translate(-50%, -50%); pointer-events: none; z-index: 2;
         }
 
@@ -72,16 +73,15 @@
         .secao { display: none; opacity: 0; transform: translateY(30px); transition: 1s; max-width: 900px; margin: 0 auto; }
         .secao.ativa { display: block; opacity: 1; transform: translateY(0); }
 
-        /* CORREÇÃO HIERARQUIA: 1 H1 apenas */
+        /* HIERARQUIA CORRIGIDA: Somente 1 H1 */
         .h1-nome { font-family: 'Cinzel', serif; font-size: 4rem; background: var(--gradiente); -webkit-background-clip: text; color: transparent; text-align: center; margin-bottom: 5px; }
-        .h2-secao { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--ouro); text-align: center; margin-bottom: 40px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
+        .h2-secao { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--ouro); text-align: center; margin-bottom: 40px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 10px; }
         .h3-card { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--ouro); margin-bottom: 15px; }
 
         /* FOTO E CARDS */
         .moldura-foto { width: 220px; height: 280px; margin: 0 auto 30px; border: 2px solid var(--ouro); padding: 8px; background: #000; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
-        .foto-principal { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.2); }
-        .card-luxo { background: rgba(10,10,10,0.75); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.15); padding: 40px; margin-bottom: 30px; transition: 0.4s; }
-        .card-luxo:hover { border-color: var(--ouro); background: rgba(20,20,20,0.9); }
+        .foto-principal { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1); }
+        .card-luxo { background: rgba(10,10,10,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.15); padding: 40px; margin-bottom: 30px; }
         
         p { font-size: 1.3rem; line-height: 1.8; text-align: justify; margin-bottom: 15px; }
         .italico { font-style: italic; text-align: center; }
@@ -94,11 +94,14 @@
 </head>
 <body>
 
-    <audio id="musica" loop><source src="https://audio.jukehost.co.uk/4SFPImyQw9YdImL1wssB8V35jV63b1rZ" type="audio/mpeg"></audio>
+    <audio id="musica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
 
     <div id="overlay-entrada">
-        <h2 style="font-family:'Cinzel'; color:var(--ouro); letter-spacing:5px; margin-bottom:20px;">WAGNER ABRAHÃO</h2>
-        <button class="btn-portal" onclick="iniciar()">ADENTRAR</button>
+        <div style="text-align:center;">
+            <h2 style="font-family:'Cinzel'; color:var(--ouro); letter-spacing:5px; margin-bottom:10px;">WAGNER ABRAHÃO</h2>
+            <p style="font-family:'Raleway'; color:#888; letter-spacing:3px; margin-bottom:30px;">ARQUITETURA DO INVISÍVEL</p>
+            <button class="btn-adentrar" onclick="iniciar()">ADENTRAR</button>
+        </div>
     </div>
 
     <div id="cenario-fundo"></div>
@@ -107,8 +110,7 @@
     <nav id="menu-lateral">
         <div class="nav-btn ativo" onclick="irPara('home')"><i class="fas fa-home"></i></div>
         <div class="nav-btn" onclick="irPara('poesia')"><i class="fas fa-feather"></i></div>
-        <div class="nav-btn" onclick="irPara('aforismos')"><i class="fas fa-quote-right"></i></div>
-        <div class="nav-btn" onclick="irPara('obras')"><i class="fas fa-book"></i></div>
+        <div class="nav-btn" onclick="irPara('manuscritos')"><i class="fas fa-book"></i></div>
         <div class="nav-btn" onclick="irPara('contato')"><i class="fas fa-envelope"></i></div>
     </nav>
 
@@ -116,57 +118,43 @@
         <section id="home" class="secao ativa">
             <div class="moldura-foto"><img src="26053.jpg" class="foto-principal" alt="Wagner Abrahão"></div>
             <h1 class="h1-nome">WAGNER ABRAHÃO</h1>
-            <p class="italico" style="letter-spacing: 3px; color: #aaa; margin-bottom: 50px;">ARQUITETURA DO INVISÍVEL</p>
+            <p class="italico" style="letter-spacing: 5px; color: #aaa; margin-bottom: 50px;">ARQUITETURA DO INVISÍVEL</p>
             <div class="card-luxo">
                 <h3 class="h3-card">MISSÃO</h3>
-                <p>Revelar as estruturas que sustentam a nossa realidade. Minha obra busca ser um suporte para quem procura sentido e acalento na densidade da vida cotidiana.</p>
+                <p>Revelar as estruturas que sustentam a nossa realidade cotidiana. Minha obra busca oferecer sentido e acalento através da palavra, conectando o visível ao transcendente de forma universal.</p>
             </div>
         </section>
 
         <section id="poesia" class="secao">
-            <h2 class="h2-secao">POESIA</h2>
+            <h2 class="h2-secao">POESIA E REFLEXÕES</h2>
             <div class="card-luxo">
                 <h3 class="h3-card">ANESTESIA DIVINA</h3>
                 <p class="italico">"Dante não sabia que estava dormindo. Durante anos, viveu em estado de espera silenciosa. Sua existência era um ponto central perpétuo, até que a perda se tornou revelação."</p>
             </div>
             <div class="card-luxo">
-                <h3 class="h3-card">A MEMÓRIA DA LUZ</h3>
-                <p class="italico">"Antes da forma, havia apenas luz. Em cada átomo, uma centelha lembra sua origem divina. Esquecer é humano; lembrar é o caminho de volta."</p>
+                <h3 class="h3-card">SOBRE A VERDADE</h3>
+                <p>"A verdade não é uma linha reta a ser seguida, mas uma esfera a ser habitada. Cada ângulo revela uma faceta, cada experiência traz uma nova profundidade."</p>
             </div>
         </section>
 
-        <section id="aforismos" class="secao">
-            <h2 class="h2-secao">AFORISMOS</h2>
-            <div class="card-luxo">
-                <h3 class="h3-card">SOBRE O SILÊNCIO</h3>
-                <p>"No vácuo entre as palavras, a sabedoria se revela. O silêncio não é ausência, é a plenitude do que ainda não foi dito."</p>
-            </div>
-            <div class="card-luxo">
-                <h3 class="h3-card">SOBRE A BELEZA</h3>
-                <p>"A beleza verdadeira não está na perfeição da forma, mas na autenticidade da essência. É o invisível que torna o visível significativo."</p>
-            </div>
-        </section>
-
-        <section id="obras" class="secao">
+        <section id="manuscritos" class="secao">
             <h2 class="h2-secao">MANUSCRITOS</h2>
             <div class="card-luxo">
-                <h3 class="h3-card">A ARQUITETURA DO INVISÍVEL</h3>
-                <p>Tratado sobre as estruturas ocultas que sustentam a realidade eterna. Fundações espirituais da existência e princípios da construção consciente.</p>
+                <h3 class="h3-card">A ARQUITETURA DO INVISÍVEL</h3> <p>Um tratado sobre as estruturas ocultas que sustentam a nossa existência. Uma análise profunda sobre as fundações espirituais e os princípios da construção consciente.</p>
             </div>
             <div class="card-luxo">
-                <h3 class="h3-card">A ANESTESIA DIVINA</h3>
-                <p>O despertar através da rendição absoluta. Uma jornada pelos véus da percepção que separam o sonho da vigília espiritual.</p>
+                <h3 class="h3-card">A ANESTESIA DIVINA</h3> <p>Uma exploração sobre o despertar da consciência através da rendição. A obra investiga os véus da percepção que separam o cotidiano da vigília espiritual.</p>
             </div>
         </section>
 
         <section id="contato" class="secao">
             <h2 class="h2-secao">CONEXÃO</h2>
             <div class="card-luxo" style="text-align: center;">
-                <p>Para parcerias e diálogos sobre a arquitetura espiritual:</p>
-                <p style="color: var(--ouro); font-weight: bold;">wagner.abrahao.31@gmail.com</p>
-                <div style="margin-top: 20px; font-size: 2rem; display: flex; justify-content: center; gap: 30px;">
-                    <a href="https://instagram.com/wagnerabrahao_" style="color: var(--ouro);"><i class="fab fa-instagram"></i></a>
-                    <a href="https://tiktok.com/@wagner.abrahao" style="color: var(--ouro);"><i class="fab fa-tiktok"></i></a>
+                <p>Para partilhas e diálogos:</p>
+                <p style="color: var(--ouro); font-weight: bold; margin-bottom:30px;">wagner.abrahao.31@gmail.com</p>
+                <div style="display: flex; justify-content: center; gap: 30px;">
+                    <a href="https://instagram.com/wagnerabrahao_" style="color: var(--ouro); font-size: 2rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@wagner.abrahao" style="color: var(--ouro); font-size: 2rem;"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </section>
@@ -176,7 +164,7 @@
         function iniciar() {
             document.getElementById('overlay-entrada').style.opacity = '0';
             setTimeout(() => document.getElementById('overlay-entrada').style.display = 'none', 1500);
-            document.getElementById('musica').play();
+            document.getElementById('musica').play().catch(e => console.log("Áudio aguarda interação"));
         }
 
         function irPara(id) {
@@ -195,37 +183,37 @@
             luz.style.top = e.clientY + 'px';
         });
 
-        // CENÁRIO 3D: Paisagem e Horizonte
+        // CENÁRIO 3D: Paisagem e Profundidade
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.getElementById('cenario-fundo').appendChild(renderer.domElement);
 
-        // Terreno ondulado
-        const geometry = new THREE.PlaneGeometry(150, 150, 40, 40);
+        // Terreno Paisagem
+        const geometry = new THREE.PlaneGeometry(120, 120, 30, 30);
         const pos = geometry.attributes.position.array;
-        for(let i=0; i<pos.length; i+=3) { pos[i+2] = Math.random() * 3; }
-        const material = new THREE.MeshPhongMaterial({ color: 0x111111, wireframe: true, transparent: true, opacity: 0.3 });
+        for(let i=0; i<pos.length; i+=3) { pos[i+2] = Math.random() * 2.5; }
+        const material = new THREE.MeshPhongMaterial({ color: 0x222222, wireframe: true, transparent: true, opacity: 0.2 });
         const terrain = new THREE.Mesh(geometry, material);
         terrain.rotation.x = -Math.PI / 2;
         scene.add(terrain);
 
-        // Pirâmide de Luz
-        const pGeo = new THREE.ConeGeometry(6, 10, 4);
-        const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.7 });
+        // Ponto de Luz Central (Pirâmide)
+        const pGeo = new THREE.ConeGeometry(4, 8, 4);
+        const pMat = new THREE.MeshPhongMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.6 });
         const pyramid = new THREE.Mesh(pGeo, pMat);
-        pyramid.position.y = 5;
+        pyramid.position.y = 4;
         scene.add(pyramid);
 
-        const light = new THREE.PointLight(0xFFD700, 2, 100);
+        const light = new THREE.PointLight(0xFFD700, 1.5, 100);
         light.position.set(0, 10, 0);
         scene.add(light);
-        camera.position.z = 30; camera.position.y = 10;
+        camera.position.z = 25; camera.position.y = 8;
 
         function animate() {
             requestAnimationFrame(animate);
-            terrain.rotation.z += 0.001;
+            terrain.rotation.z += 0.0005;
             pyramid.rotation.y += 0.005;
             renderer.render(scene, camera);
         }
