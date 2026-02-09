@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Wagner Abrahão | Arquiteto do Invisível</title>
+    <title>Wagner Abrahão | Official Site</title>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5WZHN0YR19"></script>
     <script>
@@ -13,106 +13,170 @@
       gtag('config', 'G-5WZHN0YR19');
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@200;400&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     
     <style>
-        :root { --ouro: #d4af37; --obsidiana: #050505; --creme: #fdfaf1; }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root { --gold: #c5a059; --black: #000000; --white: #ffffff; --gray: #111111; }
         
-        body { background-color: var(--obsidiana); color: var(--creme); font-family: 'Lora', serif; overflow-x: hidden; }
-
-        /* PORTAL DE ABERTURA (Igual a1.jpg) */
-        #portal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1000; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover; background-position: center;
-            transition: opacity 2s ease, visibility 2s;
-        }
-
-        .portal-content h1 {
-            font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 4.5rem);
-            letter-spacing: 12px; color: #fff; margin-bottom: 5px;
-        }
-
-        .portal-content .script {
-            font-family: 'Pinyon Script', cursive; font-size: clamp(1.8rem, 5vw, 3rem);
-            color: #fff; margin-bottom: 40px; opacity: 0.9;
-        }
-
-        #btn-ativar {
-            padding: 15px 40px; background: transparent;
-            border: 2px solid var(--ouro); color: #fff;
-            font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 4px;
-            cursor: pointer; transition: 0.5s; box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-
-        #btn-ativar:hover { background: var(--ouro); color: var(--obsidiana); box-shadow: 0 0 30px var(--ouro); }
-
-        /* SITE PRINCIPAL (Escondido inicialmente) */
-        main { opacity: 0; transition: opacity 3s ease; padding-top: 80px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         
-        .section-lux { padding: 80px 10%; max-width: 1100px; margin: auto; }
-        .book-card { border: 1px solid rgba(212, 175, 55, 0.2); padding: 30px; margin: 20px 0; background: rgba(255,255,255,0.02); }
-        .book-card h3 { color: var(--ouro); font-family: 'Cinzel'; margin-bottom: 15px; }
+        body, html { 
+            background-color: var(--black); 
+            color: var(--white); 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-        /* Otimização Mobile */
+        /* --- PORTAL DE ATIVAÇÃO (LUXO) --- */
+        #splash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--black); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .splash-logo {
+            font-family: 'Cinzel', serif; font-size: 2.5rem; letter-spacing: 15px;
+            margin-bottom: 50px; animation: fadeBreathe 3s infinite;
+        }
+
+        #btn-enter {
+            background: none; border: 1px solid var(--gold); color: var(--gold);
+            padding: 20px 60px; font-family: 'Cinzel'; letter-spacing: 5px;
+            cursor: pointer; transition: 0.4s; font-size: 0.8rem;
+        }
+
+        #btn-enter:hover { background: var(--gold); color: var(--black); }
+
+        /* --- NAVEGAÇÃO MERCEDES STYLE --- */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 30px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; mix-blend-mode: difference;
+        }
+
+        .nav-brand { font-family: 'Cinzel'; font-weight: 900; letter-spacing: 5px; font-size: 1.2rem; }
+
+        /* --- SEÇÕES DE IMPACTO --- */
+        section { height: 100vh; width: 100%; position: relative; display: flex; align-items: center; padding: 0 10%; }
+
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1505506819681-aaad24e5ad0a?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; justify-content: center; text-align: center;
+        }
+
+        .hero h1 { font-family: 'Cinzel'; font-size: clamp(2rem, 10vw, 6rem); letter-spacing: 20px; font-weight: 400; }
+        .hero p { font-family: 'Lora'; font-style: italic; font-size: 1.2rem; margin-top: 20px; opacity: 0.8; }
+
+        /* --- COLEÇÃO DE MANUSCRITOS (PRADA STYLE) --- */
+        .collection { background: var(--white); color: var(--black); padding: 100px 5%; height: auto; flex-direction: column; }
+        
+        .collection-title { font-family: 'Cinzel'; font-size: 3rem; margin-bottom: 80px; letter-spacing: 10px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px; background: #eee; width: 100%; }
+
+        .item { 
+            background: var(--white); padding: 80px 40px; text-align: center;
+            transition: 0.6s; border: 1px solid #f0f0f0;
+        }
+        
+        .item:hover { background: #fafafa; transform: scale(0.98); }
+        .item h3 { font-family: 'Cinzel'; font-size: 1.5rem; margin-bottom: 20px; color: var(--gold); }
+        .item p { font-size: 0.9rem; line-height: 2; color: #666; font-weight: 200; }
+
+        /* --- FOOTER FERRARI STYLE --- */
+        footer { padding: 100px 10%; background: var(--black); text-align: left; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
+        .footer-logo { font-family: 'Cinzel'; font-size: 2rem; color: var(--gold); }
+        .footer-links a { display: block; color: #555; text-decoration: none; margin: 15px 0; font-size: 0.8rem; letter-spacing: 2px; transition: 0.3s; }
+        .footer-links a:hover { color: var(--gold); }
+
+        /* Mobile Adjusts */
         @media (max-width: 768px) {
-            .section-lux { padding: 40px 5%; }
-            .portal-content h1 { letter-spacing: 6px; }
+            nav { padding: 20px; }
+            section { padding: 0 5%; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .collection-title { font-size: 2rem; }
         }
+
+        @keyframes fadeBreathe { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div id="portal">
-        <div class="portal-content">
-            <h1>WAGNER ABRAHÃO</h1>
-            <p class="script">Arquiteto do Invisível</p>
-            <button id="btn-ativar" onclick="entrar()">ATIVAR CONSCIÊNCIA</button>
-        </div>
+    <div id="splash">
+        <div class="splash-logo">WAGNER ABRAHÃO</div>
+        <button id="btn-enter" onclick="startExperience()">ATIVAR CONSCIÊNCIA</button>
     </div>
 
-    <audio id="bg-music" loop>
+    <audio id="main-audio" loop>
         <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
-    <main id="main-content">
-        <section class="section-lux">
-            <h2 style="font-family: 'Cinzel'; color: var(--ouro); text-align: center;">Manuscritos Salvos</h2>
-            <div class="book-card">
-                <h3>A Centelha Inquieta</h3>
-                <p>O despertar do fogo primordial que reside no silêncio da alma. Uma investigação sobre a origem da luz interna.</p>
+    <nav>
+        <div class="nav-brand">W.A</div>
+        <div style="font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5;">ARQUITETO DO INVISÍVEL</div>
+    </nav>
+
+    <section class="hero">
+        <div>
+            <h1 data-scroll>REVELAR O INVISÍVEL</h1>
+            <p>Onde o luxo encontra a essência da alma.</p>
+        </div>
+    </section>
+
+    <section class="collection" id="obras">
+        <h2 class="collection-title">OS MANUSCRITOS</h2>
+        <div class="grid">
+            <div class="item">
+                <h3>A CENTELHA INQUIETA</h3>
+                <p>O despertar do fogo primordial. Uma investigação sobre a origem da luz interna que reside no silêncio.</p>
             </div>
-            <div class="book-card">
-                <h3>Alquimia do Ser</h3>
-                <p>Tratado sobre a transmutação consciente. Como converter a densidade cotidiana no ouro da consciência plena.</p>
+            <div class="item">
+                <h3>ALQUIMIA DO SER</h3>
+                <p>O tratado da transmutação. Converter a densidade da vida cotidiana no ouro da consciência plena.</p>
             </div>
-            <div class="book-card">
-                <h3>Anestesia Divina</h3>
-                <p>O suporte espiritual necessário para os buscadores da verdade. Acalento na densidade do visível.</p>
+            <div class="item">
+                <h3>ANESTESIA DIVINA</h3>
+                <p>O acalento supremo. Suporte espiritual para os buscadores que navegam na densidade do visível.</p>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">WAGNER ABRAHÃO</div>
+                <p style="margin-top: 20px; color: #444; font-size: 0.8rem;">Belo Horizonte | Minas Gerais</p>
+            </div>
+            <div class="footer-links">
+                <strong>CONEXÃO</strong>
+                <a href="https://instagram.com/wagner.abrahao.31">INSTAGRAM</a>
+                <a href="https://tiktok.com/@wagnerabrahao">TIKTOK</a>
+            </div>
+            <div class="footer-links">
+                <strong>CONTATO</strong>
+                <a href="mailto:wagner.abrahao.31@gmail.com">EMAIL</a>
+                <a href="#">WHATSAPP</a>
+            </div>
+        </div>
+        <div style="margin-top: 80px; font-size: 0.6rem; color: #222; letter-spacing: 2px;">© 2026 WAGNER ABRAHÃO. TODOS OS DIREITOS RESERVADOS.</div>
+    </footer>
 
     <script>
-        function entrar() {
-            const audio = document.getElementById('bg-music');
-            const portal = document.getElementById('portal');
-            const main = document.getElementById('main-content');
-
-            // 1. Toca a música (O toque no botão libera o áudio no celular)
-            audio.play().catch(e => console.log("Erro ao tocar áudio:", e));
+        function startExperience() {
+            const audio = document.getElementById('main-audio');
+            const splash = document.getElementById('splash');
             
-            // 2. Transição visual
-            portal.style.opacity = '0';
+            audio.volume = 0.4;
+            audio.play().catch(e => console.log("Audio interaction required."));
+            
+            splash.style.transform = "translateY(-100%)";
+            
             setTimeout(() => {
-                portal.style.visibility = 'hidden';
-                main.style.opacity = '1';
-                window.scrollTo(0, 0);
-            }, 2000);
+                splash.style.display = "none";
+            }, 1500);
         }
     </script>
 </body>
