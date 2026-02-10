@@ -17,24 +17,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        :root { --gold: #c5a059; --dark-gold: #7a6335; --obsidian: #050505; --cream: #fdfaf1; }
+        :root { --gold: #c5a059; --dark-gold: #7a6335; --obsidian: #050505; --cream: #fdfaf1; --glass: rgba(255, 255, 255, 0.03); }
         
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body, html { background-color: var(--obsidian); color: var(--cream); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* CANVAS - ALQUIMIA VISUAL */
+        /* CANVAS - VIDA ORGÂNICA */
         #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.6; }
 
-        /* PORTAL DE ENTRADA (ESTILO FERRARI) */
+        /* PORTAL DE ENTRADA (ESTILO PRESTÍGIO) */
         #splash {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             z-index: 10000; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            background: radial-gradient(circle, rgba(10,10,10,0.7) 0%, rgba(0,0,0,1) 100%), 
+            background: radial-gradient(circle, rgba(10,10,10,0.8) 0%, rgba(0,0,0,1) 100%), 
                         url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2560&q=80');
             background-size: cover; background-position: center;
             transition: transform 2s cubic-bezier(0.85, 0, 0.15, 1);
         }
+        /* H1 - AUTORIDADE MÁXIMA */
         h1.splash-title { 
             font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 5vw, 2.5rem); 
             letter-spacing: 15px; color: var(--gold); margin-bottom: 50px;
@@ -48,53 +49,53 @@
         }
         #btn-activate:hover { background: var(--gold); color: var(--obsidian); box-shadow: 0 0 50px var(--gold); transform: scale(1.05); }
 
-        /* NAVEGAÇÃO */
+        /* NAVEGAÇÃO MINIMALISTA */
         nav { position: fixed; top: 0; width: 100%; padding: 40px; display: flex; justify-content: center; z-index: 500; mix-blend-mode: difference; }
         .brand { font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 5px; color: var(--gold); text-decoration: none; }
 
-        /* SEÇÕES - CENTRALIZAÇÃO TOTAL */
-        section { padding: 120px 10%; width: 100%; text-align: center; border-bottom: 1px solid rgba(197, 160, 89, 0.05); }
+        /* SEÇÕES - CENTRALIZAÇÃO E DESIGN ANTI-GRID */
+        section { padding: 120px 10%; width: 100%; text-align: center; position: relative; }
         .title-sec { 
-            font-family: 'Cinzel'; font-size: clamp(1.1rem, 3vw, 1.6rem); 
+            font-family: 'Cinzel'; font-size: clamp(1.1rem, 3.5vw, 1.6rem); 
             text-align: center; margin: 0 auto 80px; letter-spacing: 12px; 
             color: var(--gold); display: block; max-width: fit-content;
             padding-bottom: 15px; border-bottom: 1px solid var(--dark-gold);
             text-shadow: 1px 1px 0px var(--dark-gold), 3px 3px 10px rgba(0,0,0,0.5);
         }
         
-        /* MANUSCRITOS (GRID DE PRESTÍGIO) */
+        /* MANUSCRITOS (ESTÉTICA DE GALERIA) */
         .manuscritos { background: var(--cream); color: var(--obsidian); }
         .grid-manus { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         .card-manus { 
             padding: 60px 40px; border: 1px solid rgba(0,0,0,0.05); transition: 0.7s; 
-            background: var(--cream); position: relative;
+            background: var(--cream); position: relative; border-radius: 4px;
         }
         .card-manus:hover { transform: translateY(-10px); background: #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border-color: var(--gold); }
         .card-manus h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 25px; font-size: 1rem; letter-spacing: 2px; }
         .card-manus p { font-family: 'Lora'; font-size: 0.9rem; line-height: 2; opacity: 0.7; }
 
-        /* CONTENT BLOCK (POEMAS/REFLEXÕES) */
+        /* CONTENT GRID - H3 SEMANTICAMENTE CORRETO */
         .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .content-item { 
             padding: 40px; border: 1px solid rgba(197, 160, 89, 0.15); 
-            background: rgba(255,255,255,0.02); text-align: left; 
-            transition: 0.5s; backdrop-filter: blur(5px);
+            background: var(--glass); text-align: left; 
+            transition: 0.5s; backdrop-filter: blur(10px); border-radius: 8px;
         }
         .content-item:hover { border-color: var(--gold); background: rgba(197, 160, 89, 0.05); }
-        .content-item h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 2px; }
+        .content-item h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
         .content-item p { font-family: 'Lora'; font-style: italic; opacity: 0.8; line-height: 1.8; font-size: 0.85rem; }
 
-        /* RODAPÉ E ÍCONES 3D */
+        /* RODAPÉ E ÍCONES 3D REALISTAS */
         footer { padding: 100px 10%; background: #000; text-align: center; }
         .social-icons { display: flex; justify-content: center; gap: 50px; margin-bottom: 50px; }
         .social-icons a { 
-            color: var(--gold); font-size: 2.5rem; transition: 0.4s;
-            text-shadow: 2px 2px 0px var(--dark-gold), 4px 4px 12px rgba(0,0,0,0.9); /* 3D Realista */
+            color: var(--gold); font-size: 2.8rem; transition: 0.4s;
+            text-shadow: 2px 2px 0px #7a6335, 4px 4px 12px rgba(0,0,0,0.9); /* Efeito 3D de Ouro */
         }
-        .social-icons a:hover { transform: translateY(-5px) scale(1.1); color: #fff; text-shadow: 0 0 20px var(--gold); }
+        .social-icons a:hover { transform: translateY(-5px) scale(1.1); color: #fff; text-shadow: 0 0 25px var(--gold); }
         .copy { font-size: 0.55rem; opacity: 0.3; margin-top: 50px; letter-spacing: 4px; }
 
-        @media (max-width: 768px) { section { padding: 80px 6%; } .title-sec { letter-spacing: 8px; } }
+        @media (max-width: 768px) { section { padding: 80px 6%; } .title-sec { letter-spacing: 8px; font-size: 1.2rem; } }
     </style>
 </head>
 <body>
@@ -173,16 +174,16 @@
     <footer>
         <div class="social-icons">
             <a href="https://www.instagram.com/wagnerabrahao_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.threads.com/@wagnerabrahao_" target="_blank" title="Threads"><i class="fa-solid fa-at"></i></a>
+            <a href="https://www.threads.net/@wagnerabrahao_" target="_blank" title="Threads"><i class="fa-solid fa-at"></i></a>
             <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
             <a href="mailto:wagner.abrahao.31@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="font-family:'Cinzel'; letter-spacing:10px; color:var(--gold); font-size: 0.9rem; text-shadow: var(--shadow-3d);">WAGNER ABRAHÃO</p>
+        <p style="font-family:'Cinzel'; letter-spacing:10px; color:var(--gold); font-size: 0.95rem; text-shadow: var(--shadow-3d);">WAGNER ABRAHÃO</p>
         <p class="copy">© 2026 BELO HORIZONTE | MINAS GERAIS</p>
     </footer>
 
     <script>
-        // CANVAS GOLD DUST REATIVO
+        // CANVAS GOLD DUST REATIVO (SISTEMA DE PRESTÍGIO)
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -191,9 +192,9 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.1;
-                this.speedX = Math.random() * 0.3 - 0.15;
-                this.speedY = Math.random() * 0.2 - 0.1;
+                this.size = Math.random() * 2.2 + 0.1;
+                this.speedX = Math.random() * 0.2 - 0.1;
+                this.speedY = Math.random() * 0.15 - 0.05;
                 this.opacity = Math.random() * 0.6;
             }
             update() {
@@ -202,15 +203,16 @@
             }
             draw() { ctx.fillStyle = `rgba(197, 160, 89, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
         }
-        function handleParticles() { for (let i = 0; i < 150; i++) particles.push(new Particle()); }
+        function handleParticles() { particles = []; for (let i = 0; i < 160; i++) particles.push(new Particle()); }
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-        window.addEventListener('resize', initCanvas); initCanvas(); handleParticles(); animate();
+        window.addEventListener('resize', () => { initCanvas(); handleParticles(); });
+        initCanvas(); handleParticles(); animate();
 
         function launch() {
             const audio = document.getElementById('bg-audio');
             const splash = document.getElementById('splash');
             audio.volume = 0.4;
-            audio.play().catch(e => console.log("Áudio bloqueado. Clique novamente."));
+            audio.play().catch(e => console.log("Áudio aguardando interação."));
             splash.style.transform = "translateY(-100%)";
             setTimeout(() => { splash.style.display = "none"; window.scrollTo(0,0); }, 2000);
         }
