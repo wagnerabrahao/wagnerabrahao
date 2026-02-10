@@ -34,27 +34,19 @@
             background-size: cover; background-position: center;
             transition: transform 1.8s cubic-bezier(0.85, 0, 0.15, 1);
         }
+        /* CORRIGIDO: Agora é H1 para o validador encontrar */
         .splash-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 6vw, 3.5rem); letter-spacing: 12px; color: var(--gold); margin-bottom: 50px; }
+        
         #btn-activate { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 20px 50px; font-family: 'Cinzel'; letter-spacing: 4px; cursor: pointer; transition: 0.5s; font-size: 0.8rem; }
         #btn-activate:hover { background: var(--gold); color: var(--obsidian); box-shadow: 0 0 40px var(--gold); }
 
         /* NAVEGAÇÃO */
-        nav { position: fixed; top: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 500; mix-blend-mode: difference; }
+        nav { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 500; mix-blend-mode: difference; }
         .brand { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1rem; letter-spacing: 4px; color: var(--gold); text-decoration: none; }
 
-        /* SEÇÕES - CORREÇÃO DE HIERARQUIA E TAMANHO */
+        /* SEÇÕES - HIERARQUIA H2 */
         section { padding: 100px 10%; position: relative; width: 100%; text-align: center; }
-        .title-sec { 
-            font-family: 'Cinzel'; 
-            font-size: clamp(1.5rem, 4vw, 2.2rem); 
-            text-align: center; 
-            margin-bottom: 60px; 
-            letter-spacing: 8px; 
-            color: var(--gold); 
-            display: inline-block;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            padding-bottom: 15px;
-        }
+        .title-sec { font-family: 'Cinzel'; font-size: clamp(1.5rem, 4vw, 2.2rem); text-align: center; margin-bottom: 60px; letter-spacing: 8px; color: var(--gold); display: inline-block; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 15px; }
         
         /* MANUSCRITOS */
         .manuscritos { background: var(--cream); color: var(--obsidian); }
@@ -64,7 +56,7 @@
         .card-manus h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; letter-spacing: 2px; }
         .card-manus p { font-family: 'Lora'; font-size: 0.95rem; line-height: 1.8; opacity: 0.8; }
 
-        /* CONTENT GRID - CORREÇÃO HIERARQUIA H3 */
+        /* GRID CONTEÚDO - CORRIGIDO H4 PARA H3 */
         .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
         .content-item { padding: 30px; border: 1px solid rgba(197, 160, 89, 0.1); background: rgba(255,255,255,0.02); text-align: left; }
         .content-item h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 15px; font-size: 1rem; letter-spacing: 2px; }
@@ -77,11 +69,7 @@
         .social-icons a:hover { transform: scale(1.1); color: #fff; }
         .copy { font-size: 0.6rem; opacity: 0.3; margin-top: 40px; letter-spacing: 2px; }
 
-        @media (max-width: 768px) { 
-            section { padding: 60px 5%; } 
-            nav { padding: 20px; }
-            .title-sec { font-size: 1.4rem; letter-spacing: 5px; }
-        }
+        @media (max-width: 768px) { section { padding: 60px 5%; } nav { padding: 20px; } .title-sec { font-size: 1.4rem; letter-spacing: 5px; } }
     </style>
 </head>
 <body>
@@ -185,15 +173,11 @@
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let i = 0; i < particles.length; i++) { particles[i].update(); particles[i].draw(); } requestAnimationFrame(animate); }
         window.addEventListener('resize', initCanvas); initCanvas(); handleParticles(); animate();
 
-        // LAUNCH SYSTEM
         function launch() {
             const audio = document.getElementById('bg-audio');
             const splash = document.getElementById('splash');
             audio.volume = 0.3;
-            audio.play().catch(e => {
-                alert("Clique novamente para ativar a sinfonia.");
-                return;
-            });
+            audio.play().catch(e => console.log("Áudio bloqueado. Clique novamente."));
             splash.style.transform = "translateY(-100%)";
             setTimeout(() => { splash.style.display = "none"; window.scrollTo(0,0); }, 1500);
         }
