@@ -13,80 +13,88 @@
       gtag('config', 'G-5WZHN0YR19');
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;1,400&family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        :root { --gold: #c5a059; --obsidian: #050505; --cream: #fdfaf1; --shadow-3d: 2px 2px 0px #7a6335, 4px 4px 10px rgba(0,0,0,0.7); }
+        :root { --gold: #c5a059; --dark-gold: #7a6335; --obsidian: #050505; --cream: #fdfaf1; }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body, html { background-color: var(--obsidian); color: var(--cream); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* CANVAS - POEIRA DE OURO VIVA */
-        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.5; }
+        /* CANVAS - ALQUIMIA VISUAL */
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.6; }
 
-        /* PORTAL DE ENTRADA */
+        /* PORTAL DE ENTRADA (ESTILO FERRARI) */
         #splash {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             z-index: 10000; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+            background: radial-gradient(circle, rgba(10,10,10,0.7) 0%, rgba(0,0,0,1) 100%), 
                         url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2560&q=80');
             background-size: cover; background-position: center;
-            transition: transform 1.8s cubic-bezier(0.85, 0, 0.15, 1);
+            transition: transform 2s cubic-bezier(0.85, 0, 0.15, 1);
         }
-        .splash-title { font-family: 'Cinzel', serif; font-size: clamp(1.5rem, 5vw, 2.8rem); letter-spacing: 12px; color: var(--gold); margin-bottom: 50px; text-shadow: var(--shadow-3d); }
-        #btn-activate { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 18px 45px; font-family: 'Cinzel'; letter-spacing: 3px; cursor: pointer; transition: 0.5s; font-size: 0.8rem; backdrop-filter: blur(5px); }
-        #btn-activate:hover { background: var(--gold); color: var(--obsidian); box-shadow: 0 0 40px var(--gold); }
+        h1.splash-title { 
+            font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 5vw, 2.5rem); 
+            letter-spacing: 15px; color: var(--gold); margin-bottom: 50px;
+            text-shadow: 2px 2px 0px var(--dark-gold), 4px 4px 15px rgba(0,0,0,0.8);
+        }
+        #btn-activate { 
+            background: none; border: 1px solid var(--gold); color: var(--gold); 
+            padding: 20px 60px; font-family: 'Cinzel'; letter-spacing: 5px; cursor: pointer; 
+            transition: 0.5s; font-size: 0.8rem; backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+        }
+        #btn-activate:hover { background: var(--gold); color: var(--obsidian); box-shadow: 0 0 50px var(--gold); transform: scale(1.05); }
 
         /* NAVEGAÇÃO */
-        nav { position: fixed; top: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: center; align-items: center; z-index: 500; mix-blend-mode: difference; }
-        .brand { font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 4px; color: var(--gold); text-decoration: none; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
+        nav { position: fixed; top: 0; width: 100%; padding: 40px; display: flex; justify-content: center; z-index: 500; mix-blend-mode: difference; }
+        .brand { font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 5px; color: var(--gold); text-decoration: none; }
 
-        /* SEÇÕES - CENTRALIZAÇÃO E TAMANHO REDUZIDO */
-        section { padding: 100px 10%; width: 100%; text-align: center; position: relative; }
+        /* SEÇÕES - CENTRALIZAÇÃO TOTAL */
+        section { padding: 120px 10%; width: 100%; text-align: center; border-bottom: 1px solid rgba(197, 160, 89, 0.05); }
         .title-sec { 
-            font-family: 'Cinzel'; 
-            font-size: clamp(1.2rem, 3.5vw, 1.8rem); /* Tamanho reduzido para luxo */
-            text-align: center; 
-            margin: 0 auto 60px; 
-            letter-spacing: 10px; 
-            color: var(--gold); 
-            display: block; /* Garante centralização total */
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-            padding-bottom: 15px;
-            max-width: fit-content;
-            text-shadow: var(--shadow-3d);
+            font-family: 'Cinzel'; font-size: clamp(1.1rem, 3vw, 1.6rem); 
+            text-align: center; margin: 0 auto 80px; letter-spacing: 12px; 
+            color: var(--gold); display: block; max-width: fit-content;
+            padding-bottom: 15px; border-bottom: 1px solid var(--dark-gold);
+            text-shadow: 1px 1px 0px var(--dark-gold), 3px 3px 10px rgba(0,0,0,0.5);
         }
         
-        /* MANUSCRITOS */
+        /* MANUSCRITOS (GRID DE PRESTÍGIO) */
         .manuscritos { background: var(--cream); color: var(--obsidian); }
-        .grid-manus { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card-manus { padding: 60px 30px; border: 1px solid rgba(0,0,0,0.1); transition: 0.6s; background: var(--cream); }
-        .card-manus:hover { transform: translateY(-5px); background: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--gold); }
-        .card-manus h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 20px; font-size: 1.1rem; letter-spacing: 2px; }
-        .card-manus p { font-family: 'Lora'; font-size: 0.9rem; line-height: 1.8; opacity: 0.8; }
+        .grid-manus { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .card-manus { 
+            padding: 60px 40px; border: 1px solid rgba(0,0,0,0.05); transition: 0.7s; 
+            background: var(--cream); position: relative;
+        }
+        .card-manus:hover { transform: translateY(-10px); background: #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border-color: var(--gold); }
+        .card-manus h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 25px; font-size: 1rem; letter-spacing: 2px; }
+        .card-manus p { font-family: 'Lora'; font-size: 0.9rem; line-height: 2; opacity: 0.7; }
 
-        /* GRID CONTEÚDO - REPARO HIERARQUIA H3 */
-        .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
-        .content-item { padding: 30px; border: 1px solid rgba(197, 160, 89, 0.2); background: rgba(255,255,255,0.02); text-align: left; transition: 0.5s; }
-        .content-item:hover { border-color: var(--gold); background: rgba(255,255,255,0.05); }
-        
-        /* CORREÇÃO DO ERRO H4 -> H3 */
-        .content-item h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 15px; font-size: 0.95rem; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-        .content-item p { font-family: 'Lora'; font-style: italic; opacity: 0.8; line-height: 1.7; font-size: 0.85rem; }
+        /* CONTENT BLOCK (POEMAS/REFLEXÕES) */
+        .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .content-item { 
+            padding: 40px; border: 1px solid rgba(197, 160, 89, 0.15); 
+            background: rgba(255,255,255,0.02); text-align: left; 
+            transition: 0.5s; backdrop-filter: blur(5px);
+        }
+        .content-item:hover { border-color: var(--gold); background: rgba(197, 160, 89, 0.05); }
+        .content-item h3 { font-family: 'Cinzel'; color: var(--gold); margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 2px; }
+        .content-item p { font-family: 'Lora'; font-style: italic; opacity: 0.8; line-height: 1.8; font-size: 0.85rem; }
 
-        /* RODAPÉ - ÍCONES 3D REALISTAS */
-        footer { padding: 80px 10%; background: #000; border-top: 1px solid #111; text-align: center; }
-        .social-icons { display: flex; justify-content: center; gap: 45px; margin-bottom: 45px; }
-        
+        /* RODAPÉ E ÍCONES 3D */
+        footer { padding: 100px 10%; background: #000; text-align: center; }
+        .social-icons { display: flex; justify-content: center; gap: 50px; margin-bottom: 50px; }
         .social-icons a { 
-            color: var(--gold); font-size: 2.2rem; transition: 0.4s;
-            text-shadow: 2px 2px 0px #7a6335, 4px 4px 10px rgba(0,0,0,0.9); /* Profundidade 3D */
+            color: var(--gold); font-size: 2.5rem; transition: 0.4s;
+            text-shadow: 2px 2px 0px var(--dark-gold), 4px 4px 12px rgba(0,0,0,0.9); /* 3D Realista */
         }
         .social-icons a:hover { transform: translateY(-5px) scale(1.1); color: #fff; text-shadow: 0 0 20px var(--gold); }
-        .copy { font-size: 0.55rem; opacity: 0.3; margin-top: 40px; letter-spacing: 3px; }
+        .copy { font-size: 0.55rem; opacity: 0.3; margin-top: 50px; letter-spacing: 4px; }
 
-        @media (max-width: 768px) { section { padding: 60px 5%; } .title-sec { letter-spacing: 6px; } nav { padding: 25px; } }
+        @media (max-width: 768px) { section { padding: 80px 6%; } .title-sec { letter-spacing: 8px; } }
     </style>
 </head>
 <body>
@@ -101,6 +109,15 @@
     <audio id="bg-audio" loop preload="auto"><source src="musica.mp3" type="audio/mpeg"></audio>
 
     <nav><a href="#" class="brand">WAGNER ABRAHÃO</a></nav>
+
+    <section id="manifesto">
+        <h2 class="title-sec">A ARQUITETURA DO INVISÍVEL</h2>
+        <div style="max-width: 750px; margin: 0 auto;">
+            <p style="font-family: 'Lora'; font-style: italic; font-size: 1.1rem; line-height: 2.2; opacity: 0.9;">
+                Wagner Abrahão desenha caminhos para a restauração da alma. Como Arquiteto do Invisível, sua missão é transformar a densidade do tempo através da Alquimia do Ser.
+            </p>
+        </div>
+    </section>
 
     <section class="manuscritos" id="manuscritos">
         <h2 class="title-sec">MANUSCRITOS</h2>
@@ -134,21 +151,21 @@
     <section id="poemas" style="background: rgba(255,255,255,0.01);">
         <h2 class="title-sec">POEMAS E POESIAS</h2>
         <div class="content-grid">
-            <div class="content-item"><h3>Fogo Interno</h3><p>Na caverna do peito, a chama dança sem ar. Ela não pede lenha, pede apenas o olhar.</p></div>
-            <div class="content-item"><h3>Ouro do Peito</h3><p>Transmuto o chumbo do dia no brilho da noite serena. Cada lágrima é um grão de luz.</p></div>
-            <div class="content-item"><h3>Manto de Paz</h3><p>Envolve-me o silêncio como um linho antigo. Encontro o abrigo do que nunca foi dito.</p></div>
-            <div class="content-item"><h3>Arquitetura do Ar</h3><p>Não ergo paredes, abro vãos. Minha casa é o espaço entre as mãos.</p></div>
-            <div class="content-item"><h3>O Vazio Sagrado</h3><p>Nada falta onde o tudo repousa. A alma é a nau, o mistério é a lousa.</p></div>
+            <div class="content-item"><h3>Fogo Interno</h3><p>Na caverna do peito, a chama dança sem ar. Ela não pede lenha, pede apenas o olhar que se atreve a queimar.</p></div>
+            <div class="content-item"><h3>Ouro do Peito</h3><p>Transmuto o chumbo do dia no brilho da noite serena. Cada lágrima é um grão de luz na minha pequena oficina eterna.</p></div>
+            <div class="content-item"><h3>Manto de Paz</h3><p>Envolve-me o silêncio como um linho antigo. No acalento da alma, encontro o abrigo do que nunca foi dito.</p></div>
+            <div class="content-item"><h3>Arquitetura do Ar</h3><p>Não ergo paredes, abro vãos. Minha casa é o espaço entre as mãos, onde Deus se faz oração.</p></div>
+            <div class="content-item"><h3>O Vazio Sagrado</h3><p>Nada falta onde o tudo repousa. A alma é a nau, o mistério é a lousa onde a vida escreve sua causa.</p></div>
         </div>
     </section>
 
     <section id="textos">
         <h2 class="title-sec">REFLEXÕES</h2>
         <div class="content-grid">
-            <div class="content-item"><h3>A Habitação</h3><p>Habitar o próprio ser exige a coragem de ser estrangeiro no mundo das formas.</p></div>
-            <div class="content-item"><h3>O Ofício</h3><p>Arquitetar o que não se vê é a única forma de construir o que jamais cairá.</p></div>
-            <div class="content-item"><h3>A Cura</h3><p>A palavra, quando grávida de silêncio, cura feridas que o tempo apenas escondeu.</p></div>
-            <div class="content-item"><h3>O Tempo</h3><p>Não avançamos; orbitamos o centro de nós mesmos até que o círculo se torne esfera.</p></div>
+            <div class="content-item"><h3>A Habitação do Ser</h3><p>Habitar o próprio ser exige a coragem de ser estrangeiro no mundo das formas.</p></div>
+            <div class="content-item"><h3>O Ofício do Invisível</h3><p>Arquitetar o que não se vê é a única forma de construir o que jamais cairá.</p></div>
+            <div class="content-item"><h3>A Cura pelo Verbo</h3><p>A palavra, quando grávida de silêncio, cura feridas que o tempo apenas escondeu.</p></div>
+            <div class="content-item"><h3>O Tempo Circular</h3><p>Não avançamos; orbitamos o centro de nós mesmos até que o círculo se torne esfera.</p></div>
             <div class="content-item"><h3>A Transmutação</h3><p>A alquimia não é o fim da dor, mas o início da compreensão do seu propósito áureo.</p></div>
         </div>
     </section>
@@ -160,7 +177,7 @@
             <a href="https://www.tiktok.com/@wagner.abrahao" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
             <a href="mailto:wagner.abrahao.31@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="font-family:'Cinzel'; letter-spacing:8px; color:var(--gold); font-size: 0.8rem; text-shadow: var(--shadow-3d);">WAGNER ABRAHÃO</p>
+        <p style="font-family:'Cinzel'; letter-spacing:10px; color:var(--gold); font-size: 0.9rem; text-shadow: var(--shadow-3d);">WAGNER ABRAHÃO</p>
         <p class="copy">© 2026 BELO HORIZONTE | MINAS GERAIS</p>
     </footer>
 
@@ -176,31 +193,26 @@
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 0.1;
                 this.speedX = Math.random() * 0.3 - 0.15;
-                this.speedY = Math.random() * 0.3 - 0.15;
-                this.opacity = Math.random() * 0.5;
+                this.speedY = Math.random() * 0.2 - 0.1;
+                this.opacity = Math.random() * 0.6;
             }
             update() {
                 this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
+                if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0;
             }
             draw() { ctx.fillStyle = `rgba(197, 160, 89, ${this.opacity})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
         }
-        function handleParticles() { particles = []; for (let i = 0; i < 140; i++) particles.push(new Particle()); }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (let i = 0; i < particles.length; i++) { particles[i].update(); particles[i].draw(); } requestAnimationFrame(animate); }
-        window.addEventListener('resize', () => { initCanvas(); handleParticles(); });
-        initCanvas(); handleParticles(); animate();
+        function handleParticles() { for (let i = 0; i < 150; i++) particles.push(new Particle()); }
+        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
+        window.addEventListener('resize', initCanvas); initCanvas(); handleParticles(); animate();
 
         function launch() {
             const audio = document.getElementById('bg-audio');
             const splash = document.getElementById('splash');
-            audio.volume = 0.3;
-            audio.play().catch(e => {
-                alert("Clique no botão novamente para ativar a sinfonia.");
-                return;
-            });
+            audio.volume = 0.4;
+            audio.play().catch(e => console.log("Áudio bloqueado. Clique novamente."));
             splash.style.transform = "translateY(-100%)";
-            setTimeout(() => { splash.style.display = "none"; window.scrollTo(0,0); }, 1800);
+            setTimeout(() => { splash.style.display = "none"; window.scrollTo(0,0); }, 2000);
         }
     </script>
 </body>
