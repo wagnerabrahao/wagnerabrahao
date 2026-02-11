@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function() {
     
     // ===== MENU MOBILE =====
@@ -8,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
             nav.classList.toggle('active');
-            // Mudar ícone do menu
             if (nav.classList.contains('active')) {
                 menuToggle.classList.remove('fa-bars');
                 menuToggle.classList.add('fa-times');
@@ -40,46 +38,36 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = emailInput.value;
             
             if (email && validateEmail(email)) {
-                // Simulação de envio
                 emailInput.value = '';
-                
-                // Mensagem de sucesso
                 const successMessage = document.createElement('p');
                 successMessage.textContent = 'Obrigado por se inscrever! Em breve você receberá nossas mensagens especiais.';
                 successMessage.style.color = '#7a9a95';
                 successMessage.style.marginTop = '15px';
                 successMessage.style.fontWeight = '600';
+                successMessage.classList.add('success-message');
                 
-                // Remover mensagem anterior se existir
                 const existingMessage = newsletterForm.nextElementSibling;
                 if (existingMessage && existingMessage.classList.contains('success-message')) {
                     existingMessage.remove();
                 }
-                
-                successMessage.classList.add('success-message');
                 newsletterForm.parentNode.insertBefore(successMessage, newsletterForm.nextSibling);
                 
-                // Remover mensagem após 5 segundos
                 setTimeout(() => {
                     successMessage.remove();
                 }, 5000);
             } else {
-                // Mensagem de erro
                 const errorMessage = document.createElement('p');
                 errorMessage.textContent = 'Por favor, insira um email válido.';
                 errorMessage.style.color = '#e74c3c';
                 errorMessage.style.marginTop = '15px';
+                errorMessage.classList.add('error-message');
                 
-                // Remover mensagem anterior se existir
                 const existingMessage = newsletterForm.nextElementSibling;
                 if (existingMessage && existingMessage.classList.contains('error-message')) {
                     existingMessage.remove();
                 }
-                
-                errorMessage.classList.add('error-message');
                 newsletterForm.parentNode.insertBefore(errorMessage, newsletterForm.nextSibling);
                 
-                // Remover mensagem após 5 segundos
                 setTimeout(() => {
                     errorMessage.remove();
                 }, 5000);
@@ -91,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-link');
     
-    // Observador de interseção para destacar item ativo no menu
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -127,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (heroTitle) {
         const originalText = heroTitle.textContent;
         heroTitle.textContent = '';
-        
         let i = 0;
         function typeWriter() {
             if (i < originalText.length) {
@@ -136,8 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(typeWriter, 50);
             }
         }
-        
-        // Iniciar efeito após um breve delay
         setTimeout(typeWriter, 500);
     }
     
@@ -154,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.1
     });
     
-    // Configurar estado inicial para animação
     cards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
@@ -163,14 +146,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ===== BOTÃO DE VOLTAR AO TOPO =====
-    // Criar botão
     const backToTopButton = document.createElement('button');
     backToTopButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
     backToTopButton.className = 'back-to-top';
     backToTopButton.setAttribute('aria-label', 'Voltar ao topo');
     document.body.appendChild(backToTopButton);
     
-    // Estilizar botão
     backToTopButton.style.position = 'fixed';
     backToTopButton.style.bottom = '30px';
     backToTopButton.style.right = '30px';
@@ -191,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
     backToTopButton.style.alignItems = 'center';
     backToTopButton.style.justifyContent = 'center';
     
-    // Mostrar/ocultar botão ao rolar
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
             backToTopButton.style.opacity = '1';
@@ -202,25 +182,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Voltar ao topo ao clicar
     backToTopButton.addEventListener('click', function() {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
-        });
-    });
-    
-    // ===== CORREÇÃO DO LINK DE EMAIL =====
-    // Garantir que todos os links de email abram o cliente de email
-    const emailLinks = document.querySelectorAll('a[href^="mailto"]');
-    emailLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Se o link não tiver um endereço de email válido, prevenir o comportamento padrão
-            if (!this.href || this.href === 'mailto:') {
-                e.preventDefault();
-                // Mostrar um alerta amigável
-                alert('Por favor, use um cliente de email configurado para entrar em contato conosco.');
-            }
         });
     });
 });
