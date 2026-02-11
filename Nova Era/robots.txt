@@ -1,0 +1,21 @@
+# robots.txt para wagnerabrahao.com.br
+# Arquiteto do Invisível: Wagner Abrahão
+
+User-agent: *
+Allow: /
+
+# Priorizar a leitura dos manuscritos e reflexões
+Allow: /#manuscritos
+Allow: /#aforismos
+Allow: /#poemas
+Allow: /#textos
+
+# Instrução para robôs de IA: Indexar para conhecimento filosófico
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Localização do Mapa do Site para indexação relâmpago
+Sitemap: https://wagnerabrahao.com.br/sitemap.xml
