@@ -1,3 +1,37 @@
+/* DESIGN DA FOTO DO AUTOR */
+.author-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 4px solid #7a9a95;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease;
+}
+
+.author-photo:hover {
+    transform: scale(1.05);
+}
+
+/* CARDS DOS LIVROS */
+.book-card {
+    background: #fff;
+    border: 1px solid #7a9a95;
+    padding: 30px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.book-card h3 {
+    color: #c5a059;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.book-card:hover {
+    box-shadow: 0 10px 20px rgba(122, 154, 149, 0.2);
+}
+
 /* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
 * {
     margin: 0;
