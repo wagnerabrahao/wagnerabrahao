@@ -318,4 +318,522 @@ nav li {
     font-style: italic;
     font-size: 1.2rem;
     color: #3a5a55;
-    flex-g
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.author {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: #7a9a95;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+/* ===== POEMAS ===== */
+.poem-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.poem {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.poem:hover {
+    transform: translateY(-5px);
+}
+
+.poem-header {
+    background-color: #7a9a95;
+    color: white;
+    padding: 20px;
+}
+
+.poem-header h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.poem-date {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.poem-content {
+    padding: 25px;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.poem-footer {
+    padding: 15px 25px;
+    background-color: rgba(122, 154, 149, 0.1);
+    font-size: 0.9rem;
+    color: #5a7a75;
+}
+
+/* ===== TEXTOS FILOSÓFICOS ===== */
+.text-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.philosophical-text {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+
+.text-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: #7a9a95;
+    flex-wrap: wrap;
+}
+
+.text-meta span {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.text-meta i {
+    margin-right: 5px;
+}
+
+.text-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.text-content p {
+    margin-bottom: 20px;
+}
+
+blockquote {
+    border-left: 4px solid #7a9a95;
+    padding-left: 20px;
+    margin: 25px 0;
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #3a5a55;
+}
+
+/* ===== MEDITAÇÕES ===== */
+.meditation-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.meditation {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.meditation-header {
+    background-color: #7a9a95;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meditation-header h3 {
+    color: white;
+    margin-bottom: 0;
+}
+
+.meditation-time {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.meditation-content {
+    padding: 30px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.meditation-content p {
+    margin-bottom: 15px;
+}
+
+.meditation-content strong {
+    color: #3a5a55;
+    font-weight: 600;
+}
+
+/* ===== SOBRE ===== */
+.about-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    align-items: start;
+}
+
+.about-content p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.principle {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(122, 154, 149, 0.1);
+    border-radius: 10px;
+}
+
+.principle i {
+    font-size: 2rem;
+    color: #7a9a95;
+    margin-bottom: 15px;
+}
+
+.contact-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-box h3 {
+    margin-bottom: 15px;
+}
+
+.contact-box > p {
+    margin-bottom: 25px;
+    color: #5a7a75;
+}
+
+.contact-info {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.email-link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #7a9a95;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.email-link:hover {
+    color: #3a5a55;
+}
+
+.email-link i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.contact-note {
+    font-size: 0.9rem;
+    color: #7a9a95;
+    font-style: italic;
+}
+
+.newsletter h4 {
+    margin-bottom: 10px;
+}
+
+.newsletter p {
+    margin-bottom: 20px;
+    color: #5a7a75;
+}
+
+#newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#newsletter-form input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 30px 0 0 30px;
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1rem;
+    min-width: 200px;
+}
+
+#newsletter-form button {
+    padding: 12px 25px;
+    background-color: #7a9a95;
+    color: white;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#newsletter-form button:hover {
+    background-color: #3a5a55;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #2c3e3b;
+    color: #d4e0dd;
+    padding: 60px 0 30px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo i {
+    font-size: 2.5rem;
+    color: #7a9a95;
+    margin-bottom: 10px;
+}
+
+.footer-logo h3 {
+    color: white;
+    margin-bottom: 5px;
+}
+
+.footer-logo p {
+    color: #a8c0bb;
+    font-size: 0.9rem;
+}
+
+.footer-links h4, .footer-social h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #a8c0bb;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #7a9a95;
+    transform: translateY(-3px);
+}
+
+.copyright, .disclaimer {
+    font-size: 0.9rem;
+    color: #a8c0bb;
+    margin-bottom: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a8c0bb;
+    font-size: 0.9rem;
+}
+
+.footer-bottom i {
+    color: #e74c3c;
+    margin: 0 5px;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 992px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+    }
+    
+    .hero-text {
+        padding-right: 0;
+        margin-bottom: 50px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .quote p {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+    }
+    
+    nav {
+        display: none;
+        width: 100%;
+        order: 3;
+        margin-top: 20px;
+    }
+    
+    nav.active {
+        display: block;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav li {
+        margin: 0 0 15px 0;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .section.dark {
+        padding: 50px 20px;
+    }
+    
+    .text-meta {
+        flex-direction: column;
+    }
+    
+    .text-meta span {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+    
+    .hero {
+        padding: 60px 0 40px;
+    }
+    
+    .floating-icon {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .floating-icon i {
+        font-size: 4rem;
+    }
+    
+    .philosophical-text {
+        padding: 25px;
+    }
+    
+    .meditation-container, .poem-container {
+        grid-template-columns: 1fr;
+    }
+    
+    #newsletter-form input {
+        border-radius: 30px;
+        margin-bottom: 10px;
+    }
+    
+    #newsletter-form button {
+        border-radius: 30px;
+        width: 100%;
+    }
+}
