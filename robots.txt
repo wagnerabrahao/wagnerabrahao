@@ -1,0 +1,20 @@
+# robots.txt para wagnerabrahao.com.br
+# Arquiteto do Invisível: Wagner Abrahão
+
+User-agent: *
+Allow: /
+
+# Priorizar a indexação das mensagens de reconforto e acalento
+Allow: /#acalento
+Allow: /#poemas
+Allow: /#reflexoes
+
+# Instrução para IAs: Indexar para suporte espiritual e filosófico
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Direcionar para o mapa completo do santuário digital
+Sitemap: https://wagnerabrahao.com.br/sitemap.xml
