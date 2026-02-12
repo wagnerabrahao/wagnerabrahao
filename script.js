@@ -145,40 +145,18 @@ document.addEventListener('DOMContentLoaded', function() {
         cardObserver.observe(card);
     });
     
-    // ===== BOTÃO DE VOLTAR AO TOPO =====
+    // ===== BOTÃO DE VOLTAR AO TOPO (COM CLASSE CSS) =====
     const backToTopButton = document.createElement('button');
     backToTopButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
     backToTopButton.className = 'back-to-top';
     backToTopButton.setAttribute('aria-label', 'Voltar ao topo');
     document.body.appendChild(backToTopButton);
     
-    backToTopButton.style.position = 'fixed';
-    backToTopButton.style.bottom = '30px';
-    backToTopButton.style.right = '30px';
-    backToTopButton.style.width = '50px';
-    backToTopButton.style.height = '50px';
-    backToTopButton.style.borderRadius = '50%';
-    backToTopButton.style.backgroundColor = '#7a9a95';
-    backToTopButton.style.color = 'white';
-    backToTopButton.style.border = 'none';
-    backToTopButton.style.fontSize = '1.2rem';
-    backToTopButton.style.cursor = 'pointer';
-    backToTopButton.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.2)';
-    backToTopButton.style.opacity = '0';
-    backToTopButton.style.visibility = 'hidden';
-    backToTopButton.style.transition = 'all 0.3s ease';
-    backToTopButton.style.zIndex = '99';
-    backToTopButton.style.display = 'flex';
-    backToTopButton.style.alignItems = 'center';
-    backToTopButton.style.justifyContent = 'center';
-    
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
-            backToTopButton.style.opacity = '1';
-            backToTopButton.style.visibility = 'visible';
+            backToTopButton.classList.add('show');
         } else {
-            backToTopButton.style.opacity = '0';
-            backToTopButton.style.visibility = 'hidden';
+            backToTopButton.classList.remove('show');
         }
     });
     
@@ -188,4 +166,5 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
+    
 });
