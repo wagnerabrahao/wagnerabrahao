@@ -1,0 +1,8 @@
+seu-site/
+│
+├── index.html
+├── style.css
+├── script.js
+├── robots.txt
+├── sitemap.xml
+└── perfil.jpg          (coloque sua foto aqui se quiser testar localmente)
