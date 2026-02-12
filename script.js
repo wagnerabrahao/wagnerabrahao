@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return re.test(email);
     }
     
-    // ===== EFETIO DE DIGITAÇÃO NO TÍTULO PRINCIPAL =====
+    // ===== EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL =====
     const heroTitle = document.querySelector('.hero h2');
     if (heroTitle) {
         const originalText = heroTitle.textContent;
