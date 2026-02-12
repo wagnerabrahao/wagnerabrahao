@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.luzinterior.com.br/sitemap.xml
+Sitemap: https://www.wagnerabrahao.com.br/sitemap.xml
