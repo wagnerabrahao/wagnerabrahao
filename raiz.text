@@ -5,4 +5,12 @@ seu-site/
 ├── script.js
 ├── robots.txt
 ├── sitemap.xml
-└── perfil.jpg          (coloque sua foto aqui se quiser testar localmente)
+├── CNAME                  (opcional, só se tiver domínio próprio)
+├── perfil.jpg             (coloque sua foto aqui)
+│
+├── assets/                (opcional, para organizar)
+│   ├── audio/
+│   ├── images/
+│   └── docs/
+│
+└── README.md
